@@ -1,6 +1,5 @@
-
 .inputNumber {
-  background-color: #322F37;
+  background-color: #322f37;
   display: flex;
   width: fit-content;
   padding: 10px;
@@ -14,7 +13,6 @@
     font-size: 20px;
   }
   .filled {
-
   }
 
   input {
@@ -31,7 +29,7 @@
     }
 
     /* Firefox */
-    &[type=number] {
+    &[type="number"] {
       -moz-appearance: textfield;
     }
 

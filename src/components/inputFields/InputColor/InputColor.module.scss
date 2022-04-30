@@ -1,35 +1,26 @@
-
 .inputColor {
   display: flex;
   flex-wrap: wrap;
 
   .button {
-
   }
 
   .filled {
-
   }
 
-  .highlight{
-
-
+  .highlight {
     margin-bottom: 20px;
     margin-right: 20px;
     padding: 2px;
     border: transparent 2px solid;
 
-
-    &.active{
+    &.active {
       border-radius: 100%;
       border-color: white;
-
     }
   }
 
   .color {
-
-
     width: 45px;
     height: 45px;
     border-radius: 100%;
@@ -45,11 +36,10 @@
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
-
     }
 
     /* Firefox */
-    &[type=number] {
+    &[type="number"] {
     }
 
     &:focus {
