@@ -1,0 +1,167 @@
+@import "../../styles/functions";
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.active {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar {
+  width: 100%;
+  background-color: transparent;
+  position: fixed;
+  z-index: 1000;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+
+  .navbarContainer {
+    // height: 50px;
+    padding: 1vw 0;
+    // padding: 20px 0;
+    background-color: transparent;
+    // background-color: #121212;
+    // border: 1px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+
+    top: 0;
+
+    @include xlMaxBreakPoint {
+      // border: 1px solid red;
+      padding: 20px 0;
+    }
+
+    &.nav__transluscent {
+      background-color: rgba(31, 31, 31, 0.8);
+      backdrop-filter: blur(30px);
+      box-shadow: 1px 1px 1px #121212e2;
+    }
+
+    .navbarLeft {
+      flex: 1;
+      margin-left: 10%;
+      margin-right: 7%;
+    }
+    .menuIcon {
+      cursor: pointer;
+      img {
+        width: 6.6vw;
+
+        @include xlMaxBreakPoint {
+          // border: 1px solid red;
+          width: 100px;
+        }
+        // width: 100px;
+        // border: 1px solid red;
+      }
+    }
+
+    .navbarCenter {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+    .navbarRight {
+      // height: 50px;
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-right: 10%;
+      // border: 1px solid red;
+    }
+    .navbarIcons {
+      width: 23vw;
+      // border: 2px solid red;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      @include lgMaxBreakPoint {
+        width: 30vw;
+        // border: 2px solid green;
+      }
+
+      @include mdMaxBreakPoint {
+        width: 40vw;
+        // width: 2px solid white;
+      }
+
+      .navbarIconItem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        color: #6d7280;
+        // border: 1px solid red;
+
+        svg {
+          // border: 1px solid red;
+          margin-bottom: 0.2vw;
+
+          @include xlMaxBreakPoint {
+            margin-bottom: 5px;
+          }
+        }
+
+        p {
+          font-size: 0.5vw;
+          // font-size: 8px;
+          font-weight: bold;
+          -webkit-touch-callout: none; /* iOS Safari */
+          -webkit-user-select: none; /* Safari */
+          -khtml-user-select: none; /* Konqueror HTML */
+          -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none;
+
+          @include xlMaxBreakPoint {
+            font-size: 8px;
+          }
+        }
+      }
+
+      img {
+        width: 1.3vw;
+        // width: 20px;
+        margin-bottom: 0.3vw;
+        // margin-bottom: 5px;
+
+        @include xlMaxBreakPoint {
+          width: 20px;
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+
+  .sideBar {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(30px);
+    height: 100vh;
+    width: 15%;
+    color: white;
+    top: 0;
+    left: -100%;
+    transition: all 0.4s ease-in;
+
+    &.active {
+      left: 0%;
+    }
+
+    .closeIcon {
+      position: absolute;
+      padding: 15px;
+      left: 10%;
+      top: 1%;
+    }
+  }
+}
