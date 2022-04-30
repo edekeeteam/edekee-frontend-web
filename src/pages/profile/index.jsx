@@ -5,28 +5,6 @@ function Profile() {
     <>
       <div>Profile</div>
       <div>Profile</div>
-      <div>Profile</div>
-      <div>Profile</div>
-      <div>Profile</div>
-      <div>Profile</div>
-      <div>Profile</div>
-      <div>Profile</div>
-      <div>Profile</div>
-      <div>Profile</div>
-      <div>Profile</div>
-      <div>Profile</div>
-      <div>Profile</div>
-      <div>Profile</div>
-      <div>Profile</div>
-      <div>Profile</div>
-      <div>Profile</div>
-      <div>Profile</div>
-      <div>Profile</div>
-      <div>Profile</div>
-      <div>Profile</div>
-      <div>Profile</div>
-      <div>Profile</div>
-      <div>Profile</div>
     </>
   );
 }
