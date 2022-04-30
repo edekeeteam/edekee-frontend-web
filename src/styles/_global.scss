@@ -1,0 +1,151 @@
+@import "./mixins";
+@import "./functions";
+@import "./variables";
+
+.globalContainer {
+  max-width: 70vw;
+  margin: 0 auto;
+
+  @include lgMaxBreakPoint {
+    max-width: 80vw;
+  }
+  // border: 3px solid black;
+}
+
+.globalPurple {
+  color: $purple;
+}
+.globalContent {
+  width: 52%;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.3vw;
+  line-height: 2.9vw;
+
+  @include xlMaxBreakPoint {
+    font-size: toRem(17);
+  }
+  @include mdMaxBreakPoint {
+    width: 90%;
+    line-height: 25px;
+  }
+}
+
+.width70 {
+  width: 60%;
+
+  @include lgMaxBreakPoint {
+    width: 70%;
+  }
+  @include mdMaxBreakPoint {
+    width: 90%;
+  }
+}
+
+.mlAuto {
+  margin-left: auto;
+
+  @include mdMaxBreakPoint {
+    margin-left: 0;
+  }
+}
+
+.globalHeading {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 3.5vw;
+
+  line-height: 3.9vw;
+  margin-bottom: 20px;
+
+  @include xlMaxBreakPoint {
+    line-height: 50px;
+    font-size: toRem(40);
+  }
+  @include lgMaxBreakPoint {
+    line-height: 48px;
+  }
+
+  @include mdMaxBreakPoint {
+    // width: 90%;
+    margin-bottom: 30px;
+  }
+}
+
+.globalSubheading {
+  font-size: 16px;
+  color: $purple;
+  margin-bottom: 20px;
+
+  @include xlMaxBreakPoint {
+    font-size: toRem(16);
+  }
+}
+.globalDot {
+  color: $purple;
+}
+
+.globalTextLight {
+  color: $text-light;
+}
+
+.globalTextDark100 {
+  color: $text-dark-100;
+}
+.globalTextDark200 {
+  color: $text-dark-200;
+}
+.globalTextDark300 {
+  color: $text-dark-300;
+}
+.globalTextDark400 {
+  color: $text-dark-400;
+}
+.globalTextDark500 {
+  color: $text-dark-500;
+}
+
+.global-modal-width {
+  width: $modal-width;
+
+  @include xxlMaxBreakPoint {
+    width: $modal-width-xl;
+  }
+}
+.global-vidmodal-width {
+  width: $modal-width;
+
+  @include xxlMaxBreakPoint {
+    width: $modal-width-xl;
+  }
+}
+
+.global-text-10 {
+  font-size: toRem(10);
+}
+
+.global-text-20 {
+  font-size: toRem(20);
+  // font-weight: bold;
+}
+.global-text-12 {
+  font-size: toRem(12);
+  list-style: toRem(14);
+  // font-weight: bold;
+}
+
+.global-modal-mb {
+  margin-bottom: toRem(30);
+}
+
+.global-modal-bg {
+  background-color: $modal-background;
+  opacity: 0.8;
+}
+
+.global-upload-btn {
+  padding: 0.8vw 1.7vw;
+  padding: 12px 27px;
+  border-radius: 40px;
+  display: inline-block;
+}
