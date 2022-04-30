@@ -1,0 +1,40 @@
+.inputFile {
+  position: relative;
+
+  border: 1px solid red;
+  .imageUpload {
+    width: 20%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+  }
+
+  input {
+    position: absolute;
+  }
+
+  .inputLabel {
+    cursor: pointer;
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    padding: 15px 35px;
+    /* width: 100px; */
+    border-radius: 25px;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+
+  .uploadInputLabel {
+    cursor: pointer;
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    padding: 15px 35px;
+    /* width: 100px; */
+    border-radius: 25px;
+    margin-top: 50px;
+    display: inline-block;
+  }
+}

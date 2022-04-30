@@ -1,0 +1,58 @@
+
+.inputColor {
+  display: flex;
+  flex-wrap: wrap;
+
+  .button {
+
+  }
+
+  .filled {
+
+  }
+
+  .highlight{
+
+
+    margin-bottom: 20px;
+    margin-right: 20px;
+    padding: 2px;
+    border: transparent 2px solid;
+
+
+    &.active{
+      border-radius: 100%;
+      border-color: white;
+
+    }
+  }
+
+  .color {
+
+
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    position: relative;
+
+    input {
+      position: absolute;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+
+    }
+
+    /* Firefox */
+    &[type=number] {
+    }
+
+    &:focus {
+    }
+  }
+}
