@@ -18,7 +18,6 @@ const breakpointColumnsObj = {
   500: 1,
 };
 
-// eslint-disable-next-line react/prop-types
 function ImageGallery({ data }) {
   const [videos, setVideos] = useState([]);
   useEffect(() => {
