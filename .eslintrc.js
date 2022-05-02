@@ -12,5 +12,9 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["react"],
-  rules: { "require-jsdoc": "off", "react/react-in-jsx-scope": "off","import/no-unresolved": "off" },
+  rules: {
+    "require-jsdoc": "off",
+    "react/react-in-jsx-scope": "off",
+    "import/no-unresolved": "off",
+  },
 };
