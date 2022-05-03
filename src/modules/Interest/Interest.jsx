@@ -83,8 +83,8 @@ function Interest() {
   return (
     <div className={styles.Interest}>
       <div className={styles.header}>
-        <p>Interests</p>
-        <p>Kindly select up to 3 interest you’d like to see.</p>
+        <p className="global-text-24 global-modal-sm-mb">Interests</p>
+        <p className="global-text-12">Kindly select up to 3 interest you’d like to see.</p>
       </div>
       <div className={styles.interestsContainer}>
         {interests.map((interest) => (

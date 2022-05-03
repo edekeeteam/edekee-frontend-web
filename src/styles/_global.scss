@@ -128,6 +128,10 @@
   font-size: toRem(20);
   // font-weight: bold;
 }
+.global-text-24 {
+  font-size: toRem(24);
+  // font-weight: bold;
+}
 .global-text-12 {
   font-size: toRem(12);
   list-style: toRem(14);
@@ -136,6 +140,9 @@
 
 .global-modal-mb {
   margin-bottom: toRem(30);
+}
+.global-modal-sm-mb {
+  margin-bottom: toRem(10);
 }
 
 .global-modal-bg {
