@@ -1,0 +1,35 @@
+.dropdown {
+  position: fixed;
+
+  //   width: 13vw;
+  //   height: 250px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  border-radius: 20px;
+  // border: 2px solid red;
+  z-index: 1000;
+  background-color: #1f1f1f;
+
+  &.show {
+    display: flex;
+  }
+
+  .uploadButton {
+    width: 100%;
+    display: flex;
+    // justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    cursor: pointer;
+    // border: 1px solid green;
+
+    .img,
+    .img1 {
+      margin-right: 10px;
+      // border: 1px solid red;
+    }
+  }
+}

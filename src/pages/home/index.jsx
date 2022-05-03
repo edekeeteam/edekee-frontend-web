@@ -1,9 +1,12 @@
 import React from "react";
+// import OtpModal from "../../components/AuthenticationModals/OtpModal/OtpModal";
+import VideoGallery from "../../modules/VideoGallery/VideoGallery";
 
 function Home() {
   return (
     <div>
-      <p>home</p>
+      <VideoGallery />
+      {/* <OtpModal /> */}
     </div>
   );
 }

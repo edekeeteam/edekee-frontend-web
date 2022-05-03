@@ -3,33 +3,30 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.scss";
 import Button from "../Button/Button";
-// import { useDropdownContext } from "../../context/DropdownContext";
+import { useDropdownContext } from "../../context/DropdownContext";
 // import Dropdown from "../Dropdown/Dropdown";
 
 export default function Navbar() {
   // const showSideMenu = () => setSidemenu(!sidemenu);
 
   // const { openSubmenu } = useContext(SubMenuContext);
-  // const { openDropdown, setIsDropdownOpen } = useDropdownContext();
+  const { openDropdown } = useDropdownContext();
   const [show, handleShow] = useState(false);
 
-  // const displayDropdown = (e) => {
-  // const page = e.target.textContent;
-  // const tempBtn = e.target.getBoundingClientRect();
-  // console.log(page);
-  // console.log("clicked");
-  // const center = tempBtn.left - 65;
-  // const center = tempBtn.left;
-  // const bottom = tempBtn.bottom + 30;
-  // console.log(center, bottom);
-  // openDropdown(page, { center, bottom });
-  // };
-
   const displayDropdown = (e) => {
-    console.log(e);
+    const page = e.target.textContent;
+    const tempBtn = e.target.getBoundingClientRect();
+    console.log(page);
+    console.log("clicked");
+    const center = tempBtn.left - 65;
+    // const center = tempBtn.left;
+    const bottom = tempBtn.bottom + 30;
+    console.log(center, bottom);
+    openDropdown(page, { center, bottom });
   };
+
   const handleKeyDown = () => {
-    console.log("keydown");
+    // console.log("keydown");
   };
 
   const transitionNavBar = () => {

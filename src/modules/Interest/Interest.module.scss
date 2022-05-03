@@ -1,0 +1,19 @@
+.Interest {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .header {
+    text-align: center;
+  }
+
+  .interestsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    justify-content: center;
+  }
+}

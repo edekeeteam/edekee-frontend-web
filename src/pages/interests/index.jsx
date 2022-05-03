@@ -1,5 +1,7 @@
-function Interest() {
-  return <p>Interest</p>;
+import Interest from "../../modules/Interest";
+
+function Interests() {
+  return <Interest />;
 }
 
-export default Interest;
+export default Interests;

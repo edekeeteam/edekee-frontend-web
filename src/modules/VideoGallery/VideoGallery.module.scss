@@ -1,5 +1,5 @@
 .gallery {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   padding-top: 6vw;
 
@@ -22,7 +22,8 @@
     img,
     video {
       width: 100%;
-      margin-bottom: 10px;
+      // margin-bottom: 10px;
+      margin-bottom: -4px;
       cursor: pointer;
     }
   }
@@ -42,6 +43,6 @@
 
 @media screen and (max-width: 500px) {
   .gallery {
-    width: 95%;
+    //width: 95%;
   }
 }
