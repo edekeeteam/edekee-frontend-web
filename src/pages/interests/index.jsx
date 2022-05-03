@@ -1,4 +1,4 @@
-import Interest from "../../modules/Interest";
+import Interest from "../../modules/Interest/Interest";
 
 function Interests() {
   return <Interest />;
