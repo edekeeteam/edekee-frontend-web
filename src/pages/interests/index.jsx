@@ -1,5 +1,5 @@
 function Interest() {
-	return <p>Interest</p>;
+  return <p>Interest</p>;
 }
 
 export default Interest;
