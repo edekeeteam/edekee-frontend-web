@@ -30,7 +30,7 @@ export default function Navbar() {
   };
 
   const transitionNavBar = () => {
-    if (window.scrollY > 100) {
+    if (window.scrollY > 20) {
       handleShow(true);
     } else {
       handleShow(false);
