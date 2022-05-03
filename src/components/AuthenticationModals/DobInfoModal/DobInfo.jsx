@@ -22,7 +22,7 @@ function DobInfo() {
   } = useAuthContext();
 
   const formBlockStyle = {
-    padding: "5px 0px 5px 5px",
+    padding: "5px 0 5px 5px",
     marginLeft: "-5px",
     marginRight: "-5px",
   };
