@@ -37,7 +37,6 @@ function VideoContainer({ src }) {
       <video
         ref={vidRef}
         src={src}
-        muted
         loop
         width="100%"
         height="100%"
@@ -54,7 +53,7 @@ function VideoContainer({ src }) {
         }}
         onBlur={(e) => stopVideoTimer(e)}
       >
-        <div style={{ position: "absolute", top: "0", zIndex: "1000" }}>thsi is inside</div>
+        <track kind="captions" />
       </video>
 
       {showInfo && (

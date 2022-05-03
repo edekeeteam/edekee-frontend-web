@@ -1,12 +1,25 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import Modal from "../../Modal/Modal";
 import styles from "../../Modal/Modal.module.scss";
+import Button from "../../Button/Button";
 // import ArrowBackIcon from '../ArrowBackIcon'
+import { useAuthContext } from "../../../context/AuthContext";
 
 function DobInfo() {
-  const [day, setDay] = useState("");
-  const [month, setMonth] = useState("");
-  const [year, setYear] = useState("");
+  // const [day, setDay] = useState("");
+  // const [month, setMonth] = useState("");
+  // const [year, setYear] = useState("");
+
+  const {
+    handleInputChange,
+    day,
+    month,
+    year,
+    authLoading,
+    setAuthLoading,
+    btnState,
+    authSuccessful,
+  } = useAuthContext();
 
   const formBlockStyle = {
     padding: "5px 0px 5px 5px",
@@ -30,26 +43,30 @@ function DobInfo() {
               <input
                 type="number"
                 className={styles.formInput}
+                name="day"
                 placeholder="DD"
                 value={day}
                 maxLength="2"
-                onChange={(e) => setDay(e.target.value)}
+                onChange={(e) => handleInputChange(e)}
+                // onChange={(e) => setDay(e.target.value)}
               />
               <input
                 type="number"
+                name="month"
                 className={styles.formInput}
                 placeholder="MM"
                 value={month}
                 maxLength="2"
-                onChange={(e) => setMonth(e.target.value)}
+                onChange={(e) => handleInputChange(e)}
               />
               <input
                 type="number"
+                name="year"
                 className={styles.formInput}
                 placeholder="YYYY"
                 value={year}
                 maxLength="4"
-                onChange={(e) => setYear(e.target.value)}
+                onChange={(e) => handleInputChange(e)}
               />
             </div>
 
@@ -57,10 +74,19 @@ function DobInfo() {
               className={`${styles.formGroup} ${styles.textCenter} ${styles.py1} ${styles.mb1}`}
               style={{ clear: "left" }}
             >
-              <button type="button" className={`${styles.btn} ${styles.btnWhiteBg}`}>
-                {" "}
-                Next{" "}
-              </button>
+              <Button
+                label="SignIn"
+                size="large"
+                bgcolor="white"
+                loading={authLoading}
+                successful={authSuccessful}
+                btnState={btnState}
+                handleClick={() => {
+                  // changeAuthModalValue();
+                  // handleLogin(e);
+                  setAuthLoading(!authLoading);
+                }}
+              />
             </div>
           </form>
         </div>

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React, { useState, useContext, useReducer } from "react";
 // import sublinks from "./data";
@@ -21,6 +22,11 @@ function AuthProvider({ children }) {
     signInPassword: "",
     type: "sms",
     country: "",
+    phoneNumber: "",
+    day: "",
+    month: "",
+    year: "",
+    username: "",
 
     files: [],
   };
@@ -29,6 +35,8 @@ function AuthProvider({ children }) {
   const [authLoading, setAuthLoading] = useState(false);
   const [authSuccessful, setAuthSuccessful] = useState(false);
   const [btnState, setBtnState] = useState(false);
+  const [activeGender, setActiveGender] = useState("Male");
+  const interests = ["07eb9d19-2d8e-4021-9a8c-88d5313f10f8"];
 
   const { setAuthModalValue, setIsModalOpen, setModalValue } = useModalContext();
 
@@ -42,6 +50,13 @@ function AuthProvider({ children }) {
       field: [e.target.name],
       payload: [e.target.value],
     });
+  };
+
+  const handlePhoneNumberFormat = (phoneNo) => `0${phoneNo}`;
+
+  const handleDOBformat = (bDay, bMonth, bYear) => {
+    const d = new Date(bYear, bMonth, bDay);
+    return d.toISOString();
   };
 
   const handleRegistration = (e) => {
@@ -114,12 +129,20 @@ function AuthProvider({ children }) {
     // e.preventDefault();
     // console.log(otp);
     // console.log(otp, formState.signUpEmail[0], formState.signUpPassword[0]);
+
+    const formattedNumber = handlePhoneNumberFormat(formState.phoneNumber[0]);
+    const formattedDOB = handleDOBformat(formState.year[0], formState.month[0], formState.day[0]);
     const params = {
       code: parseInt(otp, 10),
       email: formState.signUpEmail[0],
       password: formState.signUpPassword[0],
+      username: formState.username[0],
+      phone: formattedNumber,
+      dob: formattedDOB,
+      gender: activeGender,
+      interests,
     };
-
+    console.log(params);
     axios
       .post("https://eked.herokuapp.com/v1/api/auth/verify/otp", params)
       .then(async (response) => {
@@ -162,6 +185,8 @@ function AuthProvider({ children }) {
         setAuthLoading,
         btnState,
         setBtnState,
+        activeGender,
+        setActiveGender,
       }}
     >
       {children}

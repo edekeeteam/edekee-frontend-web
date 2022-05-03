@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import { useAuthContext } from "../../../context/AuthContext";
 import Modal from "../../Modal/Modal";
 // import ArrowBackIcon from '../ArrowBackIcon'
 import styles from "../../Modal/Modal.module.scss";
 
 function RegUsernameModal() {
-  const [username, setUsername] = useState("");
+  // const [username, setUsername] = useState("");
+  const { handleInputChange, username } = useAuthContext();
+
   return (
     <Modal>
       <div className={styles.modalCenter}>
@@ -16,7 +18,8 @@ function RegUsernameModal() {
             <div className={styles.formGroup}>
               <input
                 type="text"
-                onChange={(e) => setUsername(e.target.value)}
+                name="username"
+                onChange={(e) => handleInputChange(e)}
                 value={username}
                 placeholder="Username"
                 className={`${styles.width100} ${styles.formInput}`}
