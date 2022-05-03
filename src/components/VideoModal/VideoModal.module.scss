@@ -1,0 +1,66 @@
+.modal {
+  width: 70%;
+  // width: 70vw;
+  //   width: clamp(50%, 700px, 90%);
+  height: 80vh;
+  // margin: auto;
+  //   padding: 0 2rem;
+  margin-top: 5%;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // border: 2px solid red;
+  background-color: black;
+
+  .videoSection {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: beige;
+  }
+  .tabSection {
+    flex: 1;
+    height: 100%;
+    overflow: scroll;
+    // border: 2px solid red;
+
+    .tabHeader {
+      height: 50px;
+      width: 100%;
+      // border: 1px solid red;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+
+      .tab {
+        padding: 10px 20px;
+        cursor: pointer;
+
+        &.underline {
+          border-bottom: 2px solid white;
+        }
+      }
+    }
+    .tabBody {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: auto;
+    }
+  }
+  #video {
+    height: 100%;
+    // 1080 × 2048
+  }
+}
+
+.tabSection {
+  width: 50%;
+  // border: 1px solid green;
+  height: 100%;
+  overflow: scroll;
+  display: none;
+}

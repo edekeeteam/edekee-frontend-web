@@ -1,0 +1,16 @@
+@import "../../../styles/functions";
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+.otpModalContent {
+  //   border: 1px solid red;
+  margin: 20px 0;
+
+  .resendText {
+    text-align: right;
+    padding: 20px 0;
+    color: #4282ff;
+    font-size: toRem(12);
+    cursor: pointer;
+  }
+}

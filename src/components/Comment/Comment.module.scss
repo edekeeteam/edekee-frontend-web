@@ -1,0 +1,67 @@
+@import "../../../styles/functions";
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.comment {
+  width: 85%;
+  padding: 1.5rem 1rem;
+  //   border: 1px solid red;
+  border-radius: 15px;
+  display: flex;
+  //   align-items: center;
+  justify-content: center;
+  //   background-color: #322f37;
+  margin: 0.5rem 0;
+  //   cursor: pointer;
+
+  .commentWrapper {
+    width: 90%;
+    height: toRem(70);
+    // border: 1px solid rgb(43, 0, 255);
+    display: flex;
+
+    .commentLeft {
+      .profilePicture {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        // border: 1px solid rgb(255, 0, 208);
+        background-color: aquamarine;
+      }
+    }
+
+    .commentRight {
+      flex: 1;
+      margin-left: 20px;
+      //   margin-top: 10px;
+      //   border: 1px solid green;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      .likeIcon {
+        width: toRem(20);
+        display: inline-block;
+        cursor: pointer;
+        // border: 1px solid red;
+      }
+
+      .commentProfileName {
+        font-size: toRem(10);
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #fff;
+        cursor: pointer;
+      }
+      .commentMainComment {
+        font-size: toRem(12);
+        color: #ffffff9f;
+      }
+      .commentReplyText {
+        font-size: toRem(10);
+        color: #8db4ff;
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Masonry from "react-masonry-css";
 import styles from "./VideoGallery.module.scss";
+import VideoContainer from "../../components/VideoContainer/VideoContainer";
 
 // import { useModalContext } from "../../common/context/ModalContext";
 // import { useRouter } from "next/router";
@@ -18,8 +19,33 @@ const breakpointColumnsObj = {
   500: 1,
 };
 
-function ImageGallery({ data }) {
+function VideoGallery() {
   const [videos, setVideos] = useState([]);
+  // const [videoContainerWidth, setVideoContainerWidth] = useState(0);
+
+  // let newVideoContainerWidth = 0;
+  // const getVideoContainerWidth = () => {
+  //   if (window.innerWidth < 468) {
+  //     const vidContainerWidth = window.innerWidth * 0.9;
+  //     const gapFromVidContainerWidth = vidContainerWidth - 15;
+  //     newVideoContainerWidth = gapFromVidContainerWidth / 2;
+  //     // console.log("new width", newVideoContainerWidth);
+  //   } else {
+  //     const vidContainerWidth = window.innerWidth * 0.9;
+  //     const gapFromVidContainerWidth = vidContainerWidth - 30;
+  //     newVideoContainerWidth = gapFromVidContainerWidth / 3;
+  //     // console.log("new width", newVideoContainerWidth);
+  //   }
+
+  //   setVideoContainerWidth(newVideoContainerWidth);
+  // };
+
+  // useEffect(() => {
+  //   getVideoContainerWidth();
+
+  //   window.addEventListener("resize", getVideoContainerWidth);
+  // }, []);
+
   useEffect(() => {
     axios.get("https://eked.herokuapp.com/v1/api/videos").then(async (response) => {
       // console.log(response);
@@ -60,7 +86,7 @@ function ImageGallery({ data }) {
           // console.log(video.video.toString());
           // console.log(video.video);
 
-          <video
+          <VideoContainer
             src={video.video}
             key={video.video}
             // onClick={() => {
@@ -68,7 +94,6 @@ function ImageGallery({ data }) {
             //   setUrl(video.video);
             //   setIsModalOpen(true);
             // }}
-            muted
           />
         ))}
         {/* <video
@@ -79,7 +104,7 @@ function ImageGallery({ data }) {
           }}
         ></video> */}
 
-        {data.photos.map((image) => (
+        {/* {data.photos.map((image) => (
           <img
             src={image.src.large}
             alt=""
@@ -91,10 +116,10 @@ function ImageGallery({ data }) {
             //   setIsModalOpen(true);
             // }}
           />
-        ))}
+        ))} */}
       </Masonry>
     </div>
   );
 }
 
-export default ImageGallery;
+export default VideoGallery;
