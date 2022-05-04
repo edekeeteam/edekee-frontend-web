@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-console */
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React, { useState, useContext } from "react";
@@ -12,6 +13,7 @@ const UploadContext = React.createContext();
 // eslint-disable-next-line react/prop-types
 function UploadProvider({ children }) {
   const [videoFile, setVideoFile] = useState(null);
+  const [source, setSource] = useState(null);
 
   const { setIsModalOpen } = useModalContext();
 
@@ -36,7 +38,7 @@ function UploadProvider({ children }) {
 
     // console.log(formData, "formData...");
     // console.log(videoFile);
-    const categoryId = "0194236e-ee7d-43a8-9ce8-7ade2715be71";
+    const categoryId = "67ca2ac1-0051-492b-bdc5-819dba5a69f1";
     formData.append("categoryId", categoryId);
     formData.append("videoFile", videoFile);
     // console.log(formData);
@@ -45,7 +47,7 @@ function UploadProvider({ children }) {
       onUploadProgress: (progressEvent) => {
         const { loaded, total } = progressEvent;
         percent = Math.floor((loaded * 100) / total);
-        // console.log(`${loaded}kb of ${total}kb | ${percent}%`); // just to see whats happening in the console
+        console.log(`${loaded}kb of ${total}kb | ${percent}%`); // just to see whats happening in the console
         if (percent <= 100) {
           setPercentage(percent); // hook to set the value of current level that needs to be passed to the progressbar
         }
@@ -62,18 +64,20 @@ function UploadProvider({ children }) {
         })
         .post("https://eked.herokuapp.com/v1/api/video/upload", formData, config)
         .then((response) => {
-          // console.log(response);
+          console.log(response);
 
           setPercentage(percent);
-          // () => {
-          //   setTimeout(() => {
-          //     setPercentage(0);
-          //   }, 1000);
-          // };
+          () => {
+            setTimeout(() => {
+              setPercentage(0);
+            }, 1000);
+          };
           if (response.status === 201) {
             setVideoFile(null);
+            setSource(null);
             setIsModalOpen(false);
             setPercentage(0);
+            setShowProgress(false);
           }
         })
         .catch((error) => {
@@ -121,6 +125,8 @@ function UploadProvider({ children }) {
         setPercentage,
         showProgress,
         setShowProgress,
+        source,
+        setSource,
       }}
     >
       {children}

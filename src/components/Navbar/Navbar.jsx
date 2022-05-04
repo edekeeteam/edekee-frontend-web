@@ -16,12 +16,12 @@ export default function Navbar() {
   const displayDropdown = (e) => {
     const page = e.target.textContent;
     const tempBtn = e.target.getBoundingClientRect();
-    console.log(page);
-    console.log("clicked");
+    // console.log(page);
+    // console.log("clicked");
     const center = tempBtn.left - 65;
     // const center = tempBtn.left;
     const bottom = tempBtn.bottom + 30;
-    console.log(center, bottom);
+    // console.log(center, bottom);
     openDropdown(page, { center, bottom });
   };
 

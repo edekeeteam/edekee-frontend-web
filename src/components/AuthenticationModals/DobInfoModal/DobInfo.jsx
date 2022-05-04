@@ -16,7 +16,8 @@ function DobInfo() {
     month,
     year,
     authLoading,
-    setAuthLoading,
+    saveDob,
+    // setAuthLoading,
     btnState,
     authSuccessful,
   } = useAuthContext();
@@ -84,7 +85,8 @@ function DobInfo() {
                 handleClick={() => {
                   // changeAuthModalValue();
                   // handleLogin(e);
-                  setAuthLoading(!authLoading);
+                  // setAuthLoading(!authLoading);
+                  saveDob();
                 }}
               />
             </div>

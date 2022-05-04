@@ -35,7 +35,9 @@ function AuthProvider({ children }) {
   const [authLoading, setAuthLoading] = useState(false);
   const [authSuccessful, setAuthSuccessful] = useState(false);
   const [btnState, setBtnState] = useState(false);
-  const [activeGender, setActiveGender] = useState("Male");
+  const [errors, setErrors] = useState({});
+  // const [isSubmit, setIsSubmit] = false;
+  // const [activeGender, setActiveGender] = useState("Male");
   const interests = ["07eb9d19-2d8e-4021-9a8c-88d5313f10f8"];
 
   const { setAuthModalValue, setIsModalOpen, setModalValue } = useModalContext();
@@ -59,34 +61,75 @@ function AuthProvider({ children }) {
     return d.toISOString();
   };
 
+  const validateEmailAndPassword = (email, password) => {
+    const newErrors = {};
+    console.log(email, password);
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    if (!email) {
+      newErrors.email = "email required";
+    } else if (!regex.test(email)) {
+      newErrors.email = "This is not a valid email!";
+    }
+    if (!password) {
+      newErrors.password = "password required";
+    } else if (password.length < 7) {
+      newErrors.password = "password cannot be less than 7 chars";
+    }
+    return newErrors;
+  };
+
+  const validatePhoneNumber = (number) => {
+    const newErrors = {};
+    const regex = /^\d{10}$/;
+
+    if (!regex.test(number)) {
+      newErrors.phoneNumber = "Invalid phone number";
+    }
+
+    return newErrors;
+  };
+
   const handleRegistration = (e) => {
     e.preventDefault();
-    setBtnState(true);
-    const params = {
-      email: formState.signUpEmail[0],
-      type: formState.type,
-    };
-    axios.post("https://eked.herokuapp.com/v1/api/auth/generate/otp", params).then(
-      async (response) => {
-        setAuthLoading(true);
 
-        if (response.data.success) {
-          // router.push("/auth/verifyOtp");
-          // change AuthModalValue
-          setAuthLoading(false);
-
-          setAuthSuccessful(true);
-          // formState.signUpEmail = "";
-          // formState.signUpPassword = "";
-          setTimeout(() => {
-            setModalValue("otp");
-            setAuthSuccessful(false);
-            setBtnState(false);
-          }, 1000);
-        }
-      }
-      // console.log(response);
+    const emailAndPasswordErrors = validateEmailAndPassword(
+      formState.signUpEmail[0],
+      formState.signUpPassword[0]
     );
+    if (Object.keys(emailAndPasswordErrors).length !== 0) {
+      setErrors(emailAndPasswordErrors);
+      console.log(emailAndPasswordErrors);
+    } else {
+      setAuthLoading(true);
+      setBtnState(true);
+      const params = {
+        email: formState.signUpEmail[0],
+        type: formState.type,
+      };
+      // console.log();
+      axios.post("https://eked.herokuapp.com/v1/api/auth/generate/otp", params).then(
+        async (response) => {
+          setAuthLoading(true);
+          console.log(response);
+          if (response.data.success) {
+            // router.push("/auth/verifyOtp");
+            // change AuthModalValue
+            setAuthLoading(false);
+
+            setAuthSuccessful(true);
+            // formState.signUpEmail = "";
+            // formState.signUpPassword = "";
+            setTimeout(() => {
+              setModalValue("otp");
+              setAuthSuccessful(false);
+              setBtnState(false);
+            }, 1000);
+          }
+        }
+        // console.log(response);
+      );
+    }
+
     // console.log(signUpEmail[0], signUpPassword[0]);
   };
   const handleLogin = (e) => {
@@ -94,8 +137,9 @@ function AuthProvider({ children }) {
 
     const params = {
       email: formState.signInEmail[0],
-      username: "randomUsername",
+      // username: "randomUsername",
       password: formState.signInPassword[0],
+      username: formState.username,
     };
     // console.log(params);
     axios.post("https://eked.herokuapp.com/v1/api/auth/login", params).then(async (response) => {
@@ -130,25 +174,29 @@ function AuthProvider({ children }) {
     // console.log(otp);
     // console.log(otp, formState.signUpEmail[0], formState.signUpPassword[0]);
 
-    const formattedNumber = handlePhoneNumberFormat(formState.phoneNumber[0]);
-    const formattedDOB = handleDOBformat(formState.year[0], formState.month[0], formState.day[0]);
+    // const formattedNumber = handlePhoneNumberFormat(formState.phoneNumber[0]);
+    // const formattedDOB = handleDOBformat(formState.year[0], formState.month[0], formState.day[0]);
     const params = {
       code: parseInt(otp, 10),
       email: formState.signUpEmail[0],
       password: formState.signUpPassword[0],
-      username: formState.username[0],
-      phone: formattedNumber,
-      dob: formattedDOB,
-      gender: activeGender,
+      // username: formState.username[0],
       interests,
+      // phone: formattedNumber,
+      // dob: formattedDOB,
+      // gender: activeGender,
+      // interests,
     };
     console.log(params);
     axios
       .post("https://eked.herokuapp.com/v1/api/auth/verify/otp", params)
       .then(async (response) => {
+        console.log(response);
         if (response.data.success) {
           //  alert("registered successfully");
-          setIsModalOpen(false);
+          setModalValue("phonecontact");
+          // setIsModalOpen(false);
+          console.log("registered successfully");
           setAuthModalValue(1);
           // setModalValue(1);
 
@@ -157,7 +205,8 @@ function AuthProvider({ children }) {
           // clearInputs();
         }
         // console.log(response.data.data.success);
-      });
+      })
+      .catch((error) => console.log(error));
   };
 
   // const getCategories = () => {
@@ -168,6 +217,118 @@ function AuthProvider({ children }) {
   //   () => (),
   //   []
   // );
+
+  const saveCountryAndNumber = () => {
+    const countryAndNumberErrors = validatePhoneNumber(formState.phoneNumber[0]);
+    if (Object.keys(countryAndNumberErrors).length !== 0) {
+      setErrors(countryAndNumberErrors);
+      console.log(countryAndNumberErrors);
+    } else {
+      setTimeout(() => {
+        setErrors(countryAndNumberErrors);
+        setModalValue("dobinfo");
+      }, 1000);
+    }
+  };
+
+  const validateDob = (dobDay, dobMonth, dobYear) => {
+    const newErrors = {};
+
+    if (parseInt(dobDay, 10) > 31 || parseInt(dobDay, 10) < 1) {
+      newErrors.dobDay = "invalid birthday";
+    }
+    if (parseInt(dobMonth, 10) > 12 || parseInt(dobMonth, 10) < 1) {
+      newErrors.dobMonth = "invalid birthmonth";
+    }
+    if (parseInt(dobYear, 10) > 2020 || parseInt(dobYear, 10) < 1900) {
+      newErrors.dobMonth = "invalid birthyear";
+    }
+
+    return newErrors;
+  };
+
+  const saveDob = () => {
+    const DobErrors = validateDob(formState.day[0], formState.month[0], formState.year[0]);
+    if (Object.keys(DobErrors).length !== 0) {
+      setErrors(DobErrors);
+      console.log(DobErrors);
+    } else {
+      setTimeout(() => {
+        setErrors(DobErrors);
+        setModalValue("username");
+      }, 1000);
+    }
+  };
+
+  const checkUsername = () => {
+    if (!formState.username[0]) {
+      setErrors({ username: "username required" });
+    } else {
+      const params = {
+        username: formState.username[0],
+      };
+      axios
+        .post("https://eked.herokuapp.com/v1/api/user/username/verify", params)
+        .then(async (response) => {
+          console.log(response);
+          if (response.data.success) {
+            const newParams = {
+              email: formState.signUpEmail[0],
+              username: formState.username[0],
+              country: formState.country[0],
+              dob: handleDOBformat(formState.day[0], formState.month[0], formState.year[0]),
+              gender: formState.gender,
+              phone: handlePhoneNumberFormat(formState.phoneNumber[0]),
+            };
+            console.log(newParams);
+            //  alert("registered successfully");
+            axios
+              .put("https://eked.herokuapp.com/v1/api/user/update", newParams)
+              .then((newResponse) => {
+                console.log(newResponse);
+                // const res = newResponse;
+
+                setIsModalOpen(false);
+                console.log("registered successfully");
+                setAuthModalValue(1);
+                // if (res.data.success === true) {
+                //   //  alert("registered successfully");
+                //   // setModalValue(1);
+                //   // router.push("/homePage");
+                //   // clearInputs();
+                // }
+                // console.log(response.data.data.success);
+              });
+            // setIsModalOpen(false);
+            console.log("registered successfully");
+
+            setAuthModalValue(1);
+
+            // setModalValue(1);
+
+            // router.push("/homePage");
+
+            // clearInputs();
+          }
+          // console.log(response.data.data.success);
+        });
+    }
+  };
+
+  // const validateEmailAndPassword = (email, password) => {
+  //   const newErrors = {};
+  //   console.log(email, password);
+  //   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+  //   if (!email) {
+  //     newErrors.email = "email required";
+  //   } else if (!regex.test(email)) {
+  //     errors.email = "This is not a valid email format!";
+  //   }
+  //   if (!password) {
+  //     newErrors.password = "password required";
+  //   }
+  //   return newErrors;
+  // };
 
   return (
     <AuthContext.Provider
@@ -185,8 +346,12 @@ function AuthProvider({ children }) {
         setAuthLoading,
         btnState,
         setBtnState,
-        activeGender,
-        setActiveGender,
+        // activeGender,
+        // setActiveGender,
+        saveCountryAndNumber,
+        saveDob,
+        errors,
+        checkUsername,
       }}
     >
       {children}

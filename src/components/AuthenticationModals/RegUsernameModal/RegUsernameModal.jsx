@@ -2,10 +2,19 @@ import { useAuthContext } from "../../../context/AuthContext";
 import Modal from "../../Modal/Modal";
 // import ArrowBackIcon from '../ArrowBackIcon'
 import styles from "../../Modal/Modal.module.scss";
+import Button from "../../Button/Button";
 
 function RegUsernameModal() {
   // const [username, setUsername] = useState("");
-  const { handleInputChange, username } = useAuthContext();
+  const {
+    authLoading,
+    authSuccessful,
+    btnState,
+    handleInputChange,
+    username,
+    errors,
+    checkUsername,
+  } = useAuthContext();
 
   return (
     <Modal>
@@ -25,11 +34,23 @@ function RegUsernameModal() {
                 className={`${styles.width100} ${styles.formInput}`}
               />
             </div>
-
+            {errors.username && <p>{errors.username}</p>}ß
             <div className={`${styles.textCenter} ${styles.formGroup} ${styles.py1}`}>
-              <button type="button" className={`${styles.btn} ${styles.btnWhiteBg}`}>
-                Done
-              </button>
+              <div className="global-modal-mb">
+                <Button
+                  label="Done"
+                  size="large"
+                  bgcolor="white"
+                  loading={authLoading}
+                  successful={authSuccessful}
+                  btnState={btnState}
+                  handleClick={() => {
+                    // changeAuthModalValue();
+                    checkUsername();
+                    // setAuthLoading(!authLoading);
+                  }}
+                />
+              </div>
             </div>
           </form>
         </div>

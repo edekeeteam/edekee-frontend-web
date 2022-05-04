@@ -40,6 +40,7 @@ function VideoContainer({ src }) {
         loop
         width="100%"
         height="100%"
+        type="application/x-mpegURL"
         // autoPlay={isVideoAutoPlay}
         onMouseEnter={(e) => {
           // e.target.play();
