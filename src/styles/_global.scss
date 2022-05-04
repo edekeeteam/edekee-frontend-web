@@ -123,7 +123,10 @@
 .global-text-10 {
   font-size: toRem(10);
 }
-
+.global-text-24 {
+  font-size: toRem(24);
+  // font-weight: bold;
+}
 .global-text-20 {
   font-size: toRem(20);
   // font-weight: bold;
