@@ -82,7 +82,7 @@ function Interest() {
   };
 
   const addInterests = () => {
-    console.log(checkedInterestsState);
+    // console.log(checkedInterestsState);
     setInterestState(() => [...checkedInterestsState]);
     navigate("/home", { replace: true });
   };
