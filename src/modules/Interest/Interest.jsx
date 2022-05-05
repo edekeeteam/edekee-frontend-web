@@ -64,26 +64,13 @@ function Interest() {
   const navigate = useNavigate();
   const [interests, setInterests] = useState([]);
   const [checkedInterestsState, setCheckedInterestsState] = useState([]);
-
+  // eslint-disable-next-line no-unused-vars
+  const [_, setInterestState] = useLocalStorage("interests", []);
   useEffect(() => {
     axios.get("https://eked.herokuapp.com/v1/api/interests").then(async (response) => {
-      // console.log(response);
-      // const videos = response.data.data;
-      // console.log(videos[0].video);
       setInterests(response.data.data);
-      // videos.map((video) => {
-      //   console.log(video);
-      // });
-      // if (response.data.success) {
-
-      //   setModalValue("otp");
-      // }
-      // console.log(response);
     });
   }, []);
-
-  // eslint-disable-next-line no-unused-vars
-  const [interestState, setInterestState] = useLocalStorage("interests", []);
 
   const handleOnChange = (id) => {
     // eslint-disable-next-line no-unused-expressions
@@ -95,6 +82,7 @@ function Interest() {
   };
 
   const addInterests = () => {
+    console.log(checkedInterestsState);
     setInterestState(() => [...checkedInterestsState]);
     navigate("/home", { replace: true });
   };
@@ -106,16 +94,17 @@ function Interest() {
         <p>Kindly select up to 3 interest you’d like to see.</p>
       </div>
       <div className={styles.interestsContainer}>
-        {interests.map((interest) => (
-          <InputInterest
-            key={interest.id}
-            image={interest.picture}
-            id={interest.id}
-            name={interest.name}
-            checkedInterestsState={checkedInterestsState}
-            handleOnChange={() => handleOnChange(interest.id)}
-          />
-        ))}
+        {interests &&
+          interests.map((interest) => (
+            <InputInterest
+              key={interest.id}
+              image={interest.picture}
+              id={interest.id}
+              name={interest.name}
+              checkedInterestsState={checkedInterestsState}
+              handleOnChange={() => handleOnChange(interest.id)}
+            />
+          ))}
       </div>
       <Button size="Large" bgcolor="white" handleClick={addInterests} label={"Let's go"} />
     </div>

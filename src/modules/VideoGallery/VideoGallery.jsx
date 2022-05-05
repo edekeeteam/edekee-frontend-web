@@ -82,20 +82,21 @@ function VideoGallery() {
         breakpointCols={breakpointColumnsObj}
         columnClassName={styles.masonryColumn}
       >
-        {videos.map((video) => (
-          // console.log(video.video.toString());
-          // console.log(video.video);
+        {videos &&
+          videos.map((video) => (
+            // console.log(video.video.toString());
+            // console.log(video.video);
 
-          <VideoContainer
-            src={video.video}
-            key={video.video}
-            // onClick={() => {
-            //   setModalValue("videomodal");
-            //   setUrl(video.video);
-            //   setIsModalOpen(true);
-            // }}
-          />
-        ))}
+            <VideoContainer
+              src={video.video}
+              key={video.video}
+              // onClick={() => {
+              //   setModalValue("videomodal");
+              //   setUrl(video.video);
+              //   setIsModalOpen(true);
+              // }}
+            />
+          ))}
         {/* <video
           src="https://bucketeer-2d3a99a7-20b6-4150-8399-4a871f0932fb.s3.eu-west-1.amazonaws.com/public/video/AQ6lhn6pf5QB9oE0yx708.mp4"
           onClick={() => {
