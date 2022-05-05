@@ -6,17 +6,6 @@ import styles from "./VideoContainer.module.scss";
 function VideoContainer({ src }) {
   const [showInfo, setShowInfo] = useState(false);
   const vidRef = useRef();
-  // const [isVideoAutoPlay, setIsVideoAutoPlay] = useState(false);
-  // let heightOfVideo;
-  // const getHeightOfVideo = (e) => {
-  //   const { videoHeight, videoWidth } = e.target;
-
-  //   const dimRatio = videoHeight / videoWidth;
-  //   const adjustedHeight = width * dimRatio;
-  //   heightOfVideo = adjustedHeight;
-  //   return adjustedHeight;
-  //   // console.log(videoHeight, videoWidth);
-  // };
 
   const startVideoTimer = (e) => {
     vidRef.current = setTimeout(() => {
