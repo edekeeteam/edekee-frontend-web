@@ -96,6 +96,10 @@ $diameter90: 90px;
 /* Form elements styling */
 .formGroup {
   width: 100%;
+  // border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   textarea {
     resize: none;
     font-family: inherit;
@@ -261,6 +265,9 @@ input::-webkit-inner-spin-button {
 .textXtSmall {
   font-size: 9px;
   color: #a2a2a2;
+}
+.width100 {
+  width: 100%;
 }
 
 /* Authentication styling */

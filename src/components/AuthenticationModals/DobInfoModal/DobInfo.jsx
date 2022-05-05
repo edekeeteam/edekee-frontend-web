@@ -32,13 +32,13 @@ function DobInfo() {
       <div>
         {/* <ArrowBackIcon/> */}
 
-        <h2 className={styles.modalHeader}> Personal Info </h2>
-        <p className={styles.textLeft}>Date of Birth</p>
+        <h2 className={`${styles.modalHeader} global-modal-mb`}> Personal Info </h2>
+        <p className={`${styles.textLeft} global-modal-sm-mb`}>Date of Birth</p>
 
         <div className={styles.modalBody}>
           <form>
             <div
-              className={`${styles.formGroup} ${styles.width100} ${styles.inputContainer}`}
+              className={`${styles.formGroup} ${styles.width100} ${styles.inputContainer} global-modal-mb`}
               style={formBlockStyle}
             >
               <input
@@ -76,7 +76,7 @@ function DobInfo() {
               style={{ clear: "left" }}
             >
               <Button
-                label="SignIn"
+                label="Next"
                 size="large"
                 bgcolor="white"
                 loading={authLoading}

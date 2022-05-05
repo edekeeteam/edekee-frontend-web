@@ -198,13 +198,9 @@ function AuthProvider({ children }) {
           // setIsModalOpen(false);
           console.log("registered successfully");
           setAuthModalValue(1);
-          // setModalValue(1);
-
-          // router.push("/homePage");
 
           // clearInputs();
         }
-        // console.log(response.data.data.success);
       })
       .catch((error) => console.log(error));
   };

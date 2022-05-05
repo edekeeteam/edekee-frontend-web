@@ -46,6 +46,10 @@ function VideoContainer({ src }) {
           // e.target.play();
           startVideoTimer(e);
         }}
+        // onMouseOver={(e) => {
+        //   // e.target.play();
+        //   startVideoTimer(e);
+        // }}
         onFocus={(e) => {
           startVideoTimer(e);
         }}
