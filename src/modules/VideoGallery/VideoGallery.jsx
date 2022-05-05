@@ -61,7 +61,7 @@ function VideoGallery() {
       // }
       // console.log(response);
     });
-  });
+  }, []);
 
   // const handleKeyDown = () => {
   //   console.log("keyDown");
@@ -89,7 +89,7 @@ function VideoGallery() {
 
             <VideoContainer
               src={video.video}
-              key={video.video}
+              key={video.id}
               // onClick={() => {
               //   setModalValue("videomodal");
               //   setUrl(video.video);

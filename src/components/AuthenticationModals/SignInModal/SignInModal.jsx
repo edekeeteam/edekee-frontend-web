@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "../../Modal/Modal";
 import styles from "./SignInModal.module.scss";
-import InputText from "../../InputText/InputText";
+import InputText from "../../inputFields/InputText/InputText";
 import Button from "../../Button/Button";
 import PurpleButton from "../../PurpleButton/PurpleButton";
 import { useModalContext } from "../../../context/ModalContext";
@@ -41,8 +41,8 @@ function SignInModal() {
       >
         <p className="global-text-20 global-modal-mb">SignIn</p>
         <p className="global-text-12 global-modal-mb">
-          Sign up to get your own profile and start uploading videos, liking videos and product, and
-          buying.
+          Sign in to access your own profile and start uploading videos, liking videos and product,
+          and buying.
         </p>
 
         <div className={`${styles.googleAppleButtons} global-modal-mb`}>

@@ -96,6 +96,7 @@ function UploadVideoModal() {
                     />
 
                     <div className={styles.progressBar} style={{ width: `${percentage}%` }} />
+                    <p>{`${percentage}%`}</p>
                   </div>
                 </div>
               )}

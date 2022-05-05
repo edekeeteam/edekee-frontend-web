@@ -2,11 +2,11 @@
   display: flex;
   flex-wrap: wrap;
 
-  .button {
-  }
-
-  .filled {
-  }
+  //.button {
+  //}
+  //
+  //.filled {
+  //}
 
   .highlight {
     margin-bottom: 20px;
@@ -34,15 +34,15 @@
       border-radius: 100%;
     }
 
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-    }
+    //&::-webkit-outer-spin-button,
+    //&::-webkit-inner-spin-button {
+    //}
 
     /* Firefox */
-    &[type="number"] {
-    }
-
-    &:focus {
-    }
+    //&[type="number"] {
+    //}
+    //
+    //&:focus {
+    //}
   }
 }

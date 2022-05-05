@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "../../Modal/Modal";
 import styles from "./SignUpModal.module.scss";
-import InputText from "../../InputText/InputText";
+import InputText from "../../inputFields/InputText/InputText";
 import Button from "../../Button/Button";
 import PurpleButton from "../../PurpleButton/PurpleButton";
 import { useModalContext } from "../../../context/ModalContext";
@@ -17,7 +17,8 @@ function SignUpModal() {
     handleRegistration,
     authSuccessful,
     authLoading,
-    setAuthLoading,
+    // setAuthLoading,
+    errors,
     btnState,
   } = useAuthContext();
 
@@ -55,7 +56,7 @@ function SignUpModal() {
         </div>
 
         <p className="global-text-10 global-modal-mb">OR</p>
-
+        {errors.email && <p>{errors.email}</p>}
         <InputText
           label="Email"
           name="signUpEmail"
@@ -63,6 +64,7 @@ function SignUpModal() {
           handleChange={handleInputChange}
           value={signUpEmail}
         />
+        {errors.password && <p>{errors.password}</p>}
         <InputText
           label="Password"
           name="signUpPassword"
@@ -94,7 +96,7 @@ function SignUpModal() {
             handleClick={(e) => {
               // changeAuthModalValue();
               handleRegistration(e);
-              setAuthLoading(!authLoading);
+              // setAuthLoading(!authLoading);
             }}
           />
         </div>
