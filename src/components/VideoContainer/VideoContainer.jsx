@@ -1,10 +1,13 @@
 /* eslint-disable react/prop-types */
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Hls from "hls.js";
+
 // import { motion } from "framer-motion";
 import styles from "./VideoContainer.module.scss";
 
 function VideoContainer({ src }) {
   const [showInfo, setShowInfo] = useState(false);
+  // const [isMuted, setIsMuted] = useState(true)
   const vidRef = useRef();
   // const [isVideoAutoPlay, setIsVideoAutoPlay] = useState(false);
   // let heightOfVideo;
@@ -18,11 +21,19 @@ function VideoContainer({ src }) {
   //   // console.log(videoHeight, videoWidth);
   // };
 
+  // martin
+  const hls = new Hls();
+  useEffect(() => {
+    hls.loadSource(src);
+    hls.attachMedia(vidRef.current);
+  }, [vidRef]);
+
+  // martin
+
   const startVideoTimer = (e) => {
     vidRef.current = setTimeout(() => {
       e.target.play();
       setShowInfo(true);
-      // console.log(e, "mouse entered");
     }, 1100);
   };
 
@@ -38,10 +49,14 @@ function VideoContainer({ src }) {
         ref={vidRef}
         src={src}
         loop
+        muted
         width="100%"
         height="100%"
-        type="application/x-mpegURL"
+        // autoPlay
         // autoPlay={isVideoAutoPlay}
+        // onClick={(e) => {
+        // 	start(e)
+        // }}
         onMouseEnter={(e) => {
           // e.target.play();
           startVideoTimer(e);
