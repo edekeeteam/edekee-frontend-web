@@ -38,22 +38,11 @@ function VideoContainer({ src }) {
         ref={vidRef}
         src={src}
         loop
-        // muted
         width="100%"
         height="100%"
-        // autoPlay
-        // autoPlay={isVideoAutoPlay}
-        // onClick={(e) => {
-        // 	start(e)
-        // }}
         onMouseOver={(e) => {
-          // e.target.play();
           startVideoTimer(e);
         }}
-        // onMouseOver={(e) => {
-        //   // e.target.play();
-        //   startVideoTimer(e);
-        // }}
         onFocus={(e) => {
           startVideoTimer(e);
         }}

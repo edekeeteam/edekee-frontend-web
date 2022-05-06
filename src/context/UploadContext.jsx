@@ -70,6 +70,7 @@ function UploadProvider({ children }) {
           () => {
             setTimeout(() => {
               setPercentage(0);
+              setSource(null);
             }, 1000);
           };
           if (response.status === 201) {
