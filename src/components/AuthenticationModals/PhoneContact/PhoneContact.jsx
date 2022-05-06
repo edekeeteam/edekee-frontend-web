@@ -44,6 +44,7 @@ function PhoneContact() {
             <div className={`${styles.formGroup}`}>
               <select
                 className={`${styles.formInput} ${styles.width100} ${styles.inputContainer}`}
+                style={{ paddingRight: "25px", paddingLeft: "20px" }}
                 value={country}
                 name="country"
                 onChange={(e) => {
@@ -71,12 +72,9 @@ function PhoneContact() {
               />
             </div>
             {errors.phoneNumber && <p>{errors.phoneNumber}</p>}
-            <div
-              className={`${styles.formGroup} ${styles.textCenter} ${styles.py1}`}
-              style={{ clear: "left" }}
-            >
+            <div className={`${styles.formGroup} ${styles.textCenter} ${styles.py1}`}>
               <Button
-                label="SignUp"
+                label="Next"
                 size="large"
                 bgcolor="white"
                 loading={authLoading}

@@ -132,6 +132,30 @@ function AuthProvider({ children }) {
 
     // console.log(signUpEmail[0], signUpPassword[0]);
   };
+
+  const resendOtp = () => {
+    const params = {
+      email: formState.signInEmail[0],
+      type: formState.type,
+    };
+    axios
+      .post("https://eked.herokuapp.com/v1/api/auth/generate/otp", params)
+      .then(
+        async (response) => {
+          console.log(response);
+          // if (response.data.success) {
+
+          //   setTimeout(() => {
+          //     setModalValue("otp");
+          //     setAuthSuccessful(false);
+          //     setBtnState(false);
+          //   }, 1000);
+          // }
+        }
+        // console.log(response);
+      )
+      .catch((error) => console.log(error));
+  };
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -198,13 +222,9 @@ function AuthProvider({ children }) {
           // setIsModalOpen(false);
           console.log("registered successfully");
           setAuthModalValue(1);
-          // setModalValue(1);
-
-          // router.push("/homePage");
 
           // clearInputs();
         }
-        // console.log(response.data.data.success);
       })
       .catch((error) => console.log(error));
   };
@@ -352,6 +372,7 @@ function AuthProvider({ children }) {
         saveDob,
         errors,
         checkUsername,
+        resendOtp,
       }}
     >
       {children}

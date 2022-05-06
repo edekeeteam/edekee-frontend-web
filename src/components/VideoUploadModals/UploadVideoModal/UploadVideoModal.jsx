@@ -5,10 +5,9 @@ import { useUploadContext } from "../../../context/UploadContext";
 
 function UploadVideoModal() {
   //   const { width, height } = props;
-  const { handleVideoUpload, setVideoFile, percentage, showProgress } = useUploadContext();
+  const { handleVideoUpload, setVideoFile, percentage, showProgress, source, setSource } =
+    useUploadContext();
   const inputRef = React.useRef();
-
-  const [source, setSource] = React.useState();
 
   const handleFileChange = (event) => {
     // console.log(event.target);

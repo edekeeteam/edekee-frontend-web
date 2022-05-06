@@ -9,17 +9,6 @@ function VideoContainer({ src }) {
   const [showInfo, setShowInfo] = useState(false);
   // const [isMuted, setIsMuted] = useState(true)
   const vidRef = useRef();
-  // const [isVideoAutoPlay, setIsVideoAutoPlay] = useState(false);
-  // let heightOfVideo;
-  // const getHeightOfVideo = (e) => {
-  //   const { videoHeight, videoWidth } = e.target;
-
-  //   const dimRatio = videoHeight / videoWidth;
-  //   const adjustedHeight = width * dimRatio;
-  //   heightOfVideo = adjustedHeight;
-  //   return adjustedHeight;
-  //   // console.log(videoHeight, videoWidth);
-  // };
 
   // martin
   const hls = new Hls();
@@ -61,6 +50,10 @@ function VideoContainer({ src }) {
           // e.target.play();
           startVideoTimer(e);
         }}
+        // onMouseOver={(e) => {
+        //   // e.target.play();
+        //   startVideoTimer(e);
+        // }}
         onFocus={(e) => {
           startVideoTimer(e);
         }}
