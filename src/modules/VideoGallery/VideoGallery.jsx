@@ -2,8 +2,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Masonry from "react-masonry-css";
+// import Hls from "hls.js";
+
 import styles from "./VideoGallery.module.scss";
 import VideoContainer from "../../components/VideoContainer/VideoContainer";
+
+// import useScript from '../../hooks/useScript';
 
 // import { useModalContext } from "../../common/context/ModalContext";
 // import { useRouter } from "next/router";
@@ -21,6 +25,8 @@ const breakpointColumnsObj = {
 
 function VideoGallery() {
   const [videos, setVideos] = useState([]);
+  // useScript('https://cdn.jsdelivr.net/npm/hls.js@latest/dist/hls.min.js.map.');
+
   // const [videoContainerWidth, setVideoContainerWidth] = useState(0);
 
   // let newVideoContainerWidth = 0;
@@ -46,12 +52,22 @@ function VideoGallery() {
   //   window.addEventListener("resize", getVideoContainerWidth);
   // }, []);
 
+  function convertToHsl(video) {
+    return video;
+  }
+
   useEffect(() => {
     axios.get("https://eked.herokuapp.com/v1/api/videos").then(async (response) => {
       // console.log(response);
       // const videos = response.data.data;
       // console.log(videos[0].video);
-      setVideos(response.data.data);
+      // eslint-disable-next-line no-console
+
+      const convertVideos = response.data.data.map((data) => ({
+        ...data,
+        video: convertToHsl(data.video),
+      }));
+      setVideos(convertVideos);
       // videos.map((video) => {
       //   console.log(video);
       // });
