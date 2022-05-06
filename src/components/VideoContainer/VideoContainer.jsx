@@ -20,8 +20,8 @@ function VideoContainer({ src }) {
   // martin
 
   const startVideoTimer = (e) => {
+    e.target.play();
     vidRef.current = setTimeout(() => {
-      e.target.play();
       setShowInfo(true);
     }, 1100);
   };
@@ -38,7 +38,7 @@ function VideoContainer({ src }) {
         ref={vidRef}
         src={src}
         loop
-        muted
+        // muted
         width="100%"
         height="100%"
         // autoPlay
@@ -46,7 +46,7 @@ function VideoContainer({ src }) {
         // onClick={(e) => {
         // 	start(e)
         // }}
-        onMouseEnter={(e) => {
+        onMouseOver={(e) => {
           // e.target.play();
           startVideoTimer(e);
         }}
