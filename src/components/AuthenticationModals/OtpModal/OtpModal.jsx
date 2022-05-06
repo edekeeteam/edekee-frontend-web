@@ -5,7 +5,7 @@ import styles from "./OtpModal.module.scss";
 import { useAuthContext } from "../../../context/AuthContext";
 
 function OtpModal() {
-  const { otp, setOtp, handleOtpVerification } = useAuthContext();
+  const { otp, setOtp, handleOtpVerification, resendOtp } = useAuthContext();
 
   // const otpValue = otp;
 
@@ -25,6 +25,8 @@ function OtpModal() {
       handleOtpVerification(newOtp);
     }
   };
+
+  const handleKeyDown = () => {};
   return (
     <Modal>
       <div className={styles.otpModalContent}>
@@ -56,7 +58,17 @@ function OtpModal() {
           }}
         />
 
-        <div className={styles.resendText}>Resend Code</div>
+        <div
+          className={styles.resendText}
+          onClick={() => {
+            resendOtp();
+          }}
+          onKeyDown={handleKeyDown()}
+          role="button"
+          tabIndex={0}
+        >
+          Resend Code
+        </div>
       </div>
     </Modal>
   );
