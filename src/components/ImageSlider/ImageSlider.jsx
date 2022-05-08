@@ -28,7 +28,7 @@ export default function ImageSlider({ dataSlider: imagesSlides }) {
         {imagesSlides.map((obj, index) => (
           // eslint-disable-next-line react/no-array-index-key
           <div
-            key={index}
+            key={obj}
             className={
               slideIndex === index + 1 ? `${styles.slide} ${styles.activeAnim}` : `${styles.slide}`
             }

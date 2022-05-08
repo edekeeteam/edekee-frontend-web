@@ -37,7 +37,7 @@ function UploadProductsProvider({ children }) {
       onUploadProgress: (progressEvent) => {
         const { loaded, total } = progressEvent;
         percent = Math.floor((loaded * 100) / total);
-        console.log(`${loaded}kb of ${total}kb | ${percent}%`); // just to see whats happening in the console
+        // console.log(`${loaded}kb of ${total}kb | ${percent}%`); // just to see whats happening in the console
         if (percent <= 100) {
           setPercentage(percent); // hook to set the value of current level that needs to be passed to the progressbar
         }
@@ -46,7 +46,7 @@ function UploadProductsProvider({ children }) {
 
     try {
       // eslint-disable-next-line no-console
-      console.log(formData);
+      // console.log(formData);
       axios
         .create({
           headers: {
@@ -56,7 +56,7 @@ function UploadProductsProvider({ children }) {
         })
         .post(uploadProducts, formData, config)
         .then((response) => {
-          console.log(response);
+          // console.log(response);
 
           setPercentage(percent);
           // (() => {
