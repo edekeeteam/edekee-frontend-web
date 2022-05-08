@@ -63,7 +63,17 @@ function Dropdown() {
         />
       ) : (
         <div className={styles.uploadButtonsSection}>
-          <div className={styles.uploadButton}>
+          <div
+            onClick={() => {
+              setIsModalOpen(true);
+              setModalValue("uploadProducts");
+              setIsDropdownOpen(false);
+            }}
+            onKeyDown={handleKeyDown()}
+            role="button"
+            tabIndex={0}
+            className={styles.uploadButton}
+          >
             <img className={styles.img1} src="./icons/createProduct.svg" alt="" />
             <p>Upload Product</p>
           </div>

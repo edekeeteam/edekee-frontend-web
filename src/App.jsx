@@ -16,6 +16,9 @@ import VideoModal from "./components/VideoModal/VideoModal";
 import RegUsernameModal from "./components/AuthenticationModals/RegUsernameModal/RegUsernameModal";
 import PhoneContact from "./components/AuthenticationModals/PhoneContact/PhoneContact";
 import DobInfo from "./components/AuthenticationModals/DobInfoModal/DobInfo";
+// import CropImages from "./Modals/UploadsProducts/CropImages/CropImages";
+// import Category from "./Modals/UploadsProducts/Category/Category";
+import UploadsProducts from "./Modals/UploadsProducts";
 
 function App() {
   const { modalValue } = useModalContext();
@@ -43,6 +46,8 @@ function App() {
         <SignInModal />
       ) : modalValue === "videomodal" ? (
         <VideoModal />
+      ) : modalValue === "uploadProducts" ? (
+        <UploadsProducts />
       ) : (
         ""
       )}

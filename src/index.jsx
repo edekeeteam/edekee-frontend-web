@@ -4,9 +4,10 @@ import "./styles/main.scss";
 import App from "./App";
 import { AuthProvider } from "./context/AuthContext";
 import { ModalProvider } from "./context/ModalContext";
-import { UploadProvider } from "./context/UploadContext";
+// import {UploadProductsProvider} from "./context/UploadProducts";
 import { DropdownProvider } from "./context/DropdownContext";
 import reportWebVitals from "./reportWebVitals";
+import { UploadProvider } from "./context/UploadContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
