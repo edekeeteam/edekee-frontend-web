@@ -1,11 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "./CropImages.module.scss";
 
 import { useUploadProductsContext } from "../../../context/UploadProducts";
 
 import ImageSlider from "../../../components/ImageSlider/ImageSlider";
 
-// eslint-disable-next-line react/prop-types
 function CropImages({ nextStep, prevStep }) {
   const { source } = useUploadProductsContext();
 
@@ -31,10 +31,15 @@ function CropImages({ nextStep, prevStep }) {
         <p className="global-text-12 global-modal-mb">Crop around your product in the image.</p>
       </div>
       <div>
-        <ImageSlider dataSlider={source} />
+        <ImageSlider imagesSlides={source} />
       </div>
     </div>
   );
 }
+
+CropImages.propTypes = {
+  nextStep: PropTypes.func.isRequired,
+  prevStep: PropTypes.func.isRequired,
+};
 
 export default CropImages;

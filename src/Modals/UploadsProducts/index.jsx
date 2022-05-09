@@ -17,15 +17,11 @@ function UploadsProductsModal() {
   const [step, setStep] = useState(0);
 
   function nextStep() {
-    // eslint-disable-next-line no-console
-    console.log("next");
     setStep((x) => x + 1);
   }
 
   function prevStep() {
     setStep((x) => x - 1);
-    // eslint-disable-next-line no-console
-    console.log("previous");
   }
 
   const steps = [

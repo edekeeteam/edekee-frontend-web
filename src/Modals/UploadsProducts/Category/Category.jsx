@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 
 import styles from "./Category.module.scss";
 
 import { InputCategory } from "../../../components/inputFields";
 import { useUploadProductsContext } from "../../../context/UploadProducts";
 
-// eslint-disable-next-line react/prop-types
 function Category({ prevStep, nextStep }) {
   const [categories, setCategories] = useState([]);
 
@@ -23,11 +23,7 @@ function Category({ prevStep, nextStep }) {
 
   function handleCategoryInput(value, func) {
     setCategoryId(value);
-    func();
-    // eslint-disable-next-line no-console
-    console.log("called");
-    // eslint-disable-next-line no-console
-    console.log(value);
+    setTimeout(() => func(), 1000);
   }
 
   return (
@@ -37,7 +33,7 @@ function Category({ prevStep, nextStep }) {
           <div onClick={prevStep()} onKeyDown={prevStep()} role="button" tabIndex={0}>
             <img src={`${process.env.PUBLIC_URL}/icons/previewCancelBtn.svg`} alt="" />
           </div>
-          <img src={`${process.env.PUBLIC_URL}/icons/rightChevron.svg`} alt="upload" />
+          {/* <img src={`${process.env.PUBLIC_URL}/icons/rightChevron.svg`} alt="upload" /> */}
         </div>
         <div className={styles.Content}>
           <p className="global-text-24 global-modal-sm-mb">Select Category</p>
@@ -64,5 +60,10 @@ function Category({ prevStep, nextStep }) {
     </div>
   );
 }
+
+Category.propTypes = {
+  nextStep: PropTypes.func.isRequired,
+  prevStep: PropTypes.func.isRequired,
+};
 
 export default Category;

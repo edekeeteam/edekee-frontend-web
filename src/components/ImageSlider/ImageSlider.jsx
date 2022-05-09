@@ -1,16 +1,20 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
+
 import styles from "./ImageSlider.module.scss";
-// import BtnSlider from './BtnSlider'
-// import dataSlider from './dataSlider'
+
+// eslint-disable-next-line no-use-before-define
+ImageSlider.propsType = {
+  imagesSlides: PropTypes.array.isRequired,
+};
 
 // eslint-disable-next-line react/prop-types
-export default function ImageSlider({ dataSlider: imagesSlides }) {
+function ImageSlider({ imagesSlides }) {
   // eslint-disable-next-line react/prop-types
   const images = imagesSlides.length;
   const [slideIndex, setSlideIndex] = useState(1);
 
   const nextSlide = () => {
-    // eslint-disable-next-line react/prop-types
     if (slideIndex !== images) {
       setSlideIndex(slideIndex + 1);
     }
@@ -26,7 +30,6 @@ export default function ImageSlider({ dataSlider: imagesSlides }) {
       <div className={styles.containerSlider}>
         {/* eslint-disable-next-line react/prop-types */}
         {imagesSlides.map((obj, index) => (
-          // eslint-disable-next-line react/no-array-index-key
           <div
             key={obj}
             className={
@@ -48,3 +51,5 @@ export default function ImageSlider({ dataSlider: imagesSlides }) {
     </div>
   );
 }
+
+export default ImageSlider;

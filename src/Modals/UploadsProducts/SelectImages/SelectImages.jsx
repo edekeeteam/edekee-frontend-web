@@ -1,9 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "./SelectImages.module.scss";
 
 import { useUploadProductsContext } from "../../../context/UploadProducts";
 
-// eslint-disable-next-line react/prop-types
 function SelectImages({ nextStep }) {
   const { setPicturesFiles, setSource } = useUploadProductsContext();
 
@@ -48,5 +48,9 @@ function SelectImages({ nextStep }) {
     </div>
   );
 }
+
+SelectImages.propTypes = {
+  nextStep: PropTypes.func.isRequired,
+};
 
 export default SelectImages;
