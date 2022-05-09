@@ -10,6 +10,7 @@ import Modal from "../../components/Modal/Modal";
 import SelectImages from "./SelectImages/SelectImages";
 import CropImages from "./CropImages/CropImages";
 import Category from "./Category/Category";
+import SubCategory from "./SubCategory/SubCategory";
 
 // modal
 
@@ -28,6 +29,7 @@ function UploadsProductsModal() {
     <SelectImages nextStep={() => nextStep} />,
     <CropImages nextStep={() => nextStep} prevStep={() => prevStep} />,
     <Category nextStep={() => nextStep} prevStep={() => prevStep} />,
+    <SubCategory nextStep={() => nextStep} prevStep={() => prevStep} />,
     <div>Working</div>,
   ];
 

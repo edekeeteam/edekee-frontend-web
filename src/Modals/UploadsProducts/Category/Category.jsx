@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
+import IndexStyle from "../index.module.scss";
 import styles from "./Category.module.scss";
 
 import { InputCategory } from "../../../components/inputFields";
@@ -28,8 +29,8 @@ function Category({ prevStep, nextStep }) {
 
   return (
     <div>
-      <div className={styles.upload}>
-        <div className={styles.Header}>
+      <div className={`${IndexStyle.CategoryModal} ${styles.Category} `}>
+        <div className={IndexStyle.Header}>
           <div onClick={prevStep()} onKeyDown={prevStep()} role="button" tabIndex={0}>
             <img src={`${process.env.PUBLIC_URL}/icons/previewCancelBtn.svg`} alt="" />
           </div>
@@ -41,7 +42,7 @@ function Category({ prevStep, nextStep }) {
             Pick a category your product. For example, clothing items fall in The Apparel category
             and chairs in the furniture category.
           </p>
-          <div className={styles.Categories}>
+          <div>
             {
               // eslint-disable-next-line no-console
               categories && (

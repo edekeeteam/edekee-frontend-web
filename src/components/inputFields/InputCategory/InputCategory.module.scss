@@ -48,4 +48,14 @@
       height: 100%;
     }
   }
+
+  .small {
+    width: 70px;
+    height: 70px;
+
+    p {
+      font-size: 10px;
+      padding-top: calc(60% - 10px);
+    }
+  }
 }
