@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import { FullPageLayout, NavBarLayout } from "./layouts";
 import Interests from "./pages/interests";
 import Splash from "./pages";
