@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
+
 import { useModalContext } from "./ModalContext";
-/* eslint-disable react/jsx-no-constructed-context-values */
-const UploadProductsContext = React.createContext();
+
+const UploadProductsContext = React.createContext(undefined);
 
 // eslint-disable-next-line react/prop-types
 function UploadProductsProvider({ children }) {
@@ -11,33 +13,40 @@ function UploadProductsProvider({ children }) {
   const [source, setSource] = useState(null);
   const [categoryId, setCategoryId] = useState("");
   const [subCategoryId, setSubCategoryId] = useState("");
+  const [name, setName] = useState(undefined);
+  const [slug, setSlug] = useState(undefined);
+  const [price, setPrice] = useState(undefined);
+  const [desc, setDesc] = useState(undefined);
+  const [brand, setBrand] = useState(undefined);
   // data
-
-  // use in switching steps
-  // const [step, setStep] = useState('selectImages')
-  // use in switching steps
 
   const { setIsModalOpen } = useModalContext();
 
+  // uploadData
   const [percentage, setPercentage] = useState(0);
   const [showProgress, setShowProgress] = useState(false);
 
   const uploadProducts = "https://eked.herokuapp.com/v1/api/product/upload";
 
   const handleProductsUpload = async () => {
+    console.log("here in context");
     setShowProgress(true);
     let percent = 0;
     // eslint-disable-next-line prefer-const
     let formData = new FormData();
 
-    formData.append("categoryId", categoryId);
+    formData.append("category", categoryId);
+    formData.append("name", name);
+    formData.append("slug", name);
     source.map((pic) => formData.append("products", pic));
 
     const config = {
       onUploadProgress: (progressEvent) => {
         const { loaded, total } = progressEvent;
         percent = Math.floor((loaded * 100) / total);
-        // console.log(`${loaded}kb of ${total}kb | ${percent}%`); // just to see whats happening in the console
+        // eslint-disable-next-line no-console
+        // console.log(`${loaded}kb of ${total}kb | ${percent}%`);
+        // just to see whats happening in the console
         if (percent <= 100) {
           setPercentage(percent); // hook to set the value of current level that needs to be passed to the progressbar
         }
@@ -57,7 +66,7 @@ function UploadProductsProvider({ children }) {
         .post(uploadProducts, formData, config)
         .then((response) => {
           // console.log(response);
-
+          // console.log(response);
           setPercentage(percent);
           // (() => {
           // 	setTimeout(() => {
@@ -85,9 +94,11 @@ function UploadProductsProvider({ children }) {
     }
   };
 
+  // uploadData
   return (
     <UploadProductsContext.Provider
       //* eslint-disable-next-line react/jsx-no-constructed-context-values
+      /* eslint-disable-next-line react/jsx-no-constructed-context-values */
       value={{
         pictureFiles,
         setPicturesFiles,
@@ -97,6 +108,16 @@ function UploadProductsProvider({ children }) {
         setSubCategoryId,
         source,
         setSource,
+        name,
+        setName,
+        slug,
+        setSlug,
+        price,
+        setPrice,
+        desc,
+        setDesc,
+        brand,
+        setBrand,
         percentage,
         setPercentage,
         showProgress,
@@ -109,7 +130,10 @@ function UploadProductsProvider({ children }) {
   );
 }
 
-// make sure use
+UploadProductsProvider.propType = {
+  children: PropTypes.node.isRequired,
+};
+
 export const useUploadProductsContext = () => useContext(UploadProductsContext);
 
 export { UploadProductsContext, UploadProductsProvider };

@@ -1,0 +1,14 @@
+/* Input style */
+.inputSelect {
+  position: relative;
+  display: flex;
+  width: fit-content;
+
+  .formInput {
+    border: 0;
+    border-radius: 40px;
+    background-color: #322f37;
+    color: #fff !important;
+    padding: 20px;
+  }
+}

@@ -1,31 +1,29 @@
-import { useState } from "react";
-
-import styles from "./InputText.module.scss";
+import styles from "./InputTextArea.module.scss";
+// import { useState } from "react";
 
 // eslint-disable-next-line react/prop-types
-function InputText({ type, label, name, handleChange, value }) {
-  const [val, setVal] = useState(() => value);
+function InputTextArea({ name, handleChange, value }) {
+  // const [value, setValue] = useState("");
 
-  function handleInput(e) {
-    setVal(e.target.value);
-    handleChange(e.target.value);
-  }
-  //
-  // useEffect(() => {
-  // 	handleInput(val);
-  // }, [setVal]);
+  // function handleChange(e) {
+  //   setValue(e.target.value);
+  // }
 
   return (
-    <div className={`${styles.inputText} global-modal-mb`}>
-      <input type={type} value={val} onChange={(e) => handleInput(e)} name={name} />
-      <label className={val && `${styles.filled}`} htmlFor={name}>
-        {label}
-      </label>
+    <div>
+      <textarea
+        cols={100}
+        rows={100}
+        className={`${styles.inputTextArea} global-modal-mb`}
+        value={value}
+        onChange={handleChange}
+        name={name}
+      />
     </div>
   );
 }
 
-export default InputText;
+export default InputTextArea;
 
 //
 // import { useEffect, useState } from "react";

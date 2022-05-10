@@ -1,13 +1,14 @@
 import { useState } from "react";
 import styles from "./InputCategory.module.scss";
 
-// eslint-disable-next-line react/prop-types
-function Category({ selectedCategory, image, name, id, size }) {
+// eslint-disable-next-line react/prop-types,camelcase
+function Category({ selectedCategory, image_url, name, id, size }) {
   return (
     <div className={`${styles.highlight} ${selectedCategory === id ? styles.active : ""}`}>
       <div className={`${styles.size} ${size === "small" ? styles.small : ""}`}>
         <input readOnly style={{ opacity: 0 }} type="radio" value={id} name="category" />
-        {image && <img src={image} alt={name} />}
+        {/* eslint-disable-next-line camelcase */}
+        {image_url && <img src={image_url} alt={name} />}
         <p>{name}</p>
       </div>
     </div>
@@ -36,7 +37,7 @@ function InputCategory({ categories, onChange, categoryId, size }) {
             key={cat.id}
             id={cat.id}
             name={cat.name}
-            image={cat.picture}
+            image_url={cat.image_url}
             size={size}
             selectedCategory={selectedCategory}
           />
