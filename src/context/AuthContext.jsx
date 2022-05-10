@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React, { useState, useContext, useReducer } from "react";
 // import sublinks from "./data";
