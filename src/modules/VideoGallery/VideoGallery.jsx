@@ -25,6 +25,7 @@ const breakpointColumnsObj = {
 
 function VideoGallery() {
   const [videos, setVideos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   // useScript('https://cdn.jsdelivr.net/npm/hls.js@latest/dist/hls.min.js.map.');
 
   // const [videoContainerWidth, setVideoContainerWidth] = useState(0);
@@ -68,6 +69,10 @@ function VideoGallery() {
         video: convertToHsl(data.video),
       }));
       setVideos(convertVideos);
+
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 5000);
       // videos.map((video) => {
       //   console.log(video);
       // });
@@ -90,9 +95,14 @@ function VideoGallery() {
   //   setIsModalOpen(!isModalOpen);
   // };
   // console.log(videoData);
+
+  // if (isLoading) {
+  //   return ;
+  // }
   return (
     <div className={styles.gallery}>
       {/* <Pegg /> */}
+      {isLoading && <h1 className={styles.loading}>Loading</h1>}
       <Masonry
         className={styles.masonry}
         breakpointCols={breakpointColumnsObj}

@@ -56,7 +56,7 @@ function SignUpModal() {
         </div>
 
         <p className="global-text-10 global-modal-mb">OR</p>
-        {errors.email && <p>{errors.email}</p>}
+        {/* <div className="global-modal-mb"> */}
         <InputText
           label="Email"
           name="signUpEmail"
@@ -64,7 +64,11 @@ function SignUpModal() {
           handleChange={handleInputChange}
           value={signUpEmail}
         />
-        {errors.password && <p>{errors.password}</p>}
+        {errors.email && (
+          <p className="global-text-12 global-error-text global-modal-sm-mb">{errors.email}</p>
+        )}
+        {/* </div> */}
+
         <InputText
           label="Password"
           name="signUpPassword"
@@ -72,6 +76,9 @@ function SignUpModal() {
           handleChange={handleInputChange}
           value={signUpPassword}
         />
+        {errors.password && (
+          <p className="global-text-12 global-error-text global-modal-sm-mb">{errors.password}</p>
+        )}
         {/* <div>
           <input
             type="password"

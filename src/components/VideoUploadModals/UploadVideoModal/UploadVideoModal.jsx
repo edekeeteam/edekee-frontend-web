@@ -60,7 +60,18 @@ function UploadVideoModal() {
           {source && (
             <div className={styles.videoPreviewContainer}>
               <div className={styles.uploadVideoHeader}>
-                <img src="./icons/previewCancelBtn.svg" alt="" />
+                <div
+                  onClick={() => {
+                    setSource(null);
+                  }}
+                  onKeyDown={() => {
+                    handleKeydown();
+                  }}
+                  role="button"
+                  tabIndex={0}
+                >
+                  <img src="./icons/previewCancelBtn.svg" alt="" />
+                </div>
                 <div
                   onClick={() => {
                     handleVideoUpload();
@@ -81,6 +92,9 @@ function UploadVideoModal() {
                 //   width="100%"
                 //   height={height}
                 //   controls
+                autoPlay
+                controls
+                loop
                 src={source}
                 muted
               />
@@ -95,7 +109,11 @@ function UploadVideoModal() {
                     />
 
                     <div className={styles.progressBar} style={{ width: `${percentage}%` }} />
-                    <p>{`${percentage}%`}</p>
+                    {percentage < 99 ? (
+                      <p>{`${percentage}%`}</p>
+                    ) : (
+                      <p style={{ marginTop: "10px" }}>Uploaded successfully</p>
+                    )}
                   </div>
                 </div>
               )}

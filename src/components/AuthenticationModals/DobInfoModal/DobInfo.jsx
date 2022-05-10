@@ -17,6 +17,7 @@ function DobInfo() {
     year,
     authLoading,
     saveDob,
+    errors,
     // setAuthLoading,
     btnState,
     authSuccessful,
@@ -70,6 +71,10 @@ function DobInfo() {
                 onChange={(e) => handleInputChange(e)}
               />
             </div>
+
+            {errors.dob && (
+              <p className="global-text-12 global-error-text global-modal-sm-mb">{errors.dob}</p>
+            )}
 
             <div
               className={`${styles.formGroup} ${styles.textCenter} ${styles.py1} ${styles.mb1}`}
