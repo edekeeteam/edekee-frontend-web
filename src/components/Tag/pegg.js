@@ -14,17 +14,18 @@ template.innerHTML = `
      display: flex;
      align-items: center;
      height: 100%;
+     
 
     } 
     
     .tag-p {
-      position: absolute;
-      margin: 0;
+      /*position: absolute;*/
+      /*margin: 0;*/
       color: white;
       font-size: 12px;
       display: none;
       padding: 0 16px;
-      opacity: 0.8;
+      /*opacity: 0.8;*/
       /*transform: translateY(-200%);*/
       transition: all;
       /*transition-timing-function: ease-in;*/
@@ -76,11 +77,11 @@ class PeggTag extends HTMLElement {
     this.render();
     this.addEventListener("click", () => {
       if (this.style.width === "20px") {
-        this.style.width = "150px";
+        this.style.width = "auto";
         this.style.height = "30px";
         this.style.borderRadius = "30px";
         this.style.backgroundColor = "black";
-        this.style.opacity = "0.8";
+        this.style.opacity = "0.95";
         this.textInfo.style.display = "flex";
         this.textInfo.style.opacity = "1";
       } else {
