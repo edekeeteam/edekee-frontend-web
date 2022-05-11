@@ -2,7 +2,7 @@
   width: 100%;
   min-height: 650px;
   position: relative;
-  //   border: 1px solid red;
+  // border: 1px solid red;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,6 +21,7 @@
   .productDetailsTopLeft {
     display: flex;
     align-items: center;
+    // border: 1px solid red;
 
     .profileImageContainer {
       height: 50px;
@@ -49,28 +50,31 @@
   .productDetailsCenter {
     width: 90%;
     padding: 15px;
-    // border: 1px solid red;
 
     .productDetailsCenterTop {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 30px;
+      // border: 1px solid red;
     }
 
     .productName {
       font-size: 40px;
       margin-bottom: 10px;
+      // border: 1px solid red;
     }
 
     .productPrice {
       font-size: 28px;
+      // border: 1px solid red;
     }
     .brandName {
       font-size: 13px;
     }
     .productDescription {
       font-size: 13px;
+      text-align: left;
     }
   }
 

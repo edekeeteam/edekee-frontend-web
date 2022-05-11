@@ -1,19 +1,22 @@
+/* eslint-disable no-nested-ternary */
 // import React from "react";
-// import { useState, useContext } from "react";
+import { useState } from "react";
 // import { motion } from "framer-motion";
 // import Backdrop from "../../common/components/Backdrop/Backdrop";
 import styles from "./VideoModal.module.scss";
 // import { ModalContext } from "../../context/ModalContext";
 // import { useModalContext } from "../../context/ModalContext";
 // import { useContext } from "react";
-import VideoContainer from "../VideoContainer/VideoContainer";
-// import Product from "../Product/Product";
-// import tabs from "../../data/tabsData";
-// import Comment from "../Comment/Comment";
-// import ProductDetails from "../ProductDetails/ProductDetails";
-// import Modal from "../Modal/Modal";
+import VideoViewContainer from "../VideoViewContainer/VideoViewContainer";
+import Product from "../Product/Product";
+import tabs from "../../data/tabsData";
+import Comment from "../Comment/Comment";
+import ProductDetails from "../ProductDetails/ProductDetails";
 import VidModal from "../VidModal/VidModal";
+// import Modal from "../Modal/Modal";
+// import VidModal from "../VidModal/VidModal";
 // import SignUp from "../Modals/SignUp";
+// import ProductSpecs from "../ProductSpecs";
 // import ProductSpecs from "../../components/ProductSpecs/ProductSpecs";
 
 // const dropIn = {
@@ -38,65 +41,50 @@ import VidModal from "../VidModal/VidModal";
 // };
 function VideoModal() {
   // const { videoModalTabValue, setVideoModalTabValue } = useContext(ModalContext);
+  const [videoModalTabValue, setVideoModalTabValue] = useState(0);
   // const {}
   //   const [value, setValue] = useState(0);
+
   return (
     <VidModal>
-      <VideoContainer />
+      <VideoViewContainer src="https://edge.tikicdn.com/data/hls/902297/1/3/1478/manifest.m3u8" />
       <div className={styles.tabSection}>
-        <p>ansldsak</p> <p>ansldsak</p> <p>ansldsak</p> <p>ansldsak</p> <p>ansldsak</p>{" "}
-        {/* <div
-        onClick={(e) => e.stopPropagation()}
-        // className={styles.modal}
-        variants={dropIn}
-        initial="hidden"
-        animate="visible"
-        exit="exit"
-      >
-        <div className={styles.videoSection}>
-          <VideoPlayer />
+        <div className={styles.tabHeader}>
+          {tabs.map((tab, index) => (
+            <button
+              key={tab.tabHeader}
+              onClick={() => {
+                setVideoModalTabValue(index);
+              }}
+              className={`${styles.tab} ${index === videoModalTabValue && styles.underline}`}
+              type="button"
+              // onKeyDown={handleKeyDown()}
+              // role="button"
+              // tabIndex={0}
+            >
+              {" "}
+              {tab.tabHeader}
+            </button>
+          ))}
         </div>
-
-        <VidModal className={styles.tabSection}>
-          {videoModalTabValue !== 2 && (
-            <div className={styles.tabHeader}>
-              {tabs.map((tab, index) => {
-                return (
-                  <p
-                    key={tab.tabHeader}
-                    onClick={() => {
-                      setVideoModalTabValue(index);
-                    }}
-                    className={`${styles.tab} ${index === videoModalTabValue && styles.underline}`}
-                  >
-                    {" "}
-                    {tab.tabHeader}
-                  </p>
-                );
-              })}
-            </div>
+        <div className={styles.tabBody}>
+          {videoModalTabValue === 0 ? (
+            <Product />
+          ) : videoModalTabValue === 1 ? (
+            <ProductDetails />
+          ) : videoModalTabValue === 2 ? (
+            <Comment />
+          ) : (
+            ""
           )}
-
-          <div className={styles.tabBody}>
-            {videoModalTabValue === 0 ? (
-              <Product />
-            ) : videoModalTabValue === 1 ? (
-              <Comment />
-            ) : videoModalTabValue === 2 ? (
-              <ProductDetails />
-            ) : (
-              ""
-            )}
-            {/* <SignUp /> */}
-        {/* {value === 0 ? (
+          {/* <SignUp /> */}
+          {/* {value === 0 ? (
               <Product />
             ) : value === 1 ? (
               //   <ProductSpecs />
               <Comment />
             )} */}
-        {/* </div> */}
-        {/* </div>  */}
-        {/* </div> */}
+        </div>
       </div>
     </VidModal>
   );

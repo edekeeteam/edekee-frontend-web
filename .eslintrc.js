@@ -16,5 +16,6 @@ module.exports = {
     "require-jsdoc": "off",
     "react/react-in-jsx-scope": "off",
     "import/no-unresolved": "off",
+    "no-console": "off",
   },
 };

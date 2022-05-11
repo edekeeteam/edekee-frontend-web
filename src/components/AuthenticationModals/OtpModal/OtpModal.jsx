@@ -1,5 +1,6 @@
 // import { useState } from "react";
 import OtpInput from "react-otp-input";
+import Countdown from "react-countdown";
 import Modal from "../../Modal/Modal";
 import styles from "./OtpModal.module.scss";
 import { useAuthContext } from "../../../context/AuthContext";
@@ -8,7 +9,7 @@ function OtpModal() {
   const { otp, setOtp, handleOtpVerification, resendOtp } = useAuthContext();
 
   // const otpValue = otp;
-
+  <Countdown date={Date.now() + 10000} />;
   const handleChange = (newOtp) => {
     // console.log(newOtp);
     // setOtp(

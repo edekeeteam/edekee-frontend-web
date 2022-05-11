@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   // border: 1px solid red;
+  // margin-bottom: 30px;
   width: 100%;
   &:focus-within label {
     transform: translate(0, 12px) scale(0.8);

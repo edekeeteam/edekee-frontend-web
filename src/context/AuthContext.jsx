@@ -1,8 +1,8 @@
-/* eslint-disable no-console */
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React, { useState, useContext, useReducer } from "react";
 // import sublinks from "./data";
 // import { useRouter } from "next/router";
+// import countriesArr from "../data/countriesArr"
 import axios from "axios";
 import reducer from "../reducers/authReducer";
 
@@ -54,7 +54,14 @@ function AuthProvider({ children }) {
     });
   };
 
-  const handlePhoneNumberFormat = (phoneNo) => `0${phoneNo}`;
+  const handlePhoneNumberFormat = (phoneNo) => {
+    const phoneNumberArr = phoneNo.split("");
+    console.log(phoneNumberArr);
+    if (phoneNumberArr[0] === "0") {
+      return phoneNo;
+    }
+    return `0${phoneNo}`;
+  };
 
   const handleDOBformat = (bDay, bMonth, bYear) => {
     const d = new Date(bYear, bMonth, bDay);
@@ -68,7 +75,7 @@ function AuthProvider({ children }) {
     if (!email) {
       newErrors.email = "email required";
     } else if (!regex.test(email)) {
-      newErrors.email = "This is not a valid email!";
+      newErrors.email = "Incorrect email!";
     }
     if (!password) {
       newErrors.password = "password required";
@@ -80,9 +87,12 @@ function AuthProvider({ children }) {
 
   const validatePhoneNumber = (number) => {
     const newErrors = {};
-    const regex = /^\d{10}$/;
 
-    if (!regex.test(number)) {
+    const newNumber = handlePhoneNumberFormat(number);
+    const regex1 = /^\d{10}$/;
+    const regex2 = /^\d{11}$/;
+
+    if (!regex1.test(newNumber) && !regex2.test(newNumber)) {
       newErrors.phoneNumber = "Invalid phone number";
     }
 
@@ -124,6 +134,9 @@ function AuthProvider({ children }) {
               setAuthSuccessful(false);
               setBtnState(false);
             }, 1000);
+          } else {
+            setAuthLoading(false);
+            setErrors({ email: `${response.data.message}` });
           }
         }
         // console.log(response);
@@ -255,13 +268,13 @@ function AuthProvider({ children }) {
     const newErrors = {};
 
     if (parseInt(dobDay, 10) > 31 || parseInt(dobDay, 10) < 1) {
-      newErrors.dobDay = "invalid birthday";
+      newErrors.dob = "invalid Date";
     }
     if (parseInt(dobMonth, 10) > 12 || parseInt(dobMonth, 10) < 1) {
-      newErrors.dobMonth = "invalid birthmonth";
+      newErrors.dob = "invalid Date";
     }
     if (parseInt(dobYear, 10) > 2020 || parseInt(dobYear, 10) < 1900) {
-      newErrors.dobMonth = "invalid birthyear";
+      newErrors.dob = "invalid Date";
     }
 
     return newErrors;

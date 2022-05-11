@@ -19,6 +19,7 @@ import DobInfo from "./components/AuthenticationModals/DobInfoModal/DobInfo";
 // import CropImages from "./Modals/UploadsProducts/CropImages/CropImages";
 // import Category from "./Modals/UploadsProducts/Category/Category";
 import UploadsProducts from "./modules/Modals/UploadsProducts";
+// import ProductSpecs from "./components/ProductSpecs/ProductSpecs";
 
 function App() {
   const { modalValue } = useModalContext();
@@ -51,6 +52,10 @@ function App() {
       ) : (
         ""
       )}
+
+      {/* <ProductSpecs /> */}
+      {/* <VideoModal /> */}
+      {/* <ProductSpecs /> */}
       {/* <RegUsernameModal /> */}
       {/* <PhoneContact /> */}
       {/* <DobInfo /> */}

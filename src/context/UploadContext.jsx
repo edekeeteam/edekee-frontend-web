@@ -38,7 +38,7 @@ function UploadProvider({ children }) {
 
     // console.log(formData, "formData...");
     // console.log(videoFile);
-    const categoryId = "67ca2ac1-0051-492b-bdc5-819dba5a69f1";
+    const categoryId = "2fd2c479-64ca-4961-bcdd-7d539ff4d281";
     formData.append("categoryId", categoryId);
     formData.append("videoFile", videoFile);
     // console.log(formData);

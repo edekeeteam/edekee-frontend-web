@@ -9,7 +9,7 @@ function Button({ size, label, bgcolor, handleClick, loading, successful, btnSta
     <button
       className={`${styles.button} ${size === "large" ? styles.large : ""} ${
         bgcolor === "white" ? styles.bgWhite : bgcolor === "black" ? styles.bgBlack : ""
-      }`}
+      } ${successful && styles.bgPurple}`}
       disabled={btnState}
       onClick={handleClick}
       type="button"

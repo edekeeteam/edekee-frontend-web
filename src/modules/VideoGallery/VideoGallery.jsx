@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Masonry from "react-masonry-css";
 // import Hls from "hls.js";
-
+// import { useModalContext } from "../../context/ModalContext";
 import styles from "./VideoGallery.module.scss";
 import VideoContainer from "../../components/VideoContainer/VideoContainer";
 
@@ -25,6 +25,9 @@ const breakpointColumnsObj = {
 
 function VideoGallery() {
   const [videos, setVideos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  // const { setModalValue, setIsVidModalOpen, setUrl } = useModalContext();
+
   // useScript('https://cdn.jsdelivr.net/npm/hls.js@latest/dist/hls.min.js.map.');
 
   // const [videoContainerWidth, setVideoContainerWidth] = useState(0);
@@ -52,22 +55,27 @@ function VideoGallery() {
   //   window.addEventListener("resize", getVideoContainerWidth);
   // }, []);
 
-  function convertToHsl(video) {
-    return video;
-  }
+  // function convertToHsl(video) {
+  //   return video;
+  // }
 
   useEffect(() => {
     axios.get("https://eked.herokuapp.com/v1/api/videos").then(async (response) => {
-      // console.log(response);
+      console.log(response);
       // const videos = response.data.data;
       // console.log(videos[0].video);
       // eslint-disable-next-line no-console
 
-      const convertVideos = response.data.data.map((data) => ({
-        ...data,
-        video: convertToHsl(data.video),
-      }));
-      setVideos(convertVideos);
+      // const convertVideos = response.data.data.map((data) => ({
+      //   ...data,
+      //   video: convertToHsl(data.video),
+      // }));
+
+      setVideos(response.data.data);
+
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 3000);
       // videos.map((video) => {
       //   console.log(video);
       // });
@@ -90,9 +98,14 @@ function VideoGallery() {
   //   setIsModalOpen(!isModalOpen);
   // };
   // console.log(videoData);
+
+  // if (isLoading) {
+  //   return ;
+  // }
   return (
     <div className={styles.gallery}>
       {/* <Pegg /> */}
+      {isLoading && <h1 className={styles.loading}>Loading</h1>}
       <Masonry
         className={styles.masonry}
         breakpointCols={breakpointColumnsObj}
@@ -102,14 +115,14 @@ function VideoGallery() {
           videos.map((video) => (
             // console.log(video.video.toString());
             // console.log(video.video);
-
             <VideoContainer
               src={video.video}
               key={video.id}
               // onClick={() => {
               //   setModalValue("videomodal");
               //   setUrl(video.video);
-              //   setIsModalOpen(true);
+              //   setIsVidModalOpen(true);
+              //   console.log("clicked");
               // }}
             />
           ))}
