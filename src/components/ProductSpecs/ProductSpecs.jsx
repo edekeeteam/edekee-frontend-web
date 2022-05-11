@@ -49,31 +49,33 @@ function ProductSpecs() {
   };
 
   return (
-    <Modal
-      className={styles.productSpecs}
-      onClick={(e) => {
-        e.stopPropagation();
-      }}
-      onKeyDown={handleKeyDown()}
-      role="button"
-      tabIndex="-1"
-    >
-      <div className={styles.productSpecsWrapper}>
-        <div className={styles.colorsSection}>
-          <p className={styles.colorsHeading}>Colors</p>
-          <InputColor Colors={sampleColors} />
-        </div>
-        <div className={styles.sizeSection}>
-          <p className={styles.sizeHeading}>Size</p>
-          <InputSize sizes={sampleSize} />
-        </div>
-        <div className={styles.quantitySection}>
-          <p className={styles.quantityHeading}>Quantity</p>
-          <InputNumber />
-        </div>
-        <div className={styles.buttonSection}>
-          <Button size="large" label="Add to cart" bgcolor="white" />
-          <Button size="large" label="Buy now" bgcolor="black" />
+    <Modal>
+      <div
+        className={styles.productSpecs}
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+        onKeyDown={handleKeyDown()}
+        role="button"
+        tabIndex="-1"
+      >
+        <div className={styles.productSpecsWrapper}>
+          <div className={styles.colorsSection}>
+            <p className={styles.colorsHeading}>Colors</p>
+            <InputColor Colors={sampleColors} />
+          </div>
+          <div className={styles.sizeSection}>
+            <p className={styles.sizeHeading}>Size</p>
+            <InputSize sizes={sampleSize} />
+          </div>
+          <div className={styles.quantitySection}>
+            <p className={styles.quantityHeading}>Quantity</p>
+            <InputNumber />
+          </div>
+          <div className={styles.buttonSection}>
+            <Button size="large" label="Add to cart" bgcolor="white" />
+            <Button size="large" label="Buy now" bgcolor="black" />
+          </div>
         </div>
       </div>
     </Modal>
