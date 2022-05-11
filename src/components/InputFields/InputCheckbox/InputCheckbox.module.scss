@@ -1,0 +1,67 @@
+.inputCheckbox {
+  position: relative;
+  margin-right: 5px;
+  height: 25px;
+  width: 25px;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+
+  .checkMark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: #322f37;
+    border-radius: 100%;
+    cursor: pointer;
+    border: 1px rgb(225, 225, 255, 0.5) solid;
+  }
+
+  input:checked ~ .checkMark {
+    background-color: #2196f3;
+  }
+
+  /* On mouse-over, add a grey background color */
+  //.container:hover input ~ .checkmark {
+  //  background-color: #ccc;
+  //}
+
+  /* When the checkbox is checked, add a blue background */
+  input:checked ~ .checkMark {
+    background-color: #a271ff;
+  }
+
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkMark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  /* Show the checkmark when checked */
+  input:checked ~ .checkMark:after {
+    display: block;
+  }
+
+  /* Style the checkmark/indicator */
+  .checkMark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+}

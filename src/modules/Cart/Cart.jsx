@@ -4,6 +4,9 @@ import styles from "./Cart.module.scss";
 
 import data from "./data";
 import CartItem from "../../components/CartItem/CartItem";
+import { InputCheckbox } from "../../components/InputFields";
+
+// import {InputCheckbox} from "../../components/InputFields";
 
 function CartModule() {
   // eslint-disable-next-line no-unused-vars
@@ -84,13 +87,12 @@ function CartModule() {
         <p className="global-text-24">Shop Cart ({cart.length})</p>
       </div>
       <div className="global-modal-sm-mb">
-        <p>
-          <input
+        <p style={{ display: "flex", alignItems: "center", marginLeft: "10px" }}>
+          <InputCheckbox
             name="all"
             value="all"
             checked={isAllChecked}
-            onChange={() => toggleSelectAll()}
-            type="checkbox"
+            toggleCheck={() => toggleSelectAll()}
           />
           {isAllChecked && <span className="global-text-12">Unselect All</span>}
           {!isAllChecked && <span className="global-text-12">Select All</span>}
