@@ -3,15 +3,21 @@ import { useModalContext } from "../../context/ModalContext";
 
 // eslint-disable-next-line react/prop-types
 function VidModal({ children }) {
-  const { isModalOpen, setIsModalOpen } = useModalContext();
+  const { isVidModalOpen, setIsVidModalOpen } = useModalContext();
+
+  if (isVidModalOpen) {
+    document.body.style.overflowY = "hidden";
+  } else {
+    document.body.style.overflowY = "scroll";
+  }
   const handleKeyDown = () => {
     // console.log('');
   };
   return (
     <div
-      className={`${styles.modalbackdrop} ${isModalOpen && styles.show}`}
+      className={`${styles.modalbackdrop} ${isVidModalOpen && styles.show}`}
       onClick={() => {
-        setIsModalOpen(false);
+        setIsVidModalOpen(false);
       }}
       onKeyDown={handleKeyDown()}
       role="button"

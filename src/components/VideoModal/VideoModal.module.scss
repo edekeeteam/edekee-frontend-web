@@ -2,7 +2,7 @@
   width: 70%;
   // width: 70vw;
   //   width: clamp(50%, 700px, 90%);
-  height: 80vh;
+  height: 70vh;
   // margin: auto;
   //   padding: 0 2rem;
   margin-top: 5%;
@@ -10,57 +10,69 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  // border: 2px solid red;
+  // border: 1px solid rgb(0, 255, 8);
   background-color: black;
+}
+// .videoSection {
+//   flex: 1;
+//   height: 100%;
+//   display: flex;
+//   justify-content: center;
+//   background-color: beige;
+//   border: 5px solid orange;
+// }
 
-  .videoSection {
-    flex: 1;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    background-color: beige;
-  }
-  .tabSection {
-    flex: 1;
-    height: 100%;
-    overflow: scroll;
-    // border: 2px solid red;
+// .videoModal {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   text-align: center;
+// }
+.tabSection {
+  flex: 1;
+  height: 100%;
+  overflow: scroll;
+  background-color: #000;
+  // border: 2px solid rgb(77, 255, 0);
+}
+#video {
+  height: 100%;
 
-    .tabHeader {
-      height: 50px;
-      width: 100%;
-      // border: 1px solid red;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 30px;
-
-      .tab {
-        padding: 10px 20px;
-        cursor: pointer;
-
-        &.underline {
-          border-bottom: 2px solid white;
-        }
-      }
-    }
-    .tabBody {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: auto;
-    }
-  }
-  #video {
-    height: 100%;
-    // 1080 × 2048
-  }
+  // 1080 × 2048
 }
 
 .tabSection {
   width: 50%;
-  // border: 1px solid green;
+  // border: 3px solid green;
   height: 100%;
   overflow: scroll;
-  display: none;
+  display: flex;
+  flex-direction: column;
+  // display: none;
+}
+.tabHeader {
+  // border: 1px solid red;
+  margin: 20px 0;
+}
+
+.tabBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // min-height: auto;
+  // position: relative;
+  // border: 1px solid purple;
+  bottom: 0;
+}
+
+.tab {
+  padding: 10px 20px;
+  // cursor: pointer;
+  // border: 2px solid red;
+  background: none;
+  color: #fff;
+  &.underline {
+    border-bottom: 2px solid white;
+  }
 }

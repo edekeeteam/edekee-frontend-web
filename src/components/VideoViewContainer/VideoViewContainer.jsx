@@ -1,16 +1,29 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useRef, useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Hls from "hls.js";
-import { useModalContext } from "../../context/ModalContext";
+import Tag from "../Tag/Tag";
+import labels from "../../ladyLabel.json";
+// import { useModalContext } from "../../context/ModalContext";
 
 // import { motion } from "framer-motion";
-import styles from "./VideoContainer.module.scss";
+import styles from "./VideoViewContainer.module.scss";
 
-function VideoContainer({ src }) {
-  const [showInfo, setShowInfo] = useState(false);
+function VideoViewContainer({ src }) {
+  const [tagArray, setTagArray] = useState([]);
+  const [player, setPlayer] = useState(null);
+
+  const playerRef = useRef(player);
+
+  // const [showInfo, setShowInfo] = useState(false);
   // const [isMuted, setIsMuted] = useState(true)
-  const { setIsVidModalOpen, setModalValue } = useModalContext();
+  // const { setModalValue } = useModalContext();
   const vidRef = useRef();
+
+  useEffect(() => {
+    if (playerRef.current == null) return;
+
+    setPlayer(playerRef.current);
+  }, [playerRef]);
 
   // martin
   const hls = new Hls();
@@ -21,47 +34,124 @@ function VideoContainer({ src }) {
 
   // martin
 
-  const startVideoTimer = (e) => {
-    e.target.play();
-    vidRef.current = setTimeout(() => {
-      setShowInfo(true);
-    }, 3000);
+  // const startVideoTimer = (e) => {
+  //   e.target.play();
+  //   vidRef.current = setTimeout(() => {
+  //     setShowInfo(true);
+  //   }, 1100);
+  // };
+
+  // const stopVideoTimer = (e) => {
+  //   e.target.pause();
+  //   e.target.currentTime = 0;
+  //   setShowInfo(false);
+  //   clearTimeout(vidRef.current);
+  const handlePlay = () => {
+    setTagArray([]);
   };
 
-  const stopVideoTimer = (e) => {
-    e.target.pause();
-    e.target.currentTime = 0;
-    setShowInfo(false);
-    clearTimeout(vidRef.current);
+  const handlePause = () => {
+    // console.log("onPause");
+    // this.setState({ playing: false });
+    const videoPlayer = document.getElementById("video");
+    console.log(videoPlayer);
+    const tm = videoPlayer.currentTime;
+    console.log(tm);
+    const currentTime = Math.round(tm) * 1000;
+    console.log(currentTime);
+
+    // let currentTime = Math.ceil(this.player.getCurrentTime() * 1000);
+    // let currentTime = Math.ceil(this.player.getCurrentTime()) * 1000;
+    const labelsObj = labels.labels;
+    // console.log(labelsObj);
+    // console.log(labelsObj[0].miliseconds);
+    // console.log(tm);
+
+    const allTags = labelsObj.filter(
+      (label) => Math.round(label.millisecond / 1000) * 1000 === currentTime
+    );
+
+    // labelsObj.map((lab) => {
+    //   console.log(Math.round(lab.milliseconds / 1000) * 1000);
+    // });
+    // const allTags = labelsObj.filter((label) => Math.round(label.millisecond / 1000) === 200);
+    //   label.confidence === 36.597;
+    //   if (label.miliseconds === currentTime) {
+    //     return label;
+    //   }
+
+    // console.log(allTags);
+    setTagArray(allTags);
   };
+
+  const getCoordinates = (bbh, bbw, bbl, bbt, vw, vh) => {
+    const xCoordinate = bbl * vw + (bbw * vw) / 2;
+    const yCoordinate = bbt * vh + (bbh * vh) / 2;
+    // let adjustedWidth = (20 / vw) * 100;
+    // let adjustedHeight = (20 / vh) * 100;
+
+    // const x = bbl * 100;
+    // const y = bbt * 100;
+    const x = (xCoordinate / vw) * 100;
+    const y = (yCoordinate / vh) * 100;
+
+    // let x = bbl * 100;
+    // let y = bbt * 100;
+
+    return { x: x.toString(), y: y.toString() };
+    // return <Tag leftPos="50" topPos="70" title="shirt" price="500" />;
+  }; // };
+
   return (
-    <div className={styles.videoContainer}>
+    <div className={styles.videoViewContainer}>
+      {tagArray &&
+        tagArray.map((tag) => {
+          // console.log(tag);
+
+          const coordinates = getCoordinates(
+            tag.boundingBoxHeight,
+            tag.boundingBoxWidth,
+            tag.boundingBoxLeft,
+            tag.boundingBoxTop,
+            576,
+            1280
+          );
+          console.log(coordinates);
+          // console.log(`this is called ${x} times`);
+
+          return (
+            <Tag
+              key={coordinates.x * Math.random()}
+              leftPos={coordinates.x}
+              topPos={coordinates.y}
+              // leftPos={coordinates.x}
+              // topPos={coordinates.y}
+              title={tag.label}
+              price="500"
+            />
+          );
+        })}
       <video
         ref={vidRef}
         src={src}
         loop
+        autoPlay
+        controls
+        id="video"
         // width="100%"
         height="100%"
-        onMouseOver={(e) => {
-          startVideoTimer(e);
+        onPlay={() => {
+          handlePlay();
         }}
-        onFocus={(e) => {
-          startVideoTimer(e);
+        onPause={() => {
+          handlePause();
         }}
-        onMouseOut={(e) => {
-          stopVideoTimer(e);
-        }}
-        onBlur={(e) => stopVideoTimer(e)}
-        onClick={() => {
-          console.log("clicked");
-          setIsVidModalOpen(true);
-          setModalValue("videomodal");
-        }}
+        // style={{ border: "3px solid yellow" }}
       >
         <track kind="captions" />
       </video>
 
-      {showInfo && (
+      {/* {showInfo && (
         <div className={styles.sideIcons}>
           <svg
             className={styles.sideIcon}
@@ -85,7 +175,6 @@ function VideoContainer({ src }) {
               <circle cx="10.4465" cy="10.5266" r="2.02769" stroke="white" strokeWidth="1.39631" />
             </g>
           </svg>
-          {/* -------------------- */}
           <svg
             className={styles.sideIcon}
             width="23"
@@ -105,7 +194,6 @@ function VideoContainer({ src }) {
             <circle cx="14.4998" cy="13.2923" r="1.20833" fill="white" />
             <ellipse cx="19.3333" cy="13.2923" rx="1.20833" ry="1.20833" fill="white" />
           </svg>
-          {/* -------------------- */}
 
           <svg
             className={styles.sideIcon}
@@ -130,7 +218,6 @@ function VideoContainer({ src }) {
               strokeLinejoin="round"
             />
           </svg>
-          {/* -------------------- */}
 
           <svg
             className={styles.sideIcon}
@@ -147,12 +234,11 @@ function VideoContainer({ src }) {
             />
           </svg>
         </div>
-      )}
+      )} */}
 
       <div className={styles.profileNameContainer} />
-      {/* <div className={styles.tag} /> */}
     </div>
   );
 }
 
-export default VideoContainer;
+export default VideoViewContainer;

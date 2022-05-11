@@ -1,0 +1,96 @@
+{
+  "duration": 19440,
+  "frameRate": 50.0,
+  "labels": [
+    {
+      "boundingBoxHeight": 0.07887172,
+      "boundingBoxLeft": 0.30910894,
+      "boundingBoxTop": 0.83135116,
+      "boundingBoxWidth": 0.23568746,
+      "confidence": "98.16944",
+      "label": "High Heel",
+      "millisecond": 0
+    },
+    {
+      "boundingBoxLeft": 0.6586623,
+      "boundingBoxHeight": 0.091867,
+      "boundingBoxTop": 0.8337304,
+      "boundingBoxWidth": 0.20087026,
+      "confidence": "98.16944",
+      "label": "High Heel",
+      "millisecond": 0
+    },
+    {
+      "boundingBoxHeight": 0.87242687,
+      "boundingBoxLeft": 0.33139881,
+      "boundingBoxTop": 0.07981966,
+      "boundingBoxWidth": 0.64903617,
+      "confidence": 99.34717,
+      "label": "Person",
+      "millisecond": 0
+    },
+    {
+      "boundingBoxHeight": 0.081637375,
+      "boundingBoxLeft": 0.3439605,
+      "boundingBoxTop": 0.83391505,
+      "boundingBoxWidth": 0.21737908,
+      "confidence": 96.40811,
+      "label": "High Heel",
+      "millisecond": 500
+    },
+    {
+      "boundingBoxHeight": 0.10862643,
+      "boundingBoxLeft": 0.65474117,
+      "boundingBoxTop": 0.8181747,
+      "boundingBoxWidth": 0.18620466,
+      "confidence": "96.40811",
+      "label": "High Heel",
+      "millisecond": 500
+    },
+    {
+      "boundingBoxHeight": 0.84707654,
+      "boundingBoxLeft": 0.30712524,
+      "boundingBoxTop": 0.095041506,
+      "boundingBoxWidth": 0.5779214,
+      "confidence": 99.026436,
+      "label": "Person",
+      "millisecond": 500
+    },
+    {
+      "boundingBoxHeight": 0.31521615,
+      "boundingBoxLeft": 0.22064808,
+      "boundingBoxTop": 0.23397344,
+      "boundingBoxWidth": 0.5839712,
+      "confidence": "63.909534",
+      "label": "Blouse",
+      "millisecond": 1000
+    },
+    {
+      "boundingBoxHeight": 0.08485495,
+      "boundingBoxLeft": 0.34606516,
+      "boundingBoxTop": 0.83048093,
+      "boundingBoxWidth": 0.2171731,
+      "confidence": "95.363335",
+      "label": "High Heel",
+      "millisecond": 1000
+    },
+    {
+      "boundingBoxHeight": 0.11142721,
+      "boundingBoxLeft": 0.657308,
+      "boundingBoxTop": 0.81187916,
+      "boundingBoxWidth": 0.165443,
+      "confidence": 95.363335,
+      "label": "High Heel",
+      "millisecond": 1000
+    },
+    {
+      "boundingBoxHeight": 0.82655144,
+      "boundingBoxLeft": 0.2831177,
+      "boundingBoxTop": 0.11025842,
+      "boundingBoxWidth": 0.5263444,
+      "confidence": 99.056465,
+      "label": "Person",
+      "millisecond": 1000
+    }
+  ]
+}

@@ -6,6 +6,7 @@ const ModalContext = React.createContext();
 // eslint-disable-next-line react/prop-types
 function ModalProvider({ children }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isVidModalOpen, setIsVidModalOpen] = useState(true);
   const [modalValue, setModalValue] = useState("");
   const [authModalValue, setAuthModalValue] = useState(1);
   const [uploadModalValue, setUploadModalValue] = useState(0);
@@ -22,6 +23,8 @@ function ModalProvider({ children }) {
         setAuthModalValue,
         uploadModalValue,
         setUploadModalValue,
+        isVidModalOpen,
+        setIsVidModalOpen,
         url,
         setUrl,
       }}

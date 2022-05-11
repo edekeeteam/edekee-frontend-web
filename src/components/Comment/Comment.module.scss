@@ -1,17 +1,17 @@
-@import "../../../styles/functions";
-@import "../../../styles/mixins";
-@import "../../../styles/variables";
+@import "../../styles/functions";
+@import "../../styles/mixins";
+@import "../../styles/variables";
 
 .comment {
   width: 85%;
   padding: 1.5rem 1rem;
-  //   border: 1px solid red;
+  // border: 1px solid red;
   border-radius: 15px;
   display: flex;
   //   align-items: center;
   justify-content: center;
   //   background-color: #322f37;
-  margin: 0.5rem 0;
+  margin: 0.5rem auto;
   //   cursor: pointer;
 
   .commentWrapper {
