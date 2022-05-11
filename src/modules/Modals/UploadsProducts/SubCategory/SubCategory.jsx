@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 import IndexStyle from "../index.module.scss";
 import styles from "./SubCategory.module.scss";
 
-import { InputCategory } from "../../../components/inputFields";
-import { useUploadProductsContext } from "../../../context/UploadProducts";
+import { InputCategory } from "../../../../components/InputFields";
+import { useUploadProductsContext } from "../../../../context/UploadProducts";
 
 // eslint-disable-next-line no-unused-vars
 function SubCategory({ prevStep, nextStep }) {

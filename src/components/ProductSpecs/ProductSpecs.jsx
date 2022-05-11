@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./ProductSpecs.module.scss";
 // import InputColor from "../InputColor/";
 // import InputSize from "../";
-import { InputNumber } from "../inputFields";
+import { InputNumber } from "../InputFields";
 // import Button from "../Button/Button";
 import { useAuthContext } from "../../context/AuthContext";
 

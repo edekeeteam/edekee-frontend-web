@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import IndexStyle from "../index.module.scss";
 import styles from "./ProductInfo.module.scss";
 
-import { InputSelect, InputText, InputTextArea } from "../../../components/inputFields";
+import { InputSelect, InputText, InputTextArea } from "../../../../components/InputFields";
 
-import { useUploadProductsContext } from "../../../context/UploadProducts";
+import { useUploadProductsContext } from "../../../../context/UploadProducts";
 
-// import InputSelect from "../../../components/inputFields/InputSelect/InputSelect";
+// import InputSelect from "../../../components/InputFields/InputSelect/InputSelect";
 
 // eslint-disable-next-line no-unused-vars
 function ProductInfo({ nextStep, prevStep }) {

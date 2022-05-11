@@ -18,7 +18,7 @@ import PhoneContact from "./components/AuthenticationModals/PhoneContact/PhoneCo
 import DobInfo from "./components/AuthenticationModals/DobInfoModal/DobInfo";
 // import CropImages from "./Modals/UploadsProducts/CropImages/CropImages";
 // import Category from "./Modals/UploadsProducts/Category/Category";
-import UploadsProducts from "./Modals/UploadsProducts";
+import UploadsProducts from "./modules/Modals/UploadsProducts";
 
 function App() {
   const { modalValue } = useModalContext();

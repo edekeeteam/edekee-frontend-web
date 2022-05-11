@@ -1,17 +1,28 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
 import styles from "./Interest.module.scss";
+
 import useLocalStorage from "../../hooks/useLocalStorage";
+
 import Button from "../../components/Button/Button";
-import InputInterest from "../../components/inputFields/InputInterest/InputInterest";
+import InputInterest from "../../components/InputFields/InputInterest/InputInterest";
 
 function Interest() {
   const navigate = useNavigate();
+  // from the server
   const [interests, setInterests] = useState([]);
+  // from the server
+
+  // from the user
   const [checkedInterestsState, setCheckedInterestsState] = useState([]);
-  // eslint-disable-next-line no-unused-vars
+  // from the user
+
+  // from localStorage
   const [interestState, setInterestState] = useLocalStorage("interests", []);
+  // from localStorage
+
   useEffect(() => {
     axios.get("https://eked.herokuapp.com/v1/api/interests").then(async (response) => {
       setInterests(response.data.data);
@@ -28,11 +39,10 @@ function Interest() {
   };
 
   const addInterests = () => {
-    // console.log(checkedInterestsState);
     setInterestState(() => [...checkedInterestsState]);
-    setTimeout(() => {
-      navigate("/home");
-    }, 1000);
+    if (interestState.length) {
+      setTimeout(() => navigate("/home"), 200);
+    }
   };
 
   return (

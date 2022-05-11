@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 import IndexStyle from "../index.module.scss";
 import styles from "./Category.module.scss";
 
-import { InputCategory } from "../../../components/inputFields";
-import { useUploadProductsContext } from "../../../context/UploadProducts";
+import { InputCategory } from "../../../../components/InputFields";
+import { useUploadProductsContext } from "../../../../context/UploadProducts";
 
 function Category({ prevStep, nextStep }) {
   const [categories, setCategories] = useState([]);

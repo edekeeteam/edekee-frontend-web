@@ -1,11 +1,16 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 function Splash() {
   const navigate = useNavigate();
+  const [interestState] = useLocalStorage("interests", []);
 
   useEffect(() => {
-    setTimeout(() => navigate("./interests", { replace: true }), 2000);
+    setTimeout(
+      () => (interestState.length ? navigate("/home") : navigate("./interests", { replace: true })),
+      2000
+    );
   }, []);
   return (
     <div
