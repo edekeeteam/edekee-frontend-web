@@ -15,8 +15,12 @@ function VideoContainer({ src }) {
   // martin
   const hls = new Hls();
   useEffect(() => {
-    hls.loadSource(src);
-    hls.attachMedia(vidRef.current);
+    if (Hls.isSupported()) {
+      hls.loadSource(src);
+      hls.attachMedia(vidRef.current);
+    } else if (vidRef.current.canPlayType("application/vnd.apple.mpegurl")) {
+      vidRef.current.src = src;
+    }
   }, [vidRef]);
 
   // martin

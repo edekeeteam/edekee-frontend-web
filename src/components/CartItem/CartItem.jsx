@@ -2,7 +2,7 @@
 import PropTypes from "prop-types";
 
 import styles from "./CartItem.module.scss";
-import { InputNumber } from "../InputFields";
+import { InputCheckbox, InputNumber } from "../InputFields";
 
 function CartItem({
   isCheck,
@@ -38,12 +38,11 @@ function CartItem({
   return (
     <div className={styles.cartItem}>
       <div>
-        <input
+        <InputCheckbox
           name={name}
           value={name}
           checked={isCheck}
-          onChange={() => handleOnChange(index)}
-          type="checkbox"
+          toggleCheck={() => handleOnChange(index)}
         />
       </div>
       <div className={styles.imgContainer}>
