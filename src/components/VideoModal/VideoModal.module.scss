@@ -1,3 +1,7 @@
+@import "../../styles/functions";
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
 .modal {
   width: 70%;
   // width: 70vw;
@@ -10,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  // border: 1px solid rgb(0, 255, 8);
+  border: 5px solid rgb(0, 255, 8);
   background-color: black;
 }
 // .videoSection {
@@ -28,13 +32,13 @@
 //   justify-content: center;
 //   text-align: center;
 // }
-.tabSection {
-  flex: 1;
-  height: 100%;
-  overflow: scroll;
-  background-color: #000;
-  // border: 2px solid rgb(77, 255, 0);
-}
+// .tabSection {
+//   flex: 1;
+//   height: 100%;
+//   overflow: scroll;
+//   background-color: #000;
+//   // border: 2px solid rgb(77, 255, 0);
+// }
 #video {
   height: 100%;
 
@@ -43,12 +47,18 @@
 
 .tabSection {
   width: 50%;
-  // border: 3px solid green;
+  border: 3px solid green;
   height: 100%;
   overflow: scroll;
   display: flex;
   flex-direction: column;
+  background-color: #000;
   // display: none;
+
+  // @include lgMaxBreakPoint {
+  //   border: 2px solid red;
+  //   flex: 2;
+  // }
 }
 .tabHeader {
   // border: 1px solid red;

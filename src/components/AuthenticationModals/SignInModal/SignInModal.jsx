@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "../../Modal/Modal";
 import styles from "./SignInModal.module.scss";
-import InputText from "../../inputFields/InputText/InputText";
+import InputText from "../../InputFields/InputText/InputText";
 import Button from "../../Button/Button";
 import PurpleButton from "../../PurpleButton/PurpleButton";
 import { useModalContext } from "../../../context/ModalContext";

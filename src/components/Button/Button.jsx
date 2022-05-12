@@ -12,7 +12,7 @@ function Button({ size, label, bgcolor, handleClick, loading, successful, btnSta
       } ${successful && styles.bgPurple}`}
       disabled={btnState}
       onClick={handleClick}
-      type="button"
+      type="submit"
     >
       {!loading && !successful ? (
         label

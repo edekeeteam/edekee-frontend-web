@@ -8,6 +8,7 @@ import { ModalProvider } from "./context/ModalContext";
 import { DropdownProvider } from "./context/DropdownContext";
 import reportWebVitals from "./reportWebVitals";
 import { UploadProvider } from "./context/UploadContext";
+import { BuyProvider } from "./context/BuyContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -16,7 +17,9 @@ root.render(
       <AuthProvider>
         <UploadProvider>
           <DropdownProvider>
-            <App />
+            <BuyProvider>
+              <App />
+            </BuyProvider>
           </DropdownProvider>
         </UploadProvider>
       </AuthProvider>

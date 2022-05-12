@@ -1,9 +1,7 @@
+import CartModule from "../../modules/Cart/Cart";
+
 function Cart() {
-  return (
-    <div>
-      <p>home</p>
-    </div>
-  );
+  return <CartModule />;
 }
 
 export default Cart;

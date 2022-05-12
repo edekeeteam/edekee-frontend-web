@@ -139,6 +139,7 @@ function VideoViewContainer({ src }) {
         controls
         id="video"
         // width="100%"
+        // width="200px"
         height="100%"
         onPlay={() => {
           handlePlay();
@@ -146,7 +147,7 @@ function VideoViewContainer({ src }) {
         onPause={() => {
           handlePause();
         }}
-        // style={{ border: "3px solid yellow" }}
+        // style={{ border: "1px solid yellow" }}
       >
         <track kind="captions" />
       </video>

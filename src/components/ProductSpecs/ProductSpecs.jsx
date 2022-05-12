@@ -1,12 +1,13 @@
 import React from "react";
 import styles from "./ProductSpecs.module.scss";
-import InputColor from "../inputFields/InputColor/InputColor";
-import InputSize from "../inputFields/InputSize/InputSize";
+import { InputColor, InputSize, InputNumber } from "../InputFields";
+// import InputSize from "../inputFields/InputSize";
 // import InputSize from "../";
-import { InputNumber } from "../inputFields";
+// import { InputNumber } from "../inputFields";
 import Button from "../Button/Button";
-import { useAuthContext } from "../../context/AuthContext";
+// import { useAuthContext } from "../../context/AuthContext";
 import Modal from "../Modal/Modal";
+import { useBuyContext } from "../../context/BuyContext";
 
 function ProductSpecs() {
   const sampleColors = [
@@ -41,12 +42,25 @@ function ProductSpecs() {
     },
   ];
 
-  // const { type, signUpEmail, handleInputChange, signUpPassword, handleRegistration } =
-  useAuthContext();
-
+  const { handleColorChange, handleSizeChange, quantity, setQuantity } = useBuyContext();
+  //  size, setSize, quantity, setQuantity,
   const handleKeyDown = () => {
     // console.log("keydown");
   };
+
+  const handleAdd = (index) => {
+    console.log("clicked");
+    setQuantity(quantity + index);
+    console.log(index);
+  };
+  const handleSubtract = (index) => {
+    setQuantity(quantity - index);
+    console.log(index);
+  };
+
+  // const changeColor = () => {
+  //   setColor();
+  // };
 
   return (
     <Modal>
@@ -62,15 +76,15 @@ function ProductSpecs() {
         <div className={styles.productSpecsWrapper}>
           <div className={styles.colorsSection}>
             <p className={styles.colorsHeading}>Colors</p>
-            <InputColor Colors={sampleColors} />
+            <InputColor Colors={sampleColors} handleChange={handleColorChange} />
           </div>
           <div className={styles.sizeSection}>
             <p className={styles.sizeHeading}>Size</p>
-            <InputSize sizes={sampleSize} />
+            <InputSize sizes={sampleSize} handleChange={handleSizeChange} />
           </div>
           <div className={styles.quantitySection}>
             <p className={styles.quantityHeading}>Quantity</p>
-            <InputNumber />
+            <InputNumber itemValue={quantity} onAdd={handleAdd} onSubtract={handleSubtract} />
           </div>
           <div className={styles.buttonSection}>
             <Button size="large" label="Add to cart" bgcolor="white" />

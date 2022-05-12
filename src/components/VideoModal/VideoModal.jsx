@@ -47,7 +47,10 @@ function VideoModal() {
 
   return (
     <VidModal>
-      <VideoViewContainer src="https://edge.tikicdn.com/data/hls/902297/1/3/1478/manifest.m3u8" />
+      <VideoViewContainer
+        setVideoModalTabValue={setVideoModalTabValue}
+        src="https://edge.tikicdn.com/data/hls/902297/1/3/1478/manifest.m3u8"
+      />
       <div className={styles.tabSection}>
         <div className={styles.tabHeader}>
           {tabs.map((tab, index) => (

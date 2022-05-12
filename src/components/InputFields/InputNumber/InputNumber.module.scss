@@ -1,0 +1,44 @@
+.inputNumber {
+  background-color: #322f37;
+  display: flex;
+  width: fit-content;
+  padding: 10px;
+  border-radius: 40px;
+
+  .button {
+    background-color: white;
+    padding: 5px 20px;
+    border-radius: 40px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  //.filled {
+  //}
+
+  input {
+    background-color: transparent;
+    border: none;
+    color: white;
+    outline: none;
+    text-align: center;
+    width: 80px;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    &[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    &:focus {
+      border: none;
+    }
+  }
+}
+
+.darker {
+  background-color: #171717;
+}

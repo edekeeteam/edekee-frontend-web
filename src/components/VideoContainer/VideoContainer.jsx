@@ -23,6 +23,10 @@ function VideoContainer({ src }) {
 
   const startVideoTimer = (e) => {
     e.target.play();
+    const cid = e.target.videoHeight;
+    console.log(cid);
+    // const vidHeight = vidRef.videoHeight;
+    // console.log(vidHeight);
     vidRef.current = setTimeout(() => {
       setShowInfo(true);
     }, 3000);
@@ -31,6 +35,7 @@ function VideoContainer({ src }) {
   const stopVideoTimer = (e) => {
     e.target.pause();
     e.target.currentTime = 0;
+    // console.log(e.target.videoHeight());
     setShowInfo(false);
     clearTimeout(vidRef.current);
   };

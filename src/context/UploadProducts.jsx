@@ -9,7 +9,7 @@ const UploadProductsContext = React.createContext(undefined);
 // eslint-disable-next-line react/prop-types
 function UploadProductsProvider({ children }) {
   // data
-  const [pictureFiles, setPicturesFiles] = useState([]);
+  const [pictureFiles, setPicturesFiles] = useState(null);
   const [source, setSource] = useState(null);
   const [categoryId, setCategoryId] = useState("");
   const [subCategoryId, setSubCategoryId] = useState("");
@@ -29,7 +29,7 @@ function UploadProductsProvider({ children }) {
   const uploadProducts = "https://eked.herokuapp.com/v1/api/product/upload";
 
   const handleProductsUpload = async () => {
-    console.log("here in context");
+    // console.log("here in context");
     setShowProgress(true);
     let percent = 0;
     // eslint-disable-next-line prefer-const
@@ -38,8 +38,16 @@ function UploadProductsProvider({ children }) {
     formData.append("category", categoryId);
     formData.append("name", name);
     formData.append("slug", name);
-    source.map((pic) => formData.append("products", pic));
+    // pictureFiles.FileList.map((pic) => formData.append("products", pic));
+    // formData.append("products", pictureFiles.map((pic) => pic))
+    // eslint-disable-next-line no-restricted-syntax,no-console
+    console.log(pictureFiles);
 
+    // eslint-disable-next-line no-restricted-syntax
+    for (const pair of formData.entries()) {
+      // eslint-disable-next-line no-console
+      console.log(`${pair[0]}, ${pair[1]}`);
+    }
     const config = {
       onUploadProgress: (progressEvent) => {
         const { loaded, total } = progressEvent;
