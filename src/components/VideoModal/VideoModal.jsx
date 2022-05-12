@@ -48,7 +48,7 @@ function VideoModal() {
   return (
     <VidModal>
       <VideoViewContainer
-        setVideoModalTabValue={setVideoModalTabValue}
+        // setVideoModalTabValue={setVideoModalTabValue}
         src="https://edge.tikicdn.com/data/hls/902297/1/3/1478/manifest.m3u8"
       />
       <div className={styles.tabSection}>
@@ -74,9 +74,9 @@ function VideoModal() {
           {videoModalTabValue === 0 ? (
             <Product />
           ) : videoModalTabValue === 1 ? (
-            <ProductDetails />
-          ) : videoModalTabValue === 2 ? (
             <Comment />
+          ) : videoModalTabValue === 2 ? (
+            <ProductDetails />
           ) : (
             ""
           )}
