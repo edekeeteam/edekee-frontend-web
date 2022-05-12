@@ -6,6 +6,7 @@ template.innerHTML = `
     z-index: 15;
     border-radius: 50px;
     transition: all 300ms;
+         transition-timing-function: ease-in;
     }
     
     .tag {
@@ -14,23 +15,20 @@ template.innerHTML = `
      display: flex;
      align-items: center;
      height: 100%;
-     
-
     } 
     
     .tag-p {
-      /*position: absolute;*/
-      /*margin: 0;*/
       color: white;
       font-size: 12px;
-      display: none;
+      display: inline;
+      opacity: 0;
       padding: 0 16px;
-      /*opacity: 0.8;*/
-      /*transform: translateY(-200%);*/
+      width: 100% ;
       transition: all;
-      /*transition-timing-function: ease-in;*/
-      transition-duration: 400ms;
-      transition-delay: 400ms;
+      transform: translateX(-100px);
+      transition-delay: 300ms;
+      transition-timing-function: ease-out;
+
     }
    
   </style>
@@ -80,21 +78,34 @@ class PeggTag extends HTMLElement {
     return this.shadowRoot.querySelector(".tag-p");
   }
 
+  get length() {
+    return this.getAttribute("length");
+  }
+
   modeOpen() {
-    this.style.width = "auto";
-    this.style.height = "30px";
-    this.style.borderRadius = "30px";
+    this.style.width = `${this.length}px`;
+    this.style.height = "25px";
+    this.style.borderRadius = "25px";
     this.style.backgroundColor = "black";
     this.style.opacity = "0.95";
-    this.textInfo.style.display = "flex";
-    this.textInfo.style.opacity = "1";
+    // eslint-disable-next-line no-return-assign
+    this.textInfo.style.display = "block";
+
+    this.textInfo.style.transform = "translateX(50px)";
+
+    setTimeout(() => {
+      this.textInfo.style.transform = "translateX(0)";
+      this.textInfo.style.opacity = "1";
+    }, 50);
+
+    // this.textInfo.style.width = `${this.length}px`;
   }
 
   modeCollapse() {
     this.style.backgroundColor = "white";
     this.style.opacity = "1";
-    this.style.width = "20px";
-    this.style.height = "20px";
+    this.style.width = "25px";
+    this.style.height = "25px";
     this.style.borderRadius = "50px";
     this.textInfo.style.display = "none";
     this.textInfo.style.opacity = "0";
@@ -103,7 +114,7 @@ class PeggTag extends HTMLElement {
   connectedCallback() {
     this.render();
     this.addEventListener("click", () => {
-      if (this.style.width === "20px") {
+      if (this.style.width === "25px") {
         this.modeOpen();
       } else {
         this.dispatchEvent(this.buyEvent);
@@ -116,8 +127,8 @@ class PeggTag extends HTMLElement {
     this.style.top = `${this.topPos}%`;
     this.style.left = `${this.leftPos}%`;
     this.style.position = "absolute";
-    this.style.width = "20px";
-    this.style.height = "20px";
+    this.style.width = "25px";
+    this.style.height = "25px";
     this.style.cursor = "pointer";
     this.style.backgroundColor = "white";
     // console.log(this.textInfo)
