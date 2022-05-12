@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useRef } from "react";
 
 // type Peggs = {
 //   topPos: string;
@@ -13,8 +13,17 @@ function Tag({ topPos, leftPos, price, title }) {
     import("./pegg");
   });
 
+  const tag = useRef(null);
+
+  React.useEffect(() => {
+    tag.current.addEventListener("buy", (e) => {
+      console.log("buy");
+      console.log(e.detail.id);
+    });
+  }, []);
+
   return (
-    <pegg-tag topPos={topPos} leftPos={leftPos}>
+    <pegg-tag ref={tag} topPos={topPos} leftPos={leftPos}>
       <span>{`${title} ${price}`}</span>
     </pegg-tag>
   );

@@ -38,7 +38,6 @@ template.innerHTML = `
   <p class="tag-p">
    <slot></slot>
   </p>
-   
   </div>
 `;
 
@@ -47,6 +46,14 @@ class PeggTag extends HTMLElement {
     super();
     this.shadow = this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
+    this.buyEvent = new CustomEvent("buy", {
+      bubbles: true,
+      cancelable: false,
+      composed: true,
+      detail: {
+        id: this.leftPos,
+      },
+    });
   }
 
   static get observedAttribute() {
@@ -73,28 +80,34 @@ class PeggTag extends HTMLElement {
     return this.shadowRoot.querySelector(".tag-p");
   }
 
+  modeOpen() {
+    this.style.width = "auto";
+    this.style.height = "30px";
+    this.style.borderRadius = "30px";
+    this.style.backgroundColor = "black";
+    this.style.opacity = "0.95";
+    this.textInfo.style.display = "flex";
+    this.textInfo.style.opacity = "1";
+  }
+
+  modeCollapse() {
+    this.style.backgroundColor = "white";
+    this.style.opacity = "1";
+    this.style.width = "20px";
+    this.style.height = "20px";
+    this.style.borderRadius = "50px";
+    this.textInfo.style.display = "none";
+    this.textInfo.style.opacity = "0";
+  }
+
   connectedCallback() {
     this.render();
     this.addEventListener("click", () => {
       if (this.style.width === "20px") {
-        this.style.width = "auto";
-        this.style.height = "30px";
-        this.style.borderRadius = "30px";
-        this.style.backgroundColor = "black";
-        this.style.opacity = "0.95";
-        this.textInfo.style.display = "flex";
-        this.textInfo.style.opacity = "1";
+        this.modeOpen();
       } else {
-        // Todo Write a function to check whether there is an eventlistener first before impementing dis
-        //
-        this.style.backgroundColor = "white";
-        this.style.opacity = "1";
-        this.style.width = "20px";
-        this.style.height = "20px";
-        this.style.borderRadius = "50px";
-        this.textInfo.style.display = "none";
-        this.textInfo.style.opacity = "0";
-        // console.log(this.textInfo);
+        this.dispatchEvent(this.buyEvent);
+        this.modeCollapse();
       }
     });
   }
@@ -111,6 +124,7 @@ class PeggTag extends HTMLElement {
   }
 }
 
-window.customElements.define("pegg-tag", PeggTag);
+// eslint-disable-next-line no-unused-expressions
+window.customElements.get("pegg-tag") || window.customElements.define("pegg-tag", PeggTag);
 
 export default PeggTag;
