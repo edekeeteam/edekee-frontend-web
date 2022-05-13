@@ -119,6 +119,7 @@ class PeggTag extends HTMLElement {
       } else {
         this.dispatchEvent(this.buyEvent);
         this.modeCollapse();
+        console.log(this.length);
       }
     });
   }
