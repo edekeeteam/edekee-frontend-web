@@ -39,5 +39,14 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+
+    @include xlMaxBreakPoint {
+      width: 80%;
+    }
+
+    @include lgMaxBreakPoint {
+      width: 100%;
+      margin-right: 0;
+    }
   }
 }

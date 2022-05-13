@@ -15,18 +15,18 @@ function VideoContainer({ src }) {
   // martin
   const hls = new Hls();
   useEffect(() => {
-    if (Hls.isSupported()) {
-      hls.loadSource(src);
-      hls.attachMedia(vidRef.current);
-    } else if (vidRef.current.canPlayType("application/vnd.apple.mpegurl")) {
-      vidRef.current.src = src;
-    }
+    hls.loadSource(src);
+    hls.attachMedia(vidRef.current);
   }, [vidRef]);
 
   // martin
 
   const startVideoTimer = (e) => {
     e.target.play();
+    const cid = e.target.videoHeight;
+    console.log(cid);
+    // const vidHeight = vidRef.videoHeight;
+    // console.log(vidHeight);
     vidRef.current = setTimeout(() => {
       setShowInfo(true);
     }, 3000);
@@ -35,6 +35,7 @@ function VideoContainer({ src }) {
   const stopVideoTimer = (e) => {
     e.target.pause();
     e.target.currentTime = 0;
+    // console.log(e.target.videoHeight());
     setShowInfo(false);
     clearTimeout(vidRef.current);
   };

@@ -1,3 +1,7 @@
+@import "../../styles/functions";
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
 .videoViewContainer {
   // border: 1px solid green;
   // margin-bottom: 20px;
@@ -6,18 +10,22 @@
   flex: 1;
   position: relative;
   text-align: right;
+
+  @include lgMaxBreakPoint {
+    flex: 2;
+  }
 }
 
-.tag {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: white;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+// .tag {
+//   width: 20px;
+//   height: 20px;
+//   border-radius: 50%;
+//   background-color: white;
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+// }
 
 .sideIcons {
   position: absolute;

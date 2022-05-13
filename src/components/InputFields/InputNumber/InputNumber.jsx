@@ -19,5 +19,8 @@ function InputNumber({ index, itemValue, onAdd, onSubtract, color }) {
     </div>
   );
 }
+InputNumber.defaultProps = {
+  index: 1,
+};
 
 export default InputNumber;

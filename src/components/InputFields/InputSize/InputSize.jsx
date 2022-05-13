@@ -13,12 +13,13 @@ function Size({ size, activeSize }) {
   );
 }
 // eslint-disable-next-line react/prop-types
-function InputSize({ sizes }) {
+function InputSize({ sizes, handleChange }) {
   const [activeSize, setActiveSize] = useState("");
   // eslint-disable-next-line react/prop-types
 
   function onChangeValue(event) {
     setActiveSize(event.target.value);
+    handleChange(event.target.value);
   }
 
   return (

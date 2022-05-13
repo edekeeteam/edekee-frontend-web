@@ -98,7 +98,8 @@ function VideoViewContainer({ src }) {
     // let x = bbl * 100;
     // let y = bbt * 100;
 
-    return { x: x.toString(), y: y.toString() };
+    return { x, y };
+    // return { x: x.toString(), y: y.toString() };
     // return <Tag leftPos="50" topPos="70" title="shirt" price="500" />;
   }; // };
 
@@ -127,10 +128,12 @@ function VideoViewContainer({ src }) {
               // leftPos={coordinates.x}
               // topPos={coordinates.y}
               title={tag.label}
-              price="500"
+              price={5000}
+              // setVideoModalTabValue={setVideoModalTabValue}
             />
           );
         })}
+      {/* <Tag topPos={40} leftPos={60} title="my name" price={5000} /> */}
       <video
         ref={vidRef}
         src={src}
@@ -139,6 +142,7 @@ function VideoViewContainer({ src }) {
         controls
         id="video"
         // width="100%"
+        // width="200px"
         height="100%"
         onPlay={() => {
           handlePlay();
@@ -146,7 +150,7 @@ function VideoViewContainer({ src }) {
         onPause={() => {
           handlePause();
         }}
-        // style={{ border: "3px solid yellow" }}
+        // style={{ border: "1px solid yellow" }}
       >
         <track kind="captions" />
       </video>

@@ -1,0 +1,165 @@
+//circle diameters
+$diameter45: 45px;
+$diameter90: 90px;
+
+.addressField {
+  width: calc(100% - (15px + $diameter45));
+}
+
+.paymentModal {
+  //   border: 1px solid rgb(0, 255, 38);
+  padding-top: 50px;
+  width: 100%;
+}
+.topPaymentModal {
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.topHeading {
+  margin-bottom: 40px;
+}
+
+.locationImg {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  //   border: 1px solid red;
+  margin-right: 20px;
+  background-color: aquamarine;
+  background-image: url("../../assets/images/location.png");
+  background-position: center;
+  background-size: cover;
+  //   flex: 1;
+}
+
+.topAddressInput {
+  display: flex;
+}
+.input {
+  width: 80%;
+}
+.middlePaymentModal {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 70px;
+  margin-left: 5%;
+}
+
+.middleHeading {
+  //   border: 1px solid red;
+  display: flex;
+  justify-content: space-between;
+}
+.addNewCardText {
+  color: #4282ff;
+  padding-right: 5%;
+  width: 150px;
+  cursor: pointer;
+  //   border: 1px solid red;
+}
+.middleHeading {
+  margin-bottom: 30px;
+}
+.middleBottom {
+  //   border: 1px solid red;
+  width: 100%;
+  display: flex;
+  overflow-x: scroll;
+}
+
+.card {
+  //   width: 200px;
+  //   height: 200px;
+  padding: 5rem 5rem;
+
+  border-radius: 20px;
+  //   border: 1px solid green;
+  margin: 7px;
+}
+.card1 {
+  background-image: url("../../assets/images/cardbg.png");
+  background-size: contain;
+  background-position: center;
+}
+.card2 {
+  background-image: url("../../assets/images/cardbg2.png");
+  background-size: contain;
+  background-position: center;
+}
+.card3 {
+  background-image: url("../../assets/images/cardbg3.png");
+  background-size: contain;
+  background-position: center;
+}
+
+.bottomPaymentModal {
+  //   border: 1px solid red;
+}
+
+.buttonSection {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+// newcard
+
+.newCard {
+  width: 90%;
+  height: 250px;
+  //   border: 1px solid red;
+  border-radius: 30px;
+  //   margin-bottom: 30px;
+  margin: 30px auto;
+  background-color: #322f37;
+  padding: 0 30px;
+}
+.newCardForm {
+  height: 100%;
+  max-width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  //   border: 1px solid red;
+  justify-content: space-around;
+}
+.newCardNumberInput {
+  width: 100%;
+  border-radius: 50px;
+  background-color: #000;
+  padding: 15px 15px;
+  color: #fff;
+  border: none;
+  letter-spacing: 10px;
+  text-align: center;
+}
+.newCardbottomInputs {
+  display: flex;
+  justify-content: space-between;
+}
+.expiryInput {
+  width: 45%;
+  border-radius: 50px;
+  background-color: #000;
+  padding: 15px 15px;
+  color: #fff;
+  border: none;
+  text-align: center;
+  letter-spacing: 7px;
+}
+.cvv {
+  width: 35%;
+  border-radius: 50px;
+  background-color: #000;
+  padding: 15px 15px;
+  color: #fff;
+  border: none;
+  text-align: center;
+  letter-spacing: 7px;
+}

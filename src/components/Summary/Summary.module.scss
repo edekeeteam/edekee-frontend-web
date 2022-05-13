@@ -1,0 +1,87 @@
+.summaryModal {
+  //   border: 1px solid red;
+  width: 100%;
+  padding-top: 50px;
+}
+
+.summaryHeader {
+  width: 85%;
+  margin: 0 auto;
+  //   border: 1px solid red;
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.summaryCard {
+  padding: 30px;
+  width: 85%;
+  background-color: #322f37;
+  //   height: 200px;
+
+  border-radius: 20px;
+  margin: 7px auto;
+  margin-bottom: 150px;
+}
+
+.cardHeader {
+  //   border: 1px solid red;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.headerLeft {
+  display: flex;
+}
+.productImage {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid red;
+  margin-right: 10px;
+}
+
+.productSpecs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.productName {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.productDetails {
+  font-size: 10px;
+}
+
+.price {
+  font-size: 14px;
+}
+
+.Row {
+  width: 100%;
+  //   border: 1px solid red;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.quantityText,
+.shippingFeeText,
+.shippingFeeText {
+  font-size: 14px;
+}
+
+.totalText {
+  font-size: 20px;
+}
+
+.buttonSection {
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}

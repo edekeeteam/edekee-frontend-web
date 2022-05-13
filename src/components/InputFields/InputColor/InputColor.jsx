@@ -12,12 +12,13 @@ function ColorInput({ color, activeColor }) {
   );
 }
 // eslint-disable-next-line react/prop-types
-function InputColor({ Colors }) {
+function InputColor({ Colors, handleChange }) {
   const [activeColor, setActiveColor] = useState("");
   // eslint-disable-next-line react/prop-types
 
   function onChangeValue(event) {
     setActiveColor(event.target.value);
+    handleChange(event.target.value);
     // console.log(event.target.value);
   }
 

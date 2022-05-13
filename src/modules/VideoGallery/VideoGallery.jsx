@@ -60,31 +60,38 @@ function VideoGallery() {
   // }
 
   useEffect(() => {
-    axios.get("https://eked.herokuapp.com/v1/api/videos").then(async (response) => {
-      console.log(response);
-      // const videos = response.data.data;
-      // console.log(videos[0].video);
-      // eslint-disable-next-line no-console
+    axios
+      .get("https://eked.herokuapp.com/v1/api/videos/", {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        },
+      })
+      .then(async (response) => {
+        console.log(response);
+        // const videos = response.data.data;
+        // console.log(videos[0].video);
+        // eslint-disable-next-line no-console
 
-      // const convertVideos = response.data.data.map((data) => ({
-      //   ...data,
-      //   video: convertToHsl(data.video),
-      // }));
+        // const convertVideos = response.data.data.map((data) => ({
+        //   ...data,
+        //   video: convertToHsl(data.video),
+        // }));
 
-      setVideos(response.data.data);
+        setVideos(response.data.data);
 
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 3000);
-      // videos.map((video) => {
-      //   console.log(video);
-      // });
-      // if (response.data.success) {
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 3000);
+        // videos.map((video) => {
+        //   console.log(video);
+        // });
+        // if (response.data.success) {
 
-      //   setModalValue("otp");
-      // }
-      // console.log(response);
-    });
+        //   setModalValue("otp");
+        // }
+        // console.log(response);
+      });
   }, []);
 
   // const handleKeyDown = () => {
