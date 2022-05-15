@@ -1,4 +1,4 @@
-name: Deploy codebase to cloud
+name: Deploy codebase to cloud Remote
 
 on:
   push:
