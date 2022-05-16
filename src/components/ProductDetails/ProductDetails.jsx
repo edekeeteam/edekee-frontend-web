@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
 import styles from "./ProductDetails.module.scss";
 import Button from "../Button/Button";
-import { ModalContext } from "../../context/ModalContext";
+import { useModalContext } from "../../context/ModalContext";
 
 function ProductDetails() {
-  const { setCurrentVideoModal } = useContext(ModalContext);
+  // const { setCurrentVideoModal } = useContext(ModalContext);
+
+  const { setIsModalOpen, setModalValue } = useModalContext();
   return (
     <div className={styles.productDetails}>
       <div className={styles.productDetailsTop}>
@@ -46,7 +47,8 @@ function ProductDetails() {
           bgcolor="white"
           label="Buy"
           handleClick={() => {
-            setCurrentVideoModal(1);
+            setIsModalOpen(true);
+            setModalValue("productspecs");
           }}
         />
       </div>

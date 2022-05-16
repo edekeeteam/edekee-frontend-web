@@ -4,11 +4,11 @@ import { useModalContext } from "../../context/ModalContext";
 // eslint-disable-next-line react/prop-types
 function NewModal({ children }) {
   const { isModalOpen, setIsModalOpen } = useModalContext();
-  if (isModalOpen) {
-    document.body.style.overflowY = "hidden";
-  } else {
-    document.body.style.overflowY = "scroll";
-  }
+  // if (isModalOpen) {
+  //   document.body.style.overflowY = "hidden";
+  // } else {
+  //   document.body.style.overflowY = "scroll";
+  // }
 
   const handleKeyDown = () => {};
 

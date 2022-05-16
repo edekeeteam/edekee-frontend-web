@@ -1,7 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/main.scss";
+import { QueryClient, QueryClientProvider } from "react-query";
 import App from "./App";
+
 import { AuthProvider } from "./context/AuthContext";
 import { ModalProvider } from "./context/ModalContext";
 // import {UploadProductsProvider} from "./context/UploadProducts";
@@ -11,19 +13,24 @@ import { UploadProvider } from "./context/UploadContext";
 import { BuyProvider } from "./context/BuyContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+const queryClient = new QueryClient();
+
 root.render(
   <React.StrictMode>
-    <ModalProvider>
-      <AuthProvider>
-        <UploadProvider>
-          <DropdownProvider>
-            <BuyProvider>
-              <App />
-            </BuyProvider>
-          </DropdownProvider>
-        </UploadProvider>
-      </AuthProvider>
-    </ModalProvider>
+    <QueryClientProvider client={queryClient}>
+      <ModalProvider>
+        <AuthProvider>
+          <UploadProvider>
+            <DropdownProvider>
+              <BuyProvider>
+                <App />
+              </BuyProvider>
+            </DropdownProvider>
+          </UploadProvider>
+        </AuthProvider>
+      </ModalProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

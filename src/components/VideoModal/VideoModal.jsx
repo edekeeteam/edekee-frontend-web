@@ -13,6 +13,7 @@ import tabs from "../../data/tabsData";
 import Comment from "../Comment/Comment";
 import ProductDetails from "../ProductDetails/ProductDetails";
 import VidModal from "../VidModal/VidModal";
+import { useModalContext } from "../../context/ModalContext";
 // import Modal from "../Modal/Modal";
 // import VidModal from "../VidModal/VidModal";
 // import SignUp from "../Modals/SignUp";
@@ -42,41 +43,44 @@ import VidModal from "../VidModal/VidModal";
 function VideoModal() {
   // const { videoModalTabValue, setVideoModalTabValue } = useContext(ModalContext);
   const [videoModalTabValue, setVideoModalTabValue] = useState(0);
+  const { url } = useModalContext();
   // const {}
   //   const [value, setValue] = useState(0);
 
   return (
     <VidModal>
       <VideoViewContainer
-        setVideoModalTabValue={setVideoModalTabValue}
-        src="https://edge.tikicdn.com/data/hls/902297/1/3/1478/manifest.m3u8"
+        // setVideoModalTabValue={setVideoModalTabValue}
+        src={url}
       />
       <div className={styles.tabSection}>
         <div className={styles.tabHeader}>
-          {tabs.map((tab, index) => (
-            <button
-              key={tab.tabHeader}
-              onClick={() => {
-                setVideoModalTabValue(index);
-              }}
-              className={`${styles.tab} ${index === videoModalTabValue && styles.underline}`}
-              type="button"
-              // onKeyDown={handleKeyDown()}
-              // role="button"
-              // tabIndex={0}
-            >
-              {" "}
-              {tab.tabHeader}
-            </button>
-          ))}
+          {videoModalTabValue !== 2
+            ? tabs.map((tab, index) => (
+                <button
+                  key={tab.tabHeader}
+                  onClick={() => {
+                    setVideoModalTabValue(index);
+                  }}
+                  className={`${styles.tab} ${index === videoModalTabValue && styles.underline}`}
+                  type="button"
+                  // onKeyDown={handleKeyDown()}
+                  // role="button"
+                  // tabIndex={0}
+                >
+                  {" "}
+                  {tab.tabHeader}
+                </button>
+              ))
+            : ""}
         </div>
         <div className={styles.tabBody}>
           {videoModalTabValue === 0 ? (
-            <Product />
+            <Product changeVideoTab={setVideoModalTabValue} />
           ) : videoModalTabValue === 1 ? (
-            <ProductDetails />
-          ) : videoModalTabValue === 2 ? (
             <Comment />
+          ) : videoModalTabValue === 2 ? (
+            <ProductDetails />
           ) : (
             ""
           )}
