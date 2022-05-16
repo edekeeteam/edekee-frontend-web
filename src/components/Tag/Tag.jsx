@@ -21,6 +21,7 @@ function Tag({ topPos, leftPos, price, title }) {
     tag.current.addEventListener("buy", (e) => {
       console.log("buy");
       console.log(e.detail.id);
+      // setVideoModalTabValue(2);
     });
     setLength(span.current.getBoundingClientRect().width + 8);
   }, []);

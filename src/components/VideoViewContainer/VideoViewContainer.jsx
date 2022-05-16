@@ -50,57 +50,51 @@ function VideoViewContainer({ src }) {
   //   setTagArray([]);
   // };
 
-  const handlePause = () => {
-    // console.log("onPause");
-    // this.setState({ playing: false });
-    const videoPlayer = document.getElementById("video");
-    console.log(videoPlayer);
-    const tm = videoPlayer.currentTime;
-    console.log(tm);
-    const currentTime = Math.round(tm) * 1000;
-    console.log(currentTime);
+  // const handlePause = () => {
+  //   // console.log("onPause");
+  //   // this.setState({ playing: false });
+  //   const videoPlayer = document.getElementById("video");
+  //   console.log(videoPlayer);
+  //   const tm = videoPlayer.currentTime;
+  //   console.log(tm);
+  //   const currentTime = Math.round(tm) * 1000;
+  //   console.log(currentTime);
 
-    // let currentTime = Math.ceil(this.player.getCurrentTime() * 1000);
-    // let currentTime = Math.ceil(this.player.getCurrentTime()) * 1000;
-    // const labelsObj = labels.labels;
-    // console.log(labelsObj);
-    // console.log(labelsObj[0].miliseconds);
-    // console.log(tm);
+  // let currentTime = Math.ceil(this.player.getCurrentTime() * 1000);
+  // let currentTime = Math.ceil(this.player.getCurrentTime()) * 1000;
+  // const labelsObj = labels.labels;
+  // console.log(labelsObj);
+  // console.log(labelsObj[0].miliseconds);
+  // console.log(tm);
 
-    // const allTags = labelsObj.filter(
-    //   (label) => Math.round(label.millisecond / 1000) * 1000 === currentTime
-    // );
+  // const allTags = labelsObj.filter(
+  //   (label) => Math.round(label.millisecond / 1000) * 1000 === currentTime
+  // );
 
-    // labelsObj.map((lab) => {
-    //   console.log(Math.round(lab.milliseconds / 1000) * 1000);
-    // });
-    // const allTags = labelsObj.filter((label) => Math.round(label.millisecond / 1000) === 200);
-    //   label.confidence === 36.597;
-    //   if (label.miliseconds === currentTime) {
-    //     return label;
-    //   }
+  // labelsObj.map((lab) => {
+  //   console.log(Math.round(lab.milliseconds / 1000) * 1000);
+  // });
+  // const allTags = labelsObj.filter((label) => Math.round(label.millisecond / 1000) === 200);
+  //   label.confidence === 36.597;
+  //   if (label.miliseconds === currentTime) {
+  //     return label;
+  //   }
 
-    // console.log(allTags);
-    // setTagArray(allTags);
-  };
+  // console.log(allTags);
+  // setTagArray(allTags);
+  // };
 
   // const getCoordinates = (bbh, bbw, bbl, bbt, vw, vh) => {
   //   const xCoordinate = bbl * vw + (bbw * vw) / 2;
   //   const yCoordinate = bbt * vh + (bbh * vh) / 2;
-  //   // let adjustedWidth = (20 / vw) * 100;
-  //   // let adjustedHeight = (20 / vh) * 100;
 
-  //   // const x = bbl * 100;
-  //   // const y = bbt * 100;
   //   const x = (xCoordinate / vw) * 100;
   //   const y = (yCoordinate / vh) * 100;
 
-  //   // let x = bbl * 100;
-  //   // let y = bbt * 100;
-
-  //   return { x: x.toString(), y: y.toString() };
-  //   // return <Tag leftPos="50" topPos="70" title="shirt" price="500" />;
-  // }; // };
+  //   return { x, y };
+  // return { x: x.toString(), y: y.toString() };
+  // return <Tag leftPos="50" topPos="70" title="shirt" price="500" />;
+  // };
 
   return (
     <div className={styles.videoViewContainer}>
@@ -127,10 +121,12 @@ function VideoViewContainer({ src }) {
               // leftPos={coordinates.x}
               // topPos={coordinates.y}
               title={tag.label}
-              price="500"
+              price={5000}
+              // setVideoModalTabValue={setVideoModalTabValue}
             />
           );
-        })} */}
+        })}
+      {/* <Tag topPos={40} leftPos={60} title="my name" price={5000} /> */}
       <video
         ref={vidRef}
         src={src}
@@ -142,9 +138,9 @@ function VideoViewContainer({ src }) {
         // onPlay={() => {
         //   handlePlay();
         // }}
-        onPause={() => {
-          handlePause();
-        }}
+        // onPause={() => {
+        //   handlePause();
+        // }}
         style={{ width: "400px" }}
       >
         <track kind="captions" />
