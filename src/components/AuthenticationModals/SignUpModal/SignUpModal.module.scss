@@ -1,11 +1,13 @@
 .signUpContent {
-  width: 100%;
+  width: 75%;
   display: flex;
   justify-content: center;
   align-items: center;
   // border: 1px solid red;
   flex-direction: column;
+  background-color: #121212;
   // padding: 35px;
+  // position: relative;
 
   &.show {
     display: flex;
@@ -31,8 +33,9 @@
 }
 
 .purpleButtonContainer {
-  //   border: 1px solid green;
+  // border: 3px solid green;
   display: block;
+  // position: relative;
 }
 .purpleButton {
   //   border: 1px solid red;

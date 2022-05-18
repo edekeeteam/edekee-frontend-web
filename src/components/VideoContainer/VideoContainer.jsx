@@ -25,34 +25,41 @@ function VideoContainer({ src }) {
 
   // martin
 
-  const startVideoTimer = (e) => {
-    // const cid = e.target.children;
-    // const sid = e.target.previousElementSibling;
-    // console.dir(cid);
+  // const startVideoTimer = (e) => {
+  //   // const cid = e.target.children;
+  //   // const sid = e.target.previousElementSibling;
+  //   // console.dir(cid);
 
-    vidRef.current = setTimeout(() => {
-      e.target.play();
-      // setShowInfo(true);
-    }, 2000);
-  };
+  //   vidRef.current = setTimeout(() => {
+  //     e.target.play();
+  //     setShowInfo(true);
+  //   }, 2000);
+  // };
 
-  const stopVideoTimer = (e) => {
-    e.target.pause();
-    e.target.currentTime = 0;
-    // console.log(e.target.videoHeight());
-    // setShowInfo(false);
-    clearTimeout(vidRef.current);
-  };
+  // const stopVideoTimer = (e) => {
+  //   e.target.pause();
+  //   // e.target.currentTime = 0;
+  //   // console.log(e.target.videoHeight());
+  //   setShowInfo(false);
+  //   clearTimeout(vidRef.current);
+  // };
   return (
     <div
       className={styles.videoContainer}
-      onMouseEnter={() => {
-        console.log("entered container");
+      onMouseEnter={(e) => {
+        // console.log(e.target.play);
+        e.target.play();
+        // e.target.pause = false;
+        // console.log(e.target.children);
         setShowInfo(true);
+        // console.log("entered container");
       }}
-      onMouseLeave={() => {
-        console.log("entered container");
+      onMouseLeave={(e) => {
+        e.target.pause();
+        // e.target.currentTime = 0;
         setShowInfo(false);
+
+        // console.log("entered container");
       }}
     >
       <video
@@ -63,18 +70,18 @@ function VideoContainer({ src }) {
         controls
         // width="100%"
         height="100%"
-        onMouseEnter={(e) => {
-          startVideoTimer(e);
-        }}
-        onFocus={(e) => {
-          startVideoTimer(e);
-        }}
-        onMouseOut={(e) => {
-          stopVideoTimer(e);
-        }}
-        onBlur={(e) => stopVideoTimer(e)}
+        // onMouseEnter={(e) => {
+        //   startVideoTimer(e);
+        // }}
+        // onFocus={(e) => {
+        //   startVideoTimer(e);
+        // }}
+        // onMouseOut={(e) => {
+        //   stopVideoTimer(e);
+        // }}
+        // onBlur={(e) => stopVideoTimer(e)}
         onClick={() => {
-          console.log("clicked");
+          // console.log("clicked");
 
           setUrl(src);
 
@@ -86,30 +93,7 @@ function VideoContainer({ src }) {
       >
         <track kind="captions" />
       </video>
-      {/* <ReactHlsPlayer
-        src={src}
-        // autoPlay
-        controls
-        width="100%"
-        height="100%"
-        style={{ border: "1px solid red" }}
-        hlsConfig={{
-          maxLoadingDelay: 4,
-          minAutoBitrate: 0,
-          lowLatencyMode: true,
-          maxBufferSize: 5,
-        }}
-        onMouseEnter={(e) => {
-          startVideoTimer(e);
-        }}
-        onFocus={(e) => {
-          startVideoTimer(e);
-        }}
-        onMouseOut={(e) => {
-          stopVideoTimer(e);
-        }}
-        onBlur={(e) => stopVideoTimer(e)}
-      /> */}
+
       {showInfo && (
         <div className={styles.sideIcons}>
           <svg
@@ -119,6 +103,9 @@ function VideoContainer({ src }) {
             viewBox="0 0 37 30"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            onClick={() => {
+              console.log("clicked the like");
+            }}
           >
             <g opacity="0.9">
               <path

@@ -87,11 +87,11 @@ function DobInfo() {
                 loading={authLoading}
                 successful={authSuccessful}
                 btnState={btnState}
-                handleClick={() => {
+                handleClick={(e) => {
                   // changeAuthModalValue();
                   // handleLogin(e);
                   // setAuthLoading(!authLoading);
-                  saveDob();
+                  saveDob(e);
                 }}
               />
             </div>

@@ -18,6 +18,7 @@ function AuthProvider({ children }) {
   const initialFormState = {
     signUpEmail: "",
     signUpPassword: "",
+    confirmPassword: "",
     signInEmail: "",
     signInPassword: "",
     type: "sms",
@@ -26,7 +27,7 @@ function AuthProvider({ children }) {
     day: "",
     month: "",
     year: "",
-    username: "",
+    username: "someusername",
 
     files: [],
   };
@@ -45,7 +46,7 @@ function AuthProvider({ children }) {
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [formState, dispatch] = useReducer(reducer, initialFormState);
   const handleInputChange = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     // console.log(e.target.name);
     dispatch({
       type: "HANDLE_INPUT_CHANGE",
@@ -68,20 +69,44 @@ function AuthProvider({ children }) {
     return d.toISOString();
   };
 
-  const validateEmailAndPassword = (email, password) => {
+  const validateEmailAndPassword = (email, password, confirmPassword) => {
     const newErrors = {};
     console.log(email, password);
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{7,}$/;
     if (!email) {
       newErrors.email = "email required";
-    } else if (!regex.test(email)) {
+    } else if (!emailRegex.test(email)) {
       newErrors.email = "Incorrect email!";
     }
     if (!password) {
       newErrors.password = "password required";
     } else if (password.length < 7) {
       newErrors.password = "password cannot be less than 7 chars";
+    } else if (!passwordRegex.test(password)) {
+      newErrors.password =
+        "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character";
+    } else if (password !== confirmPassword) {
+      newErrors.password = "passwords do not match";
     }
+
+    return newErrors;
+  };
+
+  const validateLoginCredentials = (email, password) => {
+    const newErrors = {};
+    console.log(email, password, "ssss");
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    // const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{7,}$/;
+    if (!email) {
+      newErrors.loginEmail = "email required";
+    } else if (!emailRegex.test(email)) {
+      newErrors.loginEmail = "Incorrect email!";
+    }
+    if (!password) {
+      newErrors.loginPassword = "password required";
+    }
+
     return newErrors;
   };
 
@@ -104,7 +129,8 @@ function AuthProvider({ children }) {
 
     const emailAndPasswordErrors = validateEmailAndPassword(
       formState.signUpEmail[0],
-      formState.signUpPassword[0]
+      formState.signUpPassword[0],
+      formState.confirmPassword[0]
     );
     if (Object.keys(emailAndPasswordErrors).length !== 0) {
       setErrors(emailAndPasswordErrors);
@@ -136,6 +162,8 @@ function AuthProvider({ children }) {
             }, 1000);
           } else {
             setAuthLoading(false);
+            setBtnState(false);
+
             setErrors({ email: `${response.data.message}` });
           }
         }
@@ -171,37 +199,50 @@ function AuthProvider({ children }) {
   };
   const handleLogin = (e) => {
     e.preventDefault();
-
-    const params = {
-      email: formState.signInEmail[0],
-      // username: "randomUsername",
-      password: formState.signInPassword[0],
-      username: formState.username,
-    };
-    // console.log(params);
-    axios.post("https://eked.herokuapp.com/v1/api/auth/login", params).then(async (response) => {
-      // if (true) {
-      // }
+    const emailAndPasswordErrors = validateLoginCredentials(
+      formState.signInEmail[0],
+      formState.signInPassword[0]
+    );
+    if (Object.keys(emailAndPasswordErrors).length !== 0) {
+      setErrors(emailAndPasswordErrors);
+      console.log(emailAndPasswordErrors);
+    } else {
       setAuthLoading(true);
-      if (response.data.success) {
-        // router.push("/auth/verifyOtp");
-        // change AuthModalValue
-        // setAuthModalValue(1);
-        setAuthLoading(false);
+      setBtnState(true);
+      const params = {
+        email: formState.signInEmail[0],
+        // username: "randomUsername",
+        password: formState.signInPassword[0],
+        username: formState.username,
+      };
 
-        setAuthSuccessful(true);
-        // formState.signUpEmail = "";
-        // formState.signUpPassword = "";
-        setTimeout(() => {
-          setIsModalOpen(false);
-          setAuthModalValue(1);
-          setAuthSuccessful(false);
-          setBtnState(false);
-          formState.signInEmail = "";
-          formState.signInPassword = "";
-        }, 1000);
-      }
-    });
+      axios.post("https://eked.herokuapp.com/v1/api/auth/login", params).then(async (response) => {
+        // if (true) {
+        // }
+        console.log(response);
+        setAuthLoading(true);
+        if (response.data.success) {
+          // router.push("/auth/verifyOtp");
+          // change AuthModalValue
+          // setAuthModalValue(1);
+          setAuthLoading(false);
+
+          setAuthSuccessful(true);
+          // formState.signUpEmail = "";
+          // formState.signUpPassword = "";
+          setTimeout(() => {
+            setIsModalOpen(false);
+            setAuthModalValue(1);
+            setAuthSuccessful(false);
+            setBtnState(false);
+            formState.signInEmail = "";
+            formState.signInPassword = "";
+          }, 1000);
+        }
+      });
+    }
+
+    // console.log(params);
     // console.log(signUpEmail[0], signUpPassword[0]);
   };
 
@@ -251,7 +292,8 @@ function AuthProvider({ children }) {
   //   []
   // );
 
-  const saveCountryAndNumber = () => {
+  const saveCountryAndNumber = (e) => {
+    e.preventDefault();
     const countryAndNumberErrors = validatePhoneNumber(formState.phoneNumber[0]);
     if (Object.keys(countryAndNumberErrors).length !== 0) {
       setErrors(countryAndNumberErrors);
@@ -267,6 +309,10 @@ function AuthProvider({ children }) {
   const validateDob = (dobDay, dobMonth, dobYear) => {
     const newErrors = {};
 
+    if (!dobDay || !dobMonth || !dobYear) {
+      newErrors.dob = "fill all fields";
+    }
+
     if (parseInt(dobDay, 10) > 31 || parseInt(dobDay, 10) < 1) {
       newErrors.dob = "invalid Date";
     }
@@ -280,7 +326,8 @@ function AuthProvider({ children }) {
     return newErrors;
   };
 
-  const saveDob = () => {
+  const saveDob = (e) => {
+    e.preventDefault();
     const DobErrors = validateDob(formState.day[0], formState.month[0], formState.year[0]);
     if (Object.keys(DobErrors).length !== 0) {
       setErrors(DobErrors);
@@ -293,7 +340,8 @@ function AuthProvider({ children }) {
     }
   };
 
-  const checkUsername = () => {
+  const checkUsername = (e) => {
+    e.preventDefault();
     if (!formState.username[0]) {
       setErrors({ username: "username required" });
     } else {
@@ -379,10 +427,12 @@ function AuthProvider({ children }) {
         setAuthLoading,
         btnState,
         setBtnState,
+
         // activeGender,
         // setActiveGender,
         saveCountryAndNumber,
         saveDob,
+        setErrors,
         errors,
         checkUsername,
         resendOtp,

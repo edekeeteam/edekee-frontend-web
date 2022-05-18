@@ -13,7 +13,8 @@ import VideoContainer from "../../components/VideoContainer/VideoContainer";
 // import { useModalContext } from "../../common/context/ModalContext";
 // import { useRouter } from "next/router";
 // import Link from "next/link";
-// import { ModalContext } from "../../common/context/ModalContext";
+// import { ModalContext } from "../../context/ModalContext";
+// import { useModalContext } from "../../context/ModalContext";
 // import Pegg from "../Pegg";
 const breakpointColumnsObj = {
   default: 3,
@@ -68,10 +69,10 @@ function VideoGallery() {
   }, [vidRef]);
 
   const { data, isLoading } = useGetAllVideos();
-  if (!isLoading) {
-    // console.log(data.data);
-    data.data.map((video) => console.log(video.video));
-  }
+  // if (!isLoading) {
+  //   // console.log(data.data);
+  //   data.data.map((video) => console.log(video.video));
+  // }
 
   return (
     <div className={styles.gallery}>
@@ -82,31 +83,17 @@ function VideoGallery() {
         breakpointCols={breakpointColumnsObj}
         columnClassName={styles.masonryColumn}
       >
-        {/* <Skeleton type="video" />
-        <Skeleton type="video" />
-        <Skeleton type="video" />
-        <Skeleton type="video" />
-        <Skeleton type="video" /> */}
-        {
-          isLoading && [1, 2, 3, 4, 5, 6].map((n) => <Skeleton key={n} type="video" />)
-          // <Skeleton type="video" />
-          // <Skeleton type="video" />
-          // <Skeleton type="video" />
-          // <Skeleton type="video" />
-          // <Skeleton type="video" />
-        }
+        {isLoading && [1, 2, 3, 4, 5, 6].map((n) => <Skeleton key={n} type="video" />)}
         {data &&
           data.data.map((video) => (
-            // console.log(video.video.toString());
-            // console.log(video.video);
             <VideoContainer
               src={video.video}
               key={video.id}
               // onClick={() => {
+              //   // console.log("clicked");
               //   setModalValue("videomodal");
               //   setUrl(video.video);
               //   setIsVidModalOpen(true);
-              //   console.log("clicked");
               // }}
             />
           ))}

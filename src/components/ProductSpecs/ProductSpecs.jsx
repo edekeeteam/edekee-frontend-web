@@ -6,7 +6,7 @@ import { InputColor, InputSize, InputNumber } from "../InputFields";
 // import { InputNumber } from "../inputFields";
 import Button from "../Button/Button";
 // import { useAuthContext } from "../../context/AuthContext";
-import Modal from "../Modal/Modal";
+import NewModal from "../NewModal/NewModal";
 import { useBuyContext } from "../../context/BuyContext";
 import { useModalContext } from "../../context/ModalContext";
 
@@ -65,7 +65,7 @@ function ProductSpecs() {
   // };
 
   return (
-    <Modal>
+    <NewModal>
       <div
         className={styles.productSpecs}
         onClick={(e) => {
@@ -102,7 +102,7 @@ function ProductSpecs() {
           </div>
         </div>
       </div>
-    </Modal>
+    </NewModal>
   );
 }
 

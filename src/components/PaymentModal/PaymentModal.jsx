@@ -1,4 +1,6 @@
-// import React, { useState } from "react";
+/* eslint-disable no-nested-ternary */
+/* eslint-disable no-restricted-syntax */
+import React, { useState } from "react";
 // import locationImg from "../../assets/images/location.png";
 // import PaymentMethodModal from "./components/PaymentMethodModal";
 // import AddPaymentMethod from "./components/AddPaymentMethod";
@@ -16,6 +18,57 @@ import Button from "../Button/Button";
 
 function PaymentModal() {
   // const { setModalValue } = useModalContext();
+  const [cardType, setCardType] = useState("");
+  // const [errors, setErrors] = useState({});
+
+  // regex for cards
+  const regexPattern = {
+    MASTERCARD: /^5[1-5][0-9]{1,}|^2[2-7][0-9]{1,}$/,
+    VISA: /^4[0-9]{2,}$/,
+    AMERICAN_EXPRESS: /^3[47][0-9]{5,}$/,
+    DISCOVER: /^6(?:011|5[0-9]{2})[0-9]{3,}$/,
+    DINERS_CLUB: /^3(?:0[0-5]|[68][0-9])[0-9]{4,}$/,
+    JCB: /^(?:2131|1800|35[0-9]{3})[0-9]{3,}$/,
+  };
+  // ========================
+
+  const getCardType = (cardNumber) => {
+    // eslint-disable-next-line guard-for-in
+    setCardType("");
+    // console.log(cardNumber.includes("_"));
+    for (const card in regexPattern) {
+      // console.log(cardNumber);
+
+      if (cardNumber.replace(/[^\d]/g, "").match(regexPattern[card])) {
+        console.log(card);
+        setCardType(card);
+        return card;
+      }
+    }
+    return "";
+  };
+  // handle blur function to validate card input
+  const handleBlurValidation = (e) => {
+    getCardType(e.target.value);
+    // const err = errors;
+    // abst imp nam conv
+    // if(e.target.name === 'cardNumber'){
+
+    // }
+    // const { name } = e.target;
+    // if (e.target.value.includes("_")) {
+    //   // console.log("card details not valid");
+    //   err[name] = `${name} details not valid`;
+
+    //   console.log(err[name]);
+    // } else {
+    //   err[name] = "";
+    // }
+    // console.log(err);
+    // setErrors(err);
+  };
+
+  // --------------------
   const formik = useFormik({
     initialValues: {
       cardNumber: "",
@@ -23,52 +76,46 @@ function PaymentModal() {
       cvv: "",
     },
     validationSchema: Yup.object({
-      cardNumber: Yup.string().required("card number required").min(16, "card number not valid"),
-      expiryDate: Yup.string()
+      cardNumber: Yup.string()
+        .min(16, "card number not valid")
 
-        .max(5, "card number not valid")
-        .matches(/([0-9]{2})\/([0-9]{2})/, "Not a valid expiration date. Example: MM/YY")
-        .test(
-          "test-credit-card-expiration-date",
-          "Invalid Expiration Date has past",
-          (expirationDate) => {
-            if (!expirationDate) {
-              return false;
-            }
-
-            const today = new Date();
-            const monthToday = today.getMonth() + 1;
-            const yearToday = today.getFullYear().toString().substring(-2);
-
-            const [expMonth, expYear] = expirationDate.split("/");
-
-            if (Number(expYear) < Number(yearToday)) {
-              return false;
-            }
-            if (Number(expMonth) < monthToday && Number(expYear) <= Number(yearToday)) {
-              return false;
-            }
-
-            return true;
+        .test("no underscores", "enter a valid card number", (value) => {
+          if (value) {
+            return !value.includes("_");
           }
-        )
-        .test("test-credit-card-expiration-date", "Invalid Expiration Month", (expirationDate) => {
-          if (!expirationDate) {
-            return false;
-          }
-          // const today = new Date().getFullYear().toString().substring(-2);
-
-          const [expMonth] = expirationDate.split("/");
-
-          if (Number(expMonth) > 12) {
-            return false;
-          }
-
           return true;
         })
         .required("card number required"),
+      expiryDate: Yup.string()
+        .min(5, "date invalid")
+
+        .test("no underscores", "enter a valid date", (value) => {
+          if (value) {
+            return !value.includes("_");
+          }
+          return true;
+        })
+        .required("date required"),
+      cvv: Yup.string()
+        .min(3, "cvv not valid")
+
+        .test("no underscores", "enter a valid cvv", (value) => {
+          if (value) {
+            return !value.includes("_");
+          }
+          return true;
+        })
+        .required("cvv required"),
     }),
+
     onSubmit: (values) => {
+      // console.log("values", values);
+      console.log(formik.values.cardNumber);
+      // if(!formik.errors && values)
+      if (!formik.errors.cardNumber && !formik.errors.expiryDate && !formik.errors.cvv && values) {
+        // setModalValue("summarymodal");
+        // setErrors({});
+      }
       console.log("values", values);
     },
   });
@@ -79,7 +126,9 @@ function PaymentModal() {
         <div className={styles.topPaymentModal}>
           <p className={styles.topHeading}>Address</p>
           <div className={styles.topAddressInput}>
-            <div className={styles.locationImg} />
+            <div>
+              <div className={styles.locationImg} />
+            </div>
             <div className={styles.input}>
               <InputText label="Input Address" />
             </div>
@@ -101,7 +150,9 @@ function PaymentModal() {
             <div className={`${styles.card} ${styles.card3}`} />
           </div>
         </div> */}
-
+        <div className={styles.middleHeadingLeft}>
+          <p>Payment</p>
+        </div>
         <div className={styles.newCard}>
           <form className={styles.newCardForm} onSubmit={formik.handleSubmit}>
             {/* <input
@@ -112,40 +163,48 @@ function PaymentModal() {
               className={styles.newCardNumberInput}
               placeholder="************5432"
             /> */}
-
-            <MaskedInput
-              className={styles.newCardNumberInput}
-              name="cardNumber"
-              mask={[
-                /[1-9]/,
-                /\d/,
-                /\d/,
-                /\d/,
-                " ",
-                /\d/,
-                /\d/,
-                /\d/,
-                /\d/,
-                " ",
-                /\d/,
-                /\d/,
-                /\d/,
-                /\d/,
-                " ",
-                /\d/,
-                /\d/,
-                /\d/,
-                /\d/,
-              ]}
-              placeholder="5348 **** **** ****"
-              value={formik.values.cardNumber}
-              onChange={formik.handleChange}
-            />
-            {formik.errors.cardNumber && formik.touched.cardNumber ? (
-              <p>{formik.errors.cardNumber}</p>
-            ) : (
-              ""
-            )}
+            <div style={{ width: "100%", marginBottom: "35px" }}>
+              <MaskedInput
+                className={styles.newCardNumberInput}
+                name="cardNumber"
+                mask={[
+                  /[1-9]/,
+                  /\d/,
+                  /\d/,
+                  /\d/,
+                  " ",
+                  /\d/,
+                  /\d/,
+                  /\d/,
+                  /\d/,
+                  " ",
+                  /\d/,
+                  /\d/,
+                  /\d/,
+                  /\d/,
+                  " ",
+                  /\d/,
+                  /\d/,
+                  /\d/,
+                  /\d/,
+                ]}
+                min="16"
+                placeholder="5348 **** **** ****"
+                value={formik.values.cardNumber}
+                onChange={formik.handleChange}
+                onBlur={(e) => {
+                  handleBlurValidation(e);
+                  // console.log(e.target.name, "blurred");
+                }}
+              />
+              {formik.errors.cardNumber && formik.touched.cardNumber ? (
+                <p className="global-text-12 global-error-text">
+                  {formik.errors.cardNumber ? formik.errors.cardNumber : ""}
+                </p>
+              ) : (
+                ""
+              )}
+            </div>
 
             <div className={styles.newCardbottomInputs}>
               {/* <input
@@ -156,14 +215,30 @@ function PaymentModal() {
                 placeholder="02/22"
                 value={formik.values.expiryDate}
               /> */}
-              <MaskedInput
-                className={styles.expiryInput}
-                name="expiryDate"
-                mask={[/[0-9]/, /\d/, "/", /\d/, /\d/]}
-                placeholder="02/20"
-                value={formik.values.expiryDate}
-                onChange={formik.handleChange}
-              />
+              <div
+                className={styles.expiryDateWrapper}
+                style={{ width: "50%", marginRight: "auto" }}
+              >
+                <MaskedInput
+                  className={styles.expiryInput}
+                  name="expiryDate"
+                  mask={[/[0-9]/, /\d/, "/", /\d/, /\d/]}
+                  placeholder="02/20"
+                  value={formik.values.expiryDate}
+                  onChange={formik.handleChange}
+                  onBlur={(e) => {
+                    handleBlurValidation(e);
+                    // console.log(e.target.name, "blurred");
+                  }}
+                />
+                {formik.errors.expiryDate && formik.touched.expiryDate ? (
+                  <p className="global-text-12 global-error-text">
+                    {formik.errors.expiryDate ? formik.errors.expiryDate : ""}
+                  </p>
+                ) : (
+                  ""
+                )}
+              </div>
 
               {/* <input
                 type="text"
@@ -173,14 +248,28 @@ function PaymentModal() {
                 placeholder="435"
                 value={formik.values.cvv}
               /> */}
-              <MaskedInput
-                className={styles.cvv}
-                name="cvv"
-                mask={[/[0-9]/, /\d/, /\d/]}
-                placeholder="435"
-                value={formik.values.cvv}
-                onChange={formik.handleChange}
-              />
+
+              <div className={styles.cvvWrapper}>
+                <MaskedInput
+                  className={styles.cvv}
+                  name="cvv"
+                  mask={[/[0-9]/, /\d/, /\d/]}
+                  placeholder="435"
+                  value={formik.values.cvv}
+                  onChange={formik.handleChange}
+                  onBlur={(e) => {
+                    handleBlurValidation(e);
+                    // console.log(e.target.name, "blurred");
+                  }}
+                />
+                {formik.errors.cvv && formik.touched.cvv ? (
+                  <p className="global-text-12 global-error-text">
+                    {formik.errors.cvv ? formik.errors.cvv : ""}
+                  </p>
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
           </form>
         </div>
@@ -202,15 +291,20 @@ function PaymentModal() {
               size="large"
               handleClick={() => {
                 // setModalValue("summarymodal");
+                // console.log(formik.errors.cvv);
+                // console.log(typeof formik.values.cardNumber);
                 formik.handleSubmit();
+                // console.log("clicked");
               }}
             />
+
             {/* <button type="submit" onClick={formik.handleSubmit}> */}
             {/* {" "}
               submit
             </button> */}
           </div>
         </div>
+        <p>{cardType}</p>
       </div>
     </NewModal>
   );
