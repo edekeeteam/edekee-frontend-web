@@ -1,15 +1,19 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useRef, useState } from "react";
+// import { useRef } from "react";
 import Hls from "hls.js";
+import { useState, useRef, useEffect } from "react";
+// import ReactHlsPlayer from "react-hls-player";
 import { useModalContext } from "../../context/ModalContext";
 
 // import { motion } from "framer-motion";
+
 import styles from "./VideoContainer.module.scss";
 
 function VideoContainer({ src }) {
   const [showInfo, setShowInfo] = useState(false);
   // const [isMuted, setIsMuted] = useState(true)
-  const { setIsVidModalOpen, setModalValue } = useModalContext();
+  const { isModalOpen, isVidModalOpen, setIsVidModalOpen, setModalValue, setUrl } =
+    useModalContext();
   const vidRef = useRef();
 
   // martin
@@ -21,45 +25,69 @@ function VideoContainer({ src }) {
 
   // martin
 
-  const startVideoTimer = (e) => {
-    e.target.play();
-    const cid = e.target.videoHeight;
-    console.log(cid);
-    // const vidHeight = vidRef.videoHeight;
-    // console.log(vidHeight);
-    vidRef.current = setTimeout(() => {
-      setShowInfo(true);
-    }, 3000);
-  };
+  // const startVideoTimer = (e) => {
+  //   // const cid = e.target.children;
+  //   // const sid = e.target.previousElementSibling;
+  //   // console.dir(cid);
 
-  const stopVideoTimer = (e) => {
-    e.target.pause();
-    e.target.currentTime = 0;
-    // console.log(e.target.videoHeight());
-    setShowInfo(false);
-    clearTimeout(vidRef.current);
-  };
+  //   vidRef.current = setTimeout(() => {
+  //     e.target.play();
+  //     setShowInfo(true);
+  //   }, 2000);
+  // };
+
+  // const stopVideoTimer = (e) => {
+  //   e.target.pause();
+  //   // e.target.currentTime = 0;
+  //   // console.log(e.target.videoHeight());
+  //   setShowInfo(false);
+  //   clearTimeout(vidRef.current);
+  // };
   return (
-    <div className={styles.videoContainer}>
+    <div
+      className={styles.videoContainer}
+      onMouseEnter={(e) => {
+        // console.log(e.target.play);
+        e.target.play();
+        // e.target.pause = false;
+        // console.log(e.target.children);
+        setShowInfo(true);
+        // console.log("entered container");
+      }}
+      onMouseLeave={(e) => {
+        e.target.pause();
+        // e.target.currentTime = 0;
+        setShowInfo(false);
+
+        // console.log("entered container");
+      }}
+    >
       <video
         ref={vidRef}
         src={src}
         loop
+        muted
+        controls
         // width="100%"
         height="100%"
-        onMouseOver={(e) => {
-          startVideoTimer(e);
-        }}
-        onFocus={(e) => {
-          startVideoTimer(e);
-        }}
-        onMouseOut={(e) => {
-          stopVideoTimer(e);
-        }}
-        onBlur={(e) => stopVideoTimer(e)}
+        // onMouseEnter={(e) => {
+        //   startVideoTimer(e);
+        // }}
+        // onFocus={(e) => {
+        //   startVideoTimer(e);
+        // }}
+        // onMouseOut={(e) => {
+        //   stopVideoTimer(e);
+        // }}
+        // onBlur={(e) => stopVideoTimer(e)}
         onClick={() => {
-          console.log("clicked");
+          // console.log("clicked");
+
+          setUrl(src);
+
           setIsVidModalOpen(true);
+          console.log(isVidModalOpen);
+          console.log(isModalOpen);
           setModalValue("videomodal");
         }}
       >
@@ -75,6 +103,9 @@ function VideoContainer({ src }) {
             viewBox="0 0 37 30"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            onClick={() => {
+              console.log("clicked the like");
+            }}
           >
             <g opacity="0.9">
               <path
@@ -90,7 +121,6 @@ function VideoContainer({ src }) {
               <circle cx="10.4465" cy="10.5266" r="2.02769" stroke="white" strokeWidth="1.39631" />
             </g>
           </svg>
-          {/* -------------------- */}
           <svg
             className={styles.sideIcon}
             width="23"
@@ -110,7 +140,6 @@ function VideoContainer({ src }) {
             <circle cx="14.4998" cy="13.2923" r="1.20833" fill="white" />
             <ellipse cx="19.3333" cy="13.2923" rx="1.20833" ry="1.20833" fill="white" />
           </svg>
-          {/* -------------------- */}
 
           <svg
             className={styles.sideIcon}
@@ -135,7 +164,6 @@ function VideoContainer({ src }) {
               strokeLinejoin="round"
             />
           </svg>
-          {/* -------------------- */}
 
           <svg
             className={styles.sideIcon}

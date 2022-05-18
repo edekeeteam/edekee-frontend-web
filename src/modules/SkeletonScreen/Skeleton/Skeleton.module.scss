@@ -1,0 +1,15 @@
+.skeletonWrapper {
+  margin-bottom: 15px;
+  //   border: 1px solid red;
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton {
+  background-color: #7e7f7f;
+
+  &.video {
+    width: 400px;
+    height: 600px;
+  }
+}

@@ -46,9 +46,9 @@ function RegUsernameModal() {
                   loading={authLoading}
                   successful={authSuccessful}
                   btnState={btnState}
-                  handleClick={() => {
+                  handleClick={(e) => {
                     // changeAuthModalValue();
-                    checkUsername();
+                    checkUsername(e);
                     // setAuthLoading(!authLoading);
                   }}
                 />

@@ -43,6 +43,7 @@ $diameter90: 90px;
 .input {
   width: 80%;
 }
+
 .middlePaymentModal {
   display: flex;
   flex-direction: column;
@@ -51,9 +52,17 @@ $diameter90: 90px;
 }
 
 .middleHeading {
-  //   border: 1px solid red;
+  // border: 1px solid red;
   display: flex;
   justify-content: space-between;
+}
+.middleHeadingLeft {
+  // border: 1px solid red;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 40px;
+  display: flex;
+  justify-content: flex-start;
 }
 .addNewCardText {
   color: #4282ff;
@@ -63,6 +72,7 @@ $diameter90: 90px;
   //   border: 1px solid red;
 }
 .middleHeading {
+  // border: 3px solid red;
   margin-bottom: 30px;
 }
 .middleBottom {
@@ -75,11 +85,11 @@ $diameter90: 90px;
 .card {
   //   width: 200px;
   //   height: 200px;
-  padding: 5rem 5rem;
+  padding: 5rem;
 
   border-radius: 20px;
   //   border: 1px solid green;
-  margin: 7px;
+  margin: 0px 7px 7px 7px;
 }
 .card1 {
   background-image: url("../../assets/images/cardbg.png");
@@ -127,7 +137,7 @@ $diameter90: 90px;
   display: flex;
   flex-direction: column;
   //   border: 1px solid red;
-  justify-content: space-around;
+  justify-content: center;
 }
 .newCardNumberInput {
   width: 100%;
@@ -136,15 +146,19 @@ $diameter90: 90px;
   padding: 15px 15px;
   color: #fff;
   border: none;
-  letter-spacing: 10px;
+  letter-spacing: 7px;
   text-align: center;
 }
 .newCardbottomInputs {
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  // border: 1px solid red;
 }
 .expiryInput {
-  width: 45%;
+  // width: 70%;
+  margin-right: auto;
+  width: 100%;
   border-radius: 50px;
   background-color: #000;
   padding: 15px 15px;
@@ -153,8 +167,14 @@ $diameter90: 90px;
   text-align: center;
   letter-spacing: 7px;
 }
+.cvvWrapper {
+  width: 40%;
+}
 .cvv {
-  width: 35%;
+  width: 100%;
+  // margin-left: auto;
+  // border: 1px solid red;
+  // width: 100%;
   border-radius: 50px;
   background-color: #000;
   padding: 15px 15px;

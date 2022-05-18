@@ -1,5 +1,5 @@
 import React from "react";
-import Modal from "../../Modal/Modal";
+import NewModal from "../../NewModal/NewModal";
 import styles from "./SignUpModal.module.scss";
 import InputText from "../../InputFields/InputText/InputText";
 import Button from "../../Button/Button";
@@ -13,6 +13,7 @@ function SignUpModal() {
   const {
     signUpEmail,
     signUpPassword,
+    confirmPassword,
     handleInputChange,
     handleRegistration,
     authSuccessful,
@@ -30,7 +31,7 @@ function SignUpModal() {
   };
 
   return (
-    <Modal>
+    <NewModal>
       <div
         className={`${styles.signUpContent} ${modalValue === 0 && styles.show}`}
         onClick={(e) => {
@@ -57,28 +58,38 @@ function SignUpModal() {
 
         <p className="global-text-10 global-modal-mb">OR</p>
         {/* <div className="global-modal-mb"> */}
-        <InputText
-          label="Email"
-          name="signUpEmail"
-          type="text"
-          handleChange={handleInputChange}
-          value={signUpEmail}
-        />
-        {errors.email && (
-          <p className="global-text-12 global-error-text global-modal-sm-mb">{errors.email}</p>
-        )}
+        <div className="global-modal-md-mb" style={{ width: "100%" }}>
+          <InputText
+            label="Email"
+            name="signUpEmail"
+            type="text"
+            handleChange={handleInputChange}
+            value={signUpEmail}
+          />
+          {errors.email && <p className="global-text-12 global-error-text ">{errors.email}</p>}
+        </div>
         {/* </div> */}
-
-        <InputText
-          label="Password"
-          name="signUpPassword"
-          type="password"
-          handleChange={handleInputChange}
-          value={signUpPassword}
-        />
-        {errors.password && (
-          <p className="global-text-12 global-error-text global-modal-sm-mb">{errors.password}</p>
-        )}
+        <div className="global-modal-md-mb" style={{ width: "100%" }}>
+          <InputText
+            label="Password"
+            name="signUpPassword"
+            type="password"
+            handleChange={handleInputChange}
+            value={signUpPassword}
+          />
+        </div>
+        <div className="global-modal-md-mb" style={{ width: "100%" }}>
+          <InputText
+            label="confirmPassword"
+            name="confirmPassword"
+            type="password"
+            handleChange={handleInputChange}
+            value={confirmPassword}
+          />
+          {errors.password && (
+            <p className="global-text-12 global-error-text ">{errors.password}</p>
+          )}
+        </div>
         {/* <div>
           <input
             type="password"
@@ -119,7 +130,7 @@ function SignUpModal() {
           </div>
         </div>
       </div>
-    </Modal>
+    </NewModal>
   );
 }
 

@@ -112,9 +112,6 @@ export default function Navbar() {
             <NavLink to="/cart" style={{ textDecoration: "none" }}>
               <span
                 className={styles.navbarIconItem}
-                onClick={(e) => {
-                  displayDropdown(e);
-                }}
                 onKeyDown={handleKeyDown()}
                 role="button"
                 tabIndex="-1"

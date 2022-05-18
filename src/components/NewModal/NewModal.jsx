@@ -1,14 +1,16 @@
 import styles from "./NewModal.module.scss";
 import { useModalContext } from "../../context/ModalContext";
+import { useAuthContext } from "../../context/AuthContext";
 
 // eslint-disable-next-line react/prop-types
 function NewModal({ children }) {
   const { isModalOpen, setIsModalOpen } = useModalContext();
-  if (isModalOpen) {
-    document.body.style.overflowY = "hidden";
-  } else {
-    document.body.style.overflowY = "scroll";
-  }
+  const { setErrors } = useAuthContext();
+  // if (isModalOpen) {
+  //   document.body.style.overflowY = "hidden";
+  // } else {
+  //   document.body.style.overflowY = "scroll";
+  // }
 
   const handleKeyDown = () => {};
 
@@ -17,6 +19,8 @@ function NewModal({ children }) {
       className={`${styles.modalbackdrop} ${isModalOpen && styles.show}`}
       onClick={() => {
         setIsModalOpen(false);
+        setErrors({});
+        // setBtnState(false)
       }}
       onKeyDown={handleKeyDown()}
       role="button"

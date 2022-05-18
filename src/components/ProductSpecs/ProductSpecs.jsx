@@ -6,8 +6,9 @@ import { InputColor, InputSize, InputNumber } from "../InputFields";
 // import { InputNumber } from "../inputFields";
 import Button from "../Button/Button";
 // import { useAuthContext } from "../../context/AuthContext";
-import Modal from "../Modal/Modal";
+import NewModal from "../NewModal/NewModal";
 import { useBuyContext } from "../../context/BuyContext";
+import { useModalContext } from "../../context/ModalContext";
 
 function ProductSpecs() {
   const sampleColors = [
@@ -43,6 +44,7 @@ function ProductSpecs() {
   ];
 
   const { handleColorChange, handleSizeChange, quantity, setQuantity } = useBuyContext();
+  const { setModalValue } = useModalContext();
   //  size, setSize, quantity, setQuantity,
   const handleKeyDown = () => {
     // console.log("keydown");
@@ -63,7 +65,7 @@ function ProductSpecs() {
   // };
 
   return (
-    <Modal>
+    <NewModal>
       <div
         className={styles.productSpecs}
         onClick={(e) => {
@@ -88,11 +90,19 @@ function ProductSpecs() {
           </div>
           <div className={styles.buttonSection}>
             <Button size="large" label="Add to cart" bgcolor="white" />
-            <Button size="large" label="Buy now" bgcolor="black" />
+            <Button
+              size="large"
+              label="Buy now"
+              bgcolor="black"
+              handleClick={() => {
+                console.log("change");
+                setModalValue("paymentmodal");
+              }}
+            />
           </div>
         </div>
       </div>
-    </Modal>
+    </NewModal>
   );
 }
 

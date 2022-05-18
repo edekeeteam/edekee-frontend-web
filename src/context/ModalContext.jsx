@@ -8,7 +8,7 @@ function ModalProvider({ children }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [isVidModalOpen, setIsVidModalOpen] = useState(true);
   const [modalValue, setModalValue] = useState("");
-  const [authModalValue, setAuthModalValue] = useState(1);
+  const [authModalValue, setAuthModalValue] = useState(0);
   const [uploadModalValue, setUploadModalValue] = useState(0);
   const [url, setUrl] = useState("");
 

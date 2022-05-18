@@ -1,9 +1,11 @@
 import React from "react";
+import { useModalContext } from "../../context/ModalContext";
 import Button from "../Button/Button";
 import NewModal from "../NewModal/NewModal";
 import styles from "./Summary.module.scss";
 
 function Summary() {
+  const { setModalValue } = useModalContext();
   return (
     <NewModal>
       <div className={styles.summaryModal}>
@@ -42,7 +44,14 @@ function Summary() {
         </div>
 
         <div className={styles.buttonSection}>
-          <Button size="large" bgcolor="black" label=" Go back" />
+          <Button
+            size="large"
+            bgcolor="black"
+            label=" Go back"
+            handleClick={() => {
+              setModalValue("paymentmodal");
+            }}
+          />
           <Button size="large" bgcolor="white" label=" Pay Now" />
         </div>
       </div>

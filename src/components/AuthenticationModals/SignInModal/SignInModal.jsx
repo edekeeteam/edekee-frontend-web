@@ -1,5 +1,5 @@
 import React from "react";
-import Modal from "../../Modal/Modal";
+import NewModal from "../../NewModal/NewModal";
 import styles from "./SignInModal.module.scss";
 import InputText from "../../InputFields/InputText/InputText";
 import Button from "../../Button/Button";
@@ -17,8 +17,9 @@ function SignInModal() {
     handleLogin,
     authSuccessful,
     authLoading,
-    setAuthLoading,
+    // setAuthLoading,
     btnState,
+    errors,
   } = useAuthContext();
 
   // const changeAuthModalValue = () => {
@@ -29,7 +30,7 @@ function SignInModal() {
   };
 
   return (
-    <Modal>
+    <NewModal>
       <div
         className={`${styles.signUpContent} ${modalValue === 0 && styles.show}`}
         onClick={(e) => {
@@ -56,20 +57,31 @@ function SignInModal() {
 
         <p className="global-text-10 global-modal-mb">OR</p>
 
-        <InputText
-          label="Email"
-          name="signInEmail"
-          type="text"
-          handleChange={handleInputChange}
-          value={signInEmail}
-        />
-        <InputText
-          label="Password"
-          name="signInPassword"
-          type="password"
-          handleChange={handleInputChange}
-          value={signInPassword}
-        />
+        <div className="global-modal-md-mb" style={{ width: "100%" }}>
+          <InputText
+            label="Email"
+            name="signInEmail"
+            type="text"
+            handleChange={handleInputChange}
+            value={signInEmail}
+          />
+          {errors.loginEmail && (
+            <p className="global-text-12 global-error-text ">{errors.loginEmail}</p>
+          )}
+        </div>
+
+        <div className="global-modal-md-mb" style={{ width: "100%" }}>
+          <InputText
+            label="Password"
+            name="signInPassword"
+            type="password"
+            handleChange={handleInputChange}
+            value={signInPassword}
+          />
+          {errors.loginPassword && (
+            <p className="global-text-12 global-error-text ">{errors.loginPassword}</p>
+          )}{" "}
+        </div>
         {/* <div>
           <input
             type="password"
@@ -94,7 +106,7 @@ function SignInModal() {
             handleClick={(e) => {
               // changeAuthModalValue();
               handleLogin(e);
-              setAuthLoading(!authLoading);
+              // setAuthLoading(!authLoading);
             }}
           />
         </div>
@@ -110,7 +122,7 @@ function SignInModal() {
           </div>
         </div>
       </div>
-    </Modal>
+    </NewModal>
   );
 }
 

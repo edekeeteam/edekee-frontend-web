@@ -1,22 +1,19 @@
-import React, { useContext } from "react";
 import styles from "./Product.module.scss";
 // import { VideoModalContext } from "../../context/VideoModalContext";
-import { ModalContext } from "../../context/ModalContext";
 
 // eslint-disable-next-line react/prop-types
-function Product() {
+function Product({ changeVideoTab }) {
   // const { setCurrentModal } = useContext(VideoModalContext);
-
-  const { setVideoModalTabValue } = useContext(ModalContext);
 
   const handleKeyDown = () => {
     // console.log("keydown");
   };
+
   return (
     <div
       className={styles.product}
       onClick={() => {
-        setVideoModalTabValue(2);
+        changeVideoTab(2);
       }}
       onKeyDown={handleKeyDown()}
       role="button"

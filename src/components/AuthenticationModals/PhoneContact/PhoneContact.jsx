@@ -22,7 +22,10 @@ function PhoneContact() {
     btnState,
   } = useAuthContext();
   const CountryOptions = countriesArr.map((eachCountry) => (
-    <option value={eachCountry.value}> {eachCountry.name} </option>
+    <option key={eachCountry} value={eachCountry.value}>
+      {" "}
+      {eachCountry.name}{" "}
+    </option>
   ));
 
   // const handleCountryChange = (countryValue) => {
@@ -80,11 +83,11 @@ function PhoneContact() {
                 loading={authLoading}
                 successful={authSuccessful}
                 btnState={btnState}
-                handleClick={() => {
+                handleClick={(e) => {
                   // console.log(country, phoneNumber);
                   // changeAuthModalValue();
                   // handleRegistration(e);
-                  saveCountryAndNumber();
+                  saveCountryAndNumber(e);
                   // setAuthLoading(!authLoading);
                 }}
               />

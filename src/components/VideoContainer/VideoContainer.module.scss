@@ -1,9 +1,13 @@
 .videoContainer {
   // border: 1px solid green;
-  // margin-bottom: 20px;
+  margin-bottom: 20px;
   // width: 50%;
-  height: 80vh;
-  width: auto;
+  width: 100%;
+  // width: auto;
+  position: relative;
+}
+
+video {
   position: relative;
 }
 
@@ -20,7 +24,8 @@
 
 .sideIcons {
   position: absolute;
-  //   border: 1px solid red;
+  // border: 3px solid red;
+  // display: none;
   right: 20px;
   bottom: 30px;
 
