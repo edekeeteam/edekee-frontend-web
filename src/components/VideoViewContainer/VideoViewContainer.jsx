@@ -7,6 +7,7 @@ import Hls from "hls.js";
 
 // import { motion } from "framer-motion";
 import styles from "./VideoViewContainer.module.scss";
+import Tag from "../Tag/Tag";
 
 function VideoViewContainer({ src }) {
   // const [tagArray, setTagArray] = useState([]);
@@ -127,6 +128,9 @@ function VideoViewContainer({ src }) {
           );
         })}
       {/* <Tag topPos={40} leftPos={60} title="my name" price={5000} /> */}
+      <Tag topPos={+40} leftPos={60} title="my name" price={5000} />
+      <Tag topPos={+20} leftPos={40} title="name" price={600} />
+      <Tag topPos={+50} leftPos={80} title="test test" price={600} />
       <video
         ref={vidRef}
         src={src}

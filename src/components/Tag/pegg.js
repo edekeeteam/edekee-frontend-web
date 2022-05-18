@@ -28,6 +28,7 @@ template.innerHTML = `
       transform: translateX(-100px);
       transition-delay: 300ms;
       transition-timing-function: ease-out;
+      white-space: nowrap;
 
     }
    
