@@ -2,13 +2,17 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 80%;
   height: 100%;
+  // border: 1px solid red;
   animation: loading 2s infinite;
 
   .shimmer {
     width: 80%;
     height: 100%;
+    // border: 1px solid green;
+    // animation: loading 2s infinite;
+
     background: linear-gradient(
       94.33deg,
       #7e7f7f 2.84%,

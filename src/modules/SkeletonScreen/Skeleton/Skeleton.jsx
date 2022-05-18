@@ -7,6 +7,7 @@ function Skeleton({ type }) {
   return (
     <div className={styles.skeletonWrapper}>
       <div className={`${styles.skeleton} ${type === "video" && styles.video}`} />
+
       <Shimmer />
     </div>
   );

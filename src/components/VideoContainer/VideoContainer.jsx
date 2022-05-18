@@ -25,39 +25,37 @@ function VideoContainer({ src }) {
 
   // martin
 
-  // const startVideoTimer = (e) => {
-  //   // const cid = e.target.children;
-  //   // const sid = e.target.previousElementSibling;
-  //   // console.dir(cid);
+  const startVideoTimer = (e) => {
+    vidRef.current = setTimeout(() => {
+      e.target.play();
+      setShowInfo(true);
+    }, 500);
+  };
 
-  //   vidRef.current = setTimeout(() => {
-  //     e.target.play();
-  //     setShowInfo(true);
-  //   }, 2000);
-  // };
-
-  // const stopVideoTimer = (e) => {
-  //   e.target.pause();
-  //   // e.target.currentTime = 0;
-  //   // console.log(e.target.videoHeight());
-  //   setShowInfo(false);
-  //   clearTimeout(vidRef.current);
-  // };
+  const stopVideoTimer = (e) => {
+    e.target.pause();
+    // e.target.currentTime = 0;
+    // console.log(e.target.videoHeight());
+    setShowInfo(false);
+    clearTimeout(vidRef.current);
+  };
   return (
     <div
       className={styles.videoContainer}
       onMouseEnter={(e) => {
+        startVideoTimer(e);
         // console.log(e.target.play);
-        e.target.play();
+        // e.target.play();
         // e.target.pause = false;
         // console.log(e.target.children);
-        setShowInfo(true);
+        // setShowInfo(true);
         // console.log("entered container");
       }}
       onMouseLeave={(e) => {
-        e.target.pause();
+        stopVideoTimer(e);
+        // e.target.pause();
         // e.target.currentTime = 0;
-        setShowInfo(false);
+        // setShowInfo(false);
 
         // console.log("entered container");
       }}

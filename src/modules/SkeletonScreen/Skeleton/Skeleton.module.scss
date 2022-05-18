@@ -12,4 +12,10 @@
     width: 400px;
     height: 600px;
   }
+
+  &.interestsCircle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+  }
 }
