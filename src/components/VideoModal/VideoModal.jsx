@@ -8,12 +8,13 @@ import styles from "./VideoModal.module.scss";
 // import { useModalContext } from "../../context/ModalContext";
 // import { useContext } from "react";
 import VideoViewContainer from "../VideoViewContainer/VideoViewContainer";
-import Product from "../Product/Product";
+// import Product from "../Product/Product";
 import tabs from "../../data/tabsData";
 import Comment from "../Comment/Comment";
 import ProductDetails from "../ProductDetails/ProductDetails";
 import VidModal from "../VidModal/VidModal";
 import { useModalContext } from "../../context/ModalContext";
+import Products from "../Products/Products";
 // import Modal from "../Modal/Modal";
 // import VidModal from "../VidModal/VidModal";
 // import SignUp from "../Modals/SignUp";
@@ -76,7 +77,8 @@ function VideoModal() {
         </div>
         <div className={styles.tabBody}>
           {videoModalTabValue === 0 ? (
-            <Product changeVideoTab={setVideoModalTabValue} />
+            // <Product changeVideoTab={setVideoModalTabValue} />
+            <Products setVideoModalTabValue={setVideoModalTabValue} />
           ) : videoModalTabValue === 1 ? (
             <Comment />
           ) : videoModalTabValue === 2 ? (

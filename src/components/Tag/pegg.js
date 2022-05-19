@@ -15,12 +15,13 @@ template.innerHTML = `
      display: flex;
      align-items: center;
      height: 100%;
+     border: red 1px solid;
     } 
     
     .tag-p {
       color: white;
       font-size: 12px;
-      display: inline;
+      display: none;
       opacity: 0;
       padding: 0 16px;
       width: 100% ;
@@ -28,6 +29,7 @@ template.innerHTML = `
       transform: translateX(-100px);
       transition-delay: 300ms;
       transition-timing-function: ease-out;
+      white-space: nowrap;
 
     }
    
@@ -119,6 +121,7 @@ class PeggTag extends HTMLElement {
       } else {
         this.dispatchEvent(this.buyEvent);
         this.modeCollapse();
+        console.log(this.length);
       }
     });
   }

@@ -14,33 +14,44 @@
   margin: 0.5rem auto;
   cursor: pointer;
 
+  @include lgMaxBreakPoint {
+    padding: 1.1rem 0.7rem;
+  }
+
   .productWrapper {
     width: 90%;
     // border: 1px solid rgb(43, 0, 255);
     display: flex;
     align-items: center;
 
+    @include lgMaxBreakPoint {
+      width: 100%;
+    }
+
     .productLeft {
       .profilePicture {
         height: 50px;
         width: 50px;
         // border: 1px solid rgb(255, 0, 208);
-        background-color: aquamarine;
+        // background-color: aquamarine;
       }
     }
 
     .productRight {
       flex: 1;
       margin-left: 20px;
-      //   border: 1px solid green;
+      // border: 1px solid green;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
+      text-align: left;
 
       .heartIcon {
         width: toRem(30);
         display: inline-block;
-        // border: 1px solid red;
+        @include lgMaxBreakPoint {
+          font-size: toRem(20);
+        }
       }
 
       .productMainText {
@@ -48,10 +59,17 @@
         margin-bottom: 5px;
         font-weight: bold;
         color: #fff;
+
+        @include lgMaxBreakPoint {
+          font-size: toRem(15);
+        }
       }
       .productSecondaryText {
         font-size: toRem(12);
         color: #ffffff9f;
+        @include lgMaxBreakPoint {
+          font-size: toRem(10);
+        }
       }
     }
   }

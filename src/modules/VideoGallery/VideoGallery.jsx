@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 import Masonry from "react-masonry-css";
 import Hls from "hls.js";
+// import axios from "axios";
 import useGetAllVideos from "../../hooks/useGetAllVideos";
 // import { useModalContext } from "../../context/ModalContext";
 import styles from "./VideoGallery.module.scss";
@@ -26,38 +27,6 @@ const breakpointColumnsObj = {
 };
 
 function VideoGallery() {
-  // const { setModalValue, setIsVidModalOpen, setUrl } = useModalContext();
-
-  // useScript('https://cdn.jsdelivr.net/npm/hls.js@latest/dist/hls.min.js.map.');
-
-  // const [videoContainerWidth, setVideoContainerWidth] = useState(0);
-
-  // let newVideoContainerWidth = 0;
-  // const getVideoContainerWidth = () => {
-  //   if (window.innerWidth < 468) {
-  //     const vidContainerWidth = window.innerWidth * 0.9;
-  //     const gapFromVidContainerWidth = vidContainerWidth - 15;
-  //     newVideoContainerWidth = gapFromVidContainerWidth / 2;
-  //     // console.log("new width", newVideoContainerWidth);
-  //   } else {
-  //     const vidContainerWidth = window.innerWidth * 0.9;
-  //     const gapFromVidContainerWidth = vidContainerWidth - 30;
-  //     newVideoContainerWidth = gapFromVidContainerWidth / 3;
-  //     // console.log("new width", newVideoContainerWidth);
-  //   }
-
-  //   setVideoContainerWidth(newVideoContainerWidth);
-  // };
-
-  // useEffect(() => {
-  //   getVideoContainerWidth();
-
-  //   window.addEventListener("resize", getVideoContainerWidth);
-  // }, []);
-
-  // function convertToHsl(video) {
-  //   return video;
-  // }
   const vidRef = useRef();
 
   const src = "https://edge.tikicdn.com/data/hls/902297/1/3/1478/manifest.m3u8";
@@ -69,6 +38,27 @@ function VideoGallery() {
   }, [vidRef]);
 
   const { data, isLoading } = useGetAllVideos();
+
+  if (!isLoading) {
+    console.log(data);
+  }
+
+  // if (!isLoading) {
+  //   axios
+  //     .get(
+  //       "https://edekee-ml-bucket.s3.us-east-2.amazonaws.com/public/json/eben_edited_labels.json"
+  //     )
+  //     .then((res) => console.log(res.data))
+  //     .catch((error) => console.log(error));
+  // }
+
+  // if (!isLoading) {
+  //   // console.log(data.data[0]);
+  //   const { data: jsonData } = useGetJson(data.data[1].json);
+  //   console.log(jsonData);
+
+  //   console.log(data);
+  // }
   // if (!isLoading) {
   //   // console.log(data.data);
   //   data.data.map((video) => console.log(video.video));
@@ -87,8 +77,9 @@ function VideoGallery() {
         {data &&
           data.data.map((video) => (
             <VideoContainer
-              src={video.video}
-              key={video.id}
+              src={video.videoUrl}
+              key={video.videoId}
+              videoId={video.videoId}
               // onClick={() => {
               //   // console.log("clicked");
               //   setModalValue("videomodal");

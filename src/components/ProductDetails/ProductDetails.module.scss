@@ -1,3 +1,7 @@
+@import "../../styles/functions";
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
 .productDetails {
   width: 100%;
   min-height: 650px;
@@ -23,12 +27,17 @@
     align-items: center;
     // border: 1px solid red;
 
+    .profileName {
+      font-size: toRem(13);
+      border: 1px solid red;
+    }
+
     .profileImageContainer {
       height: 50px;
       width: 50px;
       position: relative;
       margin-right: 15px;
-      //   border: 1px solid purple;
+      border: 1px solid purple;
     }
     .profileplusIcon {
       position: absolute;
@@ -37,6 +46,10 @@
       bottom: -15px;
       //   border: 3px solid red;
       transform: translateX(-50%);
+
+      @include lgMaxBreakPoint {
+        width: 20px;
+      }
     }
     .profileImage {
       height: 50px;
@@ -44,6 +57,21 @@
       border-radius: 50%;
       // border: 1px solid rgb(255, 0, 208);
       background-color: aquamarine;
+
+      @include lgMaxBreakPoint {
+        height: 40px;
+        width: 40px;
+      }
+    }
+  }
+
+  .productDetailsTopRight {
+    border: 1px solid red;
+
+    @include lgMaxBreakPoint {
+      img {
+        width: toRem(25);
+      }
     }
   }
 

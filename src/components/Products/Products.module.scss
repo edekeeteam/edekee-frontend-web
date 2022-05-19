@@ -1,0 +1,18 @@
+.products {
+  height: 100%;
+  width: 100%;
+}
+
+.noProductsWrapper {
+  height: 100%;
+  width: 100%;
+  // border: 1px solid green;
+  display: flex;
+}
+.noProducts {
+  display: inline;
+  color: rgba(255, 255, 255, 0.507);
+  // border: 1px solid red;
+  height: 30px;
+  margin: auto;
+}
