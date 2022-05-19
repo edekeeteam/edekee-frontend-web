@@ -11,6 +11,7 @@ import { DropdownProvider } from "./context/DropdownContext";
 import reportWebVitals from "./reportWebVitals";
 import { UploadProvider } from "./context/UploadContext";
 import { BuyProvider } from "./context/BuyContext";
+import { ProductsProvider } from "./context/ProductsContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -23,9 +24,11 @@ root.render(
         <AuthProvider>
           <UploadProvider>
             <DropdownProvider>
-              <BuyProvider>
-                <App />
-              </BuyProvider>
+              <ProductsProvider>
+                <BuyProvider>
+                  <App />
+                </BuyProvider>
+              </ProductsProvider>
             </DropdownProvider>
           </UploadProvider>
         </AuthProvider>

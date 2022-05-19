@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect, useRef } from "react";
 import Hls from "hls.js";
-import Tag from "../Tag/Tag";
 import labels from "../../ladyLabel.json";
 // import { useModalContext } from "../../context/ModalContext";
 
 // import { motion } from "framer-motion";
 import styles from "./VideoViewContainer.module.scss";
+import Tag from "../Tag/Tag";
 
 function VideoViewContainer({ src }) {
   const [tagArray, setTagArray] = useState([]);
@@ -127,13 +127,16 @@ function VideoViewContainer({ src }) {
               topPos={coordinates.y}
               // leftPos={coordinates.x}
               // topPos={coordinates.y}
-              title={tag.label}
+              title={tag.label.trim()}
               price={5000}
               // setVideoModalTabValue={setVideoModalTabValue}
             />
           );
         })}
       {/* <Tag topPos={40} leftPos={60} title="my name" price={5000} /> */}
+      {/* <Tag topPos={+40} leftPos={60} title="my name" price={5000} />
+      <Tag topPos={+20} leftPos={40} title="name" price={600} />
+      <Tag topPos={+50} leftPos={80} title="test test" price={600} /> */}
       <video
         ref={vidRef}
         src={src}

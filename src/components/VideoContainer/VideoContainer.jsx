@@ -3,17 +3,21 @@
 import Hls from "hls.js";
 import { useState, useRef, useEffect } from "react";
 // import ReactHlsPlayer from "react-hls-player";
+import axios from "axios";
 import { useModalContext } from "../../context/ModalContext";
 
 // import { motion } from "framer-motion";
 
 import styles from "./VideoContainer.module.scss";
+import { useProductsContext } from "../../context/ProductsContext";
 
-function VideoContainer({ src }) {
+function VideoContainer({ src, videoId }) {
   const [showInfo, setShowInfo] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
   // const [isMuted, setIsMuted] = useState(true)
-  const { isModalOpen, isVidModalOpen, setIsVidModalOpen, setModalValue, setUrl } =
-    useModalContext();
+  const { setIsVidModalOpen, setModalValue, setUrl } = useModalContext();
+
+  const { setProducts } = useProductsContext();
   const vidRef = useRef();
 
   // martin
@@ -39,25 +43,29 @@ function VideoContainer({ src }) {
     setShowInfo(false);
     clearTimeout(vidRef.current);
   };
+
+  const fetchProducts = (id) => {
+    axios.get(`https://eked.herokuapp.com/v1/api/products/${id}/video`).then((res) => {
+      console.log(res);
+      if (res.status === 200) {
+        console.log("successful");
+        // console.log(res.data.success);
+        setIsVidModalOpen(true);
+        setProducts(res.data);
+        setUrl(src);
+        setModalValue("videomodal");
+      }
+    });
+  };
+
   return (
     <div
       className={styles.videoContainer}
       onMouseEnter={(e) => {
         startVideoTimer(e);
-        // console.log(e.target.play);
-        // e.target.play();
-        // e.target.pause = false;
-        // console.log(e.target.children);
-        // setShowInfo(true);
-        // console.log("entered container");
       }}
       onMouseLeave={(e) => {
         stopVideoTimer(e);
-        // e.target.pause();
-        // e.target.currentTime = 0;
-        // setShowInfo(false);
-
-        // console.log("entered container");
       }}
     >
       <video
@@ -68,25 +76,11 @@ function VideoContainer({ src }) {
         controls
         // width="100%"
         height="100%"
-        // onMouseEnter={(e) => {
-        //   startVideoTimer(e);
-        // }}
-        // onFocus={(e) => {
-        //   startVideoTimer(e);
-        // }}
-        // onMouseOut={(e) => {
-        //   stopVideoTimer(e);
-        // }}
-        // onBlur={(e) => stopVideoTimer(e)}
         onClick={() => {
-          // console.log("clicked");
-
-          setUrl(src);
-
-          setIsVidModalOpen(true);
-          console.log(isVidModalOpen);
-          console.log(isModalOpen);
-          setModalValue("videomodal");
+          fetchProducts(videoId);
+        }}
+        onError={(e) => {
+          console.log(e, "error");
         }}
       >
         <track kind="captions" />
@@ -94,31 +88,73 @@ function VideoContainer({ src }) {
 
       {showInfo && (
         <div className={styles.sideIcons}>
-          <svg
-            className={styles.sideIcon}
-            width="31"
-            height="30"
-            viewBox="0 0 37 30"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            onClick={() => {
-              console.log("clicked the like");
-            }}
-          >
-            <g opacity="0.9">
-              <path
-                d="M30.8826 16.3569C33.7159 13.5353 33.7253 8.95117 30.9037 6.11793C28.0821 3.28468 23.4979 3.27525 20.6647 6.09685L18.8863 7.86794L29.1042 18.128L30.8826 16.3569Z"
-                stroke="white"
-                strokeWidth="1.39631"
-              />
-              <path
-                d="M6.11738 16.3862C3.28414 13.5646 3.2747 8.98047 6.09631 6.14722C8.91791 3.31398 13.5021 3.30455 16.3353 6.12615L28.7444 18.4843L20.512 26.7506C19.4155 27.8518 17.6339 27.8554 16.5328 26.7588L6.11738 16.3862Z"
-                stroke="white"
-                strokeWidth="1.39631"
-              />
-              <circle cx="10.4465" cy="10.5266" r="2.02769" stroke="white" strokeWidth="1.39631" />
-            </g>
-          </svg>
+          {!isLiked ? (
+            <svg
+              className={styles.sideIcon}
+              width="31"
+              height="30"
+              viewBox="0 0 37 30"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              onClick={() => {
+                console.log("clicked the like");
+                setIsLiked(!isLiked);
+              }}
+            >
+              <g opacity="0.9">
+                <path
+                  d="M30.8826 16.3569C33.7159 13.5353 33.7253 8.95117 30.9037 6.11793C28.0821 3.28468 23.4979 3.27525 20.6647 6.09685L18.8863 7.86794L29.1042 18.128L30.8826 16.3569Z"
+                  stroke="white"
+                  strokeWidth="1.39631"
+                />
+                <path
+                  d="M6.11738 16.3862C3.28414 13.5646 3.2747 8.98047 6.09631 6.14722C8.91791 3.31398 13.5021 3.30455 16.3353 6.12615L28.7444 18.4843L20.512 26.7506C19.4155 27.8518 17.6339 27.8554 16.5328 26.7588L6.11738 16.3862Z"
+                  stroke="white"
+                  strokeWidth="1.39631"
+                />
+                <circle
+                  cx="10.4465"
+                  cy="10.5266"
+                  r="2.02769"
+                  stroke="white"
+                  strokeWidth="1.39631"
+                />
+              </g>
+            </svg>
+          ) : (
+            <svg
+              className={styles.sideIcon}
+              width="31"
+              height="30"
+              viewBox="0 0 37 30"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              onClick={() => {
+                console.log("clicked the unlike");
+                setIsLiked(!isLiked);
+              }}
+            >
+              <g opacity="0.9">
+                <path
+                  d="M30.8826 16.3569C33.7159 13.5353 33.7253 8.95117 30.9037 6.11793C28.0821 3.28468 23.4979 3.27525 20.6647 6.09685L18.8863 7.86794L29.1042 18.128L30.8826 16.3569Z"
+                  stroke="red"
+                  strokeWidth="1.39631"
+                />
+                <path
+                  d="M6.11738 16.3862C3.28414 13.5646 3.2747 8.98047 6.09631 6.14722C8.91791 3.31398 13.5021 3.30455 16.3353 6.12615L28.7444 18.4843L20.512 26.7506C19.4155 27.8518 17.6339 27.8554 16.5328 26.7588L6.11738 16.3862Z"
+                  stroke="red"
+                  strokeWidth="1.39631"
+                />
+                <circle
+                  cx="10.4465"
+                  cy="10.5266"
+                  r="2.02769"
+                  stroke="white"
+                  strokeWidth="1.39631"
+                />
+              </g>
+            </svg>
+          )}
           <svg
             className={styles.sideIcon}
             width="23"
@@ -141,6 +177,10 @@ function VideoContainer({ src }) {
 
           <svg
             className={styles.sideIcon}
+            onClick={() => {
+              console.log("clicked on shop");
+              fetchProducts(videoId);
+            }}
             width="23"
             height="30"
             viewBox="0 0 29 30"

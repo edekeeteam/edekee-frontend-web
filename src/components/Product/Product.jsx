@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import styles from "./Product.module.scss";
 // import { VideoModalContext } from "../../context/VideoModalContext";
 
 // eslint-disable-next-line react/prop-types
-function Product({ changeVideoTab }) {
+function Product({ product, changeVideoTab }) {
   // const { setCurrentModal } = useContext(VideoModalContext);
 
   const handleKeyDown = () => {
@@ -21,13 +22,13 @@ function Product({ changeVideoTab }) {
     >
       <div className={styles.productWrapper}>
         <div className={styles.productLeft}>
-          <div className={styles.profilePicture} />
+          <img src={product.primaryImage} alt="" className={styles.profilePicture} />
         </div>
 
         <div className={styles.productRight}>
           <div className={styles.productRightText}>
-            <p className={styles.productMainText}>Winter Jacket N25k</p>
-            <p className={styles.productSecondaryText}>Corporate shoe </p>
+            <p className={styles.productMainText}>{product.brand}</p>
+            <p className={styles.productSecondaryText}>{product.description} </p>
           </div>
           <div>
             <img src="./icons/heartIcon.svg" alt="" className={styles.heartIcon} />

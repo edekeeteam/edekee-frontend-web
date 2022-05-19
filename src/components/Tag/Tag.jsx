@@ -28,7 +28,9 @@ function Tag({ topPos, leftPos, price, title }) {
 
   return (
     <pegg-tag ref={tag} topPos={topPos} leftPos={leftPos} length={length}>
-      <span ref={span}>{`${price} ${title}`}</span>
+      <span ref={span}>
+        <span>{`${price} ${title}`}</span>
+      </span>
     </pegg-tag>
   );
 }
