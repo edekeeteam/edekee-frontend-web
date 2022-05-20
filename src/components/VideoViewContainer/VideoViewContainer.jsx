@@ -117,7 +117,7 @@ function VideoViewContainer({ src }) {
             576,
             1280
           );
-          console.log(coordinates);
+          // console.log(coordinates);
           // console.log(`this is called ${x} times`);
 
           return (

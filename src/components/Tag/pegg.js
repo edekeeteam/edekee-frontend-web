@@ -118,10 +118,11 @@ class PeggTag extends HTMLElement {
     this.addEventListener("click", () => {
       if (this.style.width === "25px") {
         this.modeOpen();
+        console.log(`open: ${this.length}`);
       } else {
         this.dispatchEvent(this.buyEvent);
         this.modeCollapse();
-        console.log(this.length);
+        console.log(`close: ${this.length}`);
       }
     });
   }
@@ -134,6 +135,7 @@ class PeggTag extends HTMLElement {
     this.style.height = "25px";
     this.style.cursor = "pointer";
     this.style.backgroundColor = "white";
+    console.log(`first${this.length}`);
     // console.log(this.textInfo)
   }
 }

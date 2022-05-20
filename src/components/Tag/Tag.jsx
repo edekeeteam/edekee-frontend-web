@@ -15,12 +15,11 @@ function Tag({ topPos, leftPos, price, title }) {
 
   const tag = useRef(null);
   const span = useRef(null);
-  const [length, setLength] = useState(null);
+  const [length, setLength] = useState(0 || 100);
 
   React.useEffect(() => {
-    tag.current.addEventListener("buy", (e) => {
-      console.log("buy");
-      console.log(e.detail.id);
+    tag.current.addEventListener("buy", () => {
+      // console.log(e.detail.id);
       // setVideoModalTabValue(2);
     });
     setLength(span.current.getBoundingClientRect().width + 8);
