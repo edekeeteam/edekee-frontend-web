@@ -17,6 +17,10 @@ function BuyProvider({ children }) {
     setColor(newSize);
     console.log(newSize);
   };
+  const handleQuantityChange = (newQuantity) => {
+    setQuantity(newQuantity);
+    console.log(newQuantity);
+  };
 
   return (
     <BuyContext.Provider
@@ -24,7 +28,7 @@ function BuyProvider({ children }) {
         size,
         setSize,
         quantity,
-        setQuantity,
+        handleQuantityChange,
         color,
         handleColorChange,
         handleSizeChange,

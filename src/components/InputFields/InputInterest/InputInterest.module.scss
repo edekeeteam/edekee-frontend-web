@@ -7,10 +7,24 @@
     margin-right: 20px;
     padding: 2px;
     border: transparent 2px solid;
+    &:hover {
+      // border: 1px solid red;
+      // animation: pulse 1s infinite;
+      // animation-timing-function: linear;
+      transform: scale(1.2);
+      transition: all ease 500ms;
+    }
 
     &.active {
       border-radius: 100%;
       border-color: white;
+      &:hover {
+        // border: 1px solid red;
+        // animation: pulse 1s infinite;
+        // animation-timing-function: linear;
+        transform: scale(1.2);
+        transition: all ease 500ms;
+      }
     }
   }
 

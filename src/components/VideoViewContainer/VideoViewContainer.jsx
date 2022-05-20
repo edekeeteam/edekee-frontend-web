@@ -104,7 +104,16 @@ function VideoViewContainer({ src }) {
   }; // };
 
   return (
-    <div className={styles.videoViewContainer}>
+    <div
+      className={styles.videoViewContainer}
+      style={{
+        width: "100%",
+        aspectRatio: "1/1.77",
+        backgroundImage:
+          "url(https://firebasestorage.googleapis.com/v0/b/peggs-web.appspot.com/o/outputimage4.webp?alt=media&token=80757d36-6313-4d30-8887-c07b1f56cfa2)",
+      }}
+    >
+      <div className={styles.blur} />
       {tagArray &&
         tagArray.map((tag) => {
           // console.log(tag);
@@ -133,6 +142,7 @@ function VideoViewContainer({ src }) {
             />
           );
         })}
+
       {/* <Tag topPos={40} leftPos={60} title="my name" price={5000} /> */}
       {/* <Tag topPos={+40} leftPos={60} title="my name" price={5000} />
       <Tag topPos={+20} leftPos={40} title="name" price={600} />
@@ -142,18 +152,24 @@ function VideoViewContainer({ src }) {
         src={src}
         loop
         autoPlay
-        controls
+        // controls
         id="video"
         // width="100%"
-        // width="200px"
-        height="100%"
+        // height="100%"
         onPlay={() => {
           handlePlay();
         }}
         onPause={() => {
           handlePause();
         }}
-        // style={{ border: "1px solid yellow" }}
+        style={{
+          height: "100%",
+
+          aspectRatio: "1/1.77",
+
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
       >
         <track kind="captions" />
       </video>

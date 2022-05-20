@@ -29,7 +29,7 @@
 
     .profileName {
       font-size: toRem(13);
-      border: 1px solid red;
+      // border: 1px solid red;
     }
 
     .profileImageContainer {
@@ -37,7 +37,7 @@
       width: 50px;
       position: relative;
       margin-right: 15px;
-      border: 1px solid purple;
+      // border: 1px solid purple;
     }
     .profileplusIcon {
       position: absolute;
@@ -58,15 +58,15 @@
       // border: 1px solid rgb(255, 0, 208);
       background-color: aquamarine;
 
-      @include lgMaxBreakPoint {
-        height: 40px;
-        width: 40px;
-      }
+      // @include lgMaxBreakPoint {
+      //   height: 40px;
+      //   width: 40px;
+      // }
     }
   }
 
   .productDetailsTopRight {
-    border: 1px solid red;
+    // border: 1px solid red;
 
     @include lgMaxBreakPoint {
       img {
@@ -118,12 +118,16 @@
     display: flex;
     overflow-x: scroll;
     // border: 1px solid green;
+    img {
+      width: 200px;
 
+      // border: 1px solid red;
+    }
     .scrollViewImage {
-      padding: 5rem 6rem;
-      //   border: 1px solid orange;
+      // padding: 3rem 4rem;
+      // border: 1px solid orange;
       margin: 2px;
-      background-color: orange;
+      // background-color: orange;
       //   flex: 1;
     }
   }

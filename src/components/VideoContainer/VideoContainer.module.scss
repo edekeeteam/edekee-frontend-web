@@ -3,12 +3,28 @@
   margin-bottom: 20px;
   // width: 50%;
   width: 100%;
+  aspect-ratio: 1/1.7;
   // width: auto;
   position: relative;
+  background-color: bisque;
 }
 
 video {
   position: relative;
+}
+
+video::-internal-media-controls {
+  display: none;
+}
+
+.playButton {
+  // width: 30px;
+  // border: 1px solid red;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
 }
 
 .tag {

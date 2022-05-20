@@ -9,55 +9,58 @@ import Button from "../Button/Button";
 import NewModal from "../NewModal/NewModal";
 import { useBuyContext } from "../../context/BuyContext";
 import { useModalContext } from "../../context/ModalContext";
+import { useProductsContext } from "../../context/ProductsContext";
 
 function ProductSpecs() {
-  const sampleColors = [
-    {
-      color: "green",
-    },
-    {
-      color: "red",
-    },
-    {
-      color: "yellow",
-    },
-    {
-      color: "blue",
-    },
-    {
-      color: "gray",
-    },
-  ];
-  const sampleSize = [
-    {
-      size: "xl",
-    },
-    {
-      size: "sm",
-    },
-    {
-      size: "lg",
-    },
-    {
-      size: "md",
-    },
-  ];
+  // const sampleColors = [
+  //   {
+  //     color: "green",
+  //   },
+  //   {
+  //     color: "red",
+  //   },
+  //   {
+  //     color: "yellow",
+  //   },
+  //   {
+  //     color: "blue",
+  //   },
+  //   {
+  //     color: "gray",
+  //   },
+  // ];
+  // const sampleSize = [
+  //   {
+  //     size: "xl",
+  //   },
+  //   {
+  //     size: "sm",
+  //   },
+  //   {
+  //     size: "lg",
+  //   },
+  //   {
+  //     size: "md",
+  //   },
+  // ];
 
-  const { handleColorChange, handleSizeChange, quantity, setQuantity } = useBuyContext();
+  const { handleColorChange, handleSizeChange, quantity, handleQuantityChange } = useBuyContext();
   const { setModalValue } = useModalContext();
+  const { productDetails } = useProductsContext();
+  const { properties } = productDetails;
   //  size, setSize, quantity, setQuantity,
   const handleKeyDown = () => {
     // console.log("keydown");
   };
 
   const handleAdd = (index) => {
-    console.log("clicked");
-    setQuantity(quantity + index);
-    console.log(index);
+    console.log(properties.colors);
+    handleQuantityChange(quantity + index);
+    // console.log(quantity);
   };
   const handleSubtract = (index) => {
-    setQuantity(quantity - index);
-    console.log(index);
+    handleQuantityChange(quantity - index);
+    // console.log(quantity);
   };
 
   // const changeColor = () => {
@@ -78,11 +81,11 @@ function ProductSpecs() {
         <div className={styles.productSpecsWrapper}>
           <div className={styles.colorsSection}>
             <p className={styles.colorsHeading}>Colors</p>
-            <InputColor Colors={sampleColors} handleChange={handleColorChange} />
+            <InputColor Colors={properties.color} handleChange={handleColorChange} />
           </div>
           <div className={styles.sizeSection}>
             <p className={styles.sizeHeading}>Size</p>
-            <InputSize sizes={sampleSize} handleChange={handleSizeChange} />
+            <InputSize sizes={properties.size} handleChange={handleSizeChange} />
           </div>
           <div className={styles.quantitySection}>
             <p className={styles.quantityHeading}>Quantity</p>

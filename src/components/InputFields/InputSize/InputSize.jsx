@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useBuyContext } from "../../../context/BuyContext";
 import styles from "./InputSize.module.scss";
 
 // eslint-disable-next-line react/prop-types
@@ -15,11 +16,15 @@ function Size({ size, activeSize }) {
 // eslint-disable-next-line react/prop-types
 function InputSize({ sizes, handleChange }) {
   const [activeSize, setActiveSize] = useState("");
+  const [setSize] = useState("");
+  const { handleSizeChange } = useBuyContext();
   // eslint-disable-next-line react/prop-types
 
   function onChangeValue(event) {
     setActiveSize(event.target.value);
+    setSize(event.target.value);
     handleChange(event.target.value);
+    handleSizeChange(event.target.value);
   }
 
   return (
@@ -28,7 +33,7 @@ function InputSize({ sizes, handleChange }) {
         // eslint-disable-next-line react/prop-types
         sizes.map((size) => (
           // eslint-disable-next-line react/jsx-key
-          <Size key={size.name} activeSize={activeSize} size={size.size} />
+          <Size key={size} activeSize={activeSize} size={size} />
         ))
       }
     </div>
