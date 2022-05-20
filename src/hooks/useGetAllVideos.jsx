@@ -3,7 +3,13 @@ import axios from "axios";
 
 export default function useGetAllVideos() {
   return useQuery("videos", () =>
-    axios.get("https://eked.herokuapp.com/v1/api/video").then((res) => res.data)
+    axios
+      .get("https://eked.herokuapp.com/v1/api/video", {
+        headers: {
+          Authorization: "token",
+        },
+      })
+      .then((res) => res.data)
   );
 }
 

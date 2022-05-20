@@ -80,6 +80,7 @@ function VideoGallery() {
               src={video.videoUrl}
               key={video.videoId}
               videoId={video.videoId}
+              thumbnail={video.thumbnail}
               // onClick={() => {
               //   // console.log("clicked");
               //   setModalValue("videomodal");

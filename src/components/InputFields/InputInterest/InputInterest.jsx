@@ -21,7 +21,11 @@ function InputInterest({ name, id, image, checkedInterestsState, handleOnChange 
             checked={checkedInterestsState[id]}
             onChange={() => handleOnChange(id)}
           />
-          <img src={image} alt={name} />
+          <img
+            src={image}
+            alt={name}
+            style={{ border: "1px solid red", backgroundColor: "red", display: "none" }}
+          />
           <p>{name}</p>
         </div>
       </div>

@@ -11,7 +11,7 @@ import { useModalContext } from "../../context/ModalContext";
 import styles from "./VideoContainer.module.scss";
 import { useProductsContext } from "../../context/ProductsContext";
 
-function VideoContainer({ src, videoId }) {
+function VideoContainer({ src, videoId, thumbnail }) {
   const [showInfo, setShowInfo] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   // const [isMuted, setIsMuted] = useState(true)
@@ -45,15 +45,16 @@ function VideoContainer({ src, videoId }) {
   };
 
   const fetchProducts = (id) => {
+    setProducts({});
+    setIsVidModalOpen(true);
+    setUrl(src);
+    setModalValue("videomodal");
     axios.get(`https://eked.herokuapp.com/v1/api/products/${id}/video`).then((res) => {
       console.log(res);
       if (res.status === 200) {
         console.log("successful");
         // console.log(res.data.success);
-        setIsVidModalOpen(true);
         setProducts(res.data);
-        setUrl(src);
-        setModalValue("videomodal");
       }
     });
   };
@@ -68,91 +69,86 @@ function VideoContainer({ src, videoId }) {
         stopVideoTimer(e);
       }}
     >
+      {/* <svg
+        width="50"
+        height="50"
+        viewBox="0 0 80 80"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className={styles.playButton}
+        onClick={() => {
+          console.log("clicked on play");
+        }}
+         
+      >
+        <circle cx="40" cy="40" r="39.3333" stroke="white" strokeWidth="1.33333" />
+        <path d="M32.6666 52.1311V28L54 41.2896L32.6666 52.1311Z" fill="white" />
+      </svg>{" "} */}
       <video
         ref={vidRef}
         src={src}
         loop
         muted
-        controls
+        preload="none"
+        poster={thumbnail}
         // width="100%"
-        height="100%"
+        // height="100%"
         onClick={() => {
           fetchProducts(videoId);
         }}
         onError={(e) => {
           console.log(e, "error");
         }}
+        className={styles.videoPlayer}
+        style={{ width: "100%", aspectRatio: "1/1.7777" }}
       >
         <track kind="captions" />
       </video>
-
       {showInfo && (
         <div className={styles.sideIcons}>
           {!isLiked ? (
             <svg
-              className={styles.sideIcon}
               width="31"
               height="30"
-              viewBox="0 0 37 30"
+              viewBox="0 0 34 28"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation();
                 console.log("clicked the like");
                 setIsLiked(!isLiked);
               }}
             >
-              <g opacity="0.9">
-                <path
-                  d="M30.8826 16.3569C33.7159 13.5353 33.7253 8.95117 30.9037 6.11793C28.0821 3.28468 23.4979 3.27525 20.6647 6.09685L18.8863 7.86794L29.1042 18.128L30.8826 16.3569Z"
-                  stroke="white"
-                  strokeWidth="1.39631"
-                />
-                <path
-                  d="M6.11738 16.3862C3.28414 13.5646 3.2747 8.98047 6.09631 6.14722C8.91791 3.31398 13.5021 3.30455 16.3353 6.12615L28.7444 18.4843L20.512 26.7506C19.4155 27.8518 17.6339 27.8554 16.5328 26.7588L6.11738 16.3862Z"
-                  stroke="white"
-                  strokeWidth="1.39631"
-                />
-                <circle
-                  cx="10.4465"
-                  cy="10.5266"
-                  r="2.02769"
-                  stroke="white"
-                  strokeWidth="1.39631"
-                />
-              </g>
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M17.9514 5.84882L19.7284 4.07912C22.4785 1.34028 26.9282 1.34944 29.6671 4.09958C32.4059 6.84972 32.3968 11.2994 29.6466 14.0383L27.8801 15.7975L27.8767 15.7941L25.332 13.2599L17.9514 5.84882ZM28.9281 16.8708L28.1148 17.6807L27.8811 17.9154L19.5666 26.2642C18.0963 27.7406 15.7076 27.7455 14.2312 26.2752L3.04236 15.1323C-0.294768 11.8089 -0.305877 6.40948 3.01754 3.07235C6.34097 -0.264778 11.7404 -0.275892 15.0775 3.04753L16.858 4.82072L16.8929 4.78598L18.6699 3.01628C22.0071 -0.307142 27.4065 -0.296028 30.7299 3.0411C34.0534 6.37823 34.0422 11.7777 30.7051 15.1011L28.9281 16.8708ZM26.8068 16.8664L24.2716 14.3208L14.0191 4.11037C11.2689 1.37153 6.81923 1.38069 4.08039 4.13083C1.34154 6.88097 1.3507 11.3307 4.10084 14.0695L15.2897 25.2124C16.179 26.0981 17.618 26.0951 18.5038 25.2058L26.8078 16.8675L26.8068 16.8664ZM9.65042 8.30865C9.65042 9.09745 9.01097 9.73691 8.22216 9.73691C7.43336 9.73691 6.7939 9.09745 6.7939 8.30865C6.7939 7.51984 7.43336 6.88039 8.22216 6.88039C9.01097 6.88039 9.65042 7.51984 9.65042 8.30865ZM11.1504 8.30865C11.1504 9.92588 9.83939 11.2369 8.22216 11.2369C6.60493 11.2369 5.2939 9.92588 5.2939 8.30865C5.2939 6.69141 6.60493 5.38039 8.22216 5.38039C9.83939 5.38039 11.1504 6.69141 11.1504 8.30865Z"
+                fill="white"
+              />
             </svg>
           ) : (
             <svg
-              className={styles.sideIcon}
               width="31"
               height="30"
-              viewBox="0 0 37 30"
+              viewBox="0 0 33 27"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              onClick={() => {
-                console.log("clicked the unlike");
+              onClick={(e) => {
+                e.stopPropagation();
+                console.log("clicked the like");
                 setIsLiked(!isLiked);
               }}
             >
-              <g opacity="0.9">
-                <path
-                  d="M30.8826 16.3569C33.7159 13.5353 33.7253 8.95117 30.9037 6.11793C28.0821 3.28468 23.4979 3.27525 20.6647 6.09685L18.8863 7.86794L29.1042 18.128L30.8826 16.3569Z"
-                  stroke="red"
-                  strokeWidth="1.39631"
-                />
-                <path
-                  d="M6.11738 16.3862C3.28414 13.5646 3.2747 8.98047 6.09631 6.14722C8.91791 3.31398 13.5021 3.30455 16.3353 6.12615L28.7444 18.4843L20.512 26.7506C19.4155 27.8518 17.6339 27.8554 16.5328 26.7588L6.11738 16.3862Z"
-                  stroke="red"
-                  strokeWidth="1.39631"
-                />
-                <circle
-                  cx="10.4465"
-                  cy="10.5266"
-                  r="2.02769"
-                  stroke="white"
-                  strokeWidth="1.39631"
-                />
-              </g>
+              <path
+                d="M30.2363 14.0499C33.4851 10.8451 33.4959 5.63847 30.2604 2.4205C27.025 -0.797464 21.7684 -0.808181 18.5196 2.39657L6.2583 14.4914C5.34999 15.3874 5.34697 16.8431 6.25154 17.7428L14.6925 26.138C15.5971 27.0377 17.0667 27.0407 17.975 26.1447L30.2363 14.0499Z"
+                fill="#BC1529"
+              />
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M2.41962 2.44558C-0.815955 5.66363 -0.805132 10.8704 2.44379 14.0752L14.7049 26.17C15.6132 27.066 17.0828 27.063 17.9874 26.1633L26.4287 17.7677C27.3333 16.868 27.3302 15.4123 26.4219 14.5164L14.1608 2.42164C10.9119 -0.783191 5.65519 -0.772473 2.41962 2.44558ZM6.78245 9.32271C8.1625 9.32271 9.28125 8.21459 9.28125 6.84765C9.28125 5.48071 8.1625 4.37259 6.78245 4.37259C5.4024 4.37259 4.28365 5.48071 4.28365 6.84765C4.28365 8.21459 5.4024 9.32271 6.78245 9.32271Z"
+                fill="#DB2734"
+              />
             </svg>
           )}
           <svg
@@ -219,7 +215,6 @@ function VideoContainer({ src, videoId }) {
           </svg>
         </div>
       )}
-
       <div className={styles.profileNameContainer} />
       {/* <div className={styles.tag} /> */}
     </div>

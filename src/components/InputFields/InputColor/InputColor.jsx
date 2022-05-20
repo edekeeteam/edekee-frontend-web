@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useBuyContext } from "../../../context/BuyContext";
+import { useProductsContext } from "../../../context/ProductsContext";
 import styles from "./InputColor.module.scss";
 
 // eslint-disable-next-line react/prop-types
@@ -14,11 +16,16 @@ function ColorInput({ color, activeColor }) {
 // eslint-disable-next-line react/prop-types
 function InputColor({ Colors, handleChange }) {
   const [activeColor, setActiveColor] = useState("");
+  const { setColor } = useProductsContext();
+  const { handleColorChange } = useBuyContext();
+
   // eslint-disable-next-line react/prop-types
 
   function onChangeValue(event) {
     setActiveColor(event.target.value);
+    setColor(event.target.value);
     handleChange(event.target.value);
+    handleColorChange(event.target.value);
     // console.log(event.target.value);
   }
 
@@ -28,7 +35,7 @@ function InputColor({ Colors, handleChange }) {
         // eslint-disable-next-line react/prop-types
         Colors.map((color) => (
           // eslint-disable-next-line react/jsx-key
-          <ColorInput key={color.name} activeColor={activeColor} color={color.color} />
+          <ColorInput key={color} activeColor={activeColor} color={color} />
         ))
       }
     </div>

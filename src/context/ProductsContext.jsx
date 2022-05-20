@@ -6,6 +6,16 @@ const ProductsContext = React.createContext();
 // eslint-disable-next-line react/prop-types
 function ProductsProvider({ children }) {
   const [products, setProducts] = useState({});
+  const [productDetails, setProductDetails] = useState({});
+
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
+  const [quantity, setQuantity] = useState(0);
+  // const weight = "";
+
+  // const [color, setColor] = useState("");
+  // const [size, setSize] = useState("");
+  // const [quantity, setQuantity] = useState(0);
 
   return (
     <ProductsContext.Provider
@@ -19,6 +29,14 @@ function ProductsProvider({ children }) {
         // handleSizeChange,
         products,
         setProducts,
+        productDetails,
+        setProductDetails,
+        color,
+        setColor,
+        size,
+        setSize,
+        quantity,
+        setQuantity,
       }}
     >
       {children}
