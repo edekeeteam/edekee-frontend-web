@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import styles from "./InputInterest.module.scss";
 
@@ -5,9 +6,10 @@ import styles from "./InputInterest.module.scss";
 const checkActiveState = (x, id) => (x.includes(id) ? styles.active : "");
 // eslint-disable-next-line react/prop-types
 function InputInterest({ name, id, image, checkedInterestsState, handleOnChange, index }) {
+  const [showImage, setShowImage] = useState(false);
   return (
     <motion.div
-      className={styles.interest}
+      className={`${styles.interest} `}
       initial={{
         opacity: 0,
         translateY: 100,
@@ -30,7 +32,16 @@ function InputInterest({ name, id, image, checkedInterestsState, handleOnChange,
             checked={checkedInterestsState[id]}
             onChange={() => handleOnChange(id)}
           />
-          <img src={image} alt={name} />
+
+          <img
+            className={`${showImage && styles.show}`}
+            src={image}
+            alt={name}
+            onLoad={() => {
+              console.log("loaded");
+              setShowImage(true);
+            }}
+          />
           <p>{name}</p>
         </div>
       </div>
