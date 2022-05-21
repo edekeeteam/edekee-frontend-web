@@ -44,7 +44,8 @@ function ProductSpecs() {
   //   },
   // ];
 
-  const { handleColorChange, handleSizeChange, quantity, handleQuantityChange } = useBuyContext();
+  const { handleColorChange, handleSizeChange, quantity, handleQuantityChange, addToCart } =
+    useBuyContext();
   const { setModalValue } = useModalContext();
   const { productDetails } = useProductsContext();
   const { properties } = productDetails;
@@ -92,11 +93,18 @@ function ProductSpecs() {
             <InputNumber itemValue={quantity} onAdd={handleAdd} onSubtract={handleSubtract} />
           </div>
           <div className={styles.buttonSection}>
-            <Button size="large" label="Add to cart" bgcolor="white" />
+            <Button
+              size="large"
+              label="Add to cart"
+              bgcolor="black"
+              handleClick={() => {
+                addToCart();
+              }}
+            />
             <Button
               size="large"
               label="Buy now"
-              bgcolor="black"
+              bgcolor="white"
               handleClick={() => {
                 console.log("change");
                 setModalValue("paymentmodal");

@@ -1,16 +1,25 @@
+import { motion } from "framer-motion";
 import styles from "./InputInterest.module.scss";
 
 // eslint-disable-next-line react/prop-types
 const checkActiveState = (x, id) => (x.includes(id) ? styles.active : "");
 // eslint-disable-next-line react/prop-types
-function InputInterest({ name, id, image, checkedInterestsState, handleOnChange }) {
+function InputInterest({ name, id, image, checkedInterestsState, handleOnChange, index }) {
   return (
-    <div className={styles.interest}>
+    <motion.div
+      className={styles.interest}
+      initial={{
+        opacity: 0,
+        translateY: 100,
+      }}
+      animate={{ opacity: 1, translateY: 0 }}
+      transition={{ duration: 1, delay: index * 0.1 }}
+    >
       <div
         className={`${styles.highlight}
         ${checkActiveState(checkedInterestsState, id)}`}
       >
-        <div className={styles.size}>
+        <div className={`${styles.size} ${styles.active}`}>
           {/* // key={props.index} */}
           <input
             style={{ opacity: 0 }}
@@ -21,15 +30,11 @@ function InputInterest({ name, id, image, checkedInterestsState, handleOnChange 
             checked={checkedInterestsState[id]}
             onChange={() => handleOnChange(id)}
           />
-          <img
-            src={image}
-            alt={name}
-            style={{ border: "1px solid red", backgroundColor: "red", display: "none" }}
-          />
+          <img src={image} alt={name} />
           <p>{name}</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

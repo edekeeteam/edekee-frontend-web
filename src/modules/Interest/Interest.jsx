@@ -53,7 +53,7 @@ function Interest() {
       </div>
       <div className={styles.interestsContainer}>
         {interests &&
-          interests.map((interest) => (
+          interests.map((interest, index) => (
             <InputInterest
               key={interest.id}
               image={interest.picture}
@@ -61,6 +61,7 @@ function Interest() {
               name={interest.name}
               checkedInterestsState={checkedInterestsState}
               handleOnChange={() => handleOnChange(interest.id)}
+              index={index}
             />
           ))}
       </div>

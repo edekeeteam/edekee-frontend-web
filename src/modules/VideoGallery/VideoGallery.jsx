@@ -20,8 +20,8 @@ import VideoContainer from "../../components/VideoContainer/VideoContainer";
 const breakpointColumnsObj = {
   default: 3,
   3000: 3,
-  2000: 3,
-  1200: 2,
+  2000: 4,
+  1200: 3,
   1000: 2,
   500: 1,
 };

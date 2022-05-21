@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import styles from "./VidModal.module.scss";
 import { useModalContext } from "../../context/ModalContext";
 
@@ -10,6 +11,27 @@ function VidModal({ children }) {
   // } else {
   //   document.body.style.overflowY = "scroll";
   // }
+  const dropIn = {
+    hidden: {
+      scale: 0.8,
+      opacity: 0,
+    },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 0.1,
+        type: "spring",
+        damping: 25,
+        stiffness: 500,
+      },
+    },
+    exit: {
+      scale: 0,
+      opacity: 0,
+    },
+  };
+
   const handleKeyDown = () => {
     // console.log('');
   };
@@ -26,7 +48,7 @@ function VidModal({ children }) {
       role="button"
       tabIndex={0}
     >
-      <div
+      <motion.div
         className={`${styles.vidModalContent} global-vidmodal-width`}
         onClick={(e) => {
           e.stopPropagation();
@@ -34,9 +56,13 @@ function VidModal({ children }) {
         onKeyDown={handleKeyDown()}
         role="button"
         tabIndex={0}
+        variants={dropIn}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
       >
         {children}
-      </div>
+      </motion.div>
     </div>
   );
 }
