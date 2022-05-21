@@ -135,7 +135,7 @@ class PeggTag extends HTMLElement {
     this.style.height = "25px";
     this.style.cursor = "pointer";
     this.style.backgroundColor = "white";
-    console.log(`first${this.length}`);
+    console.log(`first: ${this.length}`);
     // console.log(this.textInfo)
   }
 }

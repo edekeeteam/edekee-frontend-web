@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 
 // type Peggs = {
 //   topPos: string;
@@ -15,15 +15,24 @@ function Tag({ topPos, leftPos, price, title }) {
 
   const tag = useRef(null);
   const span = useRef(null);
-  const [length, setLength] = useState(0 || 100);
+  // const [length, setLength] = useState( null);
+
+  let length = 0;
 
   React.useEffect(() => {
-    tag.current.addEventListener("buy", () => {
-      // console.log(e.detail.id);
-      // setVideoModalTabValue(2);
-    });
-    setLength(span.current.getBoundingClientRect().width + 8);
-  }, []);
+    if (span.current) {
+      tag.current.addEventListener("buy", () => {
+        // console.log(e.detail.id);
+        // setVideoModalTabValue(2);
+      });
+      console.log(span.current.getBoundingClientRect());
+      console.log(span.current.offsetWidth);
+      setTimeout(() => {
+        length = span.current.getBoundingClientRect().width;
+      });
+      // setLength();
+    }
+  });
 
   return (
     <pegg-tag ref={tag} topPos={topPos} leftPos={leftPos} length={length}>
