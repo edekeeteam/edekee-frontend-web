@@ -42,6 +42,10 @@ $check-color: $brand-success;
   // .buttonContent {
   //   // border: 1px solid red;
   // }
+  &:hover {
+    filter: brightness(0.9);
+    // background-color: #e23c32;
+  }
 
   &.large {
     width: 8.5vw;
