@@ -11,6 +11,7 @@ function ProductsProvider({ children }) {
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
   const [quantity, setQuantity] = useState(0);
+
   // const weight = "";
 
   // const [color, setColor] = useState("");
@@ -43,6 +44,7 @@ function ProductsProvider({ children }) {
     </ProductsContext.Provider>
   );
 }
+
 // make sure use
 export const useProductsContext = () => useContext(ProductsContext);
 

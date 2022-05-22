@@ -2,14 +2,16 @@ import styles from "./ProductDetails.module.scss";
 import Button from "../Button/Button";
 import { useModalContext } from "../../context/ModalContext";
 import { useProductsContext } from "../../context/ProductsContext";
+import { useBuyContext } from "../../context/BuyContext";
 
 function ProductDetails() {
   // const { setCurrentVideoModal } = useContext(ModalContext);
 
   const { setIsModalOpen, setModalValue } = useModalContext();
   const { productDetails } = useProductsContext();
+  const { setProductId } = useBuyContext();
 
-  const { brand, description, liked, price, username, images, properties } = productDetails;
+  const { id, brand, description, liked, price, username, images, properties } = productDetails;
   return (
     <div className={styles.productDetails}>
       <div className={styles.productDetailsTop}>
@@ -93,6 +95,7 @@ function ProductDetails() {
           handleClick={() => {
             setIsModalOpen(true);
             setModalValue("productspecs");
+            setProductId(id);
           }}
         />
       </div>

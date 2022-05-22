@@ -35,20 +35,21 @@
   }
   video {
     // border: 1px solid red;
-    z-index: 100;
+    // z-index: 100;
   }
 }
 
-// .tag {
-//   width: 20px;
-//   height: 20px;
-//   border-radius: 50%;
-//   background-color: white;
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-// }
+.tag {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
 
 .sideIcons {
   position: absolute;

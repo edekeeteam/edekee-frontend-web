@@ -109,72 +109,80 @@ function VideoViewContainer({ src }) {
       style={{
         width: "100%",
         aspectRatio: "1/1.77",
+
         backgroundImage:
           "url(https://firebasestorage.googleapis.com/v0/b/peggs-web.appspot.com/o/outputimage4.webp?alt=media&token=80757d36-6313-4d30-8887-c07b1f56cfa2)",
       }}
     >
       <div className={styles.blur} />
-      {tagArray &&
-        tagArray.map((tag) => {
-          // console.log(tag);
-
-          const coordinates = getCoordinates(
-            tag.boundingBoxHeight,
-            tag.boundingBoxWidth,
-            tag.boundingBoxLeft,
-            tag.boundingBoxTop,
-            576,
-            1280
-          );
-          // console.log(coordinates);
-          // console.log(`this is called ${x} times`);
-
-          return (
-            <Tag
-              key={coordinates.x * Math.random()}
-              leftPos={coordinates.x}
-              topPos={coordinates.y}
-              // leftPos={coordinates.x}
-              // topPos={coordinates.y}
-              title={tag.label.trim()}
-              price={5000}
-              // setVideoModalTabValue={setVideoModalTabValue}
-            />
-          );
-        })}
-
-      {/* <Tag topPos={40} leftPos={60} title="my name" price={5000} /> */}
-      {/* <Tag topPos={+40} leftPos={60} title="my name" price={5000} />
-      <Tag topPos={+20} leftPos={40} title="name" price={600} />
-      <Tag topPos={+50} leftPos={80} title="test test" price={600} /> */}
-      <video
-        ref={vidRef}
-        src={src}
-        loop
-        autoPlay
-        // controls
-        id="video"
-        // width="100%"
-        // height="100%"
-        onPlay={() => {
-          handlePlay();
-        }}
-        onPause={() => {
-          handlePause();
-        }}
+      <div
         style={{
           height: "100%",
-
+          position: "relative",
           aspectRatio: "1/1.77",
-
+          margin: "0 auto",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
-        <track kind="captions" />
-      </video>
+        {/* <div className={styles.tag} /> */}
+        {tagArray &&
+          tagArray.map((tag) => {
+            // console.log(tag);
 
-      {/* {showInfo && (
+            const coordinates = getCoordinates(
+              tag.boundingBoxHeight,
+              tag.boundingBoxWidth,
+              tag.boundingBoxLeft,
+              tag.boundingBoxTop,
+              576,
+              1280
+            );
+            console.log(coordinates);
+            // console.log(`this is called ${x} times`);
+
+            return (
+              <Tag
+                key={coordinates.x * Math.random()}
+                leftPos={coordinates.x}
+                topPos={coordinates.y}
+                // leftPos={coordinates.x}
+                // topPos={coordinates.y}
+                title={tag.label.trim()}
+                price={5000}
+                // setVideoModalTabValue={setVideoModalTabValue}
+              />
+            );
+          })}
+
+        <video
+          ref={vidRef}
+          src={src}
+          loop
+          autoPlay
+          // controls
+          id="video"
+          // width="100%"
+          // height="100%"
+          onPlay={() => {
+            handlePlay();
+          }}
+          onPause={() => {
+            handlePause();
+          }}
+          style={{
+            height: "100%",
+
+            aspectRatio: "1/1.77",
+
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <track kind="captions" />
+        </video>
+
+        {/* {showInfo && (
         <div className={styles.sideIcons}>
           <svg
             className={styles.sideIcon}
@@ -259,7 +267,8 @@ function VideoViewContainer({ src }) {
         </div>
       )} */}
 
-      <div className={styles.profileNameContainer} />
+        <div className={styles.profileNameContainer} />
+      </div>
     </div>
   );
 }

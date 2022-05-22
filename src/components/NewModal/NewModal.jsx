@@ -1,4 +1,6 @@
+import { motion } from "framer-motion";
 import styles from "./NewModal.module.scss";
+
 import { useModalContext } from "../../context/ModalContext";
 import { useAuthContext } from "../../context/AuthContext";
 
@@ -11,6 +13,27 @@ function NewModal({ children }) {
   // } else {
   //   document.body.style.overflowY = "scroll";
   // }
+
+  const dropIn = {
+    hidden: {
+      scale: 0.8,
+      opacity: 0,
+    },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 0.1,
+        type: "spring",
+        damping: 25,
+        stiffness: 500,
+      },
+    },
+    exit: {
+      scale: 0,
+      opacity: 0,
+    },
+  };
 
   const handleKeyDown = () => {};
 
@@ -26,7 +49,7 @@ function NewModal({ children }) {
       role="button"
       tabIndex={0}
     >
-      <div
+      <motion.div
         className={`${styles.modalContent} global-modal-width`}
         onClick={(e) => {
           e.stopPropagation();
@@ -34,9 +57,13 @@ function NewModal({ children }) {
         onKeyDown={handleKeyDown()}
         role="button"
         tabIndex={0}
+        variants={dropIn}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
       >
         {children}
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -16,12 +16,13 @@ template.innerHTML = `
      align-items: center;
      height: 100%;
      border: red 1px solid;
+     
     } 
     
     .tag-p {
       color: white;
       font-size: 12px;
-      display: none;
+      /*display: none;*/
       opacity: 0;
       padding: 0 16px;
       width: 100% ;
@@ -35,9 +36,9 @@ template.innerHTML = `
    
   </style>
   <div class="tag" >
-  <p class="tag-p">
+  <span class="tag-p">
    <slot></slot>
-  </p>
+  </span>
   </div>
 `;
 
@@ -57,7 +58,7 @@ class PeggTag extends HTMLElement {
   }
 
   static get observedAttribute() {
-    return ["topPos", "leftPos"];
+    return ["topPos", "leftPos", "length"];
   }
 
   get topPos() {
@@ -84,16 +85,19 @@ class PeggTag extends HTMLElement {
     return this.getAttribute("length");
   }
 
+  set length(nV) {
+    this.setAttribute("length", nV);
+  }
+
   modeOpen() {
-    this.style.width = `${this.length}px`;
     this.style.height = "25px";
     this.style.borderRadius = "25px";
     this.style.backgroundColor = "black";
     this.style.opacity = "0.95";
     // eslint-disable-next-line no-return-assign
     this.textInfo.style.display = "block";
-
     this.textInfo.style.transform = "translateX(50px)";
+    this.style.width = `${this.length}px`;
 
     setTimeout(() => {
       this.textInfo.style.transform = "translateX(0)";
@@ -127,13 +131,17 @@ class PeggTag extends HTMLElement {
     });
   }
 
+  attributeChangedCallback(prop) {
+    // eslint-disable-next-line no-unused-expressions
+    prop === "length" ? this.render() : "";
+  }
+
   render() {
     this.style.top = `${this.topPos}%`;
     this.style.left = `${this.leftPos}%`;
     this.style.position = "absolute";
     this.style.width = "25px";
     this.style.height = "25px";
-    this.style.cursor = "pointer";
     this.style.backgroundColor = "white";
     console.log(`first: ${this.length}`);
     // console.log(this.textInfo)
