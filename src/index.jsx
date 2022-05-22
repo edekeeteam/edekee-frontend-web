@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/main.scss";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { isMobile } from "react-device-detect";
 import App from "./App";
 
 import { AuthProvider } from "./context/AuthContext";
@@ -16,6 +17,10 @@ import { ProductsProvider } from "./context/ProductsContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const queryClient = new QueryClient();
+
+if (isMobile) {
+  window.location.href = "https://about.edekee.com";
+}
 
 root.render(
   <React.StrictMode>
