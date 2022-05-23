@@ -19,7 +19,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 const queryClient = new QueryClient();
 
 if (isMobile) {
-  window.location.href = "https://about.edekee.com";
+  // window.location.href = "https://about.edekee.com";
 }
 
 root.render(
