@@ -15,7 +15,7 @@ template.innerHTML = `
      display: flex;
      align-items: center;
      height: 100%;
-     border: red 1px solid;
+
      
     } 
     

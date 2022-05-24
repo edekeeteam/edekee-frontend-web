@@ -1,3 +1,7 @@
+@import "../../styles/mixins";
+@import "../../styles/functions";
+@import "../../styles/variables";
+
 .Interest {
   width: 100vw;
   height: 100vh;
@@ -17,5 +21,9 @@
     width: 50%;
     justify-content: center;
     // border: 1px solid red;
+
+    @include mdMaxBreakPoint {
+      width: 80%;
+    }
   }
 }

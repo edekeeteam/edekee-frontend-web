@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
+import { useBuyContext } from "../../context/BuyContext";
 import { useProductsContext } from "../../context/ProductsContext";
 import styles from "./Product.module.scss";
 // import { VideoModalContext } from "../../context/VideoModalContext";
@@ -8,6 +9,7 @@ import styles from "./Product.module.scss";
 function Product({ product, changeVideoTab }) {
   // const { setCurrentModal } = useContext(VideoModalContext);
   const { setProductDetails } = useProductsContext();
+  const { handleProductId } = useBuyContext();
 
   const handleKeyDown = () => {
     // console.log("keydown");
@@ -25,6 +27,7 @@ function Product({ product, changeVideoTab }) {
 
         if (res.data.success) {
           setProductDetails(res.data.data);
+          handleProductId(res.data.data.id);
           changeVideoTab(2);
         }
         return res.data;

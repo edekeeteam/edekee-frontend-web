@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import axios from "axios";
 
 import styles from "./Interest.module.scss";
@@ -13,6 +15,7 @@ function Interest() {
   const navigate = useNavigate();
   // from the server
   const [interests, setInterests] = useState([]);
+  const [loading, setLoading] = useState(true);
   // from the server
 
   // from the user
@@ -25,6 +28,7 @@ function Interest() {
 
   useEffect(() => {
     axios.get("https://eked.herokuapp.com/v1/api/interests").then(async (response) => {
+      setLoading(false);
       setInterests(response.data.data);
     });
   }, []);
@@ -52,6 +56,10 @@ function Interest() {
         <p className="global-text-12">Kindly select up to 3 interest you’d like to see.</p>
       </div>
       <div className={styles.interestsContainer}>
+        {loading &&
+          [1, 2, 3, 4, 5].map((n) => (
+            <Skeleton key={n} circle width={100} height={100} style={{ margin: "10px" }} />
+          ))}
         {interests &&
           interests.map((interest, index) => (
             <InputInterest

@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Skeleton from "react-loading-skeleton";
 import styles from "./InputInterest.module.scss";
+import "react-loading-skeleton/dist/skeleton.css";
+// import Skeleton from "../../SkeletonScreen/Skeleton/Skeleton";
 
 // eslint-disable-next-line react/prop-types
 const checkActiveState = (x, id) => (x.includes(id) ? styles.active : "");
@@ -32,7 +35,7 @@ function InputInterest({ name, id, image, checkedInterestsState, handleOnChange,
             checked={checkedInterestsState[id]}
             onChange={() => handleOnChange(id)}
           />
-
+          {/* <Skeleton type="interest" /> */}
           <img
             className={`${showImage && styles.show}`}
             src={image}
@@ -41,7 +44,12 @@ function InputInterest({ name, id, image, checkedInterestsState, handleOnChange,
               console.log("loaded");
               setShowImage(true);
             }}
+            style={{ display: "none" }}
           />
+
+          <Skeleton circle style={{ position: "absolute", height: "100%", width: "100%" }} />
+          {/* <div className={styles.shim} /> */}
+
           <p>{name}</p>
         </div>
       </div>

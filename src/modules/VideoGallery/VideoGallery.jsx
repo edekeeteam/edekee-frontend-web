@@ -6,7 +6,7 @@ import Hls from "hls.js";
 import useGetAllVideos from "../../hooks/useGetAllVideos";
 // import { useModalContext } from "../../context/ModalContext";
 import styles from "./VideoGallery.module.scss";
-import Skeleton from "../SkeletonScreen/Skeleton/Skeleton";
+import Skeleton from "../../components/SkeletonScreen/Skeleton/Skeleton";
 import VideoContainer from "../../components/VideoContainer/VideoContainer";
 
 // import useScript from '../../hooks/useScript';

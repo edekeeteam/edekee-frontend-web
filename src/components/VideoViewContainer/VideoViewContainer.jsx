@@ -8,7 +8,7 @@ import labels from "../../ladyLabel.json";
 import styles from "./VideoViewContainer.module.scss";
 import Tag from "../Tag/Tag";
 
-function VideoViewContainer({ src }) {
+function VideoViewContainer({ src, setVideoModalTabValue }) {
   const [tagArray, setTagArray] = useState([]);
   const [player, setPlayer] = useState(null);
 
@@ -150,7 +150,7 @@ function VideoViewContainer({ src }) {
                 // topPos={coordinates.y}
                 title={tag.label.trim()}
                 price={5000}
-                // setVideoModalTabValue={setVideoModalTabValue}
+                setVideoModalTabValue={setVideoModalTabValue}
               />
             );
           })}
@@ -160,7 +160,7 @@ function VideoViewContainer({ src }) {
           src={src}
           loop
           autoPlay
-          // controls
+          controls
           id="video"
           // width="100%"
           // height="100%"

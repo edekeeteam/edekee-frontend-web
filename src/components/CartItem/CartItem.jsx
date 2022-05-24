@@ -1,17 +1,19 @@
 // import {useEffect, useState} from "react";
 import PropTypes from "prop-types";
 
+import axios from "axios";
 import styles from "./CartItem.module.scss";
 import { InputCheckbox, InputNumber } from "../InputFields";
 
 function CartItem({
+  id,
   isCheck,
   image,
   name,
   desc,
   color,
   size,
-  qty,
+  quantity,
   price,
   index,
   onDelete,
@@ -28,11 +30,29 @@ function CartItem({
   };
 
   const Add = (selectedIndex) => {
+    console.log(quantity);
     onAdd(selectedIndex);
   };
 
   const Delete = (selectedIndex) => {
-    onDelete(selectedIndex);
+    axios
+      .post(
+        `http://ec2-3-136-189-233.us-east-2.compute.amazonaws.com:3000/v1/api/cart/removeFromCart/${id}`,
+        {
+          headers: {
+            Authorization: "token",
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data.data);
+
+        if (res.data.success) {
+          console.log(res.data);
+          onDelete(selectedIndex);
+        }
+        return res.data;
+      });
   };
 
   return (
@@ -62,7 +82,7 @@ function CartItem({
             role="button"
             tabIndex={0}
             className={styles.delete}
-            onClick={() => Delete(index)}
+            onClick={() => Delete(index, id)}
           >
             <div>
               <img src={`${process.env.PUBLIC_URL}/icons/delete.svg`} alt="" />
@@ -81,7 +101,7 @@ function CartItem({
             onAdd={Add}
             onSubtract={Subtract}
             onDelete={Delete}
-            itemValue={qty}
+            itemValue={quantity}
             index={index}
             color="darker"
           />
@@ -94,12 +114,13 @@ function CartItem({
 CartItem.propTypes = {
   // item: PropTypes.any.isRequired,
   isCheck: PropTypes.bool.isRequired,
+  id: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   desc: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
   size: PropTypes.string.isRequired,
-  qty: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
   index: PropTypes.number.isRequired,
   onDelete: PropTypes.func.isRequired,

@@ -1,0 +1,28 @@
+@import "../../styles/mixins";
+
+.profileHeader {
+  @include flex-center-col;
+  padding-top: 180px;
+
+  .spacing {
+    padding-top: 40px;
+  }
+
+  .follow {
+    display: flex;
+
+    span {
+      margin: 0 25px;
+    }
+
+    .divider {
+      padding-top: 5px;
+
+      .border {
+        height: 40px;
+        border: #fff 1px solid;
+      }
+    }
+
+  }
+}

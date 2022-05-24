@@ -7,12 +7,14 @@ import styles from "./Navbar.module.scss";
 import Button from "../Button/Button";
 
 import { useDropdownContext } from "../../context/DropdownContext";
+import { useBuyContext } from "../../context/BuyContext";
 
 export default function Navbar() {
   const { openDropdown } = useDropdownContext();
   const location = useLocation();
 
   const [show, handleShow] = useState(false);
+  const { cart } = useBuyContext();
 
   const displayDropdown = (e) => {
     const page = e.target.textContent;
@@ -111,7 +113,7 @@ export default function Navbar() {
             {/* <NavLink href="/#"> */}
             <NavLink to="/cart" style={{ textDecoration: "none" }}>
               <span
-                className={styles.navbarIconItem}
+                className={`${styles.navbarIconItem} ${styles.cartIcon}`}
                 onKeyDown={handleKeyDown()}
                 role="button"
                 tabIndex="-1"
@@ -135,6 +137,7 @@ export default function Navbar() {
                 </svg>
 
                 <p className={`${location.pathname === "/cart" ? styles.active : " "}`}>Cart</p>
+                <div className={styles.badge}> {cart.length}</div>
               </span>
             </NavLink>
 

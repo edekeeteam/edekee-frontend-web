@@ -89,7 +89,8 @@ function VideoContainer({ src, videoId, thumbnail }) {
         src={src}
         loop
         muted
-        preload="none"
+        controls
+        preload="auto"
         poster={thumbnail}
         // width="100%"
         // height="100%"

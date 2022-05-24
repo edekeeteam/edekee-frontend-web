@@ -16,13 +16,13 @@ function Size({ size, activeSize }) {
 // eslint-disable-next-line react/prop-types
 function InputSize({ sizes, handleChange }) {
   const [activeSize, setActiveSize] = useState("");
-  const [setSize] = useState("");
+  // const [setSize] = useState("");
   const { handleSizeChange } = useBuyContext();
   // eslint-disable-next-line react/prop-types
 
   function onChangeValue(event) {
     setActiveSize(event.target.value);
-    setSize(event.target.value);
+    // setSize(event.target.value);
     handleChange(event.target.value);
     handleSizeChange(event.target.value);
   }

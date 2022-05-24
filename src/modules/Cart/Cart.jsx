@@ -1,24 +1,38 @@
 import { useEffect, useState } from "react";
 
 import styles from "./Cart.module.scss";
-
-import data from "./data";
+// import data from "./data";
 import CartItem from "../../components/CartItem/CartItem";
 import { InputCheckbox } from "../../components/InputFields";
+import { useBuyContext } from "../../context/BuyContext";
 
 // import {InputCheckbox} from "../../components/InputFields";
 
 function CartModule() {
   // eslint-disable-next-line no-unused-vars
-  const [cart, setCart] = useState([]);
+
   const [isAllChecked, setIsAllChecked] = useState(false);
 
   const [total, setTotal] = useState(0);
   const [shipCost] = useState(100);
+  const { cart, setCart } = useBuyContext();
+  console.log(cart);
+  // const userId = "0147743e-bba3-4b9d-bf17-3c8080e477ea";
 
-  useEffect(() => {
-    setCart(data);
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`https://eked.herokuapp.com/v1/api/cart/getCartItems/${userId}`, {
+  //       headers: {
+  //         Authorization: "token",
+  //       },
+  //     })
+  //     .then((res) => {
+  //       console.log(res.data.data);
+
+  //       setCart(res.data.data);
+  //       // res.data
+  //     });
+  // }, []);
 
   const getFormattedPrice = (price) => `₦ ${price.toFixed(2)}`;
 
@@ -73,7 +87,7 @@ function CartModule() {
   useEffect(() => {
     const totalPrice = cart.reduce((sum, currentState, index) => {
       if (currentState.check === true) {
-        return sum + cart[index].price * cart[index].qty;
+        return sum + cart[index].productPrice * cart[index].quantity;
       }
       return sum;
     }, 0);
@@ -102,15 +116,16 @@ function CartModule() {
         <div className={styles.cartItems}>
           {cart.map((cartItem, index) => (
             <CartItem
-              key={cartItem.name}
-              image={cartItem.image}
+              key={cartItem.id}
+              id={cartItem.id}
+              image={cartItem.productImage}
               isCheck={cartItem.check}
-              name={cartItem.name}
-              desc={cartItem.desc}
+              name={cartItem.productName}
+              desc={cartItem.description}
               size={cartItem.size}
-              color={cartItem.color}
-              price={cartItem.price}
-              qty={cartItem.qty}
+              color={cartItem.color_name}
+              price={cartItem.productPrice}
+              quantity={cartItem.quantity}
               item={cartItem}
               onAdd={onAdd}
               onSubtract={onSubtract}

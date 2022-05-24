@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/main.scss";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { SkeletonTheme } from "react-loading-skeleton";
 import App from "./App";
 
 import { AuthProvider } from "./context/AuthContext";
@@ -26,7 +27,9 @@ root.render(
             <DropdownProvider>
               <ProductsProvider>
                 <BuyProvider>
-                  <App />
+                  <SkeletonTheme baseColor="#7E7F7F" highlightColor="#aeaeae9b">
+                    <App />
+                  </SkeletonTheme>
                 </BuyProvider>
               </ProductsProvider>
             </DropdownProvider>

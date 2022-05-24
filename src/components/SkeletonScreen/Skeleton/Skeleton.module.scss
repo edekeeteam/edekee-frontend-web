@@ -18,7 +18,9 @@
     height: 100%;
     border-radius: 100%;
     position: absolute;
-    z-index: 1;
+    background-color: #fff;
+    border: 3px solid red;
+    z-index: 10;
   }
 
   &.interestsCircle {
