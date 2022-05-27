@@ -4,7 +4,7 @@ import { useModalContext } from "../../context/ModalContext";
 
 // eslint-disable-next-line react/prop-types
 function VidModal({ children }) {
-  const { isVidModalOpen, setIsVidModalOpen, setModalValue, isModalOpen } = useModalContext();
+  const { isVidModalOpen, setIsVidModalOpen, setModalValue } = useModalContext();
 
   // if (isVidModalOpen) {
   //   document.body.style.overflowY = "hidden";
@@ -41,8 +41,8 @@ function VidModal({ children }) {
       onClick={() => {
         setModalValue("");
         setIsVidModalOpen(false);
-        console.log(isVidModalOpen);
-        console.log(isModalOpen);
+        // console.log(isVidModalOpen);
+        // console.log(isModalOpen);
       }}
       onKeyDown={handleKeyDown()}
       role="button"

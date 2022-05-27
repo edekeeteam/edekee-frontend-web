@@ -93,9 +93,14 @@ function ProductDetails() {
           bgcolor="white"
           label="Buy"
           handleClick={() => {
-            setIsModalOpen(true);
-            setModalValue("productspecs");
-            setProductId(id);
+            if (localStorage.getItem("userId") !== "") {
+              setIsModalOpen(true);
+              setModalValue("productspecs");
+              setProductId(id);
+            } else {
+              setIsModalOpen(true);
+              setModalValue("signup");
+            }
           }}
         />
       </div>

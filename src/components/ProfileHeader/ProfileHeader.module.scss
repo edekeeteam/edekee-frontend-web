@@ -2,9 +2,10 @@
 
 .profileHeader {
   @include flex-center-col;
-  padding-top: 180px;
+  padding-top: 100px;
 
   .spacing {
+    // border: 1px solid red;
     padding-top: 40px;
   }
 
@@ -23,6 +24,5 @@
         border: #fff 1px solid;
       }
     }
-
   }
 }

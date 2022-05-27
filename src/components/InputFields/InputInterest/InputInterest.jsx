@@ -41,13 +41,21 @@ function InputInterest({ name, id, image, checkedInterestsState, handleOnChange,
             src={image}
             alt={name}
             onLoad={() => {
-              console.log("loaded");
+              // console.log("loaded");
               setShowImage(true);
             }}
-            style={{ display: "none" }}
+            // style={{ display: "none" }}
           />
 
-          <Skeleton circle style={{ position: "absolute", height: "100%", width: "100%" }} />
+          <Skeleton
+            circle
+            style={{
+              position: "absolute",
+              height: "100%",
+              width: "100%",
+              display: showImage ? "none" : "block",
+            }}
+          />
           {/* <div className={styles.shim} /> */}
 
           <p>{name}</p>

@@ -1,29 +1,30 @@
 .interest {
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid red;
+  // border: 1px solid red;
 
   .highlight {
     margin-bottom: 20px;
     margin-right: 20px;
     padding: 2px;
     border: transparent 2px solid;
+    transform: scale(1);
+    transition: all 0.3s ease-in-out;
     &:hover {
       // border: 1px solid red;
 
       transform: scale(1.2);
-      transition: all ease-in-out 500ms;
+      transition: all 0.3s ease-in-out;
     }
 
     &.active {
       border-radius: 100%;
       border-color: white;
       &:hover {
-        // border: 1px solid red;
         // animation: pulse 1s infinite;
         // animation-timing-function: linear;
         transform: scale(1.2);
-        transition: all ease 500ms;
+        transition: all 0.3s ease-in-out;
       }
     }
   }

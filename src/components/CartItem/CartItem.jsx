@@ -37,7 +37,7 @@ function CartItem({
   const Delete = (selectedIndex) => {
     axios
       .post(
-        `http://ec2-3-136-189-233.us-east-2.compute.amazonaws.com:3000/v1/api/cart/removeFromCart/${id}`,
+        `http://ec2-3-137-115-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/removeFromCart/${id}`,
         {
           headers: {
             Authorization: "token",

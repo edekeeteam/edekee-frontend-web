@@ -9,12 +9,6 @@ export default function useGetAllVideos() {
           Authorization: "token",
         },
       })
-      .then((res) => res.data.data)
+      .then((res) => res.data)
   );
-}
-
-export function useGetJson(url) {
-  return useQuery("json", () => {
-    axios.get(url).then((res) => res.data);
-  });
 }

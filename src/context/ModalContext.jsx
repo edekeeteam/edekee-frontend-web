@@ -8,9 +8,16 @@ function ModalProvider({ children }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [isVidModalOpen, setIsVidModalOpen] = useState(true);
   const [modalValue, setModalValue] = useState("");
-  const [authModalValue, setAuthModalValue] = useState(0);
+  const [authModalValue, setAuthModalValue] = useState(1);
   const [uploadModalValue, setUploadModalValue] = useState(0);
   const [url, setUrl] = useState("");
+
+  // if (localStorage.getItem("user") !== null) {
+  //   console.log(`Email address exists`);
+  //   setAuthModalValue(1);
+  // } else {
+  //   console.log(`Email address not found`);
+  // }
 
   return (
     <ModalContext.Provider

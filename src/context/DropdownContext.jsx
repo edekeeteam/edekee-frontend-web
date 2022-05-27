@@ -8,6 +8,7 @@ function DropdownProvider({ children }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [page, setPage] = useState({ page: "", links: [] });
   const [location, setLocation] = useState({});
+  const [content, setContent] = useState("profile");
 
   //   const [DropdownValue, setDropdownValue] = useState(0);
 
@@ -19,6 +20,10 @@ function DropdownProvider({ children }) {
     } else {
       setIsDropdownOpen(false);
     }
+  };
+
+  const changeDropdownContent = (newContent) => {
+    setContent(newContent);
   };
 
   // const values = useMemo(
@@ -35,6 +40,9 @@ function DropdownProvider({ children }) {
         setPage,
         openDropdown,
         location,
+        changeDropdownContent,
+
+        content,
       }}
     >
       {children}

@@ -52,7 +52,7 @@ function VideoContainer({ src, videoId, thumbnail }) {
     axios.get(`https://eked.herokuapp.com/v1/api/products/${id}/video`).then((res) => {
       console.log(res);
       if (res.status === 200) {
-        console.log("successful");
+        // console.log("successful");
         // console.log(res.data.success);
         setProducts(res.data);
       }
@@ -199,7 +199,6 @@ function VideoContainer({ src, videoId, thumbnail }) {
               strokeLinejoin="round"
             />
           </svg>
-
           <svg
             className={styles.sideIcon}
             width="25"

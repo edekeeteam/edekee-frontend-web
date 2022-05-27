@@ -7,7 +7,7 @@ import styles from "./Products.module.scss";
 
 function Products({ setVideoModalTabValue }) {
   const { products } = useProductsContext();
-  console.log(products);
+  // console.log(products);
   return (
     <div className={styles.products}>
       {products.data ? (

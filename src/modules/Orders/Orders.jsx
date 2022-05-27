@@ -2,23 +2,34 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./Orders.module.scss";
 import OrderItem from "../../components/OrderItem/OrderItem";
+// import { useAuthContext } from "../../context/AuthContext";
 
 function Orders() {
   const [orders, setOrders] = useState([]);
+  // const { user } = useAuthContext();
 
   useEffect(() => {
-    const userId = "0147743e-bba3-4b9d-bf17-3c8080e477ea";
+    const userId = localStorage.getItem("userId");
 
     axios
-      .get(`https://eked.herokuapp.com/v1/api/cart/getCartItems/${userId}`, {
-        headers: {
-          Authorization: "token",
-        },
-      })
+      .get(
+        `http://ec2-3-137-115-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/getOrdersByUserId/${userId}`,
+        {
+          headers: {
+            Authorization: "token",
+          },
+        }
+      )
       .then((res) => {
-        console.log(res.data.data);
-
-        setOrders(res.data.data);
+        console.log(typeof res.data.data);
+        const { data } = res.data;
+        const stuff = [];
+        console.log(data);
+        data.map((order) => order.orderItem.map((eachOrder) => stuff.push(eachOrder)));
+        console.log(stuff);
+        // const items = stuff.map((orderss) => orderss.orderItem.map((i) => i));
+        // console.log(items);
+        setOrders(stuff);
         // res.data
       });
   }, []);
@@ -33,6 +44,7 @@ function Orders() {
           {orders.map((orderItem) => (
             <OrderItem
               key={orderItem}
+              data={orderItem}
               //   key={orderItem.name}
               //   id={orderItem.id}
               //   image={orderItem.image}
@@ -53,22 +65,19 @@ function Orders() {
           ))}
         </div>
         <div className={styles.orderSummary}>
-          <p className="global-modal-sm-mb global-text-20">Summary</p>
+          {/* <p className="global-modal-sm-mb global-text-20">Summary</p>
 
           <div className={`${styles.subtotal} global-modal-sm-mb`}>
             <p>subtotal </p>
-            {/* <p>{getFormattedPrice(total)}</p> */}
           </div>
           <div className={`${styles.shipping} global-modal-sm-mb`}>
             <p>shipping </p>
-            {/* <p>{shipCost}</p> */}
           </div>
 
           <div className={`${styles.border} global-modal-sm-mb`} />
           <div className={`${styles.total} global-modal-sm-mb`}>
             <p className="right-section">Total </p>
-            {/* <p className="right-section"> {getFormattedPrice(total)} </p> */}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

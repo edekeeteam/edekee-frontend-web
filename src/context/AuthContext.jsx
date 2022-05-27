@@ -40,6 +40,8 @@ function AuthProvider({ children }) {
   // const [isSubmit, setIsSubmit] = false;
   // const [activeGender, setActiveGender] = useState("Male");
   const interests = ["07eb9d19-2d8e-4021-9a8c-88d5313f10f8"];
+  // const [user, setUser] = useLocalStorage("userId", "");
+  const [user, setUser] = useState("");
 
   const { setAuthModalValue, setIsModalOpen, setModalValue } = useModalContext();
 
@@ -272,6 +274,10 @@ function AuthProvider({ children }) {
         console.log(response);
         if (response.data.success) {
           //  alert("registered successfully");
+          // console.log(response.data.user.id);
+          localStorage.setItem("userId", response.data.user.id);
+          setUser(localStorage.getItem("userId"));
+
           setModalValue("phonecontact");
           // setIsModalOpen(false);
           console.log("registered successfully");
@@ -427,7 +433,7 @@ function AuthProvider({ children }) {
         setAuthLoading,
         btnState,
         setBtnState,
-
+        user,
         // activeGender,
         // setActiveGender,
         saveCountryAndNumber,

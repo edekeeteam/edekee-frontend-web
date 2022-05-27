@@ -27,7 +27,7 @@ root.render(
             <DropdownProvider>
               <ProductsProvider>
                 <BuyProvider>
-                  <SkeletonTheme baseColor="#7E7F7F" highlightColor="#aeaeae9b">
+                  <SkeletonTheme baseColor="#3F3F3F" highlightColor="#525252">
                     <App />
                   </SkeletonTheme>
                 </BuyProvider>

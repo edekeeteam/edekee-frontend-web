@@ -68,7 +68,7 @@ function VideoViewContainer({ src, setVideoModalTabValue }) {
     // console.log(tm);
 
     const allTags = labelsObj.filter(
-      (label) => Math.round(label.millisecond / 1000) * 1000 === currentTime
+      (label) => Math.round(parseInt(label.millisecond, 10) / 1000) * 1000 === currentTime
     );
 
     // labelsObj.map((lab) => {
@@ -80,13 +80,18 @@ function VideoViewContainer({ src, setVideoModalTabValue }) {
     //     return label;
     //   }
 
-    // console.log(allTags);
+    console.log(allTags);
     setTagArray(allTags);
   };
 
   const getCoordinates = (bbh, bbw, bbl, bbt, vw, vh) => {
-    const xCoordinate = bbl * vw + (bbw * vw) / 2;
-    const yCoordinate = bbt * vh + (bbh * vh) / 2;
+    const bbhInt = parseFloat(bbh);
+    const bbwInt = parseFloat(bbw);
+    const bblInt = parseFloat(bbl);
+    const bbtInt = parseFloat(bbt);
+
+    const xCoordinate = bblInt * vw + (bbwInt * vw) / 2;
+    const yCoordinate = bbtInt * vh + (bbhInt * vh) / 2;
     // let adjustedWidth = (20 / vw) * 100;
     // let adjustedHeight = (20 / vh) * 100;
 
@@ -94,6 +99,7 @@ function VideoViewContainer({ src, setVideoModalTabValue }) {
     // const y = bbt * 100;
     const x = (xCoordinate / vw) * 100;
     const y = (yCoordinate / vh) * 100;
+    // console.log(x, y);
 
     // let x = bbl * 100;
     // let y = bbt * 100;
@@ -138,7 +144,7 @@ function VideoViewContainer({ src, setVideoModalTabValue }) {
               576,
               1280
             );
-            console.log(coordinates);
+            // console.log(coordinates);
             // console.log(`this is called ${x} times`);
 
             return (
