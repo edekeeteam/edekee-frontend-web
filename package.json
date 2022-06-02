@@ -17,6 +17,7 @@
     "react-device-detect": "^2.2.2",
     "react-dom": "^18.1.0",
     "react-hls-player": "^3.0.7",
+    "react-loading-skeleton": "^3.1.0",
     "react-masonry-css": "^1.0.16",
     "react-otp-input": "^2.4.0",
     "react-query": "^3.39.0",

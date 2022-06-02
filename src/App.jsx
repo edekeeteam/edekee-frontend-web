@@ -6,7 +6,6 @@ import Router from "./Router";
 // import SignInModal from "./components/AuthenticationModals/SignInModal/SignInModal";
 
 // import OtpModal from "./components/AuthenticationModals/OtpModal/OtpModal";
-import Dropdown from "./components/Dropdown/Dropdown";
 import OtpModal from "./components/AuthenticationModals/OtpModal/OtpModal";
 import { useModalContext } from "./context/ModalContext";
 import SignUpModal from "./components/AuthenticationModals/SignUpModal/SignUpModal";
@@ -66,7 +65,6 @@ function App() {
       {/* <RegUsernameModal /> */}
       {/* <PhoneContact /> */}
       {/* <DobInfo /> */}
-      <Dropdown />
     </>
   );
 }

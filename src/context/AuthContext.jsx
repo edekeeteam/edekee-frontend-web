@@ -40,6 +40,8 @@ function AuthProvider({ children }) {
   // const [isSubmit, setIsSubmit] = false;
   // const [activeGender, setActiveGender] = useState("Male");
   const interests = ["07eb9d19-2d8e-4021-9a8c-88d5313f10f8"];
+  // const [user, setUser] = useLocalStorage("userId", "");
+  const [user, setUser] = useState("");
 
   const { setAuthModalValue, setIsModalOpen, setModalValue } = useModalContext();
 
@@ -143,32 +145,37 @@ function AuthProvider({ children }) {
         type: formState.type,
       };
       // console.log();
-      axios.post("https://eked.herokuapp.com/v1/api/auth/generate/otp", params).then(
-        async (response) => {
-          setAuthLoading(true);
-          console.log(response);
-          if (response.data.success) {
-            // router.push("/auth/verifyOtp");
-            // change AuthModalValue
-            setAuthLoading(false);
+      axios
+        .post(
+          "http://ec2-3-137-115-168.us-east-2.compute.amazonaws.com:3000/v1/api/auth/generate/otp",
+          params
+        )
+        .then(
+          async (response) => {
+            setAuthLoading(true);
+            console.log(response);
+            if (response.data.success) {
+              // router.push("/auth/verifyOtp");
+              // change AuthModalValue
+              setAuthLoading(false);
 
-            setAuthSuccessful(true);
-            // formState.signUpEmail = "";
-            // formState.signUpPassword = "";
-            setTimeout(() => {
-              setModalValue("otp");
-              setAuthSuccessful(false);
+              setAuthSuccessful(true);
+              // formState.signUpEmail = "";
+              // formState.signUpPassword = "";
+              setTimeout(() => {
+                setModalValue("otp");
+                setAuthSuccessful(false);
+                setBtnState(false);
+              }, 1000);
+            } else {
+              setAuthLoading(false);
               setBtnState(false);
-            }, 1000);
-          } else {
-            setAuthLoading(false);
-            setBtnState(false);
 
-            setErrors({ email: `${response.data.message}` });
+              setErrors({ email: `${response.data.message}` });
+            }
           }
-        }
-        // console.log(response);
-      );
+          // console.log(response);
+        );
     }
 
     // console.log(signUpEmail[0], signUpPassword[0]);
@@ -180,7 +187,10 @@ function AuthProvider({ children }) {
       type: formState.type,
     };
     axios
-      .post("https://eked.herokuapp.com/v1/api/auth/generate/otp", params)
+      .post(
+        "http://ec2-3-137-115-168.us-east-2.compute.amazonaws.com:3000/v1/api/auth/generate/otp",
+        params
+      )
       .then(
         async (response) => {
           console.log(response);
@@ -216,30 +226,35 @@ function AuthProvider({ children }) {
         username: formState.username,
       };
 
-      axios.post("https://eked.herokuapp.com/v1/api/auth/login", params).then(async (response) => {
-        // if (true) {
-        // }
-        console.log(response);
-        setAuthLoading(true);
-        if (response.data.success) {
-          // router.push("/auth/verifyOtp");
-          // change AuthModalValue
-          // setAuthModalValue(1);
-          setAuthLoading(false);
+      axios
+        .post(
+          "http://ec2-3-137-115-168.us-east-2.compute.amazonaws.com:3000/v1/api/auth/login",
+          params
+        )
+        .then(async (response) => {
+          // if (true) {
+          // }
+          console.log(response);
+          setAuthLoading(true);
+          if (response.data.success) {
+            // router.push("/auth/verifyOtp");
+            // change AuthModalValue
+            // setAuthModalValue(1);
+            setAuthLoading(false);
 
-          setAuthSuccessful(true);
-          // formState.signUpEmail = "";
-          // formState.signUpPassword = "";
-          setTimeout(() => {
-            setIsModalOpen(false);
-            setAuthModalValue(1);
-            setAuthSuccessful(false);
-            setBtnState(false);
-            formState.signInEmail = "";
-            formState.signInPassword = "";
-          }, 1000);
-        }
-      });
+            setAuthSuccessful(true);
+            // formState.signUpEmail = "";
+            // formState.signUpPassword = "";
+            setTimeout(() => {
+              setIsModalOpen(false);
+              setAuthModalValue(1);
+              setAuthSuccessful(false);
+              setBtnState(false);
+              formState.signInEmail = "";
+              formState.signInPassword = "";
+            }, 1000);
+          }
+        });
     }
 
     // console.log(params);
@@ -267,11 +282,18 @@ function AuthProvider({ children }) {
     };
     console.log(params);
     axios
-      .post("https://eked.herokuapp.com/v1/api/auth/verify/otp", params)
+      .post(
+        "http://ec2-3-137-115-168.us-east-2.compute.amazonaws.com:3000/v1/api/auth/verify/otp",
+        params
+      )
       .then(async (response) => {
         console.log(response);
         if (response.data.success) {
           //  alert("registered successfully");
+          // console.log(response.data.user.id);
+          localStorage.setItem("userId", response.data.user.id);
+          setUser(localStorage.getItem("userId"));
+
           setModalValue("phonecontact");
           // setIsModalOpen(false);
           console.log("registered successfully");
@@ -349,7 +371,10 @@ function AuthProvider({ children }) {
         username: formState.username[0],
       };
       axios
-        .post("https://eked.herokuapp.com/v1/api/user/username/verify", params)
+        .post(
+          "http://ec2-3-137-115-168.us-east-2.compute.amazonaws.com:3000/v1/api/user/username/verify",
+          params
+        )
         .then(async (response) => {
           console.log(response);
           if (response.data.success) {
@@ -364,7 +389,10 @@ function AuthProvider({ children }) {
             console.log(newParams);
             //  alert("registered successfully");
             axios
-              .put("https://eked.herokuapp.com/v1/api/user/update", newParams)
+              .put(
+                "http://ec2-3-137-115-168.us-east-2.compute.amazonaws.com:3000/v1/api/user/update",
+                newParams
+              )
               .then((newResponse) => {
                 console.log(newResponse);
                 // const res = newResponse;
@@ -427,7 +455,7 @@ function AuthProvider({ children }) {
         setAuthLoading,
         btnState,
         setBtnState,
-
+        user,
         // activeGender,
         // setActiveGender,
         saveCountryAndNumber,

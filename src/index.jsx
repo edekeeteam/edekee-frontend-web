@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/main.scss";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { SkeletonTheme } from "react-loading-skeleton";
 import { isMobile } from "react-device-detect";
 import App from "./App";
 
@@ -31,7 +32,9 @@ root.render(
             <DropdownProvider>
               <ProductsProvider>
                 <BuyProvider>
-                  <App />
+                  <SkeletonTheme baseColor="#3F3F3F" highlightColor="#525252">
+                    <App />
+                  </SkeletonTheme>
                 </BuyProvider>
               </ProductsProvider>
             </DropdownProvider>

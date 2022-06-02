@@ -19,6 +19,10 @@
 
   font-size: 0.7vw;
   cursor: pointer;
+  &:hover {
+    filter: brightness(0.9);
+    // background-color: #e23c32;
+  }
 
   // &.large {
   //   // color: red;

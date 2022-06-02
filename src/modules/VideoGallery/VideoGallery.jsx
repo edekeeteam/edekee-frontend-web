@@ -3,10 +3,9 @@ import { useEffect, useRef } from "react";
 import Masonry from "react-masonry-css";
 import Hls from "hls.js";
 // import axios from "axios";
-import useGetAllVideos from "../../hooks/useGetAllVideos";
+// import useGetAllVideos from "../../hooks/useGetAllVideos";
 // import { useModalContext } from "../../context/ModalContext";
 import styles from "./VideoGallery.module.scss";
-import Skeleton from "../SkeletonScreen/Skeleton/Skeleton";
 import VideoContainer from "../../components/VideoContainer/VideoContainer";
 
 // import useScript from '../../hooks/useScript';
@@ -20,13 +19,13 @@ import VideoContainer from "../../components/VideoContainer/VideoContainer";
 const breakpointColumnsObj = {
   default: 3,
   3000: 3,
-  2000: 4,
+  2000: 3,
   1200: 3,
   1000: 2,
   500: 1,
 };
 
-function VideoGallery() {
+function VideoGallery({ data }) {
   const vidRef = useRef();
 
   const src = "https://edge.tikicdn.com/data/hls/902297/1/3/1478/manifest.m3u8";
@@ -37,11 +36,11 @@ function VideoGallery() {
     hls.attachMedia(vidRef.current);
   }, [vidRef]);
 
-  const { data, isLoading } = useGetAllVideos();
+  // const { data, isLoading } = useGetAllVideos();
 
-  if (!isLoading) {
-    console.log(data);
-  }
+  // if (!isLoading) {
+  //   console.log(data);
+  // }!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   // if (!isLoading) {
   //   axios
@@ -73,14 +72,14 @@ function VideoGallery() {
         breakpointCols={breakpointColumnsObj}
         columnClassName={styles.masonryColumn}
       >
-        {isLoading && [1, 2, 3, 4, 5, 6].map((n) => <Skeleton key={n} type="video" />)}
         {data &&
-          data.data.map((video) => (
+          data.map((video) => (
             <VideoContainer
-              src={video.videoUrl}
-              key={video.videoId}
-              videoId={video.videoId}
+              src={video.video.default}
+              key={video.id}
+              videoId={video.id}
               thumbnail={video.thumbnail}
+
               // onClick={() => {
               //   // console.log("clicked");
               //   setModalValue("videomodal");

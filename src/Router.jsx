@@ -8,6 +8,8 @@ import Splash from "./pages";
 import Home from "./pages/home";
 import Profile from "./pages/profile";
 import Cart from "./pages/cart";
+import Orders from "./pages/orders";
+// import Dropdown from "./components/Dropdown/Dropdown";
 
 function Router() {
   return (
@@ -29,6 +31,7 @@ function Router() {
           <Route path="home" element={<Home />} />
           <Route path="profile" element={<Profile />} />
           <Route path="cart" element={<Cart />} />
+          <Route path="orders" element={<Orders />} />
         </Route>
       </Routes>
     </BrowserRouter>

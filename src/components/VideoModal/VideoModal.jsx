@@ -50,10 +50,7 @@ function VideoModal() {
 
   return (
     <VidModal>
-      <VideoViewContainer
-        // setVideoModalTabValue={setVideoModalTabValue}
-        src={url}
-      />
+      <VideoViewContainer setVideoModalTabValue={setVideoModalTabValue} src={url} />
       <div className={styles.tabSection}>
         <div className={styles.tabHeader}>
           {videoModalTabValue !== 2

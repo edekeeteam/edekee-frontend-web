@@ -49,6 +49,7 @@ function ProductSpecs() {
   const { setModalValue } = useModalContext();
   const { productDetails } = useProductsContext();
   const { properties } = productDetails;
+  console.log(properties);
   //  size, setSize, quantity, setQuantity,
   const handleKeyDown = () => {
     // console.log("keydown");
