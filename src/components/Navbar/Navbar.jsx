@@ -23,8 +23,9 @@ export default function Navbar() {
   const [show, handleShow] = useState(false);
   const { cart } = useBuyContext();
 
-  const displayDropdown = (e) => {
-    const page = e.target.textContent;
+  const displayDropdown = (e, newPage) => {
+    const page = newPage;
+    console.log(page);
     const tempBtn = e.target.getBoundingClientRect();
     const center = tempBtn.left - 65;
     const bottom = tempBtn.bottom + 30;
@@ -116,7 +117,7 @@ export default function Navbar() {
                   setIsDropdownOpen(false);
                 } else {
                   changeDropdownContent("profile");
-                  displayDropdown(e);
+                  displayDropdown(e, "profile");
                 }
               }}
             >
@@ -165,7 +166,7 @@ export default function Navbar() {
                 </svg>
 
                 <p className={`${location.pathname === "/cart" ? styles.active : " "}`}>Cart</p>
-                <div className={styles.badge}> {cart.length}</div>
+                <div className={styles.badge}> {cart ? cart.length : 0}</div>
               </span>
             </NavLink>
 
@@ -176,14 +177,14 @@ export default function Navbar() {
               bgcolor="purple"
               handleClick={(e) => {
                 // displayDropdown(e);
-                console.log(localStorage.getItem("userId"));
+                // console.log(localStorage.getItem("userId"));
                 if (localStorage.getItem("userId") === "") {
                   setIsModalOpen(true);
                   setModalValue("signup");
                   setIsDropdownOpen(false);
                 } else {
                   changeDropdownContent("create");
-                  displayDropdown(e);
+                  displayDropdown(e, "create");
                 }
               }}
               // handleClick={displaySubmenu}  stroke={router.pathname === "/cart" ? "white" : "#6D7280"}

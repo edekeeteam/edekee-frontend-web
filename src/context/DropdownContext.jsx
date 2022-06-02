@@ -15,6 +15,7 @@ function DropdownProvider({ children }) {
   const openDropdown = (newpage, coordinates) => {
     if (!isDropdownOpen) {
       setPage(newpage);
+      console.log(newpage);
       setLocation(coordinates);
       setIsDropdownOpen(true);
     } else {
