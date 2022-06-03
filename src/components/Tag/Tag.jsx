@@ -23,13 +23,15 @@ function Tag({ topPos, leftPos, price, title, id, setVideoModalTabValue }) {
   }, []);
 
   React.useEffect(() => {
-    tag.current.addEventListener("buy", () => {
+    tag.current.addEventListener("buy", (e) => {
+      console.log(e.detail);
       axios
         .get(
-          `hhttp://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/product/${id}`,
+          `http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/product/${e.detail.id}`,
           {
             headers: {
-              Authorization: "token",
+              Authorization: localStorage.getItem("token"),
+              portal: "web",
             },
           }
         )
@@ -51,7 +53,7 @@ function Tag({ topPos, leftPos, price, title, id, setVideoModalTabValue }) {
   }, []);
 
   return (
-    <pegg-tag ref={tag} topPos={topPos} leftPos={leftPos} length={length + 30}>
+    <pegg-tag ref={tag} id={id} topPos={topPos} leftPos={leftPos} length={length + 30}>
       <span ref={measuredRef}>{`${price} ${title}`}</span>
     </pegg-tag>
   );
