@@ -1,5 +1,5 @@
 // const categories = "https://eked.herokuapp.com/v1/api/category/new";
-// const interests = "https://eked.herokuapp.com/v1/api/interests";
+// const interests = "https://eked.herokuapp.com/v1/api/interests...";
 
 const apiRoutes = {
   getAllVideos: "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/video",
