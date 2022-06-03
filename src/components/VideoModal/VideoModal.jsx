@@ -87,7 +87,7 @@ function VideoModal() {
           {/* {value === 0 ? (
               <Product />
             ) : value === 1 ? (
-              //   <ProductSpecs />
+              //   <ProductSpecs... />
               <Comment />
             )} */}
         </div>
