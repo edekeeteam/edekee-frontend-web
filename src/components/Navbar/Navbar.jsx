@@ -12,10 +12,13 @@ import Button from "../Button/Button";
 import { useDropdownContext } from "../../context/DropdownContext";
 import { useBuyContext } from "../../context/BuyContext";
 import { useModalContext } from "../../context/ModalContext";
+import { useAuthContext } from "../../context/AuthContext";
 
 export default function Navbar() {
   const { openDropdown, setIsDropdownOpen, changeDropdownContent } = useDropdownContext();
   const { setIsModalOpen, setModalValue } = useModalContext();
+
+  const { user } = useAuthContext();
 
   const location = useLocation();
   // const navigate = useNavigate();
@@ -111,7 +114,11 @@ export default function Navbar() {
             <span
               className={styles.navbarIconItem}
               onClick={(e) => {
-                if (localStorage.getItem("userId") === "") {
+                // console.log(typeof localStorage.getItem("interests"));
+                const inter = JSON.parse(localStorage.getItem("interests"));
+                console.log(typeof inter);
+
+                if (!localStorage.getItem("userId")) {
                   setIsModalOpen(true);
                   setModalValue("signup");
                   setIsDropdownOpen(false);
@@ -136,7 +143,7 @@ export default function Navbar() {
             {/* </NavLink> */}
 
             {/* <NavLink href="/#"> */}
-            <NavLink to="/cart" style={{ textDecoration: "none" }}>
+            <NavLink to={`/cart/${user}`} style={{ textDecoration: "none" }}>
               <span
                 className={`${styles.navbarIconItem} ${styles.cartIcon}`}
                 // onClick={setIsDropdownOpen(false)}
@@ -178,7 +185,7 @@ export default function Navbar() {
               handleClick={(e) => {
                 // displayDropdown(e);
                 // console.log(localStorage.getItem("userId"));
-                if (localStorage.getItem("userId") === "") {
+                if (!localStorage.getItem("userId")) {
                   setIsModalOpen(true);
                   setModalValue("signup");
                   setIsDropdownOpen(false);

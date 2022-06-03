@@ -79,6 +79,7 @@ function VideoGallery({ data }) {
               key={video.id}
               videoId={video.id}
               thumbnail={video.thumbnail}
+              label={video.json}
 
               // onClick={() => {
               //   // console.log("clicked");

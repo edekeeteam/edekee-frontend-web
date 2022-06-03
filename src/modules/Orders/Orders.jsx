@@ -1,27 +1,33 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 import axios from "axios";
 import styles from "./Orders.module.scss";
 import OrderItem from "../../components/OrderItem/OrderItem";
+import useGetOrders from "../../hooks/orders/useGetOrders";
 // import { useAuthContext } from "../../context/AuthContext";
 
 function Orders() {
   const [orders, setOrders] = useState([]);
   // const { user } = useAuthContext();
 
+  const { userI } = useParams();
+
   useEffect(() => {
     const userId = localStorage.getItem("userId");
 
     axios
       .get(
-        `http://ec2-3-137-115-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/getOrdersByUserId/${userId}`,
+        `http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/getOrdersByUserId/${userId}`,
         {
           headers: {
-            Authorization: "token",
+            Authorization: localStorage.getItem("token"),
+            portal: "web",
           },
         }
       )
       .then((res) => {
-        console.log(typeof res.data.data);
+        // console.log(typeof res.data.data);
         const { data } = res.data;
         const stuff = [];
         console.log(data);
@@ -33,6 +39,13 @@ function Orders() {
         // res.data
       });
   }, []);
+
+  const { data } = useGetOrders(userI);
+
+  if (data) {
+    console.log(data);
+  }
+
   return (
     <div className={styles.orderModule}>
       <div className="global-modal-sm-mb">

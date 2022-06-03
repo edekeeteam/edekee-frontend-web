@@ -8,7 +8,7 @@ import VideoGallery from "../../modules/VideoGallery/VideoGallery";
 
 function ProfileTabs(data) {
   const [content, setContent] = useState("videos");
-  console.log(data);
+  // console.log(data);
   return (
     <>
       <div className={styles.profileTabs}>

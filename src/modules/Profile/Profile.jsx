@@ -2,8 +2,8 @@
 import React from "react";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 
-function ProfileModule({ data }) {
-  return <ProfileHeader data={data} />;
+function ProfileModule({ data, isCurrentUser }) {
+  return <ProfileHeader data={data} isCurrentUser={isCurrentUser} />;
 }
 
 export default ProfileModule;

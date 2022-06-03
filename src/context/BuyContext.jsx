@@ -22,10 +22,11 @@ function BuyProvider({ children }) {
   const fetchCart = () => {
     axios
       .get(
-        `http://ec2-3-137-115-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/getCartItems/${userId}`,
+        `http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/getCartItems/${userId}`,
         {
           headers: {
-            Authorization: "token",
+            Authorization: localStorage.getItem("token"),
+            portal: "web",
           },
         }
       )
@@ -71,7 +72,7 @@ function BuyProvider({ children }) {
     };
     axios
       .post(
-        "http://ec2-3-137-115-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/addToCart",
+        "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/addToCart",
         params
       )
       .then(

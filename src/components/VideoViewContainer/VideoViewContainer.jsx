@@ -1,525 +1,18 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect, useRef } from "react";
 import Hls from "hls.js";
-import labels from "../../ladyLabel.json";
+// import labels from "../../ladyLabel.json";
 // import { useModalContext } from "../../context/ModalContext";
-
 // import { motion } from "framer-motion";
 import styles from "./VideoViewContainer.module.scss";
 import Tag from "../Tag/Tag";
 
-function VideoViewContainer({ src, setVideoModalTabValue }) {
+function VideoViewContainer({ src, setVideoModalTabValue, json }) {
   const [tagArray, setTagArray] = useState([]);
   const [player, setPlayer] = useState(null);
 
   const playerRef = useRef(player);
 
-  const labells = [
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Yellow Pallazo Pants",
-      price: 65000,
-      id: "18ddcab1-64e1-4ca2-b289-ec98d5d8375a",
-      milliseconds: 0,
-      x: 0.07,
-      y: 0.8284106891701828,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Yellow Pallazo Pants",
-      price: 65000,
-      id: "18ddcab1-64e1-4ca2-b289-ec98d5d8375a",
-      milliseconds: 500,
-      x: 0.0875,
-      y: 0.8396624472573839,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Yellow Pallazo Pants",
-      price: 65000,
-      id: "18ddcab1-64e1-4ca2-b289-ec98d5d8375a",
-      milliseconds: 1000,
-      x: 0.0675,
-      y: 0.8748241912798875,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Yellow Pallazo Pants",
-      price: 65000,
-      id: "18ddcab1-64e1-4ca2-b289-ec98d5d8375a",
-      milliseconds: 1500,
-      x: 0.3,
-      y: 0.870604781997187,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Yellow Pallazo Pants",
-      price: 65000,
-      id: "18ddcab1-64e1-4ca2-b289-ec98d5d8375a",
-      milliseconds: 2000,
-      x: 0.305,
-      y: 0.8663853727144867,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Yellow Pallazo Pants",
-      price: 65000,
-      id: "18ddcab1-64e1-4ca2-b289-ec98d5d8375a",
-      milliseconds: 2500,
-      x: 0.3475,
-      y: 0.8945147679324894,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Yellow Pallazo Pants",
-      price: 65000,
-      id: "18ddcab1-64e1-4ca2-b289-ec98d5d8375a",
-      milliseconds: 3000,
-      x: 0.405,
-      y: 0.9113924050632911,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Yellow Pallazo Pants",
-      price: 65000,
-      id: "18ddcab1-64e1-4ca2-b289-ec98d5d8375a",
-      milliseconds: 3500,
-      x: 0.5275,
-      y: 0.9071729957805907,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Yellow Pallazo Pants",
-      price: 65000,
-      id: "18ddcab1-64e1-4ca2-b289-ec98d5d8375a",
-      milliseconds: 4000,
-      x: 0.5525,
-      y: 0.8959212376933896,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Yellow Pallazo Pants",
-      price: 65000,
-      id: "18ddcab1-64e1-4ca2-b289-ec98d5d8375a",
-      milliseconds: 4500,
-      x: 0.58,
-      y: 0.9015471167369902,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Yellow Pallazo Pants",
-      price: 65000,
-      id: "18ddcab1-64e1-4ca2-b289-ec98d5d8375a",
-      milliseconds: 5000,
-      x: 0.6025,
-      y: 0.90014064697609,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Yellow Pallazo Pants",
-      price: 65000,
-      id: "18ddcab1-64e1-4ca2-b289-ec98d5d8375a",
-      milliseconds: 5500,
-      x: 0.6725,
-      y: 0.9113924050632911,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Yellow Pallazo Pants",
-      price: 65000,
-      id: "18ddcab1-64e1-4ca2-b289-ec98d5d8375a",
-      milliseconds: 6000,
-      x: 0.755,
-      y: 0.9338959212376934,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Yellow Pallazo Pants",
-      price: 65000,
-      id: "18ddcab1-64e1-4ca2-b289-ec98d5d8375a",
-      milliseconds: 6500,
-      x: 0.855,
-      y: 0.9282700421940928,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Yellow Pallazo Pants",
-      price: 65000,
-      id: "18ddcab1-64e1-4ca2-b289-ec98d5d8375a",
-      milliseconds: 7000,
-      x: 0.9525,
-      y: 0.9170182841068917,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Yellow Pallazo Pants",
-      price: 65000,
-      id: "18ddcab1-64e1-4ca2-b289-ec98d5d8375a",
-      milliseconds: 7500,
-      x: 0.98,
-      y: 0.90014064697609,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Yellow Pallazo Pants",
-      price: 65000,
-      id: "18ddcab1-64e1-4ca2-b289-ec98d5d8375a",
-      milliseconds: 8000,
-      x: 0.9675,
-      y: 0.9367088607594937,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 0,
-      x: 0.29,
-      y: 0.10407876230661041,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 500,
-      x: 0.205,
-      y: 0.09985935302390998,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 1000,
-      x: 0.1175,
-      y: 0.11954992967651196,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 1500,
-      x: 0.0325,
-      y: 0.10970464135021098,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 2000,
-      x: 0.015,
-      y: 0.1209563994374121,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 2500,
-      x: 0.0425,
-      y: 0.12658227848101267,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 3000,
-      x: 0.095,
-      y: 0.15330520393811534,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 3500,
-      x: 0.09,
-      y: 0.1659634317862166,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 4000,
-      x: 0.0675,
-      y: 0.180028129395218,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 4500,
-      x: 0.03,
-      y: 0.170182841068917,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 5000,
-      x: 0.0475,
-      y: 0.18846694796061886,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 5500,
-      x: 0.0825,
-      y: 0.2180028129395218,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 6000,
-      x: 0.1325,
-      y: 0.2320675105485232,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 6500,
-      x: 0.1925,
-      y: 0.20815752461322082,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 7000,
-      x: 0.2475,
-      y: 0.18846694796061886,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 7500,
-      x: 0.2475,
-      y: 0.17158931082981715,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 8000,
-      x: 0.3025,
-      y: 0.1631504922644163,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 8500,
-      x: 0.3125,
-      y: 0.15330520393811534,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 9000,
-      x: 0.3475,
-      y: 0.1490857946554149,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 9500,
-      x: 0.335,
-      y: 0.16877637130801687,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 10000,
-      x: 0.3825,
-      y: 0.1659634317862166,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 10500,
-      x: 0.46,
-      y: 0.14627285513361463,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 11000,
-      x: 0.555,
-      y: 0.10689170182841069,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 11500,
-      x: 0.5475,
-      y: 0.07172995780590717,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 12000,
-      x: 0.565,
-      y: 0.0829817158931083,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 12500,
-      x: 0.48,
-      y: 0.09282700421940929,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 13000,
-      x: 0.4875,
-      y: 0.06751054852320675,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 13500,
-      x: 0.5725,
-      y: 0.035161744022503515,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 14000,
-      x: 0.63,
-      y: 0.030942334739803096,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 16500,
-      x: 0.6,
-      y: 0.030942334739803096,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 17000,
-      x: 0.555,
-      y: 0.052039381153305204,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 17500,
-      x: 0.355,
-      y: 0.14064697609001406,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 18000,
-      x: 0.2475,
-      y: 0.19549929676511954,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 18500,
-      x: 0.1525,
-      y: 0.1617440225035162,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 19000,
-      x: 0.115,
-      y: 0.14345991561181434,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 19500,
-      x: 0.2875,
-      y: 0.07735583684950774,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 20000,
-      x: 0.4075,
-      y: 0.040787623066104076,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 20500,
-      x: 0.5125,
-      y: 0.04219409282700422,
-    },
-    {
-      videoId: "3091be1929c164330a3790",
-      label: "Lemonade Playsuit",
-      price: 15000,
-      id: "00805e69-3bbc-49ba-ad3e-58cbe50df1f4",
-      milliseconds: 21000,
-      x: 0.6025,
-      y: 0.06610407876230662,
-    },
-  ];
   // const [showInfo, setShowInfo] = useState(false);
   // const [isMuted, setIsMuted] = useState(true)
   // const { setModalValue } = useModalContext();
@@ -537,6 +30,9 @@ function VideoViewContainer({ src, setVideoModalTabValue }) {
     hls.loadSource(src);
     hls.attachMedia(vidRef.current);
   }, [vidRef]);
+
+  const newLabels = JSON.parse(json);
+  console.log(newLabels.label);
 
   // martin
 
@@ -562,23 +58,22 @@ function VideoViewContainer({ src, setVideoModalTabValue }) {
     const videoPlayer = document.getElementById("video");
     console.log(videoPlayer);
     const tm = videoPlayer.currentTime;
-    // console.log(tm);
+    console.log(tm);
     const currentTime = Math.round((tm * 1000) / 500) * 500;
     console.log(currentTime);
 
     // let currentTime = Math.ceil(this.player.getCurrentTime() * 1000);
     // let currentTime = Math.ceil(this.player.getCurrentTime()) * 1000;
-    const labelsObj = labels.labels;
-
-    console.log(labelsObj);
+    const labelsObj = newLabels.label;
+    // console.log(labelsObj);
     // console.log(labelsObj[0].miliseconds);
     // console.log(tm);
 
-    const allTags = labells.filter((label) => label.milliseconds === currentTime);
+    const allTags = labelsObj.filter((label) => label.milliseconds === currentTime);
 
     // labelsObj.map((lab) => {
     //   console.log(Math.round(lab.milliseconds / 1000) * 1000);
-    // }); (label) => Math.round(parseInt(label.millisecond, 10) / 1000) * 1000 === currentTime
+    // });
     // const allTags = labelsObj.filter((label) => Math.round(label.millisecond / 1000) === 200);
     //   label.confidence === 36.597;
     //   if (label.miliseconds === currentTime) {
@@ -634,6 +129,7 @@ function VideoViewContainer({ src, setVideoModalTabValue }) {
           margin: "0 auto",
           backgroundSize: "cover",
           backgroundPosition: "center",
+          // border: "1px solid red",
         }}
       >
         {/* <div className={styles.tag} /> */}
@@ -659,16 +155,17 @@ function VideoViewContainer({ src, setVideoModalTabValue }) {
                 topPos={tag.y * 100}
                 // leftPos={coordinates.x}
                 // topPos={coordinates.y}
+                id={tag.product_id}
                 title={tag.label.trim()}
-                price={tag.price}
+                price={5000}
                 setVideoModalTabValue={setVideoModalTabValue}
               />
             );
           })}
 
         <video
-          // ref={vidRef}
-          src="https://d3t7szus8c85is.cloudfront.net/videos/product_videos/Copy+of+BEUNIQUE+2.mp4"
+          ref={vidRef}
+          src={src}
           loop
           autoPlay
           controls
@@ -688,7 +185,6 @@ function VideoViewContainer({ src, setVideoModalTabValue }) {
 
             backgroundSize: "cover",
             backgroundPosition: "center",
-            border: "1px solid red",
           }}
         >
           <track kind="captions" />
