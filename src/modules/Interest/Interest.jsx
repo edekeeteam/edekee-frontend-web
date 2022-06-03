@@ -56,7 +56,7 @@ function Interest() {
         <p className="global-text-12">Kindly select up to 3 interest you’d like to see.</p>
       </div>
       <div className={styles.interestsContainer}>
-        {!loading &&
+        {loading &&
           [1, 2, 3, 4, 5].map((n) => (
             <Skeleton key={n} circle width={102} height={102} style={{ margin: "15px" }} />
           ))}

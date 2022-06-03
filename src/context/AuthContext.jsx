@@ -311,6 +311,7 @@ function AuthProvider({ children }) {
           //  alert("registered successfully");
           // console.log(response.data.user.id);
           localStorage.setItem("userId", response.data.user.id);
+          localStorage.setItem("token", response.data.token);
           setUser(localStorage.getItem("userId"));
 
           setModalValue("phonecontact");

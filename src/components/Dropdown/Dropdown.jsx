@@ -153,8 +153,8 @@ function Dropdown() {
               // setIsModalOpen(true);
               // setModalValue("uploadvideo");
               // navigate("/orders");
-              localStorage.setItem("userId", "");
-              localStorage.setItem("token", "");
+              localStorage.removeItem("userId");
+              localStorage.removeItem("token");
               setIsDropdownOpen(false);
               navigate("/home");
             }}
