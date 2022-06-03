@@ -61,31 +61,42 @@ function BuyProvider({ children }) {
 
   const addToCart = () => {
     // console.log("added to cart");
-    console.log(productId);
-    const params = {
-      product_id: productId,
-      user_id: userId,
-      size,
-      color,
-      weight,
-      quantity,
-    };
-    axios
-      .post(
-        "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/addToCart",
-        params
-      )
-      .then(
-        async (response) => {
-          console.log(response);
-          if (response.data.success) {
-            setIsModalOpen(false);
-            fetchCart();
+
+    if (localStorage.getItem("userId")) {
+      console.log(productId);
+      const params = {
+        product_id: productId,
+        user_id: userId,
+        size,
+        color,
+        weight,
+        quantity,
+      };
+      axios
+        .post(
+          "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/addToCart",
+          params,
+          {
+            headers: {
+              Authorization: localStorage.getItem("token"),
+              portal: "web",
+            },
           }
-        }
-        // console.log(response);
-      )
-      .catch((error) => console.log(error));
+        )
+        .then(
+          async (response) => {
+            console.log(response);
+            if (response.data.success) {
+              setIsModalOpen(false);
+              fetchCart();
+            }
+          }
+          // console.log(response);
+        )
+        .catch((error) => console.log(error));
+    } else {
+      console.log("log in to add to cart");
+    }
   };
 
   return (
