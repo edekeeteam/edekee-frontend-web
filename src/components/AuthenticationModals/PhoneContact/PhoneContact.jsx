@@ -22,7 +22,7 @@ function PhoneContact() {
     btnState,
   } = useAuthContext();
   const CountryOptions = countriesArr.map((eachCountry) => (
-    <option key={eachCountry} value={eachCountry.value}>
+    <option key={eachCountry.code} value={eachCountry.value}>
       {" "}
       {eachCountry.name}{" "}
     </option>

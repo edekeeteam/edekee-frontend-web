@@ -84,30 +84,30 @@ function VideoViewContainer({ src, setVideoModalTabValue, json }) {
     setTagArray(allTags);
   };
 
-  const getCoordinates = (bbh, bbw, bbl, bbt, vw, vh) => {
-    const bbhInt = parseFloat(bbh);
-    const bbwInt = parseFloat(bbw);
-    const bblInt = parseFloat(bbl);
-    const bbtInt = parseFloat(bbt);
+  // const getCoordinates = (bbh, bbw, bbl, bbt, vw, vh) => {
+  //   const bbhInt = parseFloat(bbh);
+  //   const bbwInt = parseFloat(bbw);
+  //   const bblInt = parseFloat(bbl);
+  //   const bbtInt = parseFloat(bbt);
 
-    const xCoordinate = bblInt * vw + (bbwInt * vw) / 2;
-    const yCoordinate = bbtInt * vh + (bbhInt * vh) / 2;
-    // let adjustedWidth = (20 / vw) * 100;
-    // let adjustedHeight = (20 / vh) * 100;
+  //   const xCoordinate = bblInt * vw + (bbwInt * vw) / 2;
+  //   const yCoordinate = bbtInt * vh + (bbhInt * vh) / 2;
+  //   // let adjustedWidth = (20 / vw) * 100;
+  //   // let adjustedHeight = (20 / vh) * 100;
 
-    // const x = bbl * 100;
-    // const y = bbt * 100;
-    const x = (xCoordinate / vw) * 100;
-    const y = (yCoordinate / vh) * 100;
-    // console.log(x, y);
+  //   // const x = bbl * 100;
+  //   // const y = bbt * 100;
+  //   const x = (xCoordinate / vw) * 100;
+  //   const y = (yCoordinate / vh) * 100;
+  //   // console.log(x, y);
 
-    // let x = bbl * 100;
-    // let y = bbt * 100;
+  //   // let x = bbl * 100;
+  //   // let y = bbt * 100;
 
-    return { x, y };
-    // return { x: x.toString(), y: y.toString() };
-    // return <Tag leftPos="50" topPos="70" title="shirt" price="500" />;
-  }; // };
+  //   return { x, y };
+  //   // return { x: x.toString(), y: y.toString() };
+  //   // return <Tag leftPos="50" topPos="70" title="shirt" price="500" />;
+  // }; // };
 
   return (
     <div
@@ -135,22 +135,22 @@ function VideoViewContainer({ src, setVideoModalTabValue, json }) {
         {/* <div className={styles.tag} /> */}
         {tagArray &&
           tagArray.map((tag) => {
-            // console.log(tag);
+            console.log(tag);
 
-            const coordinates = getCoordinates(
-              tag.boundingBoxHeight,
-              tag.boundingBoxWidth,
-              tag.boundingBoxLeft,
-              tag.boundingBoxTop,
-              576,
-              1280
-            );
+            // const coordinates = getCoordinates(
+            //   tag.boundingBoxHeight,
+            //   tag.boundingBoxWidth,
+            //   tag.boundingBoxLeft,
+            //   tag.boundingBoxTop,
+            //   576,
+            //   1280
+            // );
             // console.log(coordinates);
             // console.log(`this is called ${x} times`);
 
             return (
               <Tag
-                key={coordinates.x * Math.random()}
+                key={tag.x * tag.y}
                 leftPos={tag.x * 100}
                 topPos={tag.y * 100}
                 // leftPos={coordinates.x}

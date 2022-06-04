@@ -17,7 +17,7 @@ function CartModule() {
 
   const [total, setTotal] = useState(0);
   const [shipCost] = useState(100);
-  const { cart, setCart } = useBuyContext();
+  const { cart, setCart, fetchCart } = useBuyContext();
 
   const { userId } = useParams();
 
@@ -26,6 +26,10 @@ function CartModule() {
   if (!isLoading) {
     console.log(data);
   }
+
+  useEffect(() => {
+    fetchCart();
+  }, []);
 
   // console.log(cart);
   // const userId = "0147743e-bba3-4b9d-bf17-3c8080e477ea";

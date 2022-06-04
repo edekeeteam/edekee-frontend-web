@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useModalContext } from "./ModalContext";
 // import { useAuthContext } from "./AuthContext";
@@ -39,9 +39,9 @@ function BuyProvider({ children }) {
       });
   };
 
-  useEffect(() => {
-    fetchCart();
-  }, []);
+  // useEffect(() => {
+  //   fetchCart();
+  // }, []);
 
   const handleColorChange = (newColor) => {
     setColor(newColor);
@@ -115,6 +115,7 @@ function BuyProvider({ children }) {
         setProductId,
         addToCart,
         handleProductId,
+        fetchCart,
       }}
     >
       {children}

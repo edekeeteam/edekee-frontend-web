@@ -174,8 +174,7 @@ function AuthProvider({ children }) {
               setAuthLoading(false);
 
               setAuthSuccessful(true);
-              // formState.signUpEmail = "";
-              // formState.signUpPassword = "";
+
               setTimeout(() => {
                 setModalValue("otp");
                 setAuthSuccessful(false);
@@ -310,6 +309,9 @@ function AuthProvider({ children }) {
         if (response.data.success) {
           //  alert("registered successfully");
           // console.log(response.data.user.id);
+          formState.signUpEmail = "";
+          formState.signUpPassword = "";
+          formState.confirmPassword = "";
           localStorage.setItem("userId", response.data.user.id);
           localStorage.setItem("token", response.data.token);
           setUser(localStorage.getItem("userId"));

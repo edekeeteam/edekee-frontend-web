@@ -27,10 +27,12 @@ function Interest() {
   // from localStorage
 
   useEffect(() => {
-    axios.get("https://eked.herokuapp.com/v1/api/interests").then(async (response) => {
-      setLoading(false);
-      setInterests(response.data.data);
-    });
+    axios
+      .get("http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/interests")
+      .then(async (response) => {
+        setLoading(false);
+        setInterests(response.data.data);
+      });
   }, []);
 
   const handleOnChange = (id) => {

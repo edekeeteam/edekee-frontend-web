@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 /* eslint-disable no-console */
 import React, { useEffect, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import styles from "./Navbar.module.scss";
 
@@ -21,7 +21,7 @@ export default function Navbar() {
   const { user } = useAuthContext();
 
   const location = useLocation();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [show, handleShow] = useState(false);
   const { cart } = useBuyContext();
@@ -143,12 +143,18 @@ export default function Navbar() {
             {/* </NavLink> */}
 
             {/* <NavLink href="/#"> */}
-            <NavLink to={`/cart/${user}`} style={{ textDecoration: "none" }}>
+            <div style={{ textDecoration: "none" }}>
               <span
                 className={`${styles.navbarIconItem} ${styles.cartIcon}`}
                 // onClick={setIsDropdownOpen(false)}
                 onClick={() => {
-                  setIsDropdownOpen(false);
+                  if (!localStorage.getItem("userId")) {
+                    setIsModalOpen(true);
+                    setModalValue("signup");
+                    setIsDropdownOpen(false);
+                  } else {
+                    navigate(`/cart/${user}`);
+                  }
                 }}
                 onKeyDown={handleKeyDown()}
                 role="button"
@@ -175,7 +181,7 @@ export default function Navbar() {
                 <p className={`${location.pathname === "/cart" ? styles.active : " "}`}>Cart</p>
                 <div className={styles.badge}> {cart ? cart.length : 0}</div>
               </span>
-            </NavLink>
+            </div>
 
             {/* </NavLink> */}
             <Button
