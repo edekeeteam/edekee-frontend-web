@@ -1,6 +1,6 @@
 import axios from "axios";
-// import Cookies from "js-cookie";
-
+// import request from './axiosIntance'
+// request({url,...params}),
 const api = {
   get: (url, params) =>
     axios.get(url, {

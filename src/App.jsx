@@ -1,11 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import Router from "./Router";
 
-// pages
-// pages
-// import SignInModal from "./components/AuthenticationModals/SignInModal/SignInModal";
-
-// import OtpModal from "./components/AuthenticationModals/OtpModal/OtpModal";
 import OtpModal from "./components/AuthenticationModals/OtpModal/OtpModal";
 import { useModalContext } from "./context/ModalContext";
 import SignUpModal from "./components/AuthenticationModals/SignUpModal/SignUpModal";

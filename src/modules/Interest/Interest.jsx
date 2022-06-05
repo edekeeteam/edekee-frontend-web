@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import axios from "axios";
+// import axios from "axios";
 
 import styles from "./Interest.module.scss";
 
@@ -10,6 +10,7 @@ import useLocalStorage from "../../hooks/useLocalStorage";
 
 import Button from "../../components/Button/Button";
 import InputInterest from "../../components/InputFields/InputInterest/InputInterest";
+import request from "../../utils/axiosInstance";
 
 function Interest() {
   const navigate = useNavigate();
@@ -26,8 +27,9 @@ function Interest() {
   const [interestState, setInterestState] = useLocalStorage("interests", []);
   // from localStorage
 
+  const getInterests = () => request({ url: "/interests" });
   useEffect(() => {
-    axios.get("https://eked.herokuapp.com/v1/api/interests").then(async (response) => {
+    getInterests().then(async (response) => {
       setLoading(false);
       setInterests(response.data.data);
     });
