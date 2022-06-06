@@ -44,13 +44,13 @@ import Products from "../Products/Products";
 function VideoModal() {
   // const { videoModalTabValue, setVideoModalTabValue } = useContext(ModalContext);
   const [videoModalTabValue, setVideoModalTabValue] = useState(0);
-  const { url } = useModalContext();
+  const { url, label } = useModalContext();
   // const {}
   //   const [value, setValue] = useState(0);
 
   return (
     <VidModal>
-      <VideoViewContainer setVideoModalTabValue={setVideoModalTabValue} src={url} />
+      <VideoViewContainer setVideoModalTabValue={setVideoModalTabValue} src={url} json={label} />
       <div className={styles.tabSection}>
         <div className={styles.tabHeader}>
           {videoModalTabValue !== 2
@@ -87,7 +87,7 @@ function VideoModal() {
           {/* {value === 0 ? (
               <Product />
             ) : value === 1 ? (
-              //   <ProductSpecs />
+              //   <ProductSpecs... />
               <Comment />
             )} */}
         </div>

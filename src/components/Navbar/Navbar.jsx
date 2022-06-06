@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 /* eslint-disable no-console */
 import React, { useEffect, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import styles from "./Navbar.module.scss";
 
@@ -12,13 +12,16 @@ import Button from "../Button/Button";
 import { useDropdownContext } from "../../context/DropdownContext";
 import { useBuyContext } from "../../context/BuyContext";
 import { useModalContext } from "../../context/ModalContext";
+import { useAuthContext } from "../../context/AuthContext";
 
 export default function Navbar() {
   const { openDropdown, setIsDropdownOpen, changeDropdownContent } = useDropdownContext();
   const { setIsModalOpen, setModalValue } = useModalContext();
 
+  const { user } = useAuthContext();
+
   const location = useLocation();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [show, handleShow] = useState(false);
   const { cart } = useBuyContext();
@@ -111,7 +114,11 @@ export default function Navbar() {
             <span
               className={styles.navbarIconItem}
               onClick={(e) => {
-                if (localStorage.getItem("userId") === "") {
+                // console.log(typeof localStorage.getItem("interests"));
+                const inter = JSON.parse(localStorage.getItem("interests"));
+                console.log(typeof inter);
+
+                if (!localStorage.getItem("userId")) {
                   setIsModalOpen(true);
                   setModalValue("signup");
                   setIsDropdownOpen(false);
@@ -136,12 +143,18 @@ export default function Navbar() {
             {/* </NavLink> */}
 
             {/* <NavLink href="/#"> */}
-            <NavLink to="/cart" style={{ textDecoration: "none" }}>
+            <div style={{ textDecoration: "none" }}>
               <span
                 className={`${styles.navbarIconItem} ${styles.cartIcon}`}
                 // onClick={setIsDropdownOpen(false)}
                 onClick={() => {
-                  setIsDropdownOpen(false);
+                  if (!localStorage.getItem("userId")) {
+                    setIsModalOpen(true);
+                    setModalValue("signup");
+                    setIsDropdownOpen(false);
+                  } else {
+                    navigate(`/cart/${user}`);
+                  }
                 }}
                 onKeyDown={handleKeyDown()}
                 role="button"
@@ -168,7 +181,7 @@ export default function Navbar() {
                 <p className={`${location.pathname === "/cart" ? styles.active : " "}`}>Cart</p>
                 <div className={styles.badge}> {cart ? cart.length : 0}</div>
               </span>
-            </NavLink>
+            </div>
 
             {/* </NavLink> */}
             <Button
@@ -178,7 +191,7 @@ export default function Navbar() {
               handleClick={(e) => {
                 // displayDropdown(e);
                 // console.log(localStorage.getItem("userId"));
-                if (localStorage.getItem("userId") === "") {
+                if (!localStorage.getItem("userId")) {
                   setIsModalOpen(true);
                   setModalValue("signup");
                   setIsDropdownOpen(false);

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Dropdown.module.scss";
 import { useDropdownContext } from "../../context/DropdownContext";
 import { useModalContext } from "../../context/ModalContext";
+import { useAuthContext } from "../../context/AuthContext";
 
 // import { ModalContext } from "../../context/ModalContext";
 // import { useAuthContext } from "../../context/AuthContext";
@@ -27,6 +28,8 @@ function Dropdown() {
     location,
     page: { page, links },
   } = useDropdownContext();
+
+  const { user } = useAuthContext();
 
   const { setIsModalOpen, setModalValue } = useModalContext();
 
@@ -92,7 +95,8 @@ function Dropdown() {
               // setIsModalOpen(true);
               // setModalValue("uploadProducts");
               setIsDropdownOpen(false);
-              navigate("/profile");
+
+              navigate(`/profile/${user}`);
             }}
             onKeyDown={handleKeyDown()}
             role="button"
@@ -108,7 +112,7 @@ function Dropdown() {
             onClick={() => {
               // setIsModalOpen(true);
               // setModalValue("uploadvideo");
-              navigate("/orders");
+              navigate(`/orders/${user}`);
               setIsDropdownOpen(false);
             }}
             onKeyDown={handleKeyDown()}
@@ -149,8 +153,10 @@ function Dropdown() {
               // setIsModalOpen(true);
               // setModalValue("uploadvideo");
               // navigate("/orders");
-              localStorage.setItem("userId", "");
+              localStorage.removeItem("userId");
+              localStorage.removeItem("token");
               setIsDropdownOpen(false);
+              navigate("/home");
             }}
             onKeyDown={handleKeyDown()}
             role="button"

@@ -11,6 +11,7 @@ function ModalProvider({ children }) {
   const [authModalValue, setAuthModalValue] = useState(1);
   const [uploadModalValue, setUploadModalValue] = useState(0);
   const [url, setUrl] = useState("");
+  const [label, setLabel] = useState("");
 
   // if (localStorage.getItem("user") !== null) {
   //   console.log(`Email address exists`);
@@ -32,6 +33,8 @@ function ModalProvider({ children }) {
         setUploadModalValue,
         isVidModalOpen,
         setIsVidModalOpen,
+        label,
+        setLabel,
         url,
         setUrl,
       }}

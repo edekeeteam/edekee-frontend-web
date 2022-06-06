@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
-import React, { useState, useContext, useReducer } from "react";
+import React, { useState, useContext, useReducer, useEffect } from "react";
 // import sublinks from "./data";
 // import { useRouter } from "next/router";
 // import countriesArr from "../data/countriesArr"
@@ -39,11 +39,25 @@ function AuthProvider({ children }) {
   const [errors, setErrors] = useState({});
   // const [isSubmit, setIsSubmit] = false;
   // const [activeGender, setActiveGender] = useState("Male");
-  const interests = ["07eb9d19-2d8e-4021-9a8c-88d5313f10f8"];
+  const interests = [
+    "284fe0cd-f693-4271-9a9c-dc51fc2a2405",
+    "1daacf30-01c6-41f1-b00d-4767ed80e1d0",
+    "108185e1-ebc8-4f1b-b0f2-321925e8ecb0",
+  ];
   // const [user, setUser] = useLocalStorage("userId", "");
   const [user, setUser] = useState("");
+  const [token, setToken] = useState("");
 
   const { setAuthModalValue, setIsModalOpen, setModalValue } = useModalContext();
+
+  useEffect(() => {
+    if (localStorage.getItem("userId")) {
+      setUser(localStorage.getItem("userId"));
+      setToken(localStorage.getItem("token"));
+    } else {
+      localStorage.clear();
+    }
+  }, []);
 
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [formState, dispatch] = useReducer(reducer, initialFormState);
@@ -147,7 +161,7 @@ function AuthProvider({ children }) {
       // console.log();
       axios
         .post(
-          "http://ec2-3-137-115-168.us-east-2.compute.amazonaws.com:3000/v1/api/auth/generate/otp",
+          "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/auth/generate/otp",
           params
         )
         .then(
@@ -160,8 +174,7 @@ function AuthProvider({ children }) {
               setAuthLoading(false);
 
               setAuthSuccessful(true);
-              // formState.signUpEmail = "";
-              // formState.signUpPassword = "";
+
               setTimeout(() => {
                 setModalValue("otp");
                 setAuthSuccessful(false);
@@ -188,7 +201,7 @@ function AuthProvider({ children }) {
     };
     axios
       .post(
-        "http://ec2-3-137-115-168.us-east-2.compute.amazonaws.com:3000/v1/api/auth/generate/otp",
+        "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/auth/generate/otp",
         params
       )
       .then(
@@ -228,7 +241,7 @@ function AuthProvider({ children }) {
 
       axios
         .post(
-          "http://ec2-3-137-115-168.us-east-2.compute.amazonaws.com:3000/v1/api/auth/login",
+          "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/auth/login",
           params
         )
         .then(async (response) => {
@@ -240,6 +253,11 @@ function AuthProvider({ children }) {
             // router.push("/auth/verifyOtp");
             // change AuthModalValue
             // setAuthModalValue(1);
+            console.log(response);
+
+            localStorage.setItem("userId", response.data.user.id);
+            localStorage.setItem("token", response.data.token);
+            setUser(localStorage.getItem("userId"));
             setAuthLoading(false);
 
             setAuthSuccessful(true);
@@ -280,10 +298,10 @@ function AuthProvider({ children }) {
       // gender: activeGender,
       // interests,
     };
-    console.log(params);
+    console.log(params.interests);
     axios
       .post(
-        "http://ec2-3-137-115-168.us-east-2.compute.amazonaws.com:3000/v1/api/auth/verify/otp",
+        "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/auth/verify/otp",
         params
       )
       .then(async (response) => {
@@ -291,7 +309,11 @@ function AuthProvider({ children }) {
         if (response.data.success) {
           //  alert("registered successfully");
           // console.log(response.data.user.id);
+          formState.signUpEmail = "";
+          formState.signUpPassword = "";
+          formState.confirmPassword = "";
           localStorage.setItem("userId", response.data.user.id);
+          localStorage.setItem("token", response.data.token);
           setUser(localStorage.getItem("userId"));
 
           setModalValue("phonecontact");
@@ -372,7 +394,7 @@ function AuthProvider({ children }) {
       };
       axios
         .post(
-          "http://ec2-3-137-115-168.us-east-2.compute.amazonaws.com:3000/v1/api/user/username/verify",
+          "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/user/username/verify",
           params
         )
         .then(async (response) => {
@@ -390,7 +412,7 @@ function AuthProvider({ children }) {
             //  alert("registered successfully");
             axios
               .put(
-                "http://ec2-3-137-115-168.us-east-2.compute.amazonaws.com:3000/v1/api/user/update",
+                "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/user/update",
                 newParams
               )
               .then((newResponse) => {
@@ -456,6 +478,7 @@ function AuthProvider({ children }) {
         btnState,
         setBtnState,
         user,
+        token,
         // activeGender,
         // setActiveGender,
         saveCountryAndNumber,

@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
-import React, { useState, useContext, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useContext } from "react";
+
 import { useModalContext } from "./ModalContext";
+import apiMethods from "../utils/apiMethods";
 // import { useAuthContext } from "./AuthContext";
 
 const BuyContext = React.createContext();
@@ -9,38 +10,21 @@ const BuyContext = React.createContext();
 // eslint-disable-next-line react/prop-types
 function BuyProvider({ children }) {
   const { setIsModalOpen } = useModalContext();
-  // const { user } = useAuthContext();
 
   const [color, setColor] = useState("");
   const [productId, setProductId] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState("");
+  const [cart, setCart] = useState([]);
   const userId = localStorage.getItem("userId");
   const weight = "50kg";
-  const [cart, setCart] = useState([]);
 
-  const fetchCart = () => {
-    axios
-      .get(
-        `http://ec2-3-137-115-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/getCartItems/${userId}`,
-        {
-          headers: {
-            Authorization: "token",
-          },
-        }
-      )
-      .then((res) => {
-        // console.log(res.data.data);
-        const newCart = res.data.data.map((item) => ({ ...item, check: false }));
-
-        setCart(newCart);
-        // res.data
-      });
-  };
-
-  useEffect(() => {
-    fetchCart();
-  }, []);
+  const fetchCart = () =>
+    apiMethods.get(`/cart/getCartItems/${userId}`).then((res) => {
+      const newCart = res.data.data.map((item) => ({ ...item, check: false }));
+      setCart(newCart);
+      // res.data
+    });
 
   const handleColorChange = (newColor) => {
     setColor(newColor);
@@ -60,31 +44,34 @@ function BuyProvider({ children }) {
 
   const addToCart = () => {
     // console.log("added to cart");
-    console.log(productId);
-    const params = {
-      product_id: productId,
-      user_id: userId,
-      size,
-      color,
-      weight,
-      quantity,
-    };
-    axios
-      .post(
-        "http://ec2-3-137-115-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/addToCart",
-        params
-      )
-      .then(
-        async (response) => {
-          console.log(response);
-          if (response.data.success) {
-            setIsModalOpen(false);
-            fetchCart();
+
+    if (localStorage.getItem("userId")) {
+      console.log(productId);
+      const params = {
+        product_id: productId,
+        user_id: userId,
+        size,
+        color,
+        weight,
+        quantity,
+      };
+
+      apiMethods
+        .post(`/cart/addToCart`, params)
+        .then(
+          async (response) => {
+            console.log(response);
+            if (response.data.success) {
+              setIsModalOpen(false);
+              await fetchCart();
+            }
           }
-        }
-        // console.log(response);
-      )
-      .catch((error) => console.log(error));
+          // console.log(response);
+        )
+        .catch((error) => console.log(error));
+    } else {
+      console.log("log in to add to cart");
+    }
   };
 
   return (
@@ -103,6 +90,7 @@ function BuyProvider({ children }) {
         setProductId,
         addToCart,
         handleProductId,
+        fetchCart,
       }}
     >
       {children}

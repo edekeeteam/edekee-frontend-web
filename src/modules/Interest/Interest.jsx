@@ -9,8 +9,10 @@ import styles from "./Interest.module.scss";
 import useLocalStorage from "../../hooks/useLocalStorage";
 
 import Button from "../../components/Button/Button";
-import InputInterest from "../../components/InputFields/InputInterest/InputInterest";
-import request from "../../utils/axiosInstance";
+import { InputInterest } from "../../components/InputFields";
+
+// import request from "../../utils/axiosInstance";
+import apiMethods from "../../utils/apiMethods";
 
 function Interest() {
   const navigate = useNavigate();
@@ -27,7 +29,7 @@ function Interest() {
   const [interestState, setInterestState] = useLocalStorage("interests", []);
   // from localStorage
 
-  const getInterests = () => request({ url: "/interests" });
+  const getInterests = () => apiMethods.get({ url: "/interests" });
   useEffect(() => {
     getInterests().then(async (response) => {
       setLoading(false);
@@ -46,7 +48,7 @@ function Interest() {
 
   const addInterests = () => {
     setInterestState(() => [...checkedInterestsState]);
-    if (checkedInterestsState.length >= 3 || interestState.length) {
+    if (interestState.length) {
       setTimeout(() => navigate("/home"), 200);
     }
   };
@@ -58,7 +60,7 @@ function Interest() {
         <p className="global-text-12">Kindly select up to 3 interest you’d like to see.</p>
       </div>
       <div className={styles.interestsContainer}>
-        {!loading &&
+        {loading &&
           [1, 2, 3, 4, 5].map((n) => (
             <Skeleton key={n} circle width={102} height={102} style={{ margin: "15px" }} />
           ))}

@@ -11,11 +11,11 @@ import { useModalContext } from "../../context/ModalContext";
 import styles from "./VideoContainer.module.scss";
 import { useProductsContext } from "../../context/ProductsContext";
 
-function VideoContainer({ src, videoId, thumbnail }) {
+function VideoContainer({ src, videoId, thumbnail, label }) {
   const [showInfo, setShowInfo] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   // const [isMuted, setIsMuted] = useState(true)
-  const { setIsVidModalOpen, setModalValue, setUrl } = useModalContext();
+  const { setIsVidModalOpen, setModalValue, setUrl, setLabel } = useModalContext();
 
   const { setProducts } = useProductsContext();
   const vidRef = useRef();
@@ -48,6 +48,8 @@ function VideoContainer({ src, videoId, thumbnail }) {
     setProducts({});
     setIsVidModalOpen(true);
     setUrl(src);
+    setLabel(label);
+    console.log(src);
     setModalValue("videomodal");
     axios.get(`https://eked.herokuapp.com/v1/api/products/${id}/video`).then((res) => {
       console.log(res);

@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import styles from "./Cart.module.scss";
 // import data from "./data";
 import CartItem from "../../components/CartItem/CartItem";
 import { InputCheckbox } from "../../components/InputFields";
+import useGetCart from "../../hooks/cart/useGetCart";
 import { useBuyContext } from "../../context/BuyContext";
 
 // import {InputCheckbox} from "../../components/InputFields";
@@ -15,24 +17,19 @@ function CartModule() {
 
   const [total, setTotal] = useState(0);
   const [shipCost] = useState(100);
-  const { cart, setCart } = useBuyContext();
-  console.log(cart);
-  // const userId = "0147743e-bba3-4b9d-bf17-3c8080e477ea";
+  const { cart, setCart, fetchCart } = useBuyContext();
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`https://eked.herokuapp.com/v1/api/cart/getCartItems/${userId}`, {
-  //       headers: {
-  //         Authorization: "token",
-  //       },
-  //     })
-  //     .then((res) => {
-  //       console.log(res.data.data);
+  const { userId } = useParams();
 
-  //       setCart(res.data.data);
-  //       // res.data
-  //     });
-  // }, []);
+  const { data, isLoading } = useGetCart(userId);
+
+  if (!isLoading) {
+    console.log(data);
+  }
+
+  useEffect(() => {
+    fetchCart();
+  }, []);
 
   const getFormattedPrice = (price) => `₦ ${price.toFixed(2)}`;
 

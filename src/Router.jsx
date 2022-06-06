@@ -29,9 +29,9 @@ function Router() {
         </Route>
         <Route path="/" element={<NavBarLayout />}>
           <Route path="home" element={<Home />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="cart" element={<Cart />} />
-          <Route path="orders" element={<Orders />} />
+          <Route path="profile/:userId" element={<Profile />} />
+          <Route path="cart/:userId" element={<Cart />} />
+          <Route path="orders/:userId" element={<Orders />} />
         </Route>
       </Routes>
     </BrowserRouter>

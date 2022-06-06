@@ -52,13 +52,13 @@ class PeggTag extends HTMLElement {
       cancelable: false,
       composed: true,
       detail: {
-        id: this.leftPos,
+        id: this.id,
       },
     });
   }
 
   static get observedAttribute() {
-    return ["topPos", "leftPos", "length"];
+    return ["topPos", "leftPos", "length", "id"];
   }
 
   get topPos() {
@@ -87,6 +87,10 @@ class PeggTag extends HTMLElement {
 
   set length(nV) {
     this.setAttribute("length", nV);
+  }
+
+  get id() {
+    return this.getAttribute("id");
   }
 
   modeOpen() {
@@ -144,6 +148,7 @@ class PeggTag extends HTMLElement {
     this.style.height = "25px";
     this.style.backgroundColor = "white";
     console.log(`first: ${this.length}`);
+    console.log(this.id);
     // console.log(this.textInfo)
   }
 }

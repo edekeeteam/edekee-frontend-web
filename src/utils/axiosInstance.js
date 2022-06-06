@@ -1,12 +1,13 @@
 import axios from "axios";
 
-const baseURL = "https://eked.herokuapp.com/v1/api";
+const baseURL = "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api";
 
 const api = axios.create({
   baseURL,
   headers: {
     // responseType: 'json',
     "Content-Type": "application/json",
+    portal: "web",
   },
 });
 
