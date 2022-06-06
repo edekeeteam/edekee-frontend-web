@@ -1,11 +1,11 @@
-import apiRoutes from "../../routes";
+import endPoint from "../../routes";
 import useFetch from "../../utils/reactQuery/useFetch";
 // import pathToUrl from "../../utils/router";
 
 function useGetProfile(id) {
   // remove id and add to parent (pass through props)
   //   const id = localStorage.getItem("userId");
-  const context = useFetch(`${apiRoutes.getProfile}/${id}`, undefined, { retry: true });
+  const context = useFetch(`${endPoint.getProfile}/${id}`, undefined, { retry: true });
   console.log(context);
 
   return context;
