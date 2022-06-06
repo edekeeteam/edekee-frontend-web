@@ -5,13 +5,12 @@ import axios from "axios";
 // const { token } = useAuthContext();
 
 const api = {
-  get: (url, params) =>
+  get: (url) =>
     axios.get(url, {
       headers: {
         Authorization: localStorage.getItem("token"),
         portal: "web",
       },
-      ...params,
     }),
   post: (url, data) =>
     axios.post(url, data, {

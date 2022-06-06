@@ -108,7 +108,7 @@ function ProductDetails() {
       <div className={styles.scrollView}>
         {images &&
           images.map((image) => (
-            <div className={styles.scrollViewImage}>
+            <div key={image} className={styles.scrollViewImage}>
               <img src={image} alt="" />
             </div>
           ))}
