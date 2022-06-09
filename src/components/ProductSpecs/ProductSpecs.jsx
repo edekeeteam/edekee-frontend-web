@@ -1,4 +1,6 @@
+/* eslint-disable no-alert */
 import React from "react";
+
 import styles from "./ProductSpecs.module.scss";
 import { InputColor, InputSize, InputNumber } from "../InputFields";
 // import InputSize from "../inputFields/InputSize";
@@ -44,10 +46,18 @@ function ProductSpecs() {
   //   },
   // ];
 
-  const { handleColorChange, handleSizeChange, quantity, handleQuantityChange, addToCart } =
-    useBuyContext();
+  const {
+    handleColorChange,
+    color,
+    size,
+    handleSizeChange,
+    quantity,
+    handleQuantityChange,
+    addToCart,
+  } = useBuyContext();
   const { setModalValue } = useModalContext();
   const { productDetails } = useProductsContext();
+
   const { properties } = productDetails;
   console.log(properties);
   //  size, setSize, quantity, setQuantity,
@@ -108,7 +118,12 @@ function ProductSpecs() {
               bgcolor="white"
               handleClick={() => {
                 console.log("change");
-                setModalValue("paymentmodal");
+
+                if (color === "" || size === "") {
+                  alert("select color and size");
+                } else {
+                  setModalValue("paymentmodal");
+                }
               }}
             />
           </div>

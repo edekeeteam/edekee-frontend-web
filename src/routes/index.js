@@ -10,6 +10,7 @@ const apiRoutes = {
   getProfile: "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/user",
   getOrders:
     "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/getOrdersByUserId",
+  getComments: "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/comments",
 };
 
 export default apiRoutes;

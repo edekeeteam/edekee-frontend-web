@@ -31,6 +31,7 @@
       margin-left: 20px;
       //   margin-top: 10px;
       //   border: 1px solid green;
+      text-align: left;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
@@ -51,6 +52,7 @@
       }
       .commentMainComment {
         font-size: toRem(12);
+
         color: #ffffff9f;
       }
       .commentReplyText {

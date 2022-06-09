@@ -11,6 +11,7 @@ function ModalProvider({ children }) {
   const [authModalValue, setAuthModalValue] = useState(1);
   const [uploadModalValue, setUploadModalValue] = useState(0);
   const [url, setUrl] = useState("");
+  const [videoId, setVideoId] = useState("");
   const [label, setLabel] = useState("");
 
   // if (localStorage.getItem("user") !== null) {
@@ -37,6 +38,8 @@ function ModalProvider({ children }) {
         setLabel,
         url,
         setUrl,
+        videoId,
+        setVideoId,
       }}
     >
       {children}

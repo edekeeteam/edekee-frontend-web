@@ -4,12 +4,12 @@ import React from "react";
 import styles from "./Button.module.scss";
 
 // eslint-disable-next-line react/prop-types
-function Button({ size, label, bgcolor, handleClick, loading, successful, btnState }) {
+function Button({ size, label, bgcolor, handleClick, loading, successful, btnState, shape }) {
   return (
     <button
       className={`${styles.button} ${size === "large" ? styles.large : ""} ${
         bgcolor === "white" ? styles.bgWhite : bgcolor === "black" ? styles.bgBlack : ""
-      } ${successful && styles.bgPurple}`}
+      } ${successful && styles.bgPurple} ${shape === "square" && styles.square}`}
       disabled={btnState}
       onClick={handleClick}
       type="submit"

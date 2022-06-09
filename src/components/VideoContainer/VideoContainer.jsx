@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable react/prop-types */
 // import { useRef } from "react";
 import Hls from "hls.js";
@@ -15,7 +16,7 @@ function VideoContainer({ src, videoId, thumbnail, label }) {
   const [showInfo, setShowInfo] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   // const [isMuted, setIsMuted] = useState(true)
-  const { setIsVidModalOpen, setModalValue, setUrl, setLabel } = useModalContext();
+  const { setIsVidModalOpen, setModalValue, setUrl, setLabel, setVideoId } = useModalContext();
 
   const { setProducts } = useProductsContext();
   const vidRef = useRef();
@@ -48,6 +49,7 @@ function VideoContainer({ src, videoId, thumbnail, label }) {
     setProducts({});
     setIsVidModalOpen(true);
     setUrl(src);
+    setVideoId(id);
     setLabel(label);
     console.log(src);
     setModalValue("videomodal");
@@ -119,7 +121,12 @@ function VideoContainer({ src, videoId, thumbnail, label }) {
               onClick={(e) => {
                 e.stopPropagation();
                 console.log("clicked the like");
-                setIsLiked(!isLiked);
+
+                if (!localStorage.getItem("userId")) {
+                  alert("login to like video");
+                } else {
+                  setIsLiked(!isLiked);
+                }
               }}
             >
               <path

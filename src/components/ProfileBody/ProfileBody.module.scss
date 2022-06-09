@@ -1,0 +1,10 @@
+@import "../../styles/mixins";
+
+.profileBody {
+  @include flex-center-col;
+
+  .spacing {
+    // border: 1px solid red;
+    padding-top: 40px;
+  }
+}

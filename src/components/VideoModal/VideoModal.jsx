@@ -1,9 +1,11 @@
+/* eslint-disable no-alert */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-nested-ternary */
 // import React from "react";
 import { useState } from "react";
 // import { motion } from "framer-motion";
+import axios from "axios";
 // import Backdrop from "../../common/components/Backdrop/Backdrop";
 import styles from "./VideoModal.module.scss";
 // import { ModalContext } from "../../context/ModalContext";
@@ -46,7 +48,7 @@ import Products from "../Products/Products";
 function VideoModal() {
   // const { videoModalTabValue, setVideoModalTabValue } = useContext(ModalContext);
   const [videoModalTabValue, setVideoModalTabValue] = useState(0);
-  const { url, label } = useModalContext();
+  const { url, label, videoId } = useModalContext();
   // const {}
   const [value, setValue] = useState("");
   function handleChange(e) {
@@ -54,7 +56,24 @@ function VideoModal() {
   }
 
   const addComment = () => {
-    console.log(value);
+    const params = {
+      comment: value,
+    };
+    axios
+      .post(
+        `http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/comments/${videoId}/video`,
+        params,
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+            portal: "web",
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+      });
+    // console.log(value);
   };
 
   return (
@@ -118,7 +137,11 @@ function VideoModal() {
             <p
               className={styles.sendIcon}
               onClick={() => {
-                addComment();
+                if (!localStorage.getItem("userId")) {
+                  alert("log in to add comment");
+                } else {
+                  addComment();
+                }
               }}
             >
               <img src="./icons/sendIcon.svg" alt="" />

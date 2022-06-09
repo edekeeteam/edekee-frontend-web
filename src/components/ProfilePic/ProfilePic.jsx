@@ -9,8 +9,8 @@ export default function ProfilePic({ img }) {
         <img src={img} alt="pic" />
         <div className={styles.uploadContainer}>
           <svg
-            width="40"
-            height="36"
+            width="30"
+            height="26"
             viewBox="0 0 40 36"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
