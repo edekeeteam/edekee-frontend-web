@@ -16,7 +16,7 @@ api.interceptors.request.use();
 api.interceptors.response.use();
 
 const request = ({ ...options }) => {
-  api.defaults.headers.common.Authorization = `Bearer Token`;
+  api.defaults.headers.common.Authorization = `${localStorage.getItem("token")}`;
   const onSuccess = (response) => response;
   const onError = (error) =>
     // optionally catch errors and add additional logging here

@@ -27,12 +27,12 @@ function Orders() {
         }
       )
       .then((res) => {
-        // console.log(typeof res.data.data);
+        console.log(res.data);
         const { data } = res.data;
         const stuff = [];
-        console.log(data);
+        // console.log(data);
         data.map((order) => order.orderItem.map((eachOrder) => stuff.push(eachOrder)));
-        console.log(stuff);
+        // console.log(stuff);
         // const items = stuff.map((orderss) => orderss.orderItem.map((i) => i));
         // console.log(items);
         setOrders(stuff);
@@ -40,11 +40,13 @@ function Orders() {
       });
   }, []);
 
-  const { data } = useGetOrders(userI);
+  const { data: context } = useGetOrders(userI);
 
-  if (data) {
-    console.log(data);
+  if (context) {
+    console.log(context);
   }
+
+  // if isLoading is true, show skeleton loading, when it is false w
 
   return (
     <div className={styles.orderModule}>

@@ -11,8 +11,8 @@ import useLocalStorage from "../../hooks/useLocalStorage";
 import Button from "../../components/Button/Button";
 import { InputInterest } from "../../components/InputFields";
 
-// import request from "../../utils/axiosInstance";
 import apiMethods from "../../utils/apiMethods";
+import endPoint from "../../routes";
 
 function Interest() {
   const navigate = useNavigate();
@@ -29,10 +29,11 @@ function Interest() {
   const [interestState, setInterestState] = useLocalStorage("interests", []);
   // from localStorage
 
-  const getInterests = () => apiMethods.get({ url: "/interests" });
+  const getInterests = () => apiMethods.get(`${endPoint.getInterests}`);
   useEffect(() => {
     getInterests().then(async (response) => {
       setLoading(false);
+      console.log(response);
       setInterests(response.data.data);
     });
   }, []);

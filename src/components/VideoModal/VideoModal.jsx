@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-nested-ternary */
 // import React from "react";
 import { useState } from "react";
@@ -10,7 +12,7 @@ import styles from "./VideoModal.module.scss";
 import VideoViewContainer from "../VideoViewContainer/VideoViewContainer";
 // import Product from "../Product/Product";
 import tabs from "../../data/tabsData";
-import Comment from "../Comment/Comment";
+import Comments from "../Comments/Comments";
 import ProductDetails from "../ProductDetails/ProductDetails";
 import VidModal from "../VidModal/VidModal";
 import { useModalContext } from "../../context/ModalContext";
@@ -46,7 +48,14 @@ function VideoModal() {
   const [videoModalTabValue, setVideoModalTabValue] = useState(0);
   const { url, label } = useModalContext();
   // const {}
-  //   const [value, setValue] = useState(0);
+  const [value, setValue] = useState("");
+  function handleChange(e) {
+    setValue(e.target.value);
+  }
+
+  const addComment = () => {
+    console.log(value);
+  };
 
   return (
     <VidModal>
@@ -77,7 +86,7 @@ function VideoModal() {
             // <Product changeVideoTab={setVideoModalTabValue} />
             <Products setVideoModalTabValue={setVideoModalTabValue} />
           ) : videoModalTabValue === 1 ? (
-            <Comment />
+            <Comments />
           ) : videoModalTabValue === 2 ? (
             <ProductDetails />
           ) : (
@@ -91,6 +100,31 @@ function VideoModal() {
               <Comment />
             )} */}
         </div>
+        {videoModalTabValue === 1 && (
+          <div className={styles.addComment}>
+            <div className={styles.emoji}>
+              <img src="./icons/emoji.svg" alt="" />
+            </div>
+            <textarea
+              name="comment"
+              id="comment"
+              placeholder="Type a comment"
+              cols="2"
+              rows="2"
+              value={value}
+              onChange={handleChange}
+              className={styles.commentArea}
+            />
+            <p
+              className={styles.sendIcon}
+              onClick={() => {
+                addComment();
+              }}
+            >
+              <img src="./icons/sendIcon.svg" alt="" />
+            </p>
+          </div>
+        )}
       </div>
     </VidModal>
   );
