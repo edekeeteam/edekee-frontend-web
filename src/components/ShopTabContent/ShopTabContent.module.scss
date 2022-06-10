@@ -1,0 +1,16 @@
+.shopTabContainer {
+  width: 100%;
+  min-height: 50vh;
+}
+
+.emptyShop {
+  padding-top: 80px;
+  width: 350px;
+  margin: 0 auto;
+  text-align: center;
+  //   border: 3px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

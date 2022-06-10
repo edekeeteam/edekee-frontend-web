@@ -60,7 +60,11 @@ $check-color: $brand-success;
     // padding: 1.1vw 2.3vw;
     // padding: 18px 37px;
   }
-
+  &.square {
+    width: 80px;
+    height: 30px;
+    border-radius: 5px;
+  }
   &.bgWhite {
     background-color: #ffffff;
     color: #333333;

@@ -268,8 +268,8 @@ function AuthProvider({ children }) {
               setAuthModalValue(1);
               setAuthSuccessful(false);
               setBtnState(false);
-              formState.signInEmail = "";
-              formState.signInPassword = "";
+              // formState.signInEmail = "";
+              // formState.signInPassword = "";
             }, 1000);
           }
         });
@@ -309,9 +309,9 @@ function AuthProvider({ children }) {
         if (response.data.success) {
           //  alert("registered successfully");
           // console.log(response.data.user.id);
-          formState.signUpEmail = "";
-          formState.signUpPassword = "";
-          formState.confirmPassword = "";
+          // formState.signUpEmail = "";
+          // formState.signUpPassword = "";
+          // formState.confirmPassword = "";
           localStorage.setItem("userId", response.data.user.id);
           localStorage.setItem("token", response.data.token);
           setUser(localStorage.getItem("userId"));
@@ -405,7 +405,8 @@ function AuthProvider({ children }) {
               username: formState.username[0],
               country: formState.country[0],
               dob: handleDOBformat(formState.day[0], formState.month[0], formState.year[0]),
-              gender: formState.gender,
+              gender: "male",
+              // gender: formState.gender,
               phone: handlePhoneNumberFormat(formState.phoneNumber[0]),
             };
             console.log(newParams);

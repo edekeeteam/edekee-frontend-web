@@ -6,6 +6,7 @@ import styles from "./CartItem.module.scss";
 import { InputCheckbox, InputNumber } from "../InputFields";
 
 function CartItem({
+  isCheckout,
   id,
   isCheck,
   image,
@@ -57,14 +58,17 @@ function CartItem({
 
   return (
     <div className={styles.cartItem}>
-      <div>
-        <InputCheckbox
-          name={name}
-          value={name}
-          checked={isCheck}
-          toggleCheck={() => handleOnChange(index)}
-        />
-      </div>
+      {!isCheckout && (
+        <div>
+          <InputCheckbox
+            name={name}
+            value={name}
+            checked={isCheck}
+            toggleCheck={() => handleOnChange(index)}
+          />
+        </div>
+      )}
+
       <div className={styles.imgContainer}>
         <img src={image} alt={name} />
       </div>
@@ -77,18 +81,21 @@ function CartItem({
             </p>
             <p className={styles.desc}>{desc}</p>
           </div>
-          <div
-            onKeyDown={() => {}}
-            role="button"
-            tabIndex={0}
-            className={styles.delete}
-            onClick={() => Delete(index, id)}
-          >
-            <div>
-              <img src={`${process.env.PUBLIC_URL}/icons/delete.svg`} alt="" />
+
+          {!isCheckout && (
+            <div
+              onKeyDown={() => {}}
+              role="button"
+              tabIndex={0}
+              className={styles.delete}
+              onClick={() => Delete(index, id)}
+            >
+              <div>
+                <img src={`${process.env.PUBLIC_URL}/icons/delete.svg`} alt="" />
+              </div>
+              <p>Delete</p>
             </div>
-            <p>Delete</p>
-          </div>
+          )}
         </div>
 
         <div className={styles.footer}>
@@ -114,6 +121,7 @@ function CartItem({
 CartItem.propTypes = {
   // item: PropTypes.any.isRequired,
   isCheck: PropTypes.bool.isRequired,
+  isCheckout: PropTypes.bool.isRequired,
   id: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,

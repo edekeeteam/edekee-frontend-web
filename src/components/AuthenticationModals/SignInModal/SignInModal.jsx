@@ -57,7 +57,7 @@ function SignInModal() {
 
         <p className="global-text-10 global-modal-mb">OR</p>
 
-        <div className="global-modal-md-mb" style={{ width: "100%" }}>
+        <div className="global-modal-md-mb" style={{ width: "70%", border: "1px solid red" }}>
           <InputText
             label="Email"
             name="signInEmail"
@@ -70,7 +70,7 @@ function SignInModal() {
           )}
         </div>
 
-        <div className="global-modal-md-mb" style={{ width: "100%" }}>
+        <div className="global-modal-md-mb" style={{ width: "70%" }}>
           <InputText
             label="Password"
             name="signInPassword"

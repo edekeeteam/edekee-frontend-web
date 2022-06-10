@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import style from "./ProfileBio.module.scss";
 
-export default function ProfileBio({ bio }) {
-  return <p className={style.profileBio}>{bio}</p>;
+export default function ProfileBio() {
+  return <p className={style.profileBio}>Short description about self..... Lorem ipsum</p>;
+  // return <p className={style.profileBio}>{bio}</p>;
 }

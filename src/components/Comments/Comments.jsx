@@ -1,34 +1,33 @@
+/* eslint-disable no-alert */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from "react";
+// import React, { useState } from "react";
+// import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
+import { useModalContext } from "../../context/ModalContext";
 import Comment from "../Comment/Comment";
 import styles from "./Comments.module.scss";
+import useGetComments from "../../hooks/comments/useGetComments";
 
 function Comments() {
-  return (
-    <div className={styles.commentsTab}>
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
+  // const [comments, setComments] = useState([]);
+  const { videoId } = useModalContext();
 
-      {/* <div className={styles.addComment}>
-        <div className={styles.emoji}>UI</div>
-        <textarea name="comment" id="comment" cols="2" rows="2" className={styles.commentArea}>
-          comment
-        </textarea>
-        <p className={styles.sendIcon}>S</p>
-      </div> */}
-    </div>
-  );
+  const { data, isLoading } = useGetComments(videoId);
+
+  if (!isLoading) {
+    console.log(data.data);
+    return (
+      <div className={styles.commentsTab}>
+        {data.data &&
+          data.data.map((comment) => (
+            <Comment key={uuidv4()} comment={comment.Comment} username={comment.Username} />
+          ))}
+      </div>
+    );
+  }
 }
 
 export default Comments;

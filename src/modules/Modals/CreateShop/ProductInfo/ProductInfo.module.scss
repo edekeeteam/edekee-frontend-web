@@ -1,0 +1,22 @@
+.productInfo {
+  height: 80vh;
+  width: 400px;
+
+  .Content {
+    padding: 0 40px;
+    width: 100%;
+
+    .priceInfo {
+      display: flex;
+      width: 100%;
+
+      .currency {
+        width: 40%;
+      }
+
+      .price {
+        width: 60%;
+      }
+    }
+  }
+}

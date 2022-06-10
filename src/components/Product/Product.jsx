@@ -20,6 +20,7 @@ function Product({ product, changeVideoTab }) {
       .get(`http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/product/${id}`, {
         headers: {
           Authorization: "token",
+          portal: "web",
         },
       })
       .then((res) => {
@@ -27,6 +28,7 @@ function Product({ product, changeVideoTab }) {
 
         if (res.data.success) {
           setProductDetails(res.data.data);
+          console.log(res.data.data);
           handleProductId(res.data.data.id);
           changeVideoTab(2);
         }
