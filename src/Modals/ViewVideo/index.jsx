@@ -21,7 +21,7 @@ function ViewVideoModal() {
   //   // <CropImages nextStep={() => nextStep} prevStep={() => prevStep} />,
   //   // <Category nextStep={() => nextStep} prevStep={() => prevStep} />,
   //   // <SubCategory nextStep={() => nextStep} prevStep={() => prevStep} />,
-  //   // <ProductInfo nextStep={() => nextStep} prevStep={() => prevStep} />,
+  //   // <Upload360Videos nextStep={() => nextStep} prevStep={() => prevStep} />,
   // ];
 
   return (

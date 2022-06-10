@@ -73,7 +73,7 @@ function ImageSlider({ imagesSlides }) {
       </div>
       <div className={styles.actions}>
         <div
-          className={`${styles.iconBackground}`}
+          className={`${styles.iconBackground} ${styles.delete}`}
           onClick={nextSlide}
           onKeyDown={() => {}}
           role="button"

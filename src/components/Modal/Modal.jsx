@@ -28,7 +28,7 @@ function Modal({ children }) {
       tabIndex={0}
     >
       <div
-        className={`${styles.modalContent} global-modal-width`}
+        className={`${styles.modalContent}`}
         onClick={(e) => {
           e.stopPropagation();
         }}

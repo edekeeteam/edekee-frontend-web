@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-// import styles from "./index.module.scss"
 import { UploadProductsProvider } from "../../../context/UploadProducts";
 import { useUploadContext } from "../../../context/UploadContext";
 
@@ -9,9 +8,11 @@ import Modal from "../../../components/Modal/Modal";
 // modal
 import SelectImages from "./SelectImages/SelectImages";
 import CropImages from "./CropImages/CropImages";
+import Upload360Videos from "./Upload360Videos/Upload360Videos";
 import Category from "./Category/Category";
 import SubCategory from "./SubCategory/SubCategory";
 import ProductInfo from "./ProductInfo/ProductInfo";
+
 import styles from "../../../components/VideoUploadModals/UploadVideoModal/UploadVideoModal.module.scss";
 
 // modal
@@ -32,6 +33,7 @@ function UploadsProductsModal() {
   const steps = [
     <SelectImages nextStep={() => nextStep} />,
     <CropImages nextStep={() => nextStep} prevStep={() => prevStep} />,
+    <Upload360Videos nextStep={() => nextStep} />,
     <Category nextStep={() => nextStep} prevStep={() => prevStep} />,
     <SubCategory nextStep={() => nextStep} prevStep={() => prevStep} />,
     <ProductInfo nextStep={() => nextStep} prevStep={() => prevStep} />,

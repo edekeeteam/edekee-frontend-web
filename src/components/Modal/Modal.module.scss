@@ -41,7 +41,7 @@ $diameter90: 90px;
     //padding: 40px;
 
     // width: 50vw;
-    width: 450px;
+    //width: 450px;
     // max-width: 90%;
     // border: 1px solid rgb(128, 0, 117);
     height: auto;
@@ -54,7 +54,7 @@ $diameter90: 90px;
     text-align: center;
 
     @include xxlMaxBreakPoint {
-      width: 400px;
+      //width: 400px;
       // border: 1px solid rgb(34, 128, 0);
       padding: 40px;
     }
