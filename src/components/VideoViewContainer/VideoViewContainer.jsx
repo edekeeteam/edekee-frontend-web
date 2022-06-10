@@ -1,6 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect, useRef } from "react";
 import Hls from "hls.js";
+
+// import showTag from "../utils/showTag/";
+import showTag from "../../utils/showTag";
+// import api from '../utils/ api'
 // import labels from "../../ladyLabel.json";
 // import { useModalContext } from "../../context/ModalContext";
 // import { motion } from "framer-motion";
@@ -31,9 +35,6 @@ function VideoViewContainer({ src, setVideoModalTabValue, json }) {
     hls.attachMedia(vidRef.current);
   }, [vidRef]);
 
-  const newLabels = JSON.parse(json);
-  console.log(newLabels.label);
-
   // martin
 
   // const startVideoTimer = (e) => {
@@ -50,35 +51,6 @@ function VideoViewContainer({ src, setVideoModalTabValue, json }) {
   //   clearTimeout(vidRef.current);
   const handlePlay = () => {
     setTagArray([]);
-  };
-
-  const showTag = (time) => {
-    // console.log("onPause");
-    // this.setState({ playing: false });
-    console.log(time);
-    const currentTime = Math.round((time * 1000) / 500) * 500;
-    console.log(currentTime);
-
-    // let currentTime = Math.ceil(this.player.getCurrentTime() * 1000);
-    // let currentTime = Math.ceil(this.player.getCurrentTime()) * 1000;
-    const labelsObj = newLabels.label;
-    // console.log(labelsObj);
-    // console.log(labelsObj[0].miliseconds);
-    // console.log(tm);
-
-    const allTags = labelsObj.filter((label) => label.milliseconds === currentTime);
-
-    // labelsObj.map((lab) => {
-    //   console.log(Math.round(lab.milliseconds / 1000) * 1000);
-    // });
-    // const allTags = labelsObj.filter((label) => Math.round(label.millisecond / 1000) === 200);
-    //   label.confidence === 36.597;
-    //   if (label.miliseconds === currentTime) {
-    //     return label;
-    //   }
-
-    console.log(allTags);
-    setTagArray(allTags);
   };
 
   // const getCoordinates = (bbh, bbw, bbl, bbt, vw, vh) => {
@@ -105,6 +77,10 @@ function VideoViewContainer({ src, setVideoModalTabValue, json }) {
   //   // return { x: x.toString(), y: y.toString() };
   //   // return <Tag leftPos="50" topPos="70" title="shirt" price="500" />;
   // }; // };
+  const handleShowTag = (e) => {
+    const tags = showTag(e.target.currentTime, json);
+    setTagArray(tags);
+  };
 
   return (
     <div
@@ -173,7 +149,7 @@ function VideoViewContainer({ src, setVideoModalTabValue, json }) {
             handlePlay();
           }}
           onPause={(e) => {
-            showTag(e.target.currentTime);
+            handleShowTag(e);
           }}
           style={{
             height: "100%",

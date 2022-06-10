@@ -6,6 +6,8 @@ import { useState, useRef, useEffect } from "react";
 // import ReactHlsPlayer from "react-hls-player";
 import axios from "axios";
 import { useModalContext } from "../../context/ModalContext";
+import showTag from "../../utils/showTag";
+import Tag from "../Tag/Tag";
 
 // import { motion } from "framer-motion";
 
@@ -15,6 +17,7 @@ import { useProductsContext } from "../../context/ProductsContext";
 function VideoContainer({ src, videoId, thumbnail, label }) {
   const [showInfo, setShowInfo] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
+  const [tagArray, setTagArray] = useState([]);
   // const [isMuted, setIsMuted] = useState(true)
   const { setIsVidModalOpen, setModalValue, setUrl, setLabel, setVideoId } = useModalContext();
 
@@ -64,6 +67,11 @@ function VideoContainer({ src, videoId, thumbnail, label }) {
     });
   };
 
+  const handleShowTag = (e) => {
+    const tags = showTag(e.target.currentTime, label);
+    setTagArray(tags);
+  };
+
   return (
     <div
       className={styles.videoContainer}
@@ -73,8 +81,36 @@ function VideoContainer({ src, videoId, thumbnail, label }) {
       onMouseLeave={(e) => {
         stopVideoTimer(e);
       }}
-      style={{ border: "1px solid red" }}
     >
+      {tagArray &&
+        tagArray.map((tag) => {
+          console.log(tag);
+
+          // const coordinates = getCoordinates(
+          //   tag.boundingBoxHeight,
+          //   tag.boundingBoxWidth,
+          //   tag.boundingBoxLeft,
+          //   tag.boundingBoxTop,
+          //   576,
+          //   1280
+          // );
+          // console.log(coordinates);
+          // console.log(`this is called ${x} times`);
+
+          return (
+            <Tag
+              key={tag.x * tag.y}
+              leftPos={tag.x * 100}
+              topPos={tag.y * 100}
+              // leftPos={coordinates.x}
+              // topPos={coordinates.y}
+              id={tag.product_id}
+              title={tag.label.trim()}
+              price={5000}
+              // setVideoModalTabValue={setVideoModalTabValue}
+            />
+          );
+        })}
       {/* <svg
         width="50"
         height="50"
@@ -100,6 +136,13 @@ function VideoContainer({ src, videoId, thumbnail, label }) {
         poster={thumbnail}
         // width="100%"
         // height="100%"
+        onPause={(e) => {
+          console.log(label);
+          handleShowTag(e);
+        }}
+        onPlay={() => {
+          setTagArray([]);
+        }}
         onClick={() => {
           fetchProducts(videoId);
         }}
