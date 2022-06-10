@@ -53,6 +53,7 @@ function VideoContainer({ src, videoId, thumbnail, label }) {
     setLabel(label);
     console.log(src);
     setModalValue("videomodal");
+
     axios.get(`https://eked.herokuapp.com/v1/api/products/${id}/video`).then((res) => {
       console.log(res);
       if (res.status === 200) {
@@ -72,6 +73,7 @@ function VideoContainer({ src, videoId, thumbnail, label }) {
       onMouseLeave={(e) => {
         stopVideoTimer(e);
       }}
+      style={{ border: "1px solid red" }}
     >
       {/* <svg
         width="50"
@@ -93,7 +95,7 @@ function VideoContainer({ src, videoId, thumbnail, label }) {
         src={src}
         loop
         muted
-        controls
+        // controls
         preload="auto"
         poster={thumbnail}
         // width="100%"

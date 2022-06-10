@@ -52,14 +52,11 @@ function VideoViewContainer({ src, setVideoModalTabValue, json }) {
     setTagArray([]);
   };
 
-  const handlePause = () => {
+  const showTag = (time) => {
     // console.log("onPause");
     // this.setState({ playing: false });
-    const videoPlayer = document.getElementById("video");
-    console.log(videoPlayer);
-    const tm = videoPlayer.currentTime;
-    console.log(tm);
-    const currentTime = Math.round((tm * 1000) / 500) * 500;
+    console.log(time);
+    const currentTime = Math.round((time * 1000) / 500) * 500;
     console.log(currentTime);
 
     // let currentTime = Math.ceil(this.player.getCurrentTime() * 1000);
@@ -175,8 +172,8 @@ function VideoViewContainer({ src, setVideoModalTabValue, json }) {
           onPlay={() => {
             handlePlay();
           }}
-          onPause={() => {
-            handlePause();
+          onPause={(e) => {
+            showTag(e.target.currentTime);
           }}
           style={{
             height: "100%",

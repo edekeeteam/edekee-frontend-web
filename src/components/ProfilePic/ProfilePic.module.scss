@@ -8,6 +8,12 @@
     position: relative;
     border-radius: 50%;
     border: 2px solid #fff;
+    // background-color: black;
+
+    &.small {
+      width: 100px;
+      height: 100px;
+    }
 
     img {
       width: 100%;
@@ -15,6 +21,10 @@
       border-radius: 50%;
       object-fit: cover;
       position: absolute;
+      top: 0;
+      left: 0;
+      // background-color: white;
+      z-index: -1;
     }
 
     .uploadContainer {
@@ -29,6 +39,11 @@
       margin-bottom: -5px;
       @include flex-center;
       cursor: pointer;
+
+      &.small {
+        width: 40px;
+        height: 40px;
+      }
     }
   }
 }

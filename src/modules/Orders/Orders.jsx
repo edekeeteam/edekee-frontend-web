@@ -27,14 +27,15 @@ function Orders() {
         }
       )
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         const { data } = res.data;
         const stuff = [];
-        console.log(data);
+        // console.log(data);
         data.map((order) => order.orderItem.map((eachOrder) => stuff.push(eachOrder)));
         // console.log(stuff);
         // const items = stuff.map((orderss) => orderss.orderItem.map((i) => i));
         // console.log(items);
+        // console.log(stuff);
         setOrders(stuff);
         // res.data
       });
@@ -79,8 +80,8 @@ function Orders() {
             />
           ))}
         </div>
-        <div className={styles.orderSummary}>
-          {/* <p className="global-modal-sm-mb global-text-20">Summary</p>
+        {/* <div className={styles.orderSummary}> */}
+        {/* <p className="global-modal-sm-mb global-text-20">Summary</p>
 
           <div className={`${styles.subtotal} global-modal-sm-mb`}>
             <p>subtotal </p>
@@ -93,7 +94,7 @@ function Orders() {
           <div className={`${styles.total} global-modal-sm-mb`}>
             <p className="right-section">Total </p>
           </div> */}
-        </div>
+        {/* </div> */}
       </div>
     </div>
   );

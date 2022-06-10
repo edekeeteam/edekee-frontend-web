@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import IndexStyle from "../index.module.scss";
 import styles from "./DeliveryInfo.module.scss";
+import { InputCheckbox } from "../../../../components/InputFields";
 
 // import { InputCategory } from "../../../../components/InputFields";
 // import { useUploadProductsContext } from "../../../../context/UploadProducts";
@@ -40,16 +41,17 @@ function DeliveryInfo({ prevStep, nextStep }) {
           </div>
         </div>
         <div
-          className={styles.Content}
+          className={styles.content}
           onClick={nextStep()}
           onKeyDown={nextStep()}
           role="button"
           tabIndex={0}
         >
-          <p className="global-text-24 global-modal-sm-mb">Tell us where you Deliver.</p>
-          <p className="global-text-12 global-modal-mb">
+          <p className="global-text-20 global-modal-sm-mb">Tell us where you Deliver.</p>
+          <p className="global-text-10 global-modal-mb">
             Your Potential customers will see this information when view your shop.
           </p>
+
           {/* <div>
             {
               // eslint-disable-next-line no-console
@@ -64,6 +66,28 @@ function DeliveryInfo({ prevStep, nextStep }) {
               )
             }
           </div> */}
+        </div>
+
+        <div className={styles.deliveryInfoBody}>
+          <div className={styles.deliveryOption}>
+            <div>
+              <InputCheckbox />
+            </div>
+            <p>I only sell and deliver within the country.</p>
+          </div>
+          <div className={styles.deliveryOption}>
+            <div>
+              <InputCheckbox />
+            </div>
+
+            <p>I only sell and deliver outside the country.</p>
+          </div>
+          <div className={styles.deliveryOption}>
+            <div>
+              <InputCheckbox />
+            </div>
+            <p>I sell and deliver both within and outside the country.</p>
+          </div>
         </div>
       </div>
     </div>

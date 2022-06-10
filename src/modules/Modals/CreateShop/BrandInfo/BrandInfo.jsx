@@ -69,6 +69,15 @@ function BrandInfo({ nextStep, prevStep }) {
           // value={signInEmail}
         />
       </div>
+      <div className="global-modal-mb " style={{ width: "100%" }}>
+        <InputText
+          label="Street address"
+          name="signInEmail"
+          type="text"
+          // handleChange={handleInputChange}
+          // value={signInEmail}
+        />
+      </div>
       {/* <div>
         <ImageSlider imagesSlides={source} />
       </div> */}
