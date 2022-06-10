@@ -36,12 +36,14 @@ function CartItem({
   };
 
   const Delete = (selectedIndex) => {
+    console.log(id);
     axios
       .post(
-        `http://ec2-3-137-115-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/removeFromCart/${id}`,
+        `http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/removeFromCart/1c1c090f-b412-46e2-b1fb-46cd42783403`,
         {
           headers: {
-            Authorization: "token",
+            Authorization: localStorage.getItem("userId"),
+            portal: "web",
           },
         }
       )

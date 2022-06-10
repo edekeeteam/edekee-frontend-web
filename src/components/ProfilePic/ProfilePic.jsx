@@ -2,15 +2,15 @@ import React from "react";
 import styles from "./ProfilePic.module.scss";
 
 // eslint-disable-next-line react/prop-types
-export default function ProfilePic({ img }) {
+export default function ProfilePic({ img, size }) {
   return (
     <div className={styles.profilePic}>
-      <div className={styles.imgContainer}>
-        <img src={img} alt="pic" />
-        <div className={styles.uploadContainer}>
+      <div className={`${styles.imgContainer} ${size === "small" && styles.small}`}>
+        <img src={img} alt="" />
+        <div className={`${styles.uploadContainer} ${size === "small" && styles.small}`}>
           <svg
-            width="30"
-            height="26"
+            width={size === "small" ? "20" : "30"}
+            height={size === "small" ? "16" : "26"}
             viewBox="0 0 40 36"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

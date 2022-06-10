@@ -49,7 +49,7 @@ function Product({ product, changeVideoTab }) {
     >
       <div className={styles.productWrapper}>
         <div className={styles.productLeft}>
-          <img src={product.primaryImage} alt="" className={styles.profilePicture} />
+          <img src={product?.primaryImage} alt="" className={styles.profilePicture} />
         </div>
 
         <div className={styles.productRight}>

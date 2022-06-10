@@ -10,10 +10,11 @@ import Modal from "../../../components/Modal/Modal";
 import SelectImages from "./SelectImages/SelectImages";
 // import CropImages from "./BrandInfo/BrandInfo";
 import DeliveryInfo from "./DeliveryInfo/DeliveryInfo";
-import SubCategory from "./SubCategory/SubCategory";
-import ProductInfo from "./ProductInfo/ProductInfo";
+import Category from "./Category/Category";
+import CreateProduct from "./CreateProduct/CreateProduct";
 import styles from "../../../components/VideoUploadModals/UploadVideoModal/UploadVideoModal.module.scss";
 import BrandInfo from "./BrandInfo/BrandInfo";
+import UploadLogo from "./UploadLogo/UploadLogo";
 
 // modal
 
@@ -34,8 +35,9 @@ function CreateShopModal() {
     <SelectImages nextStep={() => nextStep} />,
     <BrandInfo nextStep={() => nextStep} prevStep={() => prevStep} />,
     <DeliveryInfo nextStep={() => nextStep} prevStep={() => prevStep} />,
-    <SubCategory nextStep={() => nextStep} prevStep={() => prevStep} />,
-    <ProductInfo nextStep={() => nextStep} prevStep={() => prevStep} />,
+    <Category nextStep={() => nextStep} prevStep={() => prevStep} />,
+    <UploadLogo nextStep={() => nextStep} prevStep={() => prevStep} />,
+    <CreateProduct nextStep={() => nextStep} prevStep={() => prevStep} />,
     <div>
       <div className={styles.overlay}>
         <div className={styles.overlayContainer}>
@@ -54,7 +56,7 @@ function CreateShopModal() {
 
   return (
     <Modal>
-      <div>{steps[stepIndex]}</div>
+      <div style={{ width: "100%" }}>{steps[stepIndex]}</div>
     </Modal>
   );
 }
