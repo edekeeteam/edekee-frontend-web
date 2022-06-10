@@ -17,7 +17,7 @@ function Modal({ children }) {
 
   return (
     <div
-      className={`${styles.modalbackdrop} ${isModalOpen && styles.show}`}
+      className={`${styles.modalBackdrop} ${isModalOpen && styles.show}`}
       onClick={() => {
         setIsModalOpen(false);
         setErrors({});

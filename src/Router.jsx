@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-// import { FullPageLayout, NavBarLayout } from "./layouts";
 import FullPageLayout from "./layouts/FullPage/FullPageLayout";
 import NavBarLayout from "./layouts/Navbar/NavBarLayout";
 import Interests from "./pages/interests";
@@ -9,7 +8,8 @@ import Home from "./pages/home";
 import Profile from "./pages/profile";
 import Cart from "./pages/cart";
 import Orders from "./pages/orders";
-// import Dropdown from "./components/Dropdown/Dropdown";
+
+// TODO : Add a 404 page
 
 function Router() {
   return (

@@ -1,39 +1,43 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import axios from "axios";
-import Button from "../Button/Button";
+// import axios from "axios";
+// import Button from "../Button/Button";
 import styles from "./OrderItem.module.scss";
 
 function OrderItem({ data }) {
-  const fetchOrderDetails = () => {
-    const userId = "0147743e-bba3-4b9d-bf17-3c8080e477ea";
-    const orderId = "4675ef63-9799-43e7-8324-bef62daddc52";
-    const params = {
-      user_id: userId,
-      order_id: orderId,
-    };
+  // const fetchOrderDetails = () => {
+  //   const userId = data.id;
+  //   const orderId = data.order_id;
 
-    axios
-      .get(
-        `http://ec2-3-137-115-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/getOrder`,
-        params,
-        {
-          headers: {
-            Authorization: "token",
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res.data.data);
+  //   console.log(userId, orderId);
+  //   const params = {
+  //     user_id: userId,
+  //     order_id: orderId,
+  //   };
 
-        console.log(data);
+  //   axios
+  //     .get(
+  //       `http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/getOrder`,
+  //       params,
+  //       {
+  //         headers: {
+  //           Authorization: "token",
+  //         },
+  //       }
+  //     )
+  //     .then((res) => {
+  //       console.log(res);
 
-        // const items = stuff.map((orderss) => orderss.orderItem.map((i) => i));
-        // console.log(items);
+  //       // console.log(data);
 
-        // res.data
-      });
-  };
+  //       // const items = stuff.map((orderss) => orderss.orderItem.map((i) => i));
+  //       // console.log(items);
+
+  //       // res.data
+  //     });
+  // };
+
+  // const formattedDate = data.date.split()
   return (
     <div className={styles.orderItem}>
       {/* <div>
@@ -68,28 +72,28 @@ function OrderItem({ data }) {
             </div>
             <p>Delete</p>
           </div> */}
-          <Button
+          {/* <Button
             size="small"
             bgcolor="white"
             label="Track Order"
             handleClick={() => {
               fetchOrderDetails();
             }}
-          />
+          /> */}
         </div>
 
         <div className={styles.footer}>
           <div>
             <p className={styles.footerTitle}>Order number</p>
-            <p className={styles.footerText}> 3445</p>
+            <p className={styles.footerText}> {data.id.slice(0, 5)}</p>
           </div>
           <div>
             <p className={styles.footerTitle}>Order date</p>
-            <p className={styles.footerText}> 24/05/2022</p>
+            <p className={styles.footerText}> {data.created_at.slice(0, 10)}</p>
           </div>
           <div>
             <p className={styles.footerTitle}>Total</p>
-            <p className={styles.footerText}> 5000</p>
+            <p className={styles.footerText}> {data.product.price * data.quantity}</p>
           </div>
           <div>
             <p className={styles.footerTitle}>Status</p>

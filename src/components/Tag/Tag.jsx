@@ -24,10 +24,11 @@ function Tag({ topPos, leftPos, price, title, id, setVideoModalTabValue }) {
 
   React.useEffect(() => {
     tag.current.addEventListener("buy", (e) => {
-      console.log(e.detail);
+      console.log(e.detail.id);
+      // console.log(t);
       axios
         .get(
-          `http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/product/${e.detail.id}`,
+          `http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/product/${tag.current.id}`,
           {
             headers: {
               Authorization: localStorage.getItem("token"),

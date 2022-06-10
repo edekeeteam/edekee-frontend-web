@@ -38,24 +38,6 @@ function CartModule() {
     fetchCart();
   }, []);
 
-  // console.log(cart);
-  // const userId = "0147743e-bba3-4b9d-bf17-3c8080e477ea";
-
-  // useEffect(() => {
-  //   axios
-  //     .get(`https://eked.herokuapp.com/v1/api/cart/getCartItems/${userId}`, {
-  //       headers: {
-  //         Authorization: "token",
-  //       },
-  //     })
-  //     .then((res) => {
-  //       console.log(res.data.data);
-
-  //       setCart(res.data.data);
-  //       // res.data
-  //     });
-  // }, []);
-
   const getFormattedPrice = (price) => `₦ ${price.toFixed(2)}`;
 
   const ontoggleCheck = (selectedIndex) => {

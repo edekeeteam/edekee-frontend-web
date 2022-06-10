@@ -101,6 +101,20 @@ function Dropdown() {
             <img className={styles.img} src="./icons/createVideo.svg" alt="" />
             <p>CreateShop</p>
           </div>
+          <div
+            className={styles.uploadButton}
+            onClick={() => {
+              setIsModalOpen(true);
+              setModalValue("createShop");
+              setIsDropdownOpen(false);
+            }}
+            onKeyDown={handleKeyDown()}
+            role="button"
+            tabIndex={0}
+          >
+            <img className={styles.img} src="./icons/createVideo.svg" alt="" />
+            <p>Create Service</p>
+          </div>
         </div>
       ) : (
         <div className={styles.uploadButtonsSection}>

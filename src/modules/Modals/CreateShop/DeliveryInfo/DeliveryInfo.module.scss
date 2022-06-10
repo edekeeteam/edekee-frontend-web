@@ -1,6 +1,23 @@
 .Category {
   // height: 80vh;
-  .Content {
-    padding: 0 50px;
+}
+
+.content {
+  // padding: 0 50px;
+  margin-bottom: 100px;
+}
+
+.deliveryInfoBody {
+  margin-bottom: 200px;
+  .deliveryOption {
+    display: flex;
+    align-items: center;
+    // border: 1px solid green;
+    font-size: 12px;
+    margin-bottom: 20px;
+
+    p {
+      margin-left: 10px;
+    }
   }
 }
