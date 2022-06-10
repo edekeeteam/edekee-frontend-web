@@ -80,7 +80,7 @@ function BuyProvider({ children }) {
       }
 
       const params = {
-        product_id: `${productId}`,
+        product_id: productId,
         user_id: userId,
         size,
         color,
