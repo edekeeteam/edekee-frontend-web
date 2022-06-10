@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
+/* eslint-disable no-alert */
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useModalContext } from "./ModalContext";
