@@ -23,12 +23,9 @@ function CropImages({ nextStep, prevStep }) {
           <img src={`${process.env.PUBLIC_URL}/icons/previewCancelBtn.svg`} alt="" />
         </div>
         <div onClick={nextStep()} onKeyDown={() => {}} role="button" tabIndex={0}>
+          {/* <span>Next</span> */}
           <img src={`${process.env.PUBLIC_URL}/icons/rightChevron.svg`} alt="upload" />
         </div>
-      </div>
-      <div>
-        <p className="global-text-20 global-modal-sm-mb">Help us know your product</p>
-        <p className="global-text-12 global-modal-mb">Crop around your product in the image.</p>
       </div>
       <div>
         <ImageSlider imagesSlides={source} />

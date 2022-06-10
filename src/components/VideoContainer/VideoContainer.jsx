@@ -73,7 +73,6 @@ function VideoContainer({ src, videoId, thumbnail, label }) {
       onMouseLeave={(e) => {
         stopVideoTimer(e);
       }}
-      style={{ border: "1px solid red" }}
     >
       {/* <svg
         width="50"
