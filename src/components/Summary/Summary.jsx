@@ -50,7 +50,7 @@ function Summary() {
               <option value="Benin">Benin</option>
             </select>
 
-            {/* <InputText label="Input Address" /> */}
+            {/* <InputSearch label="Input Address" /> */}
           </div>
         </div>
         <div className={styles.itemCard}>

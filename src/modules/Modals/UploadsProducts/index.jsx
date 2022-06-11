@@ -10,10 +10,11 @@ import SelectImages from "./SelectImages/SelectImages";
 import CropImages from "./CropImages/CropImages";
 import Upload360Videos from "./Upload360Videos/Upload360Videos";
 import Category from "./Category/Category";
-import SubCategory from "./SubCategory/SubCategory";
+// import SubCategory from "./SubCategory/SubCategory";
 import ProductInfo from "./ProductInfo/ProductInfo";
 
 import styles from "../../../components/VideoUploadModals/UploadVideoModal/UploadVideoModal.module.scss";
+import Preview360Video from "./Preview360Video/Preview360Video";
 
 // modal
 
@@ -34,8 +35,9 @@ function UploadsProductsModal() {
     <SelectImages nextStep={() => nextStep} />,
     <CropImages nextStep={() => nextStep} prevStep={() => prevStep} />,
     <Upload360Videos nextStep={() => nextStep} />,
+    <Preview360Video nextStep={() => nextStep} prevStep={() => prevStep} />,
     <Category nextStep={() => nextStep} prevStep={() => prevStep} />,
-    <SubCategory nextStep={() => nextStep} prevStep={() => prevStep} />,
+    // <SubCategory nextStep={() => nextStep} prevStep={() => prevStep} />,
     <ProductInfo nextStep={() => nextStep} prevStep={() => prevStep} />,
     <div>
       <div className={styles.overlay}>

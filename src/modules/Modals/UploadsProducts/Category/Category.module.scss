@@ -1,6 +1,13 @@
 .Category {
   height: 80vh;
   .Content {
-    padding: 0 50px;
+    padding: 0 25px;
+
+    .container {
+      //padding: 0 15px;
+      padding: 5px 0;
+      height: 50vh;
+      overflow-y: scroll;
+    }
   }
 }

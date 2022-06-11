@@ -5,30 +5,26 @@ import styles from "./CropImages.module.scss";
 import { useUploadProductsContext } from "../../../../context/UploadProducts";
 
 import ImageSlider from "../../../../components/ImageSlider/ImageSlider";
+import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
 
 function CropImages({ nextStep, prevStep }) {
-  const { source } = useUploadProductsContext();
+  const { pictureFiles, deleteImage, addImage } = useUploadProductsContext();
 
   return (
     <div className={styles.cropImages}>
-      <div className={styles.Header}>
-        <div
-          onClick={prevStep()}
-          onKeyDown={() => {
-            prevStep();
-          }}
-          role="button"
-          tabIndex={0}
-        >
-          <img src={`${process.env.PUBLIC_URL}/icons/previewCancelBtn.svg`} alt="" />
-        </div>
-        <div onClick={nextStep()} onKeyDown={() => {}} role="button" tabIndex={0}>
-          {/* <span>Next</span> */}
-          <img src={`${process.env.PUBLIC_URL}/icons/rightChevron.svg`} alt="upload" />
-        </div>
-      </div>
+      <ModalHeader
+        showNext={pictureFiles.length === 4}
+        canCancel
+        prevStep={prevStep}
+        nextStep={nextStep}
+      />
       <div>
-        <ImageSlider imagesSlides={source} />
+        <ImageSlider
+          imagesSlides={pictureFiles}
+          prevStep={prevStep}
+          addImage={addImage}
+          deleteImage={deleteImage}
+        />
       </div>
     </div>
   );

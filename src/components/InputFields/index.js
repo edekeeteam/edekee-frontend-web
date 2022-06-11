@@ -7,3 +7,4 @@ export { default as InputColor } from "./InputColor/InputColor";
 export { default as InputCategory } from "./InputCategory/InputCategory";
 export { default as InputSelect } from "./InputSelect/InputSelect";
 export { default as InputCheckbox } from "./InputCheckbox/InputCheckbox";
+export { default as InputSearch } from "./InputSearch/InputSearch";

@@ -5,17 +5,17 @@ import styles from "../SelectImages/SelectImages.module.scss";
 import { useUploadProductsContext } from "../../../../context/UploadProducts";
 
 function Upload360Videos({ nextStep }) {
-  const { setPicturesFiles, setSource } = useUploadProductsContext();
+  const { setVideoFile, setVideoSource } = useUploadProductsContext();
 
   const inputRef = React.useRef();
 
-  const handleFileChange = (event, func) => {
-    const { files } = event.target;
-    const images = [...event.target.files].map((file) => URL.createObjectURL(file));
-    setSource(images);
-    setPicturesFiles(files);
+  const handleFileChange = (event, next) => {
+    const file = event.target.files[0];
+    const video = URL.createObjectURL(file);
+    setVideoSource(video);
+    setVideoFile(file);
     // next Steps Function
-    func();
+    next();
     // nextSteps Functions
   };
 
@@ -28,9 +28,8 @@ function Upload360Videos({ nextStep }) {
       <input
         ref={inputRef}
         className={styles.selectInput}
-        accept=".jpg, .jpeg, .png, .svg"
+        accept=".mp4"
         type="file"
-        multiple
         onChange={(e) => {
           handleFileChange(e, nextStep());
         }}

@@ -11,6 +11,8 @@ function UploadProductsProvider({ children }) {
   // data
   const [pictureFiles, setPicturesFiles] = useState(null);
   const [source, setSource] = useState(null);
+  const [videoFile, setVideoFile] = useState(null);
+  const [videoSource, setVideoSource] = useState(null);
   const [categoryId, setCategoryId] = useState("");
   const [subCategoryId, setSubCategoryId] = useState("");
   const [name, setName] = useState(undefined);
@@ -102,6 +104,23 @@ function UploadProductsProvider({ children }) {
     }
   };
 
+  // eslint-disable-next-line no-unused-vars
+  const deleteImage = (selectedIndex) => {
+    const newPictures = pictureFiles.filter((item, index) => index !== selectedIndex);
+    setPicturesFiles(newPictures);
+  };
+
+  const addImage = ({ target }) => {
+    // console.log(target.files[0])
+    setPicturesFiles([...pictureFiles, target.files[0]]);
+  };
+
+  const deleteVideo = () => {
+    // eslint-disable-next-line no-alert
+    setVideoFile(null);
+    setVideoFile(null);
+  };
+
   // uploadData
   return (
     <UploadProductsContext.Provider
@@ -110,6 +129,10 @@ function UploadProductsProvider({ children }) {
       value={{
         pictureFiles,
         setPicturesFiles,
+        videoFile,
+        setVideoFile,
+        videoSource,
+        setVideoSource,
         categoryId,
         setCategoryId,
         subCategoryId,
@@ -131,6 +154,9 @@ function UploadProductsProvider({ children }) {
         showProgress,
         setShowProgress,
         handleProductsUpload,
+        deleteVideo,
+        deleteImage,
+        addImage,
       }}
     >
       {children}
