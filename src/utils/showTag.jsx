@@ -29,3 +29,28 @@ function showTag(time, jsonArray) {
   //   setTagArray(allTags);
 }
 export default showTag;
+
+// const getCoordinates = (bbh, bbw, bbl, bbt, vw, vh) => {
+//   const bbhInt = parseFloat(bbh);
+//   const bbwInt = parseFloat(bbw);
+//   const bblInt = parseFloat(bbl);
+//   const bbtInt = parseFloat(bbt);
+
+//   const xCoordinate = bblInt * vw + (bbwInt * vw) / 2;
+//   const yCoordinate = bbtInt * vh + (bbhInt * vh) / 2;
+//   // let adjustedWidth = (20 / vw) * 100;
+//   // let adjustedHeight = (20 / vh) * 100;
+
+//   // const x = bbl * 100;
+//   // const y = bbt * 100;
+//   const x = (xCoordinate / vw) * 100;
+//   const y = (yCoordinate / vh) * 100;
+//   // console.log(x, y);
+
+//   // let x = bbl * 100;
+//   // let y = bbt * 100;
+
+//   return { x, y };
+//   // return { x: x.toString(), y: y.toString() };
+//   // return <Tag leftPos="50" topPos="70" title="shirt" price="500" />;
+// }; // };

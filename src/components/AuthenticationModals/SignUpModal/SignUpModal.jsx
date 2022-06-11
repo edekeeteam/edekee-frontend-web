@@ -78,7 +78,7 @@ function SignUpModal() {
             value={signUpPassword}
           />
         </div>
-        <div className="global-modal-md-mb" style={{ width: "100%" }}>
+        <div className="global-modal-md-mb" style={{ width: "100%", marginBottom: "50px" }}>
           <InputText
             label="confirmPassword"
             name="confirmPassword"

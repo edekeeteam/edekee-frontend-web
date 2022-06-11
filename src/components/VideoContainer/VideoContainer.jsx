@@ -14,7 +14,7 @@ import Tag from "../Tag/Tag";
 import styles from "./VideoContainer.module.scss";
 import { useProductsContext } from "../../context/ProductsContext";
 
-function VideoContainer({ src, videoId, thumbnail, label }) {
+function VideoContainer({ src, videoId, thumbnail, label, aspectRatio }) {
   const [showInfo, setShowInfo] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [tagArray, setTagArray] = useState([]);
@@ -66,7 +66,8 @@ function VideoContainer({ src, videoId, thumbnail, label }) {
       }
     });
   };
-
+  // console.log(typeof +aspectRatio);
+  const ratio = +aspectRatio;
   const handleShowTag = (e) => {
     const tags = showTag(e.target.currentTime, label);
     setTagArray(tags);
@@ -80,6 +81,13 @@ function VideoContainer({ src, videoId, thumbnail, label }) {
       }}
       onMouseLeave={(e) => {
         stopVideoTimer(e);
+      }}
+      style={{
+        backgroundImage: `url(${thumbnail})`,
+        aspectRatio: `${ratio}`,
+        backgroundSize: "contain",
+        backgroundPosition: "center",
+        position: " relative",
       }}
     >
       {tagArray &&
@@ -105,7 +113,7 @@ function VideoContainer({ src, videoId, thumbnail, label }) {
               // leftPos={coordinates.x}
               // topPos={coordinates.y}
               id={tag.product_id}
-              title={tag.label.trim()}
+              title={tag.label.split(0, 10)}
               price={5000}
               // setVideoModalTabValue={setVideoModalTabValue}
             />
@@ -133,7 +141,7 @@ function VideoContainer({ src, videoId, thumbnail, label }) {
         muted
         // controls
         preload="auto"
-        poster={thumbnail}
+        // poster={thumbnail}
         // width="100%"
         // height="100%"
         onPause={(e) => {
@@ -150,7 +158,7 @@ function VideoContainer({ src, videoId, thumbnail, label }) {
           console.log(e, "error");
         }}
         className={styles.videoPlayer}
-        style={{ width: "100%", aspectRatio: "1/1.7777" }}
+        style={{ width: "100%", aspectRatio: `${ratio}` }}
       >
         <track kind="captions" />
       </video>

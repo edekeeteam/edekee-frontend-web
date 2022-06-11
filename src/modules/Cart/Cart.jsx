@@ -84,7 +84,7 @@ function CartModule() {
     const cartItem = cart.find((item, index) => index === selectedIndex);
     if (cartItem) {
       const updatedCart = cart.map((item, index) =>
-        index === selectedIndex ? { ...cartItem, qty: cartItem.qty + 1 } : item
+        index === selectedIndex ? { ...cartItem, quantity: cartItem.quantity + 1 } : item
       );
       setCart(updatedCart);
     }
@@ -94,7 +94,7 @@ function CartModule() {
     const cartItem = cart.find((item, index) => index === selectedIndex);
     if (cartItem) {
       const updatedCart = cart.map((item, index) =>
-        index === selectedIndex ? { ...cartItem, qty: cartItem.qty - 1 } : item
+        index === selectedIndex ? { ...cartItem, quantity: cartItem.quantity - 1 } : item
       );
       setCart(updatedCart);
     }
@@ -130,7 +130,7 @@ function CartModule() {
       quantity: eachItem.quantity,
     }));
     setCartOrderArray(cartOrder);
-    console.log(cartOrder);
+    // console.log(cartOrder);
   }, [cart]);
 
   return (

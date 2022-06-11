@@ -1,9 +1,9 @@
 .videoContainer {
-  // border: 1px solid green;
+  // border: 4px solid green;
   margin-bottom: 20px;
   // width: 50%;
   width: 100%;
-  aspect-ratio: 1/1.7;
+  // aspect-ratio: calc(1 / 0.3);
   // width: auto;
   position: relative;
   background-color: bisque;
@@ -11,6 +11,7 @@
 
 video {
   position: relative;
+  // object-fit: cover;
 }
 
 video::-internal-media-controls {

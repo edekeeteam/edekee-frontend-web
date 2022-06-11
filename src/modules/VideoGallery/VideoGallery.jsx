@@ -62,6 +62,7 @@ function VideoGallery({ data }) {
   //   // console.log(data.data);
   //   data.data.map((video) => console.log(video.video));
   // }
+  console.log(data);
 
   return (
     <div className={styles.gallery}>
@@ -80,6 +81,7 @@ function VideoGallery({ data }) {
               videoId={video.id}
               thumbnail={video.thumbnail}
               label={video.json}
+              aspectRatio={video.video_aspect_ratio}
 
               // onClick={() => {
               //   // console.log("clicked");

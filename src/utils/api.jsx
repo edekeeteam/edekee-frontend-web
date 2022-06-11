@@ -10,6 +10,7 @@ const api = {
       headers: {
         Authorization: localStorage.getItem("token"),
         portal: "web",
+        "Access-Control-Allow-Origin": "*",
       },
     }),
   post: (url, data) =>

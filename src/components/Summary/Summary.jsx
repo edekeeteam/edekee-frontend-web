@@ -87,7 +87,7 @@ function Summary() {
         <div className={styles.banner}>
           <div className={styles.bannerLeft}>
             <p className={styles.bannerTopText}>All total</p>
-            <p className={styles.bannerPrice}>N50,000.00</p>
+            <p className={styles.bannerPrice}>N{price}</p>
             <p className={styles.bannerDeliveryText}>pay on delivery</p>
           </div>
 

@@ -118,8 +118,9 @@ function ProductSpecs() {
               bgcolor="white"
               handleClick={() => {
                 console.log("change");
-
-                if (color === "" || size === "") {
+                if (!localStorage.getItem("userId")) {
+                  alert("login to buy products");
+                } else if (color === "" || size === "") {
                   alert("select color and size");
                 } else {
                   setModalValue("paymentmodal");

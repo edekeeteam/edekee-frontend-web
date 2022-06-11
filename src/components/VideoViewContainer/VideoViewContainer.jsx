@@ -37,46 +37,10 @@ function VideoViewContainer({ src, setVideoModalTabValue, json }) {
 
   // martin
 
-  // const startVideoTimer = (e) => {
-  //   e.target.play();
-  //   vidRef.current = setTimeout(() => {
-  //     setShowInfo(true);
-  //   }, 1100);
-  // };
-
-  // const stopVideoTimer = (e) => {
-  //   e.target.pause();
-  //   e.target.currentTime = 0;
-  //   setShowInfo(false);
-  //   clearTimeout(vidRef.current);
   const handlePlay = () => {
     setTagArray([]);
   };
 
-  // const getCoordinates = (bbh, bbw, bbl, bbt, vw, vh) => {
-  //   const bbhInt = parseFloat(bbh);
-  //   const bbwInt = parseFloat(bbw);
-  //   const bblInt = parseFloat(bbl);
-  //   const bbtInt = parseFloat(bbt);
-
-  //   const xCoordinate = bblInt * vw + (bbwInt * vw) / 2;
-  //   const yCoordinate = bbtInt * vh + (bbhInt * vh) / 2;
-  //   // let adjustedWidth = (20 / vw) * 100;
-  //   // let adjustedHeight = (20 / vh) * 100;
-
-  //   // const x = bbl * 100;
-  //   // const y = bbt * 100;
-  //   const x = (xCoordinate / vw) * 100;
-  //   const y = (yCoordinate / vh) * 100;
-  //   // console.log(x, y);
-
-  //   // let x = bbl * 100;
-  //   // let y = bbt * 100;
-
-  //   return { x, y };
-  //   // return { x: x.toString(), y: y.toString() };
-  //   // return <Tag leftPos="50" topPos="70" title="shirt" price="500" />;
-  // }; // };
   const handleShowTag = (e) => {
     const tags = showTag(e.target.currentTime, json);
     setTagArray(tags);
@@ -129,7 +93,7 @@ function VideoViewContainer({ src, setVideoModalTabValue, json }) {
                 // leftPos={coordinates.x}
                 // topPos={coordinates.y}
                 id={tag.product_id}
-                title={tag.label.trim()}
+                title={tag.label.slice(0, 10)}
                 price={5000}
                 setVideoModalTabValue={setVideoModalTabValue}
               />

@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
@@ -179,7 +180,10 @@ export default function Navbar() {
                 </svg>
 
                 <p className={`${location.pathname === "/cart" ? styles.active : " "}`}>Cart</p>
-                <div className={styles.badge}> {cart ? cart.length : 0}</div>
+                <div className={styles.badge}>
+                  {" "}
+                  {!localStorage.getItem("userId") ? 0 : cart ? cart.length : 0}
+                </div>
               </span>
             </div>
 
