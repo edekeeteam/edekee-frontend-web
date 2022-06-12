@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "../SelectImages/SelectImages.module.scss";
 
-import { useUploadProductsContext } from "../../../../context/UploadProducts";
+import { useUploadProductsContext } from "../../../../../context/UploadProducts";
 
 function Upload360Videos({ nextStep }) {
   const { setVideoFile, setVideoSource } = useUploadProductsContext();

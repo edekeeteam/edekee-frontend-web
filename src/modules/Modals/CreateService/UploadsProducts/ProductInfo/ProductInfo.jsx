@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import IndexStyle from "../index.module.scss";
 import styles from "./ProductInfo.module.scss";
 
-import { InputSelect, InputText, InputTextArea } from "../../../../components/InputFields";
+import { InputSelect, InputText, InputTextArea } from "../../../../../components/InputFields";
 
-import { useUploadProductsContext } from "../../../../context/UploadProducts";
+import { useUploadProductsContext } from "../../../../../context/UploadProducts";
 
 // import InputSelect from "../../../components/InputFields/InputSelect/InputSelect";
 

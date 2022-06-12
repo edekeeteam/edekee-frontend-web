@@ -1,22 +1,29 @@
 .productInfo {
-  height: 80vh;
+  height: 100%;
   width: 400px;
   // border: 1px solid red;
 
-  .content {
-    padding: 0 10px;
+  .Content {
+    height: 100%;
     width: 100%;
 
-    .priceInfo {
+    form {
       display: flex;
-      width: 100%;
+      flex-direction: column;
+      //background-color: #4f4f4f;
+      height: fit-content;
+      .priceInfo {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
 
-      .currency {
-        width: 40%;
-      }
+        .currency {
+          width: 35%;
+        }
 
-      .price {
-        width: 60%;
+        .price {
+          width: 60%;
+        }
       }
     }
   }

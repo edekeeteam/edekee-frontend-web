@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { UploadProductsProvider } from "../../../context/UploadProducts";
-import { useUploadContext } from "../../../context/UploadContext";
+// import { useUploadContext } from "../../../context/UploadContext";
 
 import Modal from "../../../components/Modal/Modal";
 
@@ -12,16 +12,15 @@ import Upload360Videos from "./Upload360Videos/Upload360Videos";
 import Category from "./Category/Category";
 // import SubCategory from "./SubCategory/SubCategory";
 import ProductInfo from "./ProductInfo/ProductInfo";
-
-import styles from "../../../components/VideoUploadModals/UploadVideoModal/UploadVideoModal.module.scss";
 import Preview360Video from "./Preview360Video/Preview360Video";
+import PickColors from "./PickColors/PickColors";
 
 // modal
 
 function UploadsProductsModal() {
   const [stepIndex, setStepIndex] = useState(0);
 
-  const { percentage } = useUploadContext();
+  // const { percentage } = useUploadContext();
 
   function nextStep() {
     setStepIndex((x) => x + 1);
@@ -39,20 +38,21 @@ function UploadsProductsModal() {
     <Category nextStep={() => nextStep} prevStep={() => prevStep} />,
     // <SubCategory nextStep={() => nextStep} prevStep={() => prevStep} />,
     <ProductInfo nextStep={() => nextStep} prevStep={() => prevStep} />,
-    <div>
-      <div className={styles.overlay}>
-        <div className={styles.overlayContainer}>
-          <img
-            className={styles.overlayImage}
-            src={`${process.env.PUBLIC_URL}/icons/edekeeLogoPurple.svg`}
-            alt=""
-          />
-
-          <div className={styles.progressBar} style={{ width: `${percentage}%` }} />
-          <p>{`${percentage}%`}</p>
-        </div>
-      </div>
-    </div>,
+    <PickColors nextStep={() => nextStep} prevStep={() => prevStep} />,
+    // <div>
+    //   <div className={styles.overlay}>
+    //     <div className={styles.overlayContainer}>
+    //       <img
+    //         className={styles.overlayImage}
+    //         src={`${process.env.PUBLIC_URL}/icons/edekeeLogoPurple.svg`}
+    //         alt=""
+    //       />
+    //
+    //       <div className={styles.progressBar} style={{ width: `${percentage}%` }} />
+    //       <p>{`${percentage}%`}</p>
+    //     </div>
+    //   </div>
+    // </div>,
   ];
 
   return (

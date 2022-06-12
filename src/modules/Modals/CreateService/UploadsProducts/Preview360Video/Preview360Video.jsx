@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import styles from "../CropImages/CropImages.module.scss";
 import styles2 from "./Preview360Video.module.scss";
 
-import { useUploadProductsContext } from "../../../../context/UploadProducts";
-import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
+import { useUploadProductsContext } from "../../../../../context/UploadProducts";
+import ModalHeader from "../../../../../components/ModalHeader/ModalHeader";
 
 function Preview360Video({ nextStep, prevStep }) {
   const { videoSource, deleteVideo } = useUploadProductsContext();

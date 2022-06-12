@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./SelectImages.module.scss";
 
-import { useUploadProductsContext } from "../../../../context/UploadProducts";
+import { useUploadProductsContext } from "../../../../../context/UploadProducts";
 
 function SelectImages({ nextStep }) {
   // eslint-disable-next-line no-unused-vars

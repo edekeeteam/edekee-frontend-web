@@ -4,6 +4,8 @@ export { default as InputNumber } from "./InputNumber/InputNumber";
 export { default as InputText } from "./InputText/InputText";
 export { default as InputTextArea } from "./InputTextArea/InputTextArea";
 export { default as InputColor } from "./InputColor/InputColor";
+export { default as InputColorPicker } from "./InputColorPicker/InputColorPicker";
+export { default as InputColorPickerCancelable } from "./InputColorPickerCancelable/InputColorPickerCancelable";
 export { default as InputCategory } from "./InputCategory/InputCategory";
 export { default as InputSelect } from "./InputSelect/InputSelect";
 export { default as InputCheckbox } from "./InputCheckbox/InputCheckbox";

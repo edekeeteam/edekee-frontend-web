@@ -5,12 +5,12 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import IndexStyle from "../index.module.scss";
 import styles from "./Category.module.scss";
-import apiMethods from "../../../../utils/apiMethods";
-import endPoint from "../../../../routes";
+import apiMethods from "../../../../../utils/apiMethods";
+import endPoint from "../../../../../routes";
 
-import { InputCategory, InputSearch } from "../../../../components/InputFields";
-import { useUploadProductsContext } from "../../../../context/UploadProducts";
-import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
+import { InputCategory, InputSearch } from "../../../../../components/InputFields";
+import { useUploadProductsContext } from "../../../../../context/UploadProducts";
+import ModalHeader from "../../../../../components/ModalHeader/ModalHeader";
 
 // eslint-disable-next-line no-unused-vars
 function Category({ prevStep, nextStep }) {

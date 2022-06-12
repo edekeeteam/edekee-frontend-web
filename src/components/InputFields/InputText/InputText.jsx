@@ -21,10 +21,12 @@ function InputText({ type, label, name, handleChange, value }) {
           value={value}
           onChange={(e) => handleChange(e)}
           name={name}
-          placeholder=""
+          // placeholder=""
           autoComplete="off"
         />
-        <label htmlFor={name}>{label}</label>
+        <label className={`${value ? styles.active : ""}`} htmlFor={name}>
+          {label}
+        </label>
       </div>
       {/* <p>Error Message</p> */}
     </div>

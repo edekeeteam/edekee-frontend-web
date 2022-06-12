@@ -22,6 +22,7 @@ function InputColor({ Colors, handleChange }) {
   // eslint-disable-next-line react/prop-types
 
   function onChangeValue(event) {
+    console.log(event.target.value);
     setActiveColor(event.target.value);
     setColor(event.target.value);
     handleChange(event.target.value);
@@ -34,8 +35,11 @@ function InputColor({ Colors, handleChange }) {
       {
         // eslint-disable-next-line react/prop-types
         Colors.map((color) => (
-          // eslint-disable-next-line react/jsx-key
-          <ColorInput key={color} activeColor={activeColor} color={color} />
+          <ColorInput
+            key={color.code ? color.code : color}
+            activeColor={activeColor}
+            color={color.code ? color.code : color}
+          />
         ))
       }
     </div>

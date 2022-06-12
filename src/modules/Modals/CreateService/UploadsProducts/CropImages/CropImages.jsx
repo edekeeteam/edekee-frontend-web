@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./CropImages.module.scss";
 
-import { useUploadProductsContext } from "../../../../context/UploadProducts";
+import { useUploadProductsContext } from "../../../../../context/UploadProducts";
 
-import ImageSlider from "../../../../components/ImageSlider/ImageSlider";
-import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
+import ModalHeader from "../../../../../components/ModalHeader/ModalHeader";
+import ImageSlider from "../../../../../components/ImageSlider/ImageSlider";
 
 function CropImages({ nextStep, prevStep }) {
   const { pictureFiles, deleteImage, addImage } = useUploadProductsContext();

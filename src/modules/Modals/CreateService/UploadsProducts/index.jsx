@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import { UploadProductsProvider } from "../../../context/UploadProducts";
-import { useUploadContext } from "../../../context/UploadContext";
+import { UploadProductsProvider } from "../../../../context/UploadProducts";
+import { useUploadContext } from "../../../../context/UploadContext";
 
-import Modal from "../../../components/Modal/Modal";
+import Modal from "../../../../components/Modal/Modal";
 
 // modal
 import SelectImages from "./SelectImages/SelectImages";
