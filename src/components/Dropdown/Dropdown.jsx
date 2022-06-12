@@ -105,7 +105,7 @@ function Dropdown() {
             className={styles.uploadButton}
             onClick={() => {
               setIsModalOpen(true);
-              setModalValue("createShop");
+              setModalValue("createService");
               setIsDropdownOpen(false);
             }}
             onKeyDown={handleKeyDown()}

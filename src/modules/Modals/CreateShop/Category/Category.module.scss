@@ -1,21 +1,14 @@
-.SubCategory {
-  width: 400px;
-  height: 80vh;
-}
-
-.mainText {
-  // border: 1px solid red;
-}
-.secondaryText {
-  margin-bottom: 50px;
-}
-
 .category {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
+  height: 80vh;
+  width: 400px;
+  .Content {
+    padding: 0 25px;
 
-  border: 2px solid #fff;
-  margin: 0 auto;
-  margin-bottom: 200px;
+    .container {
+      //padding: 0 15px;
+      padding: 5px 0;
+      height: 50vh;
+      overflow-y: scroll;
+    }
+  }
 }

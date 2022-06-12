@@ -160,7 +160,7 @@ function PaymentModal() {
               <option value="Benin">Benin</option>
             </select>
 
-            {/* <InputText label="Input Address" /> */}
+            {/* <InputSearch label="Input Address" /> */}
           </div>
         </div>
 

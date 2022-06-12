@@ -17,7 +17,7 @@ function Modal({ children }) {
 
   return (
     <div
-      className={`${styles.modalbackdrop} ${isModalOpen && styles.show}`}
+      className={`${styles.modalBackdrop} ${isModalOpen && styles.show}`}
       onClick={() => {
         setIsModalOpen(false);
         setErrors({});
@@ -28,7 +28,7 @@ function Modal({ children }) {
       tabIndex={0}
     >
       <div
-        className={`${styles.modalContent} global-modal-width`}
+        className={`${styles.modalContent}`}
         onClick={(e) => {
           e.stopPropagation();
         }}

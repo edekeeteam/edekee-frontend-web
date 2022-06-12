@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import IndexStyle from "../index.module.scss";
 import styles from "./DeliveryInfo.module.scss";
 import { InputCheckbox } from "../../../../components/InputFields";
+import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
 
 // import { InputCategory } from "../../../../components/InputFields";
 // import { useUploadProductsContext } from "../../../../context/UploadProducts";
@@ -31,15 +32,21 @@ function DeliveryInfo({ prevStep, nextStep }) {
 
   return (
     <div>
-      <div className={`${IndexStyle.CategoryModal} ${styles.Category} `}>
-        <div className={IndexStyle.Header}>
+      <div className={`${IndexStyle.CategoryModal} ${styles.category} `}>
+        {/* <div className={IndexStyle.Header}>
           <div onClick={prevStep()} onKeyDown={prevStep()} role="button" tabIndex={0}>
             <img src={`${process.env.PUBLIC_URL}/icons/previewCancelBtn.svg`} alt="" />
           </div>
           <div onClick={nextStep()} onKeyDown={nextStep()} role="button" tabIndex={0}>
             <img src={`${process.env.PUBLIC_URL}/icons/rightChevron.svg`} alt="upload" />
           </div>
-        </div>
+        </div> */}
+        <ModalHeader
+          // showNext={pictureFiles.length === 4}
+          // canCancel
+          prevStep={prevStep}
+          nextStep={nextStep}
+        />
         <div
           className={styles.content}
           onClick={nextStep()}
@@ -66,27 +73,27 @@ function DeliveryInfo({ prevStep, nextStep }) {
               )
             }
           </div> */}
-        </div>
 
-        <div className={styles.deliveryInfoBody}>
-          <div className={styles.deliveryOption}>
-            <div>
-              <InputCheckbox />
+          <div className={styles.deliveryInfoBody}>
+            <div className={styles.deliveryOption}>
+              <div>
+                <InputCheckbox />
+              </div>
+              <p>I only sell and deliver within the country.</p>
             </div>
-            <p>I only sell and deliver within the country.</p>
-          </div>
-          <div className={styles.deliveryOption}>
-            <div>
-              <InputCheckbox />
-            </div>
+            <div className={styles.deliveryOption}>
+              <div>
+                <InputCheckbox />
+              </div>
 
-            <p>I only sell and deliver outside the country.</p>
-          </div>
-          <div className={styles.deliveryOption}>
-            <div>
-              <InputCheckbox />
+              <p>I only sell and deliver outside the country.</p>
             </div>
-            <p>I sell and deliver both within and outside the country.</p>
+            <div className={styles.deliveryOption}>
+              <div>
+                <InputCheckbox />
+              </div>
+              <p>I sell and deliver both within and outside the country.</p>
+            </div>
           </div>
         </div>
       </div>

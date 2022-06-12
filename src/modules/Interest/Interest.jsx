@@ -2,14 +2,17 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import axios from "axios";
+// import axios from "axios";
 
 import styles from "./Interest.module.scss";
 
 import useLocalStorage from "../../hooks/useLocalStorage";
 
 import Button from "../../components/Button/Button";
-import InputInterest from "../../components/InputFields/InputInterest/InputInterest";
+import { InputInterest } from "../../components/InputFields";
+
+import apiMethods from "../../utils/apiMethods";
+import endPoint from "../../routes";
 
 function Interest() {
   const navigate = useNavigate();
@@ -26,13 +29,13 @@ function Interest() {
   const [interestState, setInterestState] = useLocalStorage("interests", []);
   // from localStorage
 
+  const getInterests = () => apiMethods.get(`${endPoint.getInterests}`);
   useEffect(() => {
-    axios
-      .get("http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/interests")
-      .then(async (response) => {
-        setLoading(false);
-        setInterests(response.data.data);
-      });
+    getInterests().then(async (response) => {
+      setLoading(false);
+      console.log(response);
+      setInterests(response.data.data);
+    });
   }, []);
 
   const handleOnChange = (id) => {
@@ -46,7 +49,7 @@ function Interest() {
 
   const addInterests = () => {
     setInterestState(() => [...checkedInterestsState]);
-    if (checkedInterestsState.length >= 3 || interestState.length) {
+    if (interestState.length) {
       setTimeout(() => navigate("/home"), 200);
     }
   };

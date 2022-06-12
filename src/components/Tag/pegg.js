@@ -93,6 +93,10 @@ class PeggTag extends HTMLElement {
     return this.getAttribute("id");
   }
 
+  set id(nv) {
+    this.setAttribute("id", nv);
+  }
+
   modeOpen() {
     this.style.height = "25px";
     this.style.borderRadius = "25px";

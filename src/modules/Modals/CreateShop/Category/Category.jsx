@@ -1,28 +1,84 @@
-/* eslint-disable react/prop-types */
-import React from "react";
-// import { InputInterest } from "../../../../components/InputFields";
-import IndexStyle from "../index.module.scss";
-import styles from "./Category.module.scss";
+// import React, { useEffect, useState } from "react";
+// import axios from "axios";
+import PropTypes from "prop-types";
 
-function Category({ nextStep, prevStep }) {
+import { useEffect, useState } from "react";
+// import IndexStyle from "../index.module.scss";
+import styles from "./Category.module.scss";
+import apiMethods from "../../../../utils/apiMethods";
+import endPoint from "../../../../routes";
+
+import { InputCategory } from "../../../../components/InputFields";
+// import { useUploadProductsContext } from "../../../../context/UploadProducts";
+import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
+
+// eslint-disable-next-line no-unused-vars
+function Category({ prevStep, nextStep }) {
+  // eslint-disable-next-line no-unused-vars
+  const [categories, setCategories] = useState([]);
+  // eslint-disable-next-line no-unused-vars
+  const [filter, setFilter] = useState("");
+  //
+  // const { categoryId, setCategoryId } = useUploadProductsContext();
+  //
+  // eslint-disable-next-line no-unused-vars
+  const getCategories = () => apiMethods.get(`${endPoint.getCategories}`);
+
+  useEffect(() => {
+    getCategories().then(async (response) => {
+      console.log(response.data.data);
+      setCategories(response.data.data);
+    });
+  }, []);
+
+  function handleCategoryInput(value, func) {
+    // setCategoryId(value);
+    setTimeout(() => func(), 400);
+  }
+
   return (
     <div>
-      <div className={IndexStyle.Header}>
-        <div onClick={prevStep()} onKeyDown={prevStep()} role="button" tabIndex={0}>
-          <img src={`${process.env.PUBLIC_URL}/icons/previewCancelBtn.svg`} alt="" />
-        </div>
-        <div onClick={nextStep()} onKeyDown={nextStep()} role="button" tabIndex={0}>
-          <img src={`${process.env.PUBLIC_URL}/icons/rightChevron.svg`} alt="upload" />
+      <div className={styles.category}>
+        <ModalHeader
+          prevStep={prevStep}
+          canCancel={false}
+          // showNext={!!categoryId}
+          nextStep={nextStep}
+        />
+        <div className={styles.Content}>
+          <p className="global-text-24 global-modal-sm-mb">Select Category</p>
+          <p className="global-text-12 global-modal-mb">
+            Pick a category your product. For example, men or women clothing or accessories like
+            watches and necklaces.
+          </p>
+          {/* <div className="global-modal-mb">
+            <InputSearch
+              value={filter}
+              handleChange={(e) => setFilter(e.target.value.toLowerCase())}
+              name="search"
+            />
+          </div> */}
+          <div className={styles.container}>
+            {categories && (
+              <InputCategory
+                filterBy={filter}
+                // categoryId={categoryId}
+                categories={categories}
+                onChange={(e) => {
+                  handleCategoryInput(e, nextStep());
+                }}
+              />
+            )}
+          </div>
         </div>
       </div>
-      <p className={`${styles.mainText} global-text-20 global-modal-mb`}>Select a category</p>
-      <p className={`${styles.secondaryText} global-text-10 global-modal-mb `}>
-        Pick a category your product. For example, clothing items fall in The Fashion category and
-        chairs in the furniture category.{" "}
-      </p>{" "}
-      <div className={styles.category} />
     </div>
   );
 }
+
+Category.propTypes = {
+  nextStep: PropTypes.func.isRequired,
+  prevStep: PropTypes.func.isRequired,
+};
 
 export default Category;

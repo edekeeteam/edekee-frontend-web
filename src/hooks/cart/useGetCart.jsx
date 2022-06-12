@@ -1,9 +1,9 @@
-import apiRoutes from "../../routes";
+import endPoint from "../../routes";
 import useFetch from "../../utils/reactQuery/useFetch";
 // import pathToUrl from "../../utils/router";
 
 function useGetCart(id) {
-  const context = useFetch(`${apiRoutes.getCart}/${id}`, undefined, { retry: true });
+  const context = useFetch(`${endPoint.getCart}/${id}`, undefined, { retry: true });
   console.log(context);
 
   return context;

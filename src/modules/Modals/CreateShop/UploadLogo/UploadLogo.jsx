@@ -2,13 +2,14 @@
 import React from "react";
 import Button from "../../../../components/Button/Button";
 import ProfilePic from "../../../../components/ProfilePic/ProfilePic";
-import IndexStyle from "../index.module.scss";
+// import IndexStyle from "../index.module.scss";
 import styles from "./UploadLogo.module.scss";
+import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
 
 function UploadLogo({ nextStep, prevStep }) {
   return (
     <div>
-      <div className={IndexStyle.Header}>
+      {/* <div className={IndexStyle.Header}>
         <div onClick={prevStep()} onKeyDown={prevStep()} role="button" tabIndex={0}>
           <img src={`${process.env.PUBLIC_URL}/icons/previewCancelBtn.svg`} alt="" />
         </div>
@@ -22,7 +23,14 @@ function UploadLogo({ nextStep, prevStep }) {
           <span className={styles.next}>Next</span>
           <img src={`${process.env.PUBLIC_URL}/icons/rightChevron.svg`} alt="upload" />
         </div>
-      </div>
+      </div> */}
+      <ModalHeader
+        // showNext={pictureFiles.length === 4}
+        // canCancel
+        prevStep={prevStep}
+        nextStep={nextStep}
+      />
+
       <div className={styles.uploadBody}>
         <div className={styles.profilePic}>
           <ProfilePic size="small" />

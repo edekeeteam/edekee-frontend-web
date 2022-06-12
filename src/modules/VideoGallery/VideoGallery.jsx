@@ -5,8 +5,8 @@ import Hls from "hls.js";
 // import axios from "axios";
 // import useGetAllVideos from "../../hooks/useGetAllVideos";
 // import { useModalContext } from "../../context/ModalContext";
-import styles from "./VideoGallery.module.scss";
 import VideoContainer from "../../components/VideoContainer/VideoContainer";
+import styles from "./VideoGallery.module.scss";
 
 // import useScript from '../../hooks/useScript';
 

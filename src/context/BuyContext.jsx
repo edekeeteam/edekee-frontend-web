@@ -1,8 +1,9 @@
-/* eslint-disable no-alert */
 /* eslint-disable react/jsx-no-constructed-context-values */
+/* eslint-disable no-alert */
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useModalContext } from "./ModalContext";
+import apiMethods from "../utils/apiMethods";
 // import { useAuthContext } from "./AuthContext";
 
 const BuyContext = React.createContext();
@@ -37,17 +38,13 @@ function BuyProvider({ children }) {
         }
       )
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data.data);
         const newCart = res.data.data.map((item) => ({ ...item, check: false }));
-        console.log(newCart);
 
         setCart(newCart);
         // res.data
       });
   };
-  // useEffect(() => {
-  //   fetchCart();
-  // }, [cart]);
 
   // useEffect(() => {
   //   fetchCart();
@@ -84,24 +81,16 @@ function BuyProvider({ children }) {
       }
 
       const params = {
-        product_id: `${productId}`,
+        product_id: productId,
         user_id: userId,
         size,
         color,
         weight,
         quantity,
       };
-      axios
-        .post(
-          "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/addToCart",
-          params,
-          {
-            headers: {
-              Authorization: localStorage.getItem("token"),
-              portal: "web",
-            },
-          }
-        )
+
+      apiMethods
+        .post(`/cart/addToCart`, params)
         .then(
           async (response) => {
             console.log(response);

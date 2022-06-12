@@ -10,6 +10,7 @@ import ProductSpecs from "../../components/ProductSpecs/ProductSpecs";
 import PaymentModal from "../../components/PaymentModal2/PaymentModal2";
 import Summary from "../../components/Summary/Summary";
 import CreateShopModal from "../../modules/Modals/CreateShop";
+import CreateServiceModal from "../../modules/Modals/CreateService";
 import OrderComplete from "../../components/OrderComplete/OrderComplete";
 import SignUpModal from "../../components/AuthenticationModals/SignUpModal/SignUpModal";
 import SignInModal from "../../components/AuthenticationModals/SignInModal/SignInModal";
@@ -67,6 +68,8 @@ function NavBarLayout() {
         <UploadsProducts />
       ) : modalValue === "createShop" ? (
         <CreateShopModal />
+      ) : modalValue === "createService" ? (
+        <CreateServiceModal />
       ) : (
         ""
       )}
