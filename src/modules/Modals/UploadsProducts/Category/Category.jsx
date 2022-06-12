@@ -3,7 +3,7 @@
 import PropTypes from "prop-types";
 
 import { useEffect, useState } from "react";
-import IndexStyle from "../index.module.scss";
+import globalUploadStyles from "../index.module.scss";
 import styles from "./Category.module.scss";
 import apiMethods from "../../../../utils/apiMethods";
 import endPoint from "../../../../routes";
@@ -11,6 +11,7 @@ import endPoint from "../../../../routes";
 import { InputCategory, InputSearch } from "../../../../components/InputFields";
 import { useUploadProductsContext } from "../../../../context/UploadProducts";
 import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
+import ModalTitle from "../../../../components/ModalTitle/ModalTitle";
 
 // eslint-disable-next-line no-unused-vars
 function Category({ prevStep, nextStep }) {
@@ -26,7 +27,6 @@ function Category({ prevStep, nextStep }) {
 
   useEffect(() => {
     getCategories().then(async (response) => {
-      console.log(response.data.data);
       setCategories(response.data.data);
     });
   }, []);
@@ -38,19 +38,20 @@ function Category({ prevStep, nextStep }) {
 
   return (
     <div>
-      <div className={`${IndexStyle.CategoryModal} ${styles.Category} `}>
+      <div className={`${globalUploadStyles.ProductUploadModal} ${styles.Category} `}>
         <ModalHeader
           prevStep={prevStep}
           canCancel={false}
-          showNext={!!categoryId}
+          // showNext={!!categoryId}
+          showNext
           nextStep={nextStep}
         />
-        <div className={styles.Content}>
-          <p className="global-text-24 global-modal-sm-mb">Select Category</p>
-          <p className="global-text-12 global-modal-mb">
-            Pick a category your product. For example, men or women clothing or accessories like
-            watches and necklaces.
-          </p>
+        <div className={globalUploadStyles.Content}>
+          <ModalTitle
+            title="Select Category"
+            desc="  Pick a category your product. For example, men or women clothing or accessories like
+            watches and necklaces."
+          />
           <div className="global-modal-mb">
             <InputSearch
               value={filter}

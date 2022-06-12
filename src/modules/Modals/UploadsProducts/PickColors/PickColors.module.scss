@@ -1,0 +1,36 @@
+.pickColors {
+  width: 400px;
+  height: 80vh;
+
+  .selectedColors {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 100%;
+
+    .container {
+      width: 100%;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      background: #322f37;
+      border-radius: 26.8758px;
+
+      span {
+        width: 100%;
+      }
+    }
+
+    .active {
+      width: fit-content;
+      margin-right: 15px;
+      margin-bottom: 15px;
+    }
+  }
+
+  .colors {
+    padding: 5px 0;
+    height: 30vh;
+    overflow-y: scroll;
+  }
+}

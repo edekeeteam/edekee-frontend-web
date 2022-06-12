@@ -1,6 +1,5 @@
-import React from "react";
 import PropTypes from "prop-types";
-import styles from "./CropImages.module.scss";
+import globalUploadStyles from "../index.module.scss";
 
 import { useUploadProductsContext } from "../../../../context/UploadProducts";
 
@@ -11,7 +10,7 @@ function CropImages({ nextStep, prevStep }) {
   const { pictureFiles, deleteImage, addImage } = useUploadProductsContext();
 
   return (
-    <div className={styles.cropImages}>
+    <div className={globalUploadStyles.Preview}>
       <ModalHeader
         showNext={pictureFiles.length === 4}
         canCancel

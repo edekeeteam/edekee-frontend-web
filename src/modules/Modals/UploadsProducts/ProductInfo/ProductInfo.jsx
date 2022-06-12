@@ -1,18 +1,15 @@
 import PropTypes from "prop-types";
 
-// import IndexStyle from "../index.module.scss";
 import styles from "./ProductInfo.module.scss";
+import globalUploadStyles from "../index.module.scss";
 
 import { InputSelect, InputText, InputTextArea } from "../../../../components/InputFields";
 
 import { useUploadProductsContext } from "../../../../context/UploadProducts";
 import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
+import ModalTitle from "../../../../components/ModalTitle/ModalTitle";
 
-// import InputSelect from "../../../components/InputFields/InputSelect/InputSelect";
-
-// eslint-disable-next-line no-unused-vars
 function ProductInfo({ nextStep, prevStep }) {
-  // eslint-disable-next-line no-unused-vars
   const {
     name,
     setName,
@@ -26,33 +23,15 @@ function ProductInfo({ nextStep, prevStep }) {
     setDesc,
     qty,
     setQty,
-    // handleProductsUpload,
   } = useUploadProductsContext();
-  // const [name,] = useState(undefined)
-  // const [brand,] = useState(undefined)
-  // const [price,] = useState(undefined)
-  // const [currency,] = useState(undefined)
-  // const [desc,] = useState(undefined)
-  // function upload(func, next) {
-  // eslint-disable-next-line no-console
-  //   console.log("here");
-  //   func();
-  //   next();
-  // }
-
-  // function keyDown() {
-  //   // eslint-disable-next-line no-console
-  //   console.log("key Down");
-  // }
-
   return (
-    <div className={styles.productInfo}>
+    <div className={`${globalUploadStyles.ProductUploadModal} ${styles.productInfo}`}>
       <ModalHeader prevStep={prevStep} canCancel={false} showNext nextStep={nextStep} />
-      <div className={styles.Content}>
-        <p className="global-text-24 global-modal-sm-mb">Tell us about your product</p>
-        <p className="global-text-12 global-modal-mb">
-          These details will be shown to buyers viewing your product.
-        </p>
+      <div className={`${globalUploadStyles.Content} ${styles.Content}`}>
+        <ModalTitle
+          title="Tell us about your product"
+          desc=" These details will be shown to buyers viewing your product."
+        />
         <form>
           <div className="global-modal-sm-mb">
             {/* eslint-disable-next-line no-console */}

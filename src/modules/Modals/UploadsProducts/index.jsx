@@ -12,9 +12,8 @@ import Upload360Videos from "./Upload360Videos/Upload360Videos";
 import Category from "./Category/Category";
 // import SubCategory from "./SubCategory/SubCategory";
 import ProductInfo from "./ProductInfo/ProductInfo";
-
-// import styles from "../../../components/VideoUploadModals/UploadVideoModal/UploadVideoModal.module.scss";
 import Preview360Video from "./Preview360Video/Preview360Video";
+import PickColors from "./PickColors/PickColors";
 
 // modal
 
@@ -39,6 +38,7 @@ function UploadsProductsModal() {
     <Category nextStep={() => nextStep} prevStep={() => prevStep} />,
     // <SubCategory nextStep={() => nextStep} prevStep={() => prevStep} />,
     <ProductInfo nextStep={() => nextStep} prevStep={() => prevStep} />,
+    <PickColors nextStep={() => nextStep} prevStep={() => prevStep} />,
     // <div>
     //   <div className={styles.overlay}>
     //     <div className={styles.overlayContainer}>
