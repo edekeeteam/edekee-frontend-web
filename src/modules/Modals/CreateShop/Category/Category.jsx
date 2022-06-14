@@ -2,7 +2,7 @@
 // import axios from "axios";
 import PropTypes from "prop-types";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 // import IndexStyle from "../index.module.scss";
 import styles from "./Category.module.scss";
 import apiMethods from "../../../../utils/apiMethods";
@@ -11,6 +11,7 @@ import endPoint from "../../../../routes";
 import { InputCategory } from "../../../../components/InputFields";
 // import { useUploadProductsContext } from "../../../../context/UploadProducts";
 import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
+import { useCreateShopContext } from "../../../../context/CreateShopContext";
 
 // eslint-disable-next-line no-unused-vars
 function Category({ prevStep, nextStep }) {
@@ -24,16 +25,23 @@ function Category({ prevStep, nextStep }) {
   // eslint-disable-next-line no-unused-vars
   const getCategories = () => apiMethods.get(`${endPoint.getCategories}`);
 
-  useEffect(() => {
-    getCategories().then(async (response) => {
-      console.log(response.data.data);
-      setCategories(response.data.data);
-    });
-  }, []);
+  const { categoryArray, setCategoryId } = useCreateShopContext();
+
+  console.log(categoryArray);
+
+  const newCategories = categoryArray.filter((item) => item.name === "Fashion");
+
+  // useEffect(() => {
+  //   getCategories().then(async (response) => {
+  //     console.log(response.data.data);
+  //     setCategories(response.data.data);
+  //   });
+  // }, []);
 
   function handleCategoryInput(value, func) {
-    // setCategoryId(value);
-    setTimeout(() => func(), 400);
+    setCategoryId(value);
+    console.log(value);
+    setTimeout(() => func(), 112000000);
   }
 
   return (
@@ -63,7 +71,7 @@ function Category({ prevStep, nextStep }) {
               <InputCategory
                 filterBy={filter}
                 // categoryId={categoryId}
-                categories={categories}
+                categories={newCategories}
                 onChange={(e) => {
                   handleCategoryInput(e, nextStep());
                 }}

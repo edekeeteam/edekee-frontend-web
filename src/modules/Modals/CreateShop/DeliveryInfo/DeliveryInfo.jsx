@@ -7,6 +7,7 @@ import styles from "./DeliveryInfo.module.scss";
 import { InputCheckbox } from "../../../../components/InputFields";
 import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
 import deliveryData from "../../../../data/deliveryData";
+import { useCreateShopContext } from "../../../../context/CreateShopContext";
 
 // import { InputCategory } from "../../../../components/InputFields";
 // import { useUploadProductsContext } from "../../../../context/UploadProducts";
@@ -14,6 +15,8 @@ import deliveryData from "../../../../data/deliveryData";
 function DeliveryInfo({ prevStep, nextStep }) {
   const [categories, setCategories] = useState([]);
   const [currentlyChecked, setCurrentlyChecked] = useState("");
+
+  const { setDeliveryStatus } = useCreateShopContext();
 
   // const { categoryId, setCategoryId } = useUploadProductsContext();
 
@@ -37,6 +40,8 @@ function DeliveryInfo({ prevStep, nextStep }) {
 
   const selectDeliveryOption = (deliveryOption) => {
     setCurrentlyChecked(deliveryOption);
+    setDeliveryStatus(deliveryOption);
+    console.log(deliveryOption);
   };
 
   return (

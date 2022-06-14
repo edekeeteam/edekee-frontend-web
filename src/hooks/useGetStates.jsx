@@ -2,7 +2,7 @@ import endPoint from "../routes";
 import useFetch from "../utils/reactQuery/useFetch";
 
 function useGetStates() {
-  const context = useFetch(endPoint.getStates, undefined, { retry: true });
+  const context = useFetch(endPoint.getStates, undefined, { retry: false });
   // console.log(context);
 
   return context;

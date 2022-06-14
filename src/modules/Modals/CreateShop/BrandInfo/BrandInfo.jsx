@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React from "react";
 import PropTypes from "prop-types";
 // import IndexStyle from "../index.module.scss";
@@ -34,15 +35,22 @@ function BrandInfo({ nextStep, prevStep }) {
   //   console.log(cities);
   //   setCitiesArray(cities.data);
   // }
+  const handleNextStep = (func) => {
+    if (companyName === "") {
+      alert("add name");
+    } else {
+      func();
+    }
+  };
 
   const cityOptions = citiesArray.map((eachCity) => (
-    <option key={eachCity.id} value={eachCity.name}>
+    <option key={eachCity.id} value={eachCity.id}>
       {" "}
       {eachCity.name}{" "}
     </option>
   ));
   const stateOptions = statesArray.map((eachState) => (
-    <option key={eachState.id} value={eachState.name}>
+    <option key={eachState.id} value={eachState.id}>
       {" "}
       {eachState.name}{" "}
     </option>
@@ -63,7 +71,7 @@ function BrandInfo({ nextStep, prevStep }) {
         // showNext={pictureFiles.length === 4}
         // canCancel
         prevStep={prevStep}
-        nextStep={nextStep}
+        nextStep={() => handleNextStep(nextStep())}
       />
       <div className={styles.content}>
         <div>

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 /* eslint-disable react/prop-types */
 import React, { useRef } from "react";
 import Button from "../../../../components/Button/Button";
@@ -10,7 +11,7 @@ import { useCreateShopContext } from "../../../../context/CreateShopContext";
 function UploadLogo({ nextStep, prevStep }) {
   const inputRef = useRef();
 
-  const { source, setSource, setLogoFile } = useCreateShopContext();
+  const { source, setSource, setLogoFile, createShop } = useCreateShopContext();
 
   const handleChooseFile = () => {
     inputRef.current.click();
@@ -76,7 +77,17 @@ function UploadLogo({ nextStep, prevStep }) {
         </div>
 
         <p className={`${styles.mainText} global-text-20 global-modal-mb`}>Upload Logo</p>
-        <p className={`${styles.secondaryText}global-text-10 global-modal-mb `}>
+        <p
+          className={`${styles.secondaryText}global-text-10 global-modal-mb `}
+          onClick={() => {
+            createShop();
+          }}
+          role="button"
+          tabIndex={0}
+          onKeyDown={() => {
+            handleKeydown();
+          }}
+        >
           Create your shop and recieve orders from videos across the web.
         </p>
         <div className={styles.buttonContainer}>

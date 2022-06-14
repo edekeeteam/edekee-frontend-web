@@ -93,7 +93,7 @@ function ProductSpecs() {
         <div className={styles.productSpecsWrapper}>
           <div className={styles.colorsSection}>
             <p className={styles.colorsHeading}>Colors</p>
-            <InputColor Colors={properties.color} handleChange={handleColorChange} />
+            <InputColor Colors={properties.color} handleChange={(e) => handleColorChange(e)} />
           </div>
           <div className={styles.sizeSection}>
             <p className={styles.sizeHeading}>Size</p>
