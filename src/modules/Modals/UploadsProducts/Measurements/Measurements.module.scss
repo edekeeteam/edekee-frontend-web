@@ -1,0 +1,31 @@
+.measurement {
+  width: 400px;
+  .weightSection,
+  .sizeSection {
+    padding-top: 30px;
+
+    .header,
+    .inputs {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .inputs {
+      width: 100%;
+
+      .unit {
+        width: 35%;
+      }
+
+      .weight {
+        width: 60%;
+      }
+    }
+
+    .selected {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+}

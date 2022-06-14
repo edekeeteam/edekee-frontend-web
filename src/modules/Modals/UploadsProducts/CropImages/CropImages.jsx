@@ -14,6 +14,7 @@ function CropImages({ nextStep, prevStep }) {
       <ModalHeader
         showNext={pictureFiles.length === 4}
         canCancel
+        canFinish={false}
         prevStep={prevStep}
         nextStep={nextStep}
       />
