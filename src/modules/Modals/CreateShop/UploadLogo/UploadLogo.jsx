@@ -1,12 +1,33 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useRef } from "react";
 import Button from "../../../../components/Button/Button";
 import ProfilePic from "../../../../components/ProfilePic/ProfilePic";
 // import IndexStyle from "../index.module.scss";
 import styles from "./UploadLogo.module.scss";
 import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
+import { useCreateShopContext } from "../../../../context/CreateShopContext";
 
 function UploadLogo({ nextStep, prevStep }) {
+  const inputRef = useRef();
+
+  const { source, setSource, setLogoFile } = useCreateShopContext();
+
+  const handleChooseFile = () => {
+    inputRef.current.click();
+  };
+
+  const handleFileChange = (event) => {
+    // console.log(event.target);
+    const file = event.target.files[0];
+    // console.log(file);
+    const url = URL.createObjectURL(file);
+    // console.log(url);
+    setSource(url);
+    console.log(url, file);
+    setLogoFile(file);
+  };
+
+  const handleKeydown = () => {};
   return (
     <div>
       {/* <div className={IndexStyle.Header}>
@@ -31,9 +52,27 @@ function UploadLogo({ nextStep, prevStep }) {
         nextStep={nextStep}
       />
 
+      <input
+        ref={inputRef}
+        style={{ display: "none" }}
+        type="file"
+        onChange={handleFileChange}
+        accept="jpg, png,svg"
+      />
+
       <div className={styles.uploadBody}>
-        <div className={styles.profilePic}>
-          <ProfilePic size="small" />
+        <div
+          className={styles.profilePic}
+          onClick={() => {
+            handleChooseFile();
+          }}
+          role="button"
+          tabIndex={0}
+          onKeyDown={() => {
+            handleKeydown();
+          }}
+        >
+          <ProfilePic size="small" img={source} />
         </div>
 
         <p className={`${styles.mainText} global-text-20 global-modal-mb`}>Upload Logo</p>

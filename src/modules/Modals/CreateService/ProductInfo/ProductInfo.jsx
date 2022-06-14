@@ -1,17 +1,15 @@
 import PropTypes from "prop-types";
 
-import IndexStyle from "../index.module.scss";
 import styles from "./ProductInfo.module.scss";
+import globalUploadStyles from "../index.module.scss";
 
 import { InputSelect, InputText, InputTextArea } from "../../../../components/InputFields";
 
 import { useUploadProductsContext } from "../../../../context/UploadProducts";
+import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
+import ModalTitle from "../../../../components/ModalTitle/ModalTitle";
 
-// import InputSelect from "../../../components/InputFields/InputSelect/InputSelect";
-
-// eslint-disable-next-line no-unused-vars
 function ProductInfo({ nextStep, prevStep }) {
-  // eslint-disable-next-line no-unused-vars
   const {
     name,
     setName,
@@ -23,68 +21,39 @@ function ProductInfo({ nextStep, prevStep }) {
     setCurrency,
     desc,
     setDesc,
-    handleProductsUpload,
+    qty,
+    setQty,
   } = useUploadProductsContext();
-  // const [name,] = useState(undefined)
-  // const [brand,] = useState(undefined)
-  // const [price,] = useState(undefined)
-  // const [currency,] = useState(undefined)
-  // const [desc,] = useState(undefined)
-  function upload(func, next) {
-    // eslint-disable-next-line no-console
-    console.log("here");
-    func();
-    next();
-  }
-
-  function keyDown() {
-    // eslint-disable-next-line no-console
-    console.log("key Down");
-  }
-
   return (
-    <div className={styles.productInfo}>
-      <div className={`${IndexStyle.Header} global-modal-sm-mb`}>
-        <div onClick={prevStep()} onKeyDown={prevStep()} role="button" tabIndex={0}>
-          <img src={`${process.env.PUBLIC_URL}/icons/arrow-left.svg`} alt="" />
-        </div>
-        {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
-        <div
-          onClick={() => upload(handleProductsUpload, nextStep())}
-          onKeyDown={keyDown}
-          tabIndex={0}
-          role="button"
-        >
-          <img src={`${process.env.PUBLIC_URL}/icons/arrow-right-blue.svg`} alt="" />
-        </div>
-      </div>
-      <div className={styles.content}>
-        <p className="global-text-24 global-modal-sm-mb">Tell us about your product</p>
-        <p className="global-text-12 global-modal-mb">
-          These details will be shown to buyers viewing your product.
-        </p>
+    <div className={`${globalUploadStyles.ProductUploadModal} ${styles.productInfo}`}>
+      <ModalHeader prevStep={prevStep} canCancel={false} showNext nextStep={nextStep} />
+      <div className={`${globalUploadStyles.Content} ${styles.Content}`}>
+        <ModalTitle
+          title="Tell us about your product"
+          desc=" These details will be shown to buyers viewing your product."
+        />
         <form>
-          <div>
+          <div className="global-modal-sm-mb">
             {/* eslint-disable-next-line no-console */}
             <InputText
               name="name"
               label="Name"
               type="text"
               value={name}
-              handleChange={(e) => setName(e)}
+              handleChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div>
+          <div className="global-modal-sm-mb">
             {/* eslint-disable-next-line no-console */}
             <InputText
               name="brand"
               label="Brand"
               type="text"
               value={brand}
-              handleChange={(e) => setBrand(e)}
+              handleChange={(e) => setBrand(e.target.value)}
             />
           </div>
-          <div className={styles.priceInfo}>
+          <div className={`${styles.priceInfo} global-modal-sm-mb`}>
             <div className={styles.currency}>
               {/* eslint-disable-next-line no-console */}
               <InputSelect
@@ -92,7 +61,7 @@ function ProductInfo({ nextStep, prevStep }) {
                 label="Currency"
                 type="text"
                 value={currency}
-                handleChange={(e) => setCurrency(e)}
+                handleChange={(e) => setCurrency(e.target.value)}
               />
             </div>
             <div className={styles.price}>
@@ -102,12 +71,27 @@ function ProductInfo({ nextStep, prevStep }) {
                 label="Price"
                 type="number"
                 value={price}
-                handleChange={(e) => setPrice(e)}
+                handleChange={(e) => setPrice(e.target.value)}
               />
             </div>
           </div>
+          <div className="global-modal-sm-mb">
+            {/* eslint-disable-next-line no-console */}
+            <InputText
+              name="qty"
+              label="Quantity(No. of product Available)"
+              type="number"
+              value={qty}
+              handleChange={(e) => setQty(e.target.value)}
+            />
+          </div>
           <div>
-            <InputTextArea name="desc" value={desc} handleChange={(e) => setDesc(e)} />
+            <InputTextArea
+              name="desc"
+              label="Description"
+              value={desc}
+              handleChange={(e) => setDesc(e)}
+            />
           </div>
         </form>
       </div>

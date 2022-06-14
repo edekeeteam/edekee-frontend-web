@@ -6,12 +6,14 @@ import IndexStyle from "../index.module.scss";
 import styles from "./DeliveryInfo.module.scss";
 import { InputCheckbox } from "../../../../components/InputFields";
 import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
+import deliveryData from "../../../../data/deliveryData";
 
 // import { InputCategory } from "../../../../components/InputFields";
 // import { useUploadProductsContext } from "../../../../context/UploadProducts";
 
 function DeliveryInfo({ prevStep, nextStep }) {
   const [categories, setCategories] = useState([]);
+  const [currentlyChecked, setCurrentlyChecked] = useState("");
 
   // const { categoryId, setCategoryId } = useUploadProductsContext();
 
@@ -29,6 +31,13 @@ function DeliveryInfo({ prevStep, nextStep }) {
   //   setCategoryId(value);
   //   setTimeout(() => func(), 1000);
   // }
+  const handleKeyDown = () => {
+    // console.log("keydown");
+  };
+
+  const selectDeliveryOption = (deliveryOption) => {
+    setCurrentlyChecked(deliveryOption);
+  };
 
   return (
     <div>
@@ -49,10 +58,10 @@ function DeliveryInfo({ prevStep, nextStep }) {
         />
         <div
           className={styles.content}
-          onClick={nextStep()}
-          onKeyDown={nextStep()}
-          role="button"
-          tabIndex={0}
+          // onClick={nextStep()}
+          // onKeyDown={nextStep()}
+          // role="button"
+          // tabIndex={0}
         >
           <p className="global-text-20 global-modal-sm-mb">Tell us where you Deliver.</p>
           <p className="global-text-10 global-modal-mb">
@@ -75,7 +84,33 @@ function DeliveryInfo({ prevStep, nextStep }) {
           </div> */}
 
           <div className={styles.deliveryInfoBody}>
-            <div className={styles.deliveryOption}>
+            {deliveryData.map((option) => {
+              let isChecked;
+              if (currentlyChecked === option.text) {
+                isChecked = true;
+              } else {
+                isChecked = false;
+              }
+              return (
+                <div
+                  key={option.id}
+                  className={styles.deliveryOption}
+                  onClick={() => {
+                    selectDeliveryOption(option.text);
+                    // setCurrentlyChecked();
+                  }}
+                  onKeyDown={handleKeyDown}
+                  role="button"
+                  tabIndex="-1"
+                >
+                  <div>
+                    <InputCheckbox checked={isChecked} />
+                  </div>
+                  <p>{option.text}</p>
+                </div>
+              );
+            })}
+            {/* <div className={styles.deliveryOption}>
               <div>
                 <InputCheckbox />
               </div>
@@ -87,13 +122,7 @@ function DeliveryInfo({ prevStep, nextStep }) {
               </div>
 
               <p>I only sell and deliver outside the country.</p>
-            </div>
-            <div className={styles.deliveryOption}>
-              <div>
-                <InputCheckbox />
-              </div>
-              <p>I sell and deliver both within and outside the country.</p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

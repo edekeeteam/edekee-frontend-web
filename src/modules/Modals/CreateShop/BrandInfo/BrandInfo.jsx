@@ -5,18 +5,48 @@ import PropTypes from "prop-types";
 import styles from "./BrandInfo.module.scss";
 import { InputText } from "../../../../components/InputFields";
 import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
+import { useCreateShopContext } from "../../../../context/CreateShopContext";
+// import useGetCities from "../../../../hooks/useGetCities";
 
 // import { useUploadProductsContext } from "../../../../context/UploadProducts";
 
 // import ImageSlider from "../../../../components/ImageSlider/ImageSlider";
 
 function BrandInfo({ nextStep, prevStep }) {
-  // const { source } = useUploadProductsContext();
+  const {
+    companyName,
+    handleInputChange,
+    phoneNumber,
+    email,
+    streetAddress,
+    state,
+    statesArray,
+    city,
+    citiesArray,
+  } = useCreateShopContext();
 
-  // function keyDown() {
-  //   // eslint-disable-next-line no-console
-  //   console.log("key Down");
+  // const [citiesArray, setCitiesArray] = useState([]);
+  // const [statesArray] = useState([]);
+
+  // const { data: cities, isLoading: loading } = useGetCities();
+
+  // if (!loading) {
+  //   console.log(cities);
+  //   setCitiesArray(cities.data);
   // }
+
+  const cityOptions = citiesArray.map((eachCity) => (
+    <option key={eachCity.id} value={eachCity.name}>
+      {" "}
+      {eachCity.name}{" "}
+    </option>
+  ));
+  const stateOptions = statesArray.map((eachState) => (
+    <option key={eachState.id} value={eachState.name}>
+      {" "}
+      {eachState.name}{" "}
+    </option>
+  ));
 
   return (
     <div className={styles.brandInfo}>
@@ -42,50 +72,74 @@ function BrandInfo({ nextStep, prevStep }) {
             These details will be shown to buyers viewing your shop.
           </p>
         </div>
-        <div className="global-modal-mb " style={{ width: "100%" }}>
+        <div className="global-modal-mb" style={{ width: "100%" }}>
           <InputText
             label="Company name"
-            name="signInEmail"
+            name="companyName"
             type="text"
-            // handleChange={handleInputChange}
-            // value={signInEmail}
+            handleChange={handleInputChange}
+            value={companyName}
           />
         </div>
         <div className="global-modal-mb " style={{ width: "100%" }}>
           <InputText
             label="Phone number"
-            name="signInEmail"
-            type="text"
-            // handleChange={handleInputChange}
-            // value={signInEmail}
+            name="phoneNumber"
+            type="number"
+            handleChange={handleInputChange}
+            value={phoneNumber}
           />
         </div>
         <div className="global-modal-mb " style={{ width: "100%" }}>
           <InputText
             label="Email"
-            name="signInEmail"
+            name="email"
             type="text"
-            // handleChange={handleInputChange}
-            // value={signInEmail}
+            handleChange={handleInputChange}
+            value={email}
           />
         </div>
         <div className="global-modal-mb " style={{ width: "100%" }}>
           <InputText
             label="Street address"
-            name="signInEmail"
+            name="streetAddress"
             type="text"
-            // handleChange={handleInputChange}
-            // value={signInEmail}
+            handleChange={handleInputChange}
+            value={streetAddress}
           />
         </div>
-        <div className="global-modal-mb " style={{ width: "100%" }}>
-          <InputText
+        <div className={styles.selectInputSection} style={{ width: "100%" }}>
+          <select
+            className={styles.selectInput}
+            // style={{ paddingRight: "25px", paddingLeft: "20px" }}
+            value={city}
+            name="city"
+            onChange={(e) => {
+              // handleCountryChange(e.target.value);
+              handleInputChange(e);
+            }}
+          >
+            {cityOptions}
+          </select>
+          <select
+            className={styles.selectInput}
+            // style={{ paddingRight: "25px", paddingLeft: "20px" }}
+            value={state}
+            name="state"
+            onChange={(e) => {
+              // handleCountryChange(e.target.value);
+              handleInputChange(e);
+            }}
+          >
+            {stateOptions}
+          </select>
+          {/* <InputText
             label="Street address"
             name="signInEmail"
             type="text"
             // handleChange={handleInputChange}
             // value={signInEmail}
-          />
+          /> */}
         </div>
       </div>
       {/* <div>

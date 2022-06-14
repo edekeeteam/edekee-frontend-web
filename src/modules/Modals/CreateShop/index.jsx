@@ -15,6 +15,7 @@ import CreateProduct from "./CreateProduct/CreateProduct";
 import styles from "../../../components/VideoUploadModals/UploadVideoModal/UploadVideoModal.module.scss";
 import BrandInfo from "./BrandInfo/BrandInfo";
 import UploadLogo from "./UploadLogo/UploadLogo";
+import { CreateShopProvider } from "../../../context/CreateShopContext";
 
 // modal
 
@@ -55,9 +56,11 @@ function CreateShopModal() {
   ];
 
   return (
-    <Modal>
-      <div style={{ width: "100%" }}>{steps[stepIndex]}</div>
-    </Modal>
+    <CreateShopProvider>
+      <Modal>
+        <div style={{ width: "100%" }}>{steps[stepIndex]}</div>
+      </Modal>
+    </CreateShopProvider>
   );
 }
 

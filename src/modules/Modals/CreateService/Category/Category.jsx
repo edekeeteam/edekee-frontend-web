@@ -8,7 +8,7 @@ import styles from "./Category.module.scss";
 import apiMethods from "../../../../utils/apiMethods";
 import endPoint from "../../../../routes";
 
-import { InputCategory, InputSearch } from "../../../../components/InputFields";
+import { InputCategory } from "../../../../components/InputFields";
 import { useUploadProductsContext } from "../../../../context/UploadProducts";
 import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
 
@@ -33,7 +33,7 @@ function Category({ prevStep, nextStep }) {
 
   function handleCategoryInput(value, func) {
     setCategoryId(value);
-    setTimeout(() => func(), 200);
+    setTimeout(() => func(), 700);
   }
 
   return (
@@ -51,13 +51,13 @@ function Category({ prevStep, nextStep }) {
             Pick a category your product. For example, men or women clothing or accessories like
             watches and necklaces.
           </p>
-          <div className="global-modal-mb">
+          {/* <div className="global-modal-mb">
             <InputSearch
               value={filter}
               handleChange={(e) => setFilter(e.target.value.toLowerCase())}
               name="search"
             />
-          </div>
+          </div> */}
           <div className={styles.container}>
             {categories && (
               <InputCategory
