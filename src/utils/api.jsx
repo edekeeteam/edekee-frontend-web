@@ -16,7 +16,7 @@ const api = {
   post: (url, data) =>
     axios.post(url, data, {
       //   headers: {
-      //     token: Cookies.get("token"),
+      //     token: Cookies.get("token"),...........
       //   },
     }),
   patch: (url, data) =>
