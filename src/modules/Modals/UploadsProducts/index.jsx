@@ -14,6 +14,7 @@ import Category from "./Category/Category";
 import ProductInfo from "./ProductInfo/ProductInfo";
 import Preview360Video from "./Preview360Video/Preview360Video";
 import PickColors from "./PickColors/PickColors";
+import Measurements from "./Measurements/Measurements";
 
 // modal
 
@@ -39,6 +40,7 @@ function UploadsProductsModal() {
     // <SubCategory nextStep={() => nextStep} prevStep={() => prevStep} />,
     <ProductInfo nextStep={() => nextStep} prevStep={() => prevStep} />,
     <PickColors nextStep={() => nextStep} prevStep={() => prevStep} />,
+    <Measurements nextStep={() => nextStep} prevStep={() => prevStep} />,
     // <div>
     //   <div className={styles.overlay}>
     //     <div className={styles.overlayContainer}>

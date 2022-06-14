@@ -57,10 +57,9 @@ function ProductInfo({ nextStep, prevStep }) {
             <div className={styles.currency}>
               {/* eslint-disable-next-line no-console */}
               <InputSelect
-                name="currency"
-                label="Currency"
-                type="text"
+                name="Currency"
                 value={currency}
+                options={[{ id: 1, name: "NGN" }]}
                 handleChange={(e) => setCurrency(e.target.value)}
               />
             </div>
