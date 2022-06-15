@@ -8,6 +8,7 @@ import { InputCheckbox, InputText } from "../../components/InputFields";
 // import useGetCart from "../../hooks/cart/useGetCart";
 import { useBuyContext } from "../../context/BuyContext";
 import Button from "../../components/Button/Button";
+import Toast from "../../components/Toast/Toast";
 
 // import {InputCheckbox} from "../../components/InputFields";
 
@@ -257,6 +258,7 @@ function CartModule() {
           </div>
         </div>
       </div>
+      <Toast msg="test" type="success" />
     </div>
   );
 }
