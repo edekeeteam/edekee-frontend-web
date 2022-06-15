@@ -5,14 +5,14 @@ import styles from "../SelectImages/SelectImages.module.scss";
 import { useUploadProductsContext } from "../../../../context/UploadProducts";
 
 function Upload360Videos({ nextStep }) {
-  const { setVideoFile, setVideoSource } = useUploadProductsContext();
+  const { setVideoFile } = useUploadProductsContext();
 
   const inputRef = React.useRef();
 
   const handleFileChange = (event, next) => {
     const file = event.target.files[0];
-    const video = URL.createObjectURL(file);
-    setVideoSource(video);
+    // const video = URL.createObjectURL(file);
+    // setVideoSource(video);
     setVideoFile(file);
     // next Steps Function
     next();

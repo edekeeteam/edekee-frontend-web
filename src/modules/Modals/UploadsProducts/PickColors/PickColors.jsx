@@ -12,51 +12,57 @@ import {
   // eslint-disable-next-line import/named
   InputColorPickerCancelable,
 } from "../../../../components/InputFields";
+import { useUploadProductsContext } from "../../../../context/UploadProducts";
 
 function PickColors({ nextStep, prevStep }) {
   // eslint-disable-next-line no-unused-vars
-  const [colors, setColors] = useState([]);
-  const [selectedColors, addToSelectedColors] = useState([]);
+  const [allColors, setAllColors] = useState([]);
+  const { colors, setColors } = useUploadProductsContext();
   const getColors = () => apiMethods.get(`${endPoint.getColors}`);
 
   useEffect(() => {
     getColors().then(async (response) => {
-      setColors(response.data.data);
+      setAllColors(response.data.data);
     });
   }, []);
 
   function handleOnInput(e) {
-    const newColors = [...new Set([...selectedColors, e])];
-    addToSelectedColors(() => newColors);
+    const newColors = [...new Set([...colors, e])];
+    setColors(() => newColors);
   }
 
   function handleOnInputChange(e, co) {
-    const newColors = selectedColors.map((color) => (color === co ? e : color));
-    addToSelectedColors(() => [...newColors]);
+    const newColors = colors.map((color) => (color === co ? e : color));
+    setColors(() => [...newColors]);
   }
 
   function handleOnDelete(col) {
-    const newColors = selectedColors.filter((color) => color !== col);
-    addToSelectedColors(() => [...newColors]);
+    const newColors = colors.filter((color) => color !== col);
+    setColors(() => [...newColors]);
   }
 
   return (
     <div className={`${globalUploadStyles.ProductUploadModal} ${styles.pickColors}`}>
-      <ModalHeader prevStep={prevStep} canCancel={false} showNext nextStep={nextStep} />
+      <ModalHeader
+        prevStep={prevStep}
+        canCancel={false}
+        showNext={!!colors.length}
+        nextStep={nextStep}
+      />
       <div className={`${globalUploadStyles.Content}`}>
         <ModalTitle
           title="Select colors"
           desc="How many colors of this product do you have? Click the “pick colors button” to pick colors."
         />
         <div className={`${styles.selectedColors} global-modal-mb`}>
-          <div className={`${styles.container} ${!selectedColors.length ? "" : styles.active}`}>
+          <div className={`${styles.container} ${!colors.length ? "" : styles.active}`}>
             <InputColorPicker onInputKeyUp={(e) => handleOnInput(e)} />
-            {!selectedColors.length && (
+            {!colors.length && (
               <span className="global-text-12">Use color picker to pick colors</span>
             )}
           </div>
-          {selectedColors &&
-            selectedColors.map((color) => (
+          {colors &&
+            colors.map((color) => (
               <InputColorPickerCancelable
                 color={color}
                 onDelete={(col) => handleOnDelete(col)}
@@ -70,7 +76,7 @@ function PickColors({ nextStep, prevStep }) {
         </div>
         <div className={styles.colors}>
           <InputColor
-            Colors={colors}
+            Colors={allColors}
             handleChange={(e) => {
               handleOnInput(e);
             }}

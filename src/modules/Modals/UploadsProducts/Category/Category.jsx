@@ -42,8 +42,7 @@ function Category({ prevStep, nextStep }) {
         <ModalHeader
           prevStep={prevStep}
           canCancel={false}
-          // showNext={!!categoryId}
-          showNext
+          showNext={!!categoryId}
           nextStep={nextStep}
         />
         <div className={globalUploadStyles.Content}>

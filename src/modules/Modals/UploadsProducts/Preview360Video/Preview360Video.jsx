@@ -8,7 +8,7 @@ import { useUploadProductsContext } from "../../../../context/UploadProducts";
 import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
 
 function Preview360Video({ nextStep, prevStep }) {
-  const { videoSource, deleteVideo } = useUploadProductsContext();
+  const { videoFile, deleteVideo } = useUploadProductsContext();
   const handleVideoDelete = (func) => {
     func();
     deleteVideo();
@@ -41,7 +41,7 @@ function Preview360Video({ nextStep, prevStep }) {
           className={styles}
           // width="auto"
           controls
-          src={videoSource}
+          src={URL.createObjectURL(videoFile)}
           muted
         />
       </div>

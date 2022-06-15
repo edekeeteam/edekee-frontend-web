@@ -60,7 +60,7 @@ function ProductInfo({ nextStep, prevStep }) {
                 name="Currency"
                 value={currency}
                 options={[{ id: 1, name: "NGN" }]}
-                handleChange={(e) => setCurrency(e.target.value)}
+                handleChange={(e) => setCurrency(e)}
               />
             </div>
             <div className={styles.price}>

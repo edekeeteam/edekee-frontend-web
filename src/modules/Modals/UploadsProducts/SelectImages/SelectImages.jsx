@@ -6,7 +6,7 @@ import { useUploadProductsContext } from "../../../../context/UploadProducts";
 
 function SelectImages({ nextStep }) {
   // eslint-disable-next-line no-unused-vars
-  const { setPicturesFiles, setSource } = useUploadProductsContext();
+  const { setPicturesFiles } = useUploadProductsContext();
 
   const inputRef = React.useRef();
 
