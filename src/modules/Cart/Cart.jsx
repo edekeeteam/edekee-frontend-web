@@ -259,6 +259,8 @@ function CartModule() {
         </div>
       </div>
       <Toast msg="test" type="success" />
+      <Toast msg="dis is error" type="error" />
+      <Toast msg="dis is warning" type="warning" />
     </div>
   );
 }

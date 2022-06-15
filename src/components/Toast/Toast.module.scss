@@ -6,12 +6,21 @@
   justify-content: space-between;
   border-radius: 100px;
   padding: 10px;
+  padding-right: 30px;
+  margin-bottom: 20px;
   background-color: #ffffff;
 
   p {
+    padding-left: 20px;
+    text-transform: capitalize;
     font-size: 14px;
     font-weight: 400;
     line-height: 17px;
     color: #000000;
+    width: 100%;
+  }
+
+  img:last-child {
+    padding-left: 15px;
   }
 }

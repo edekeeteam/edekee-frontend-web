@@ -4,7 +4,7 @@ import styles from "./Toast.module.scss";
 const Success = `${process.env.PUBLIC_URL}/icons/toastSuccess.svg`;
 const Error = `${process.env.PUBLIC_URL}/icons/toastError.svg`;
 const Warning = `${process.env.PUBLIC_URL}/icons/toastWarning.svg`;
-const Cancel = `${process.env.PUBLIC_URL}/icons/previewCancelBtn.svg`;
+const Cancel = `${process.env.PUBLIC_URL}/icons/cancelDark.svg`;
 
 function Toast({ type, msg }) {
   return (
