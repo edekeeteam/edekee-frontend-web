@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "../CropImages/CropImages.module.scss";
 import globalUploadStyles from "../index.module.scss";
 import styles2 from "./Preview360Video.module.scss";
 
@@ -15,7 +14,7 @@ function Preview360Video({ nextStep, prevStep }) {
   };
 
   return (
-    <div className={globalUploadStyles.Preview}>
+    <div className={`${globalUploadStyles.Preview} ${styles2.previewVideo}`}>
       <ModalHeader prevStep={prevStep} nextStep={nextStep} />
       <div className={styles2.previewVideo}>
         <div className={styles2.actions}>
@@ -38,7 +37,6 @@ function Preview360Video({ nextStep, prevStep }) {
           </div>
         </div>
         <video
-          className={styles}
           // width="auto"
           controls
           src={URL.createObjectURL(videoFile)}

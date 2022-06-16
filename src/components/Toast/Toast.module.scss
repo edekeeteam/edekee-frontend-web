@@ -5,10 +5,10 @@
   align-items: center;
   justify-content: space-between;
   border-radius: 100px;
-  padding: 10px;
-  padding-right: 30px;
+  padding: 10px 30px 10px 10px;
   margin-bottom: 20px;
   background-color: #ffffff;
+  animation: toast-in-right ease-in 0.4s;
 
   p {
     padding-left: 20px;
@@ -22,5 +22,14 @@
 
   img:last-child {
     padding-left: 15px;
+  }
+}
+
+@keyframes toast-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
   }
 }

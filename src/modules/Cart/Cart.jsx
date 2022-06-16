@@ -7,7 +7,6 @@ import { InputCheckbox, InputText } from "../../components/InputFields";
 // import useGetCart from "../../hooks/cart/useGetCart";
 import { useBuyContext } from "../../context/BuyContext";
 import Button from "../../components/Button/Button";
-import useToast from "../../hooks/useToast";
 
 // import {InputCheckbox} from "../../components/InputFields";
 
@@ -33,8 +32,6 @@ function CartModule() {
   const handleAddressChange = (e) => {
     setAddress(e.target.value);
   };
-
-  useToast({ msg: "test", type: "success" });
 
   useEffect(() => {
     fetchCart();

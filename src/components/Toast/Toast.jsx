@@ -8,7 +8,7 @@ const Warning = `${process.env.PUBLIC_URL}/icons/toastWarning.svg`;
 const Cancel = `${process.env.PUBLIC_URL}/icons/cancelDark.svg`;
 
 function Toast({ type, msg, close }) {
-  useTimeout(close, 5000);
+  useTimeout(close, 3000);
   return (
     <div className={styles.toast}>
       {/* eslint-disable-next-line no-nested-ternary */}
