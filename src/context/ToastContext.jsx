@@ -35,7 +35,7 @@ function ToastProvider({ children }) {
       {children}
 
       {createPortal(
-        <div style={{ position: "fixed", top: "100px", right: "20px" }}>
+        <div style={{ position: "fixed", top: "100px", right: "20px", zIndex: "1500" }}>
           {toasts.map((toast) => (
             <Toast type={toast.type} msg={toast.msg} key={toast.id} close={() => close(toast.id)} />
           ))}

@@ -11,7 +11,6 @@ function Toast({ type, msg, close }) {
   useTimeout(close, 3000);
   return (
     <div className={styles.toast}>
-      {/* eslint-disable-next-line no-nested-ternary */}
       <img
         src={
           // eslint-disable-next-line no-nested-ternary
