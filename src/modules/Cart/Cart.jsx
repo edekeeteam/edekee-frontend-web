@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 // import { useParams } from "react-router-dom";
-
 import styles from "./Cart.module.scss";
 // import data from "./data";
 import CartItem from "../../components/CartItem/CartItem";
@@ -8,6 +7,7 @@ import { InputCheckbox, InputText } from "../../components/InputFields";
 // import useGetCart from "../../hooks/cart/useGetCart";
 import { useBuyContext } from "../../context/BuyContext";
 import Button from "../../components/Button/Button";
+import useToast from "../../hooks/useToast";
 
 // import {InputCheckbox} from "../../components/InputFields";
 
@@ -33,6 +33,8 @@ function CartModule() {
   const handleAddressChange = (e) => {
     setAddress(e.target.value);
   };
+
+  useToast({ msg: "test", type: "success" });
 
   useEffect(() => {
     fetchCart();
