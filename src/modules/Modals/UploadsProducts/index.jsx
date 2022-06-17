@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useLayoutEffect } from "react";
 
 import { UploadProductsProvider } from "../../../context/UploadProducts";
 // import { useUploadContext } from "../../../context/UploadContext";
@@ -21,11 +21,22 @@ import { usePopupContext } from "../../../context/PopupContext";
 // modal
 
 function UploadsProductsModal() {
-  const { setIsModalOpen } = useModalContext();
-  const { togglePopup } = usePopupContext();
+  // const { clearValues } = useUploadProductsContext()
+
+  const { setIsModalOpen, isModalOpen } = useModalContext();
+  const { togglePopup, handleAction } = usePopupContext();
   const [stepIndex, setStepIndex] = useState(0);
+  // const {clearValues} = useUploadProductsContext()
 
   // const { percentage } = useUploadContext();
+
+  useLayoutEffect(
+    () => () => {
+      // clearValues()
+      setStepIndex(0);
+    },
+    [isModalOpen]
+  );
 
   function nextStep() {
     setStepIndex((x) => x + 1);
@@ -45,25 +56,12 @@ function UploadsProductsModal() {
     <ProductInfo nextStep={() => nextStep} prevStep={() => prevStep} />,
     <PickColors nextStep={() => nextStep} prevStep={() => prevStep} />,
     <Measurements nextStep={() => nextStep} prevStep={() => prevStep} />,
-    // <div>
-    //   <div className={styles.overlay}>
-    //     <div className={styles.overlayContainer}>
-    //       <img
-    //         className={styles.overlayImage}
-    //         src={`${process.env.PUBLIC_URL}/icons/edekeeLogoPurple.svg`}
-    //         alt=""
-    //       />
-    //
-    //       <div className={styles.progressBar} style={{ width: `${percentage}%` }} />
-    //       <p>{`${percentage}%`}</p>
-    //     </div>
-    //   </div>
-    // </div>,
   ];
 
   function handleCancelUpload() {
     // setIsModalOpen()
-    togglePopup(setIsModalOpen);
+    togglePopup();
+    handleAction(setIsModalOpen);
   }
 
   return (

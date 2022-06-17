@@ -115,7 +115,22 @@ function UploadProductsProvider({ children }) {
   const deleteVideo = () => {
     // eslint-disable-next-line no-alert
     setVideoFile(null);
-    setVideoFile(null);
+  };
+
+  const clearValues = () => {
+    // setPicturesFiles(null)
+    // setVideoFile(null)
+    // setCategoryId("")
+    // setSubCategoryId("")
+    // setName(undefined)
+    // setPrice(undefined)
+    // setDesc(undefined)
+    // setCurrency(undefined)
+    // setQty(undefined)
+    // setColors([])
+    // setSizes([])
+    // setWeights([])
+    console.log("");
   };
 
   // uploadData
@@ -128,14 +143,10 @@ function UploadProductsProvider({ children }) {
         setPicturesFiles,
         videoFile,
         setVideoFile,
-        // videoSource,
-        // setVideoSource,
         categoryId,
         setCategoryId,
         subCategoryId,
         setSubCategoryId,
-        // source,
-        // setSource,
         name,
         setName,
         price,
@@ -162,6 +173,7 @@ function UploadProductsProvider({ children }) {
         deleteVideo,
         deleteImage,
         addImage,
+        clearValues,
       }}
     >
       {children}
