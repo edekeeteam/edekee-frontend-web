@@ -4,7 +4,9 @@ function ModalTitle({ title, desc }) {
   return (
     <>
       <p className="global-text-24 global-modal-sm-mb">{title}</p>
-      <p className="global-text-12 global-modal-mb">{desc}</p>
+      <p className="global-text-12 global-modal-mb" style={{ opacity: 0.6 }}>
+        {desc}
+      </p>
     </>
   );
 }

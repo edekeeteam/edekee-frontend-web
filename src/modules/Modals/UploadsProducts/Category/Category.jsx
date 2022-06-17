@@ -31,9 +31,9 @@ function Category({ prevStep, nextStep }) {
     });
   }, []);
 
-  function handleCategoryInput(value, func) {
+  function handleCategoryInput(value) {
     setCategoryId(value);
-    setTimeout(() => func(), 200);
+    // setTimeout(() => func(), 200);
   }
 
   return (
@@ -42,7 +42,8 @@ function Category({ prevStep, nextStep }) {
         <ModalHeader
           prevStep={prevStep}
           canCancel={false}
-          showNext={!!categoryId}
+          showNext
+          // showNext={!!categoryId}
           nextStep={nextStep}
         />
         <div className={globalUploadStyles.Content}>
@@ -65,7 +66,7 @@ function Category({ prevStep, nextStep }) {
                 categoryId={categoryId}
                 categories={categories}
                 onChange={(e) => {
-                  handleCategoryInput(e, nextStep());
+                  handleCategoryInput(e);
                 }}
               />
             )}

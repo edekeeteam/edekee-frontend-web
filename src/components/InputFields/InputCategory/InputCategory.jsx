@@ -9,7 +9,7 @@ function Category({ selectedCategory, image_url, name, id, size }) {
       <div className={`${styles.size} ${size === "small" ? styles.small : ""}`}>
         <input readOnly style={{ opacity: 0 }} type="radio" value={id} name="category" />
         {/* eslint-disable-next-line camelcase */}
-        {/* {image_url && <img src={image_url} alt={name} />} */}
+        {image_url && <img src={image_url} alt={name} />}
         <p>{name}</p>
       </div>
     </div>
@@ -34,7 +34,7 @@ function InputCategory({ categories, onChange, categoryId, size, filterBy }) {
       {
         // eslint-disable-next-line react/prop-types
         categories
-          .filter((cat) => cat.slug.includes(filterBy) || filterBy === "")
+          .filter((cat) => cat.name.includes(filterBy) || filterBy === "")
           .map((cat) => (
             <Category
               key={cat.id}

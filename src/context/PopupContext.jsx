@@ -25,7 +25,6 @@ function PopupProvider({ children }) {
   // uploadData
   return (
     <PopupContext.Provider
-      //* eslint-disable-next-line react/jsx-no-constructed-context-values
       /* eslint-disable-next-line react/jsx-no-constructed-context-values */
       value={{
         togglePopup,

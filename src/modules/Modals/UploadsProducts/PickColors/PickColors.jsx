@@ -46,7 +46,8 @@ function PickColors({ nextStep, prevStep }) {
       <ModalHeader
         prevStep={prevStep}
         canCancel={false}
-        showNext={!!colors.length}
+        // showNext={!!colors.length}
+        showNext
         nextStep={nextStep}
       />
       <div className={`${globalUploadStyles.Content}`}>
