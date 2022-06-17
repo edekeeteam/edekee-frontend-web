@@ -62,7 +62,7 @@ function VideoGallery({ data }) {
   //   // console.log(data.data);
   //   data.data.map((video) => console.log(video.video));
   // }
-  console.log(data);
+  // console.log(data);
 
   return (
     <div className={styles.gallery}>

@@ -2,11 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./SelectImages.module.scss";
 
-import { useUploadProductsContext } from "../../../../context/UploadProducts";
+import ModalTitle from "../../../../components/ModalTitle/ModalTitle";
+import { useCreateServiceContext } from "../../../../context/CreateServiceContext";
 
 function SelectImages({ nextStep }) {
   // eslint-disable-next-line no-unused-vars
-  const { setPicturesFiles, setSource } = useUploadProductsContext();
+  const { setPicturesFiles, setSource } = useCreateServiceContext();
 
   const inputRef = React.useRef();
 
@@ -36,14 +37,15 @@ function SelectImages({ nextStep }) {
           handleFileChange(e, nextStep());
         }}
       />
-      <div className={styles.upload}>
-        <p className="global-text-20 global-modal-mb">Upload Products</p>
-        <p className="global-text-12 global-modal-mb ">
-          Upload least 4 photos of your products. Click the upload button to select photos.
-        </p>
 
-        <button className="global-upload-btn" onClick={handleChoose} type="button">
-          Upload
+      <div className="global-modal-mb">
+        <img src="./icons/selectImageIcon.svg" alt="" />
+      </div>
+      <div className={styles.upload}>
+        <ModalTitle title="Upload photos" desc="  Upload Photos of your Service" />
+
+        <button className="global-upload-btn global-text-10" onClick={handleChoose} type="button">
+          Select files
         </button>
       </div>
     </div>

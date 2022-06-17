@@ -1,113 +1,107 @@
 import PropTypes from "prop-types";
 
-import IndexStyle from "../index.module.scss";
 import styles from "./ProductInfo.module.scss";
+import globalUploadStyles from "../index.module.scss";
 
 import { InputSelect, InputText, InputTextArea } from "../../../../components/InputFields";
 
-import { useUploadProductsContext } from "../../../../context/UploadProducts";
+import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
+import ModalTitle from "../../../../components/ModalTitle/ModalTitle";
+import { useCreateServiceContext } from "../../../../context/CreateServiceContext";
 
-// import InputSelect from "../../../components/InputFields/InputSelect/InputSelect";
-
-// eslint-disable-next-line no-unused-vars
 function ProductInfo({ nextStep, prevStep }) {
-  // eslint-disable-next-line no-unused-vars
   const {
-    name,
-    setName,
-    brand,
-    setBrand,
-    price,
-    setPrice,
-    currency,
-    setCurrency,
-    desc,
-    setDesc,
-    handleProductsUpload,
-  } = useUploadProductsContext();
-  // const [name,] = useState(undefined)
-  // const [brand,] = useState(undefined)
-  // const [price,] = useState(undefined)
-  // const [currency,] = useState(undefined)
-  // const [desc,] = useState(undefined)
-  function upload(func, next) {
-    // eslint-disable-next-line no-console
-    console.log("here");
-    func();
-    next();
-  }
-
-  function keyDown() {
-    // eslint-disable-next-line no-console
-    console.log("key Down");
-  }
-
+    companyName,
+    setCompanyName,
+    email,
+    setEmail,
+    phone,
+    setPhone,
+    streetAddress,
+    setStreetAddress,
+    description,
+    setDescription,
+  } = useCreateServiceContext();
   return (
-    <div className={styles.productInfo}>
-      <div className={`${IndexStyle.Header} global-modal-sm-mb`}>
-        <div onClick={prevStep()} onKeyDown={prevStep()} role="button" tabIndex={0}>
-          <img src={`${process.env.PUBLIC_URL}/icons/arrow-left.svg`} alt="" />
-        </div>
-        {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
-        <div
-          onClick={() => upload(handleProductsUpload, nextStep())}
-          onKeyDown={keyDown}
-          tabIndex={0}
-          role="button"
-        >
-          <img src={`${process.env.PUBLIC_URL}/icons/arrow-right-blue.svg`} alt="" />
-        </div>
-      </div>
-      <div className={styles.content}>
-        <p className="global-text-24 global-modal-sm-mb">Tell us about your product</p>
-        <p className="global-text-12 global-modal-mb">
-          These details will be shown to buyers viewing your product.
-        </p>
+    <div className={`${globalUploadStyles.ProductUploadModal} ${styles.productInfo}`}>
+      <ModalHeader prevStep={prevStep} canCancel={false} showNext nextStep={nextStep} />
+      <div className={`${globalUploadStyles.Content} ${styles.Content}`}>
+        <ModalTitle
+          title="Tell us about your product"
+          desc=" These details will be shown to buyers viewing your product."
+        />
         <form>
-          <div>
+          <div className="global-modal-sm-mb">
             {/* eslint-disable-next-line no-console */}
             <InputText
-              name="name"
+              name="companyName"
               label="Name"
               type="text"
-              value={name}
-              handleChange={(e) => setName(e)}
+              value={companyName}
+              handleChange={(e) => setCompanyName(e.target.value)}
             />
           </div>
-          <div>
+          <div className="global-modal-sm-mb">
             {/* eslint-disable-next-line no-console */}
             <InputText
-              name="brand"
-              label="Brand"
+              name="email"
+              label="Email"
               type="text"
-              value={brand}
-              handleChange={(e) => setBrand(e)}
+              value={email}
+              handleChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className={styles.priceInfo}>
+          <div className="global-modal-sm-mb">
+            {/* eslint-disable-next-line no-console */}
+            <InputText
+              name="Phone"
+              label="Phone"
+              type="number"
+              value={phone}
+              handleChange={(e) => setPhone(e.target.value)}
+            />
+          </div>
+          <div className="global-modal-sm-mb">
+            {/* eslint-disable-next-line no-console */}
+            <InputText
+              name="StreetAddress"
+              label="Street Address"
+              type="text"
+              value={streetAddress}
+              handleChange={(e) => setStreetAddress(e.target.value)}
+            />
+          </div>
+
+          <div className={`${styles.priceInfo} global-modal-sm-mb`}>
             <div className={styles.currency}>
               {/* eslint-disable-next-line no-console */}
               <InputSelect
-                name="currency"
-                label="Currency"
+                name="City"
+                label="City"
                 type="text"
-                value={currency}
-                handleChange={(e) => setCurrency(e)}
+                // value={currency}
+                // handleChange={(e) => setCurrency(e.target.value)}
               />
             </div>
             <div className={styles.price}>
               {/* eslint-disable-next-line no-console */}
-              <InputText
-                name="price"
-                label="Price"
-                type="number"
-                value={price}
-                handleChange={(e) => setPrice(e)}
+              <InputSelect
+                name="State"
+                label="State"
+                type="text"
+                // value={currency}
+                // handleChange={(e) => setCurrency(e.target.value)}
               />
             </div>
           </div>
+
           <div>
-            <InputTextArea name="desc" value={desc} handleChange={(e) => setDesc(e)} />
+            <InputTextArea
+              name="description"
+              label="description"
+              value={description}
+              handleChange={(e) => setDescription(e.target.value)}
+            />
           </div>
         </form>
       </div>

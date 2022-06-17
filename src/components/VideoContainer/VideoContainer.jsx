@@ -6,8 +6,8 @@ import { useState, useRef, useEffect } from "react";
 // import ReactHlsPlayer from "react-hls-player";
 import axios from "axios";
 import { useModalContext } from "../../context/ModalContext";
-import showTag from "../../utils/showTag";
-import Tag from "../Tag/Tag";
+// import showTag from "../../utils/showTag";
+// import Tag from "../Tag/Tag";
 
 // import { motion } from "framer-motion";
 
@@ -17,7 +17,7 @@ import { useProductsContext } from "../../context/ProductsContext";
 function VideoContainer({ src, videoId, thumbnail, label, aspectRatio }) {
   const [showInfo, setShowInfo] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  const [tagArray, setTagArray] = useState([]);
+  // const [tagArray, setTagArray] = useState([]);
   // const [isMuted, setIsMuted] = useState(true)
   const { setIsVidModalOpen, setModalValue, setUrl, setLabel, setVideoId } = useModalContext();
 
@@ -68,10 +68,10 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio }) {
   };
   // console.log(typeof +aspectRatio);
   const ratio = +aspectRatio;
-  const handleShowTag = (e) => {
-    const tags = showTag(e.target.currentTime, label);
-    setTagArray(tags);
-  };
+  // const handleShowTag = (e) => {
+  //   const tags = showTag(e.target.currentTime, label);
+  //   setTagArray(tags);
+  // };
 
   return (
     <div
@@ -90,7 +90,7 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio }) {
         position: " relative",
       }}
     >
-      {tagArray &&
+      {/* {tagArray &&
         tagArray.map((tag) => {
           console.log(tag);
 
@@ -118,7 +118,7 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio }) {
               // setVideoModalTabValue={setVideoModalTabValue}
             />
           );
-        })}
+        })} */}
       {/* <svg
         width="50"
         height="50"
@@ -140,17 +140,17 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio }) {
         loop
         muted
         // controls
-        preload="auto"
+        preload="metadata"
         // poster={thumbnail}
         // width="100%"
         // height="100%"
-        onPause={(e) => {
-          console.log(label);
-          handleShowTag(e);
-        }}
-        onPlay={() => {
-          setTagArray([]);
-        }}
+        // onPause={(e) => {
+        //   console.log(label);
+        //   handleShowTag(e);
+        // }}
+        // onPlay={() => {
+        //   setTagArray([]);
+        // }}
         onClick={() => {
           fetchProducts(videoId);
         }}

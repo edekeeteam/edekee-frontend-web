@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./SelectImages.module.scss";
+import ModalTitle from "../../../../components/ModalTitle/ModalTitle";
 
 // import { useUploadProductsContext } from "../../../../context/UploadProducts";
 
@@ -37,13 +38,13 @@ function SelectImages({ nextStep }) {
         }}
       /> */}
       <div className={styles.upload}>
-        <p className="global-text-20 global-modal-mb">Upload Products</p>
-        <p className="global-text-12 global-modal-mb ">
-          Upload least 4 photos of your products. Click the upload button to select photos.
-        </p>
+        <ModalTitle
+          title="Build your shop"
+          desc=" Create your shop and recieve orders from videos across the web."
+        />
 
-        <button className="global-upload-btn" onClick={nextStep()} type="button">
-          Upload
+        <button className="global-upload-btn global-text-12" onClick={nextStep()} type="button">
+          Lets go
         </button>
       </div>
     </div>

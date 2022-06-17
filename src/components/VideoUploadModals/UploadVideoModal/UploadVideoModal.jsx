@@ -16,6 +16,7 @@ function UploadVideoModal() {
     const url = URL.createObjectURL(file);
     // console.log(url);
     setSource(url);
+
     setVideoFile(file);
   };
 

@@ -1,12 +1,39 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useRef } from "react";
 import Button from "../../../../components/Button/Button";
 import ProfilePic from "../../../../components/ProfilePic/ProfilePic";
 // import IndexStyle from "../index.module.scss";
 import styles from "./UploadLogo.module.scss";
 import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
+import { useCreateShopContext } from "../../../../context/CreateShopContext";
 
 function UploadLogo({ nextStep, prevStep }) {
+  const inputRef = useRef();
+
+  const { source, setSource, setLogoFile, createShop } = useCreateShopContext();
+
+  const handleChooseFile = () => {
+    inputRef.current.click();
+  };
+
+  const handleFileChange = (event) => {
+    // console.log(event.target);
+    const file = event.target.files[0];
+    // console.log(file);
+    const url = URL.createObjectURL(file);
+    // console.log(url);
+    setSource(url);
+    console.log(url, file);
+    setLogoFile(file);
+  };
+
+  const handleCreateShop = () => {
+    nextStep();
+    createShop();
+  };
+
+  const handleKeydown = () => {};
   return (
     <div>
       {/* <div className={IndexStyle.Header}>
@@ -28,16 +55,46 @@ function UploadLogo({ nextStep, prevStep }) {
         // showNext={pictureFiles.length === 4}
         // canCancel
         prevStep={prevStep}
-        nextStep={nextStep}
+        nextStep={() => {
+          handleCreateShop();
+        }}
+      />
+
+      <input
+        ref={inputRef}
+        style={{ display: "none" }}
+        type="file"
+        onChange={handleFileChange}
+        accept="jpg, png,svg"
       />
 
       <div className={styles.uploadBody}>
-        <div className={styles.profilePic}>
-          <ProfilePic size="small" />
+        <div
+          className={styles.profilePic}
+          onClick={() => {
+            handleChooseFile();
+          }}
+          role="button"
+          tabIndex={0}
+          onKeyDown={() => {
+            handleKeydown();
+          }}
+        >
+          <ProfilePic size="small" img={source} />
         </div>
 
         <p className={`${styles.mainText} global-text-20 global-modal-mb`}>Upload Logo</p>
-        <p className={`${styles.secondaryText}global-text-10 global-modal-mb `}>
+        <p
+          className={`${styles.secondaryText}global-text-10 global-modal-mb `}
+          onClick={() => {
+            createShop();
+          }}
+          role="button"
+          tabIndex={0}
+          onKeyDown={() => {
+            handleKeydown();
+          }}
+        >
           Create your shop and recieve orders from videos across the web.
         </p>
         <div className={styles.buttonContainer}>

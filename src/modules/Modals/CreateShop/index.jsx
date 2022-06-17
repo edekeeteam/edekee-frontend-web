@@ -11,10 +11,13 @@ import SelectImages from "./SelectImages/SelectImages";
 // import CropImages from "./BrandInfo/BrandInfo";
 import DeliveryInfo from "./DeliveryInfo/DeliveryInfo";
 import Category from "./Category/Category";
-import CreateProduct from "./CreateProduct/CreateProduct";
-import styles from "../../../components/VideoUploadModals/UploadVideoModal/UploadVideoModal.module.scss";
+// import CreateProduct from "./CreateProduct/CreateProduct";
+// import styles from "../../../components/VideoUploadModals/UploadVideoModal/UploadVideoModal.module.scss";
+// import newStyles from "./index.module.scss";
 import BrandInfo from "./BrandInfo/BrandInfo";
 import UploadLogo from "./UploadLogo/UploadLogo";
+import { CreateShopProvider } from "../../../context/CreateShopContext";
+import ProgressModal from "../../../components/ProgressModal/ProgressModal";
 
 // modal
 
@@ -37,27 +40,30 @@ function CreateShopModal() {
     <DeliveryInfo nextStep={() => nextStep} prevStep={() => prevStep} />,
     <Category nextStep={() => nextStep} prevStep={() => prevStep} />,
     <UploadLogo nextStep={() => nextStep} prevStep={() => prevStep} />,
-    <CreateProduct nextStep={() => nextStep} prevStep={() => prevStep} />,
-    <div>
-      <div className={styles.overlay}>
-        <div className={styles.overlayContainer}>
-          <img
-            className={styles.overlayImage}
-            src={`${process.env.PUBLIC_URL}/icons/edekeeLogoPurple.svg`}
-            alt=""
-          />
+    <ProgressModal />,
+    // <CreateProduct nextStep={() => nextStep} prevStep={() => prevStep} />,
+    // <div>
+    //   <div className={newStyles.overlay}>
+    //     <div className={newStyles.overlayContainer}>
+    //       <img
+    //         className={styles.overlayImage}
+    //         src={`${process.env.PUBLIC_URL}/icons/edekeeLogoPurple.svg`}
+    //         alt=""
+    //       />
 
-          {/* <div className={styles.progressBar} style={{ width: `${percentage}%` }} /> */}
-          {/* <p>{`${percentage}%`}</p> */}
-        </div>
-      </div>
-    </div>,
+    //       {/* <div className={styles.progressBar} style={{ width: `${percentage}%` }} /> */}
+    //       {/* <p>{`${percentage}%`}</p> */}
+    //     </div>
+    //   </div>
+    // </div>,
   ];
 
   return (
-    <Modal>
-      <div style={{ width: "100%" }}>{steps[stepIndex]}</div>
-    </Modal>
+    <CreateShopProvider>
+      <Modal>
+        <div style={{ width: "100%" }}>{steps[stepIndex]}</div>
+      </Modal>
+    </CreateShopProvider>
   );
 }
 

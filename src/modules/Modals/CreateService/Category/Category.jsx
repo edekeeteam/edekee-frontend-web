@@ -8,9 +8,10 @@ import styles from "./Category.module.scss";
 import apiMethods from "../../../../utils/apiMethods";
 import endPoint from "../../../../routes";
 
-import { InputCategory, InputSearch } from "../../../../components/InputFields";
-import { useUploadProductsContext } from "../../../../context/UploadProducts";
+import { InputCategory } from "../../../../components/InputFields";
+// import { useUploadProductsContext } from "../../../../context/UploadProducts";
 import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
+import { useCreateServiceContext } from "../../../../context/CreateServiceContext";
 
 // eslint-disable-next-line no-unused-vars
 function Category({ prevStep, nextStep }) {
@@ -19,7 +20,7 @@ function Category({ prevStep, nextStep }) {
   // eslint-disable-next-line no-unused-vars
   const [filter, setFilter] = useState("");
   //
-  const { categoryId, setCategoryId } = useUploadProductsContext();
+  const { categoryId, setCategoryId } = useCreateServiceContext();
   //
   // eslint-disable-next-line no-unused-vars
   const getCategories = () => apiMethods.get(`${endPoint.getCategories}`);
@@ -31,9 +32,9 @@ function Category({ prevStep, nextStep }) {
     });
   }, []);
 
-  function handleCategoryInput(value, func) {
+  function handleCategoryInput(value) {
     setCategoryId(value);
-    setTimeout(() => func(), 200);
+    console.log(value);
   }
 
   return (
@@ -51,13 +52,13 @@ function Category({ prevStep, nextStep }) {
             Pick a category your product. For example, men or women clothing or accessories like
             watches and necklaces.
           </p>
-          <div className="global-modal-mb">
+          {/* <div className="global-modal-mb">
             <InputSearch
               value={filter}
               handleChange={(e) => setFilter(e.target.value.toLowerCase())}
               name="search"
             />
-          </div>
+          </div> */}
           <div className={styles.container}>
             {categories && (
               <InputCategory
@@ -65,7 +66,7 @@ function Category({ prevStep, nextStep }) {
                 categoryId={categoryId}
                 categories={categories}
                 onChange={(e) => {
-                  handleCategoryInput(e, nextStep());
+                  handleCategoryInput(e);
                 }}
               />
             )}

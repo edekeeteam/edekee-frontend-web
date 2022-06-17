@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React from "react";
 import PropTypes from "prop-types";
 // import IndexStyle from "../index.module.scss";
@@ -5,18 +6,78 @@ import PropTypes from "prop-types";
 import styles from "./BrandInfo.module.scss";
 import { InputText } from "../../../../components/InputFields";
 import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
+import { useCreateShopContext } from "../../../../context/CreateShopContext";
+// import useGetCities from "../../../../hooks/useGetCities";
 
 // import { useUploadProductsContext } from "../../../../context/UploadProducts";
 
 // import ImageSlider from "../../../../components/ImageSlider/ImageSlider";
 
 function BrandInfo({ nextStep, prevStep }) {
-  // const { source } = useUploadProductsContext();
+  const {
+    // companyName,
+    phoneNumber,
+    email,
+    streetAddress,
+    state,
+    statesArray,
+    city,
+    citiesArray,
+    companyName,
+    setCompanyName,
+    setStreetAddress,
+    setPhoneNumber,
+    setCity,
+    setState,
+    setEmail,
+  } = useCreateShopContext();
 
-  // function keyDown() {
-  //   // eslint-disable-next-line no-console
-  //   console.log("key Down");
+  // const [citiesArray, setCitiesArray] = useState([]);
+  // const [statesArray] = useState([]);
+
+  // const { data: cities, isLoading: loading } = useGetCities();
+
+  // if (!loading) {
+  // console.log(cities);
+  //   setCitiesArray(cities.data);
   // }
+
+  const cityOptions = citiesArray.map((eachCity) => (
+    <option key={eachCity.id} value={eachCity.id}>
+      {" "}
+      {eachCity.name}{" "}
+    </option>
+  ));
+  const stateOptions = statesArray.map((eachState) => (
+    <option key={eachState.id} value={eachState.id}>
+      {" "}
+      {eachState.name}{" "}
+    </option>
+  ));
+
+  const handleNameChange = (e) => {
+    if (e.target.name === "companyName") {
+      setCompanyName(e.target.value);
+      // console.log(e.target.value);
+    } else if (e.target.name === "streetAddress") {
+      setStreetAddress(e.target.value);
+      // console.log(e.target.value);
+    } else if (e.target.name === "phoneNumber") {
+      setPhoneNumber(e.target.value);
+      // console.log(e.target.value);
+    } else if (e.target.name === "city") {
+      setCity(e.target.value);
+      // console.log(e.target.value);
+    } else if (e.target.name === "state") {
+      setState(e.target.value);
+      // console.log(e.target.value);
+    } else if (e.target.name === "email") {
+      setEmail(e.target.value);
+      // console.log(e.target.value);
+    }
+  };
+
+  // const handleNext = () => !(companyName === "");
 
   return (
     <div className={styles.brandInfo}>
@@ -30,10 +91,11 @@ function BrandInfo({ nextStep, prevStep }) {
         </div>
       </div> */}
       <ModalHeader
-        // showNext={pictureFiles.length === 4}
+        showNext={companyName && phoneNumber && streetAddress && city && state && email}
         // canCancel
+        // canFinish={false}
         prevStep={prevStep}
-        nextStep={nextStep}
+        nextStep={() => nextStep()}
       />
       <div className={styles.content}>
         <div>
@@ -42,50 +104,82 @@ function BrandInfo({ nextStep, prevStep }) {
             These details will be shown to buyers viewing your shop.
           </p>
         </div>
-        <div className="global-modal-mb " style={{ width: "100%" }}>
+        <div className="global-modal-mb" style={{ width: "100%" }}>
           <InputText
             label="Company name"
-            name="signInEmail"
+            name="companyName"
             type="text"
-            // handleChange={handleInputChange}
-            // value={signInEmail}
+            handleChange={(e) => {
+              handleNameChange(e);
+            }}
+            value={companyName}
           />
         </div>
         <div className="global-modal-mb " style={{ width: "100%" }}>
           <InputText
             label="Phone number"
-            name="signInEmail"
-            type="text"
-            // handleChange={handleInputChange}
-            // value={signInEmail}
+            name="phoneNumber"
+            type="number"
+            handleChange={(e) => {
+              handleNameChange(e);
+            }}
+            value={phoneNumber}
           />
         </div>
         <div className="global-modal-mb " style={{ width: "100%" }}>
           <InputText
             label="Email"
-            name="signInEmail"
+            name="email"
             type="text"
-            // handleChange={handleInputChange}
-            // value={signInEmail}
+            handleChange={(e) => {
+              handleNameChange(e);
+            }}
+            value={email}
           />
         </div>
         <div className="global-modal-mb " style={{ width: "100%" }}>
           <InputText
             label="Street address"
-            name="signInEmail"
+            name="streetAddress"
             type="text"
-            // handleChange={handleInputChange}
-            // value={signInEmail}
+            handleChange={(e) => {
+              handleNameChange(e);
+            }}
+            value={streetAddress}
           />
         </div>
-        <div className="global-modal-mb " style={{ width: "100%" }}>
-          <InputText
+        <div className={styles.selectInputSection} style={{ width: "100%" }}>
+          <select
+            className={styles.selectInput}
+            // style={{ paddingRight: "25px", paddingLeft: "20px" }}
+            value={city}
+            name="city"
+            onChange={(e) => {
+              // handleCountryChange(e.target.value);
+              handleNameChange(e);
+            }}
+          >
+            {cityOptions}
+          </select>
+          <select
+            className={styles.selectInput}
+            // style={{ paddingRight: "25px", paddingLeft: "20px" }}
+            value={state}
+            name="state"
+            onChange={(e) => {
+              // handleCountryChange(e.target.value);
+              handleNameChange(e);
+            }}
+          >
+            {stateOptions}
+          </select>
+          {/* <InputText
             label="Street address"
             name="signInEmail"
             type="text"
             // handleChange={handleInputChange}
             // value={signInEmail}
-          />
+          /> */}
         </div>
       </div>
       {/* <div>
