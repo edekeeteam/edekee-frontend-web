@@ -4,6 +4,7 @@ import { useAuthContext } from "../../context/AuthContext";
 
 // eslint-disable-next-line react/prop-types
 function Modal({ children }) {
+  // eslint-disable-next-line no-unused-vars
   const { isModalOpen, setIsModalOpen } = useModalContext();
   const { setErrors, setBtnState } = useAuthContext();
 
@@ -19,7 +20,7 @@ function Modal({ children }) {
     <div
       className={`${styles.modalBackdrop} ${isModalOpen && styles.show}`}
       onClick={() => {
-        setIsModalOpen(false);
+        // setIsModalOpen(false);
         setErrors({});
         setBtnState(false);
       }}

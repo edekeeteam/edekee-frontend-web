@@ -15,6 +15,7 @@ import { UploadProvider } from "./context/UploadContext";
 import { BuyProvider } from "./context/BuyContext";
 import { ProductsProvider } from "./context/ProductsContext";
 import { ToastProvider } from "./context/ToastContext";
+import { PopupProvider } from "./context/PopupContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -28,21 +29,23 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <ToastProvider>
-        <ModalProvider>
-          <AuthProvider>
-            <UploadProvider>
-              <DropdownProvider>
-                <ProductsProvider>
-                  <BuyProvider>
-                    <SkeletonTheme baseColor="#3F3F3F" highlightColor="#525252">
-                      <App />
-                    </SkeletonTheme>
-                  </BuyProvider>
-                </ProductsProvider>
-              </DropdownProvider>
-            </UploadProvider>
-          </AuthProvider>
-        </ModalProvider>
+        <PopupProvider>
+          <ModalProvider>
+            <AuthProvider>
+              <UploadProvider>
+                <DropdownProvider>
+                  <ProductsProvider>
+                    <BuyProvider>
+                      <SkeletonTheme baseColor="#3F3F3F" highlightColor="#525252">
+                        <App />
+                      </SkeletonTheme>
+                    </BuyProvider>
+                  </ProductsProvider>
+                </DropdownProvider>
+              </UploadProvider>
+            </AuthProvider>
+          </ModalProvider>
+        </PopupProvider>
       </ToastProvider>
     </QueryClientProvider>
   </React.StrictMode>
