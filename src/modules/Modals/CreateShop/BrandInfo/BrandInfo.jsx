@@ -15,8 +15,7 @@ import { useCreateShopContext } from "../../../../context/CreateShopContext";
 
 function BrandInfo({ nextStep, prevStep }) {
   const {
-    companyName,
-    handleInputChange,
+    // companyName,
     phoneNumber,
     email,
     streetAddress,
@@ -24,6 +23,13 @@ function BrandInfo({ nextStep, prevStep }) {
     statesArray,
     city,
     citiesArray,
+    companyName,
+    setCompanyName,
+    setStreetAddress,
+    setPhoneNumber,
+    setCity,
+    setState,
+    setEmail,
   } = useCreateShopContext();
 
   // const [citiesArray, setCitiesArray] = useState([]);
@@ -32,16 +38,9 @@ function BrandInfo({ nextStep, prevStep }) {
   // const { data: cities, isLoading: loading } = useGetCities();
 
   // if (!loading) {
-  //   console.log(cities);
+  // console.log(cities);
   //   setCitiesArray(cities.data);
   // }
-  const handleNextStep = (func) => {
-    if (companyName === "") {
-      alert("add name");
-    } else {
-      func();
-    }
-  };
 
   const cityOptions = citiesArray.map((eachCity) => (
     <option key={eachCity.id} value={eachCity.id}>
@@ -56,6 +55,30 @@ function BrandInfo({ nextStep, prevStep }) {
     </option>
   ));
 
+  const handleNameChange = (e) => {
+    if (e.target.name === "companyName") {
+      setCompanyName(e.target.value);
+      // console.log(e.target.value);
+    } else if (e.target.name === "streetAddress") {
+      setStreetAddress(e.target.value);
+      // console.log(e.target.value);
+    } else if (e.target.name === "phoneNumber") {
+      setPhoneNumber(e.target.value);
+      // console.log(e.target.value);
+    } else if (e.target.name === "city") {
+      setCity(e.target.value);
+      // console.log(e.target.value);
+    } else if (e.target.name === "state") {
+      setState(e.target.value);
+      // console.log(e.target.value);
+    } else if (e.target.name === "email") {
+      setEmail(e.target.value);
+      // console.log(e.target.value);
+    }
+  };
+
+  // const handleNext = () => !(companyName === "");
+
   return (
     <div className={styles.brandInfo}>
       {/* <div className={`${IndexStyle.Header} global-modal-sm-mb`}>
@@ -68,10 +91,11 @@ function BrandInfo({ nextStep, prevStep }) {
         </div>
       </div> */}
       <ModalHeader
-        // showNext={pictureFiles.length === 4}
+        showNext={companyName && phoneNumber && streetAddress && city && state && email}
         // canCancel
+        // canFinish={false}
         prevStep={prevStep}
-        nextStep={() => handleNextStep(nextStep())}
+        nextStep={() => nextStep()}
       />
       <div className={styles.content}>
         <div>
@@ -85,7 +109,9 @@ function BrandInfo({ nextStep, prevStep }) {
             label="Company name"
             name="companyName"
             type="text"
-            handleChange={handleInputChange}
+            handleChange={(e) => {
+              handleNameChange(e);
+            }}
             value={companyName}
           />
         </div>
@@ -94,7 +120,9 @@ function BrandInfo({ nextStep, prevStep }) {
             label="Phone number"
             name="phoneNumber"
             type="number"
-            handleChange={handleInputChange}
+            handleChange={(e) => {
+              handleNameChange(e);
+            }}
             value={phoneNumber}
           />
         </div>
@@ -103,7 +131,9 @@ function BrandInfo({ nextStep, prevStep }) {
             label="Email"
             name="email"
             type="text"
-            handleChange={handleInputChange}
+            handleChange={(e) => {
+              handleNameChange(e);
+            }}
             value={email}
           />
         </div>
@@ -112,7 +142,9 @@ function BrandInfo({ nextStep, prevStep }) {
             label="Street address"
             name="streetAddress"
             type="text"
-            handleChange={handleInputChange}
+            handleChange={(e) => {
+              handleNameChange(e);
+            }}
             value={streetAddress}
           />
         </div>
@@ -124,7 +156,7 @@ function BrandInfo({ nextStep, prevStep }) {
             name="city"
             onChange={(e) => {
               // handleCountryChange(e.target.value);
-              handleInputChange(e);
+              handleNameChange(e);
             }}
           >
             {cityOptions}
@@ -136,7 +168,7 @@ function BrandInfo({ nextStep, prevStep }) {
             name="state"
             onChange={(e) => {
               // handleCountryChange(e.target.value);
-              handleInputChange(e);
+              handleNameChange(e);
             }}
           >
             {stateOptions}

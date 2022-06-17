@@ -58,6 +58,7 @@ function DeliveryInfo({ prevStep, nextStep }) {
         <ModalHeader
           // showNext={pictureFiles.length === 4}
           // canCancel
+          showNext={currentlyChecked}
           prevStep={prevStep}
           nextStep={nextStep}
         />

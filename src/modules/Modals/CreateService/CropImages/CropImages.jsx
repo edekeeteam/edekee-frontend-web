@@ -2,13 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./CropImages.module.scss";
 
-import { useUploadProductsContext } from "../../../../context/UploadProducts";
-
 import ImageSlider from "../../../../components/ImageSlider/ImageSlider";
 import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
+import { useCreateServiceContext } from "../../../../context/CreateServiceContext";
 
 function CropImages({ nextStep, prevStep }) {
-  const { pictureFiles, deleteImage, addImage } = useUploadProductsContext();
+  const { pictureFiles, deleteImage, addImage } = useCreateServiceContext();
 
   return (
     <div className={styles.cropImages}>

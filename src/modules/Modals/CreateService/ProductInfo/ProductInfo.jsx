@@ -5,25 +5,23 @@ import globalUploadStyles from "../index.module.scss";
 
 import { InputSelect, InputText, InputTextArea } from "../../../../components/InputFields";
 
-import { useUploadProductsContext } from "../../../../context/UploadProducts";
 import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
 import ModalTitle from "../../../../components/ModalTitle/ModalTitle";
+import { useCreateServiceContext } from "../../../../context/CreateServiceContext";
 
 function ProductInfo({ nextStep, prevStep }) {
   const {
-    name,
-    setName,
-    brand,
-    setBrand,
-    price,
-    setPrice,
-    currency,
-    setCurrency,
-    desc,
-    setDesc,
-    qty,
-    setQty,
-  } = useUploadProductsContext();
+    companyName,
+    setCompanyName,
+    email,
+    setEmail,
+    phone,
+    setPhone,
+    streetAddress,
+    setStreetAddress,
+    description,
+    setDescription,
+  } = useCreateServiceContext();
   return (
     <div className={`${globalUploadStyles.ProductUploadModal} ${styles.productInfo}`}>
       <ModalHeader prevStep={prevStep} canCancel={false} showNext nextStep={nextStep} />
@@ -36,61 +34,73 @@ function ProductInfo({ nextStep, prevStep }) {
           <div className="global-modal-sm-mb">
             {/* eslint-disable-next-line no-console */}
             <InputText
-              name="name"
+              name="companyName"
               label="Name"
               type="text"
-              value={name}
-              handleChange={(e) => setName(e.target.value)}
+              value={companyName}
+              handleChange={(e) => setCompanyName(e.target.value)}
             />
           </div>
           <div className="global-modal-sm-mb">
             {/* eslint-disable-next-line no-console */}
             <InputText
-              name="brand"
-              label="Brand"
+              name="email"
+              label="Email"
               type="text"
-              value={brand}
-              handleChange={(e) => setBrand(e.target.value)}
+              value={email}
+              handleChange={(e) => setEmail(e.target.value)}
             />
           </div>
+          <div className="global-modal-sm-mb">
+            {/* eslint-disable-next-line no-console */}
+            <InputText
+              name="Phone"
+              label="Phone"
+              type="number"
+              value={phone}
+              handleChange={(e) => setPhone(e.target.value)}
+            />
+          </div>
+          <div className="global-modal-sm-mb">
+            {/* eslint-disable-next-line no-console */}
+            <InputText
+              name="StreetAddress"
+              label="Street Address"
+              type="text"
+              value={streetAddress}
+              handleChange={(e) => setStreetAddress(e.target.value)}
+            />
+          </div>
+
           <div className={`${styles.priceInfo} global-modal-sm-mb`}>
             <div className={styles.currency}>
               {/* eslint-disable-next-line no-console */}
               <InputSelect
-                name="currency"
-                label="Currency"
+                name="City"
+                label="City"
                 type="text"
-                value={currency}
-                handleChange={(e) => setCurrency(e.target.value)}
+                // value={currency}
+                // handleChange={(e) => setCurrency(e.target.value)}
               />
             </div>
             <div className={styles.price}>
               {/* eslint-disable-next-line no-console */}
-              <InputText
-                name="price"
-                label="Price"
-                type="number"
-                value={price}
-                handleChange={(e) => setPrice(e.target.value)}
+              <InputSelect
+                name="State"
+                label="State"
+                type="text"
+                // value={currency}
+                // handleChange={(e) => setCurrency(e.target.value)}
               />
             </div>
           </div>
-          <div className="global-modal-sm-mb">
-            {/* eslint-disable-next-line no-console */}
-            <InputText
-              name="qty"
-              label="Quantity(No. of product Available)"
-              type="number"
-              value={qty}
-              handleChange={(e) => setQty(e.target.value)}
-            />
-          </div>
+
           <div>
             <InputTextArea
-              name="desc"
-              label="Description"
-              value={desc}
-              handleChange={(e) => setDesc(e)}
+              name="description"
+              label="description"
+              value={description}
+              handleChange={(e) => setDescription(e.target.value)}
             />
           </div>
         </form>

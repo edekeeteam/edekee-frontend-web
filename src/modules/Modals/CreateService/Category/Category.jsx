@@ -9,8 +9,9 @@ import apiMethods from "../../../../utils/apiMethods";
 import endPoint from "../../../../routes";
 
 import { InputCategory } from "../../../../components/InputFields";
-import { useUploadProductsContext } from "../../../../context/UploadProducts";
+// import { useUploadProductsContext } from "../../../../context/UploadProducts";
 import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
+import { useCreateServiceContext } from "../../../../context/CreateServiceContext";
 
 // eslint-disable-next-line no-unused-vars
 function Category({ prevStep, nextStep }) {
@@ -19,7 +20,7 @@ function Category({ prevStep, nextStep }) {
   // eslint-disable-next-line no-unused-vars
   const [filter, setFilter] = useState("");
   //
-  const { categoryId, setCategoryId } = useUploadProductsContext();
+  const { categoryId, setCategoryId } = useCreateServiceContext();
   //
   // eslint-disable-next-line no-unused-vars
   const getCategories = () => apiMethods.get(`${endPoint.getCategories}`);
@@ -31,9 +32,9 @@ function Category({ prevStep, nextStep }) {
     });
   }, []);
 
-  function handleCategoryInput(value, func) {
+  function handleCategoryInput(value) {
     setCategoryId(value);
-    setTimeout(() => func(), 700);
+    console.log(value);
   }
 
   return (
@@ -65,7 +66,7 @@ function Category({ prevStep, nextStep }) {
                 categoryId={categoryId}
                 categories={categories}
                 onChange={(e) => {
-                  handleCategoryInput(e, nextStep());
+                  handleCategoryInput(e);
                 }}
               />
             )}

@@ -1,0 +1,45 @@
+.packageCard {
+  // width: 160px;
+  // min-width: 140px;
+  // height: 200px;
+  border-radius: 20px;
+  margin: 2px 10px;
+  padding: 20px 30px;
+  padding-top: 30px;
+  background-color: #322f37;
+  text-align: left;
+  position: relative;
+
+  .cancel {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 10px;
+    cursor: pointer;
+  }
+  // flex: 1;
+  //   border: 1px solid red;
+
+  .plan {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .price {
+    margin-bottom: 15px;
+  }
+
+  .nightText {
+    font-size: 11px;
+  }
+
+  .benefitsHeading {
+    font-size: 11px;
+    margin-bottom: 10px;
+  }
+
+  .benefits li {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+}

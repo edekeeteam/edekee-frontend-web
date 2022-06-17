@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { UploadProductsProvider } from "../../../context/UploadProducts";
+import { CreateServiceProvider } from "../../../context/CreateServiceContext";
 import { useUploadContext } from "../../../context/UploadContext";
 
 import Modal from "../../../components/Modal/Modal";
@@ -14,6 +14,8 @@ import Category from "./Category/Category";
 import ProductInfo from "./ProductInfo/ProductInfo";
 
 import styles from "../../../components/VideoUploadModals/UploadVideoModal/UploadVideoModal.module.scss";
+import SelectServices from "./SelectServices/SelectServices";
+import SelectPackage from "./SelectPackage/SelectPackage";
 // import Preview360Video from "./Preview360Video/Preview360Video";
 
 // modal
@@ -39,6 +41,9 @@ function CreateServiceModal() {
     <Category nextStep={() => nextStep} prevStep={() => prevStep} />,
     // <SubCategory nextStep={() => nextStep} prevStep={() => prevStep} />,
     <ProductInfo nextStep={() => nextStep} prevStep={() => prevStep} />,
+    <SelectServices nextStep={() => nextStep} prevStep={() => prevStep} />,
+    <SelectPackage nextStep={() => nextStep} prevStep={() => prevStep} />,
+
     <div>
       <div className={styles.overlay}>
         <div className={styles.overlayContainer}>
@@ -56,11 +61,11 @@ function CreateServiceModal() {
   ];
 
   return (
-    <UploadProductsProvider>
+    <CreateServiceProvider>
       <Modal>
         <div>{steps[stepIndex]}</div>
       </Modal>
-    </UploadProductsProvider>
+    </CreateServiceProvider>
   );
 }
 

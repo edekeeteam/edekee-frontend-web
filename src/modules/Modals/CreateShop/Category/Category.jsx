@@ -25,7 +25,7 @@ function Category({ prevStep, nextStep }) {
   // eslint-disable-next-line no-unused-vars
   const getCategories = () => apiMethods.get(`${endPoint.getCategories}`);
 
-  const { categoryArray, setCategoryId } = useCreateShopContext();
+  const { categoryArray, setCategoryId, categoryId } = useCreateShopContext();
 
   console.log(categoryArray);
 
@@ -38,10 +38,10 @@ function Category({ prevStep, nextStep }) {
   //   });
   // }, []);
 
-  function handleCategoryInput(value, func) {
+  function handleCategoryInput(value) {
     setCategoryId(value);
     console.log(value);
-    setTimeout(() => func(), 112000000);
+    // setTimeout(() => func(), 112000000);
   }
 
   return (
@@ -50,7 +50,7 @@ function Category({ prevStep, nextStep }) {
         <ModalHeader
           prevStep={prevStep}
           canCancel={false}
-          // showNext={!!categoryId}
+          showNext={categoryId}
           nextStep={nextStep}
         />
         <div className={styles.Content}>
@@ -73,7 +73,7 @@ function Category({ prevStep, nextStep }) {
                 // categoryId={categoryId}
                 categories={newCategories}
                 onChange={(e) => {
-                  handleCategoryInput(e, nextStep());
+                  handleCategoryInput(e);
                 }}
               />
             )}

@@ -28,6 +28,11 @@ function UploadLogo({ nextStep, prevStep }) {
     setLogoFile(file);
   };
 
+  const handleCreateShop = () => {
+    nextStep();
+    createShop();
+  };
+
   const handleKeydown = () => {};
   return (
     <div>
@@ -50,7 +55,9 @@ function UploadLogo({ nextStep, prevStep }) {
         // showNext={pictureFiles.length === 4}
         // canCancel
         prevStep={prevStep}
-        nextStep={nextStep}
+        nextStep={() => {
+          handleCreateShop();
+        }}
       />
 
       <input

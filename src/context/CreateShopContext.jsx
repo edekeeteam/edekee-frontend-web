@@ -1,45 +1,59 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-unused-expressions */
 /* eslint-disable react/jsx-no-constructed-context-values */
-import React, { useContext, useReducer, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 // import useGetCities from "../hooks/useGetCities";
 // import useGetStates from "../hooks/useGetStates";
-import reducer from "../reducers/shopReducer";
+// import reducer from "../reducers/shopReducer";
 
 const CreateShopContext = React.createContext();
 
 // eslint-disable-next-line react/prop-types
 function CreateShopProvider({ children }) {
-  const initialFormState = {
-    companyName: "",
-    email: "",
-    streetAddress: "",
-    phoneNumber: "",
-    city: "",
-    state: "",
+  // const initialFormState = {
+  //   // companyName: "",
+  //   email: "",
+  //   streetAddress: "",
+  //   phoneNumber: "",
+  //   city: "",
+  //   state: "",
 
-    categoryId: "",
-    files: [],
-  };
+  //   categoryId: "",
+  //   files: [],
+  // };
 
-  const [formState, dispatch] = useReducer(reducer, initialFormState);
+  // const [formState, dispatch] = useReducer(reducer, initialFormState);
   const [source, setSource] = useState(null);
   const [logofile, setLogoFile] = useState(null);
-  const [categoryId, setCategoryId] = useState("");
   const [categoryArray, setCategoryArray] = useState("");
   const [deliveryStatus, setDeliveryStatus] = useState("");
   // const [citiesArray, setCitiesArray] = useState([]);
   const [statesArray, setStatesArray] = useState([]);
   const [citiesArray, setCitiesArray] = useState([]);
 
-  const handleInputChange = (e) => {
-    // e.preventDefault();
-    console.log(e.target.value);
-    dispatch({
-      type: "HANDLE_INPUT_CHANGE",
-      field: [e.target.name],
-      payload: [e.target.value],
-    });
-  };
+  const [companyName, setCompanyName] = useState("");
+  const [email, setEmail] = useState("");
+  const [streetAddress, setStreetAddress] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [categoryId, setCategoryId] = useState("");
+  const [files, setFiles] = useState([]);
+  // const [servicePackages, setServicePackages] = useState([]);
+
+  const [percentage, setPercentage] = useState(0);
+
+  // const handleInputChange = (e) => {
+  //   // e.preventDefault();
+  //   console.log(e.target.value);
+  //   dispatch({
+  //     type: "HANDLE_INPUT_CHANGE",
+  //     field: [e.target.name],
+  //     payload: [e.target.value],
+  //   });
+  // };
 
   const getResource = () => {
     axios
@@ -52,6 +66,7 @@ function CreateShopProvider({ children }) {
       .then((res) => {
         // console.log(res.data.data);
         setStatesArray(res.data.data);
+        setState(res.data.data[0].id);
       })
       .catch((err) => {
         console.log(err);
@@ -67,6 +82,7 @@ function CreateShopProvider({ children }) {
       .then((res) => {
         // console.log(res.data.data);
         setCitiesArray(res.data.data);
+        setCity(res.data.data[0].id);
       })
       .catch((err) => {
         console.log(err);
@@ -91,28 +107,73 @@ function CreateShopProvider({ children }) {
   const createShop = () => {
     console.log(categoryId);
 
-    const params = {
-      company_name: formState.companyName[0],
-      slug: "beunique",
-      phone: formState.phoneNumber[0],
-      email: formState.email[0],
-      address: formState.streetAddress[0],
-      city_id: formState.city[0],
-      state_id: formState.state[0],
-      logistics: "Gokada",
-      delivery_status: deliveryStatus,
-      category_id: categoryId,
-      logo: logofile,
+    let percent = 0;
+    const config = {
+      onUploadProgress: (progressEvent) => {
+        const { loaded, total } = progressEvent;
+        percent = Math.floor((loaded * 100) / total);
+        console.log(`${loaded}kb of ${total}kb | ${percent}%`); // just to see whats happening in the console
+        if (percent <= 100) {
+          setPercentage(percent); // hook to set the value of current level that needs to be passed to the progressbar
+        }
+      },
     };
+
+    // console.log(typeof logofile, logofile);
+
+    const formData = new FormData();
+    formData.append("company_name", companyName);
+    formData.append("slug", uuidv4());
+    formData.append("phone", phoneNumber);
+    formData.append("email", email);
+    formData.append("address", streetAddress);
+    formData.append("city_id", `${city}`);
+    formData.append("state_id", `${state}`);
+    formData.append("logistics", "Gokada");
+    formData.append("delivery_status", deliveryStatus);
+    formData.append("category_id", categoryId);
+    formData.append("logo", logofile);
+
+    for (const pair of formData.entries()) {
+      console.log(`${pair[0]}, ${pair[1]}`);
+    }
+
+    // const params = {
+    //   company_name: companyName,
+    //   slug: "beunique",
+    //   phone: phoneNumber,
+    //   email,
+    //   address: streetAddress,
+    //   city_id: `${city}`,
+    //   state_id: `${state}`,
+    //   logistics: "Gokada",
+    //   delivery_status: deliveryStatus,
+    //   category_id: categoryId,
+    //   logo: logofile,
+    // };
     axios
-      .post("http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/shop", params, {
-        headers: {
-          Authorisation: localStorage.getItem("token"),
-          portal: "web",
-        },
-      })
+      .post(
+        "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/shop",
+        formData,
+
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+            portal: "web",
+          },
+        }
+      )
       .then((res) => {
         console.log(res);
+        console.log(typeof config);
+
+        setPercentage(percent);
+        () => {
+          setTimeout(() => {
+            setPercentage(0);
+            setSource(null);
+          }, 1000);
+        };
       })
       .catch((err) => {
         console.log(err);
@@ -126,8 +187,6 @@ function CreateShopProvider({ children }) {
   return (
     <CreateShopContext.Provider
       value={{
-        ...formState,
-        handleInputChange,
         citiesArray,
         statesArray,
         source,
@@ -137,15 +196,24 @@ function CreateShopProvider({ children }) {
         categoryArray,
         deliveryStatus,
         setDeliveryStatus,
-        setCategoryId,
         createShop,
-        // size,
-        // setSize,
-        // quantity,
-        // setQuantity,
-        // color,
-        // handleColorChange,
-        // handleSizeChange,
+        companyName,
+        setCompanyName,
+        email,
+        setEmail,
+        streetAddress,
+        setStreetAddress,
+        phoneNumber,
+        setPhoneNumber,
+        city,
+        setCity,
+        state,
+        setState,
+        files,
+        setFiles,
+        categoryId,
+        setCategoryId,
+        percentage,
       }}
     >
       {children}

@@ -11,7 +11,7 @@ function InputTextArea({ name, handleChange, value, label }) {
         value={value}
         placeholder={label}
         onChange={(e) => {
-          handleChange(e.target.value);
+          handleChange(e);
         }}
         name={name}
       />

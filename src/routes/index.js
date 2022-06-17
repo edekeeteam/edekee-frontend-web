@@ -3,6 +3,7 @@
 
 const apiRoutes = {
   getInterests: "/interests",
+  getServiceTypes: "/services/types/getAll",
   getCategories: "/category",
   getColors: "/color",
   getStates: "/states",
