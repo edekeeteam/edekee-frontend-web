@@ -22,7 +22,6 @@ function InputColor({ Colors, handleChange }) {
   // eslint-disable-next-line react/prop-types
 
   function onChangeValue(event) {
-    console.log(event.target.value);
     setActiveColor(event.target.value);
     setColor(event.target.value);
     handleChange(event.target.value);

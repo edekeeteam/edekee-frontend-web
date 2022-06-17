@@ -9,8 +9,12 @@ import styles from "./Measurements.module.scss";
 import { InputSelect, InputText } from "../../../../components/InputFields";
 import AddNew from "../../../../components/AddNewButton/AddNew";
 import ValueCancelable from "../../../../components/ValueCancelable/ValueCancelable";
+import { useUploadProductsContext } from "../../../../context/UploadProducts";
+import useGetProfile from "../../../../hooks/profile/useGetProfile";
 
+// eslint-disable-next-line no-unused-vars
 function Measurements({ prevStep, nextStep }) {
+  const { data } = useGetProfile(localStorage.getItem("userId"));
   // eslint-disable-next-line no-unused-vars
   const [selectedSizes, addToSelectedSizes] = useState([]);
   const [size, setSize] = useState("");
@@ -19,9 +23,10 @@ function Measurements({ prevStep, nextStep }) {
   const [selectedClothingSizes, addToSelectedClothingSizes] = useState([]);
   const [sizeClothing, setClothingSize] = useState("");
   // eslint-disable-next-line no-unused-vars
-  const [selectedWeights, addToSelectedWeights] = useState([]);
   const [weight, setWeight] = useState("");
   const [weightUnit, setWeightUnit] = useState("");
+
+  const { handleProductsUpload, sizes, setSizes, weights, setWeights } = useUploadProductsContext();
 
   function Add(value, array, setArray) {
     const add = [...new Set([...array, value])];
@@ -37,14 +42,15 @@ function Measurements({ prevStep, nextStep }) {
   const handleOnWeightAdd = () => {
     if (weight !== "") {
       if (weightUnit !== "") {
-        Add(weight, selectedWeights, addToSelectedWeights);
+        console.log(data);
+        Add(weight, weights, setWeights);
         setWeight("");
       }
     }
   };
 
   const handleOnWeightDelete = (val) => {
-    Delete(val, selectedWeights, addToSelectedWeights);
+    Delete(val, weights, setWeights);
   };
   // weight
 
@@ -52,14 +58,14 @@ function Measurements({ prevStep, nextStep }) {
   const handleOnSizeAdd = () => {
     if (size !== "") {
       if (shoeSizeUnit !== "") {
-        Add(size, selectedSizes, addToSelectedSizes);
+        Add(size, sizes, setSizes);
         setSize("");
       }
     }
   };
 
   const handleOnSizeDelete = (val) => {
-    Delete(val, selectedSizes, addToSelectedSizes);
+    Delete(val, sizes, setSizes);
   };
   // shoe
   // clothing
@@ -76,14 +82,18 @@ function Measurements({ prevStep, nextStep }) {
 
   // clothing
 
+  function handleUpload() {
+    handleProductsUpload();
+  }
+
   return (
     <div className={`${globalUploadStyles.ProductUploadModal} ${styles.measurement}`}>
       <ModalHeader
         canCancel={false}
         showNext={false}
-        canFinish
+        canFinish={!!(sizes.length || selectedClothingSizes.length)}
         prevStep={prevStep}
-        nextStep={nextStep}
+        nextStep={() => handleUpload}
       />
       <div className={`${globalUploadStyles.Content}`}>
         {false && (
@@ -142,8 +152,8 @@ function Measurements({ prevStep, nextStep }) {
             </div>
           </div>
           <div className={styles.selected}>
-            {selectedSizes &&
-              selectedSizes.map((s) => (
+            {sizes &&
+              sizes.map((s) => (
                 <ValueCancelable
                   unit={shoeSizeUnit}
                   onDelete={(val) => handleOnSizeDelete(val)}
@@ -177,15 +187,14 @@ function Measurements({ prevStep, nextStep }) {
                 options={unit.weight}
                 // value={currency}
                 handleChange={(e) => {
-                  console.log(e);
                   setWeightUnit(e);
                 }}
               />
             </div>
           </div>
           <div className={styles.selected}>
-            {selectedWeights &&
-              selectedWeights.map((w) => (
+            {weights &&
+              weights.map((w) => (
                 <ValueCancelable
                   unit={weightUnit}
                   onDelete={(val) => handleOnWeightDelete(val)}

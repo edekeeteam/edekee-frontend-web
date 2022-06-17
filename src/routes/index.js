@@ -8,6 +8,7 @@ const apiRoutes = {
   getColors: "/color",
   getStates: "/states",
   getCities: "/cities",
+  uploadProducts: "/product/create",
   getAllVideos: "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/video",
   getCart: "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/getCartItems",
   getProfile: "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/user",

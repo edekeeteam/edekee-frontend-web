@@ -15,10 +15,14 @@ import ProductInfo from "./ProductInfo/ProductInfo";
 import Preview360Video from "./Preview360Video/Preview360Video";
 import PickColors from "./PickColors/PickColors";
 import Measurements from "./Measurements/Measurements";
-
+import styles from "../../../components/ImageSlider/ImageSlider.module.scss";
+import { useModalContext } from "../../../context/ModalContext";
+import { usePopupContext } from "../../../context/PopupContext";
 // modal
 
 function UploadsProductsModal() {
+  const { setIsModalOpen } = useModalContext();
+  const { togglePopup } = usePopupContext();
   const [stepIndex, setStepIndex] = useState(0);
 
   // const { percentage } = useUploadContext();
@@ -57,10 +61,37 @@ function UploadsProductsModal() {
     // </div>,
   ];
 
+  function handleCancelUpload() {
+    // setIsModalOpen()
+    togglePopup(setIsModalOpen);
+  }
+
   return (
     <UploadProductsProvider>
       <Modal>
-        <div>{steps[stepIndex]}</div>
+        <div style={{ position: "relative" }}>
+          <div
+            style={{
+              position: "absolute",
+              right: "0",
+              marginTop: "-40px",
+              marginRight: "-40px",
+              backgroundColor: "#322F37",
+            }}
+            className={`${styles.iconBackground}`}
+            onKeyDown={() => {
+              handleCancelUpload();
+            }}
+            onClick={() => {
+              handleCancelUpload();
+            }}
+            role="button"
+            tabIndex={0}
+          >
+            <img src={`${process.env.PUBLIC_URL}/icons/previewCancelBtn.svg`} alt="" />
+          </div>
+          {steps[stepIndex]}
+        </div>
       </Modal>
     </UploadProductsProvider>
   );

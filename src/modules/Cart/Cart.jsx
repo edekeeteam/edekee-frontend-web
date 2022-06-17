@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 // import { useParams } from "react-router-dom";
-
 import styles from "./Cart.module.scss";
 // import data from "./data";
 import CartItem from "../../components/CartItem/CartItem";

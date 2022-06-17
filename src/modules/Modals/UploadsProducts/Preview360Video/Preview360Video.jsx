@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "../CropImages/CropImages.module.scss";
 import globalUploadStyles from "../index.module.scss";
 import styles2 from "./Preview360Video.module.scss";
 
@@ -8,14 +7,14 @@ import { useUploadProductsContext } from "../../../../context/UploadProducts";
 import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
 
 function Preview360Video({ nextStep, prevStep }) {
-  const { videoSource, deleteVideo } = useUploadProductsContext();
+  const { videoFile, deleteVideo } = useUploadProductsContext();
   const handleVideoDelete = (func) => {
     func();
     deleteVideo();
   };
 
   return (
-    <div className={globalUploadStyles.Preview}>
+    <div className={`${globalUploadStyles.Preview} ${styles2.previewVideo}`}>
       <ModalHeader prevStep={prevStep} nextStep={nextStep} />
       <div className={styles2.previewVideo}>
         <div className={styles2.actions}>
@@ -38,10 +37,9 @@ function Preview360Video({ nextStep, prevStep }) {
           </div>
         </div>
         <video
-          className={styles}
           // width="auto"
           controls
-          src={videoSource}
+          src={URL.createObjectURL(videoFile)}
           muted
         />
       </div>
