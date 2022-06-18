@@ -59,8 +59,7 @@ $diameter90: 90px;
 .middleHeadingLeft {
   // border: 1px solid red;
   width: 80%;
-  margin: 0 auto;
-  margin-top: 40px;
+  margin: 40px auto 0;
   display: flex;
   justify-content: flex-start;
 }
@@ -89,7 +88,7 @@ $diameter90: 90px;
 
   border-radius: 20px;
   //   border: 1px solid green;
-  margin: 0px 7px 7px 7px;
+  margin: 0 7px 7px 7px;
 }
 .card1 {
   background-image: url("../../assets/images/cardbg.png");

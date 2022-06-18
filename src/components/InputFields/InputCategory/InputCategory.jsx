@@ -34,7 +34,7 @@ function InputCategory({ categories, onChange, categoryId, size, filterBy }) {
       {
         // eslint-disable-next-line react/prop-types
         categories
-          .filter((cat) => cat.name.includes(filterBy) || filterBy === "")
+          .filter((cat) => cat.name.toLowerCase().includes(filterBy) || filterBy === "")
           .map((cat) => (
             <Category
               key={cat.id}

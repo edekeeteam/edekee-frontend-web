@@ -10,13 +10,13 @@ import { InputSelect, InputText } from "../../../../components/InputFields";
 import AddNew from "../../../../components/AddNewButton/AddNew";
 import ValueCancelable from "../../../../components/ValueCancelable/ValueCancelable";
 import { useUploadProductsContext } from "../../../../context/UploadProducts";
-import useGetProfile from "../../../../hooks/profile/useGetProfile";
+// import useGetProfile from "../../../../hooks/profile/useGetProfile";
+import { useToastContext } from "../../../../context/ToastContext";
 
 // eslint-disable-next-line no-unused-vars
 function Measurements({ prevStep, nextStep }) {
-  const { data } = useGetProfile(localStorage.getItem("userId"));
-  // eslint-disable-next-line no-unused-vars
-  const [selectedSizes, addToSelectedSizes] = useState([]);
+  const toast = useToastContext();
+  // const { data } = useGetProfile(localStorage.getItem("userId"));
   const [size, setSize] = useState("");
   const [shoeSizeUnit, setShoeSizeUnit] = useState("");
 
@@ -42,10 +42,13 @@ function Measurements({ prevStep, nextStep }) {
   const handleOnWeightAdd = () => {
     if (weight !== "") {
       if (weightUnit !== "") {
-        console.log(data);
         Add(weight, weights, setWeights);
         setWeight("");
+      } else {
+        toast.open({ msg: "Select Weight Unit First", type: "warning" });
       }
+    } else {
+      toast.open({ msg: "Input Weight First", type: "warning" });
     }
   };
 
@@ -60,7 +63,11 @@ function Measurements({ prevStep, nextStep }) {
       if (shoeSizeUnit !== "") {
         Add(size, sizes, setSizes);
         setSize("");
+      } else {
+        toast.open({ msg: "Select Size Unit First", type: "warning" });
       }
+    } else {
+      toast.open({ msg: "Input Size First", type: "warning" });
     }
   };
 
