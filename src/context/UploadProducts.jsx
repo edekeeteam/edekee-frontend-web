@@ -1,12 +1,12 @@
-import React, { useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 // import axios from "axios";
 import PropTypes from "prop-types";
-// import apiMethods from "../utils/apiMethods";
-// import endPoint from "../routes";
+import apiMethods from "../utils/apiMethods";
+import endPoint from "../routes";
 
-// import {useModalContext} from "./ModalContext";
+// import { useModalContext } from "./ModalContext";
 
-const UploadProductsContext = React.createContext(undefined);
+const UploadProductsContext = createContext(undefined);
 
 // eslint-disable-next-line react/prop-types
 function UploadProductsProvider({ children }) {
@@ -26,7 +26,7 @@ function UploadProductsProvider({ children }) {
   const [weights, setWeights] = useState([]);
   // data
 
-  // const {setIsModalOpen} = useModalContext();
+  // const { setIsModalOpen } = useModalContext();
 
   // uploadData
   const [percentage, setPercentage] = useState(0);
@@ -38,67 +38,89 @@ function UploadProductsProvider({ children }) {
   const handleProductsUpload = async () => {
     // console.log("here in context");
     setShowProgress(true);
-    let percent = 0;
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("brand", brand);
-    formData.append("category", categoryId);
-    formData.append("subcategory", subCategoryId);
-    formData.append("description", desc);
-    formData.append("price", price);
-    formData.append("quantity", qty);
-    formData.append("currency", currency);
-    colors.map((color) => formData.append("colors", color));
-    pictureFiles.map((pic) => formData.append("images", pic));
-    sizes.map((size) => formData.append("sizes", size));
-    if (weights.length) {
-      weights.map((weight) => formData.append("weight", weight));
-    }
-    formData.append("product_video", videoFile);
+    // let percent = 0;
+    const formData = {
+      name,
+      brand,
+      category: categoryId,
+      subcategory: subCategoryId,
+      description: desc,
+      price: +price,
+      quantity: +qty,
+      currency,
+      colors,
+      sizes,
+      weights,
+    };
+    const formDataVideo = new FormData();
+    // formData.append("name", name);
+    // formData.append("brand", brand);
+    // formData.append("category", categoryId);
+    // formData.append("subcategory", subCategoryId);
+    // formData.append("description", desc);
+    // formData.append("price", price);
+    // formData.append("quantity", qty);
+    // formData.append("currency", currency);
+    // colors.map((color) => formData.append("colors", color));
+    // sizes.map((size) => formData.append("sizes", size));
+    // if (weights.length) {
+    //   weights.map((weight) => formData.append("weight", weight));
+    // }
+    pictureFiles.map((pic) => formDataVideo.append("product_image", URL.createObjectURL(pic)));
+    // formDataVideo.append("product_video", videoFile);
 
     // eslint-disable-next-line no-restricted-syntax
-    for (const pair of formData.entries()) {
-      // eslint-disable-next-line no-console
-      console.log(`${pair[0]}, ${pair[1]}`);
-    }
-    // eslint-disable-next-line no-unused-vars
-    const config = {
-      onUploadProgress: (progressEvent) => {
-        const { loaded, total } = progressEvent;
-        percent = Math.floor((loaded * 100) / total);
-        // eslint-disable-next-line no-console
-        // console.log(`${loaded}kb of ${total}kb | ${percent}%`);
-        // just to see whats happening in the console
-        if (percent <= 100) {
-          setPercentage(percent); // hook to set the value of current level that needs to be passed to the progressbar
-        }
-      },
-    };
-
-    // try {
-    // 	// eslint-disable-next-line no-console
-    // 	// console.log(formData);
-    // 	apiMethods.post(`${endPoint.uploadProducts}`, formData, config)
-    // 	.then((response) => {
-    // 		setPercentage(percent);
-    // 		if (response.status === 201) {
-    // 			setPicturesFiles([]);
-    // 			// setSource(null);
-    // 			setIsModalOpen(false);
-    // 			setPercentage(0);
-    // 			setShowProgress(false);
-    // 		}
-    // 	})
-    // 	.catch((error) => {
-    // 		if (error.response) {
-    // 			console.log(error.response);
-    // 		}
-    // 		console.log(error.message);
-    // 	});
-    // } catch (error) {
-    // 	// handle error
-    // 	console.log(error);
+    // for (const pair of formData.entries()) {
+    //   // eslint-disable-next-line no-console
+    //   console.log(`${pair[0]}, ${pair[1]}`);
     // }
+
+    // eslint-disable-next-line no-unused-vars
+    // const config = {
+    //   onUploadProgress: (progressEvent) => {
+    //     const { loaded, total } = progressEvent;
+    //     percent = Math.floor((loaded * 100) / total);
+    //     // eslint-disable-next-line no-console
+    //     // console.log(`${loaded}kb of ${total}kb | ${percent}%`);
+    //     // just to see whats happening in the console
+    //     if (percent <= 100) {
+    //       setPercentage(percent); // hook to set the value of current level that needs to be passed to the progressbar
+    //     }
+    //   },
+    // };
+
+    try {
+      // eslint-disable-next-line no-console
+      // console.log(formData);
+      console.log("here");
+      apiMethods
+        .post(`${endPoint.uploadProducts}`, formData)
+        .then((response) => {
+          // setPercentage(percent);
+          console.log(response);
+          apiMethods
+            .post(`${endPoint.uploadProductVideoImagesBy}${response.data.data.id}`, formDataVideo)
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err));
+          // if (response.status === 201) {
+          //   setPicturesFiles([]);
+          //   // setSource(null);
+          //   setIsModalOpen(false);
+          //   setPercentage(0);
+          //   setShowProgress(false);
+          //   console.log(response);
+          // }
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log(error);
+          }
+          console.log(error);
+        });
+    } catch (error) {
+      // handle error
+      console.log(error);
+    }
   };
 
   // eslint-disable-next-line no-unused-vars

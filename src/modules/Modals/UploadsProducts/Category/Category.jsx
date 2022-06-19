@@ -20,19 +20,28 @@ function Category({ prevStep, nextStep }) {
   // eslint-disable-next-line no-unused-vars
   const [filter, setFilter] = useState("");
   //
-  const { categoryId, setCategoryId } = useUploadProductsContext();
+  const { subCategoryId, setSubCategoryId, setBrand, categoryId, setCategoryId } =
+    useUploadProductsContext();
+
   //
   // eslint-disable-next-line no-unused-vars
-  const getCategories = () => apiMethods.get(`${endPoint.getCategories}`);
+  const getCategories = () => apiMethods.get(`${endPoint.getSubCategoriesByCategory}${categoryId}`);
 
   useEffect(() => {
     getCategories().then(async (response) => {
       setCategories(response.data.data);
     });
+  }, [categoryId]);
+
+  useEffect(() => {
+    apiMethods.get(`/user/${localStorage.getItem("userId")}`).then((res) => {
+      setCategoryId(res.data.data.shop_meta.categoryId);
+      setBrand(res.data.data.shop_meta.shopName);
+    });
   }, []);
 
   function handleCategoryInput(value) {
-    setCategoryId(value);
+    setSubCategoryId(value);
     // setTimeout(() => func(), 200);
   }
 
@@ -42,7 +51,7 @@ function Category({ prevStep, nextStep }) {
         <ModalHeader
           prevStep={prevStep}
           canCancel={false}
-          showNext={!!categoryId}
+          showNext={!!subCategoryId}
           nextStep={nextStep}
         />
         <div className={globalUploadStyles.Content}>
@@ -62,7 +71,7 @@ function Category({ prevStep, nextStep }) {
             {categories && (
               <InputCategory
                 filterBy={filter}
-                categoryId={categoryId}
+                categoryId={subCategoryId}
                 categories={categories}
                 onChange={(e) => {
                   handleCategoryInput(e);
