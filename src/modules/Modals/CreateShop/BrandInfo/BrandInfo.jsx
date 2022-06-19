@@ -114,6 +114,8 @@ function BrandInfo({ nextStep, prevStep }) {
             }}
             value={companyName}
           />
+          {/* {errors.loginPassword && ( */}
+          {/* <p className="global-text-12 global-error-text ">error </p> */}
         </div>
         <div className="global-modal-mb " style={{ width: "100%" }}>
           <InputText

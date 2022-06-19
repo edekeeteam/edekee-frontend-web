@@ -268,10 +268,19 @@ function AuthProvider({ children }) {
               setAuthModalValue(1);
               setAuthSuccessful(false);
               setBtnState(false);
-              // formState.signInEmail = "";
-              // formState.signInPassword = "";
+              formState.signInEmail = "";
+              formState.signInPassword = "";
             }, 1000);
+          } else if (!response.data.success) {
+            setAuthLoading(false);
+            const newErrors = {};
+            newErrors.loginEmail = response.data.message;
+            setErrors(newErrors);
+            setBtnState(false);
           }
+        })
+        .catch((err) => {
+          console.log(err);
         });
     }
 
@@ -288,7 +297,7 @@ function AuthProvider({ children }) {
     // const formattedNumber = handlePhoneNumberFormat(formState.phoneNumber[0]);
     // const formattedDOB = handleDOBformat(formState.year[0], formState.month[0], formState.day[0]);
     const params = {
-      code: parseInt(otp, 10),
+      code: otp,
       email: formState.signUpEmail[0],
       password: formState.signUpPassword[0],
       // username: formState.username[0],

@@ -43,6 +43,10 @@ function CreateServiceProvider({ children }) {
   };
 
   const createService = () => {
+    const stringServiceTypes = selectedServiceTypes.map((service) => {
+      console.log(service);
+      return service.toString();
+    });
     const params = {
       serviceDetails: {
         user_id,
@@ -54,7 +58,7 @@ function CreateServiceProvider({ children }) {
         address: streetAddress,
         description,
       },
-      serviceTypes: selectedServiceTypes,
+      serviceTypes: stringServiceTypes,
       serviceAvailability: [
         {
           start_date: "12/02/2012",
@@ -71,7 +75,7 @@ function CreateServiceProvider({ children }) {
       ],
       servicePackages,
     };
-    // console.log(params);
+    console.log(params);
 
     axios
       .post(

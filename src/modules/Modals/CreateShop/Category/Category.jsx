@@ -28,6 +28,7 @@ function Category({ prevStep, nextStep }) {
   const { categoryArray, setCategoryId, categoryId } = useCreateShopContext();
 
   console.log(categoryArray);
+  // console.log(getCategories);
 
   const newCategories = categoryArray.filter((item) => item.name === "Fashion");
 

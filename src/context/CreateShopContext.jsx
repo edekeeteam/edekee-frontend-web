@@ -3,7 +3,6 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
 // import useGetCities from "../hooks/useGetCities";
 // import useGetStates from "../hooks/useGetStates";
 // import reducer from "../reducers/shopReducer";
@@ -59,7 +58,7 @@ function CreateShopProvider({ children }) {
     axios
       .get("http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/states", {
         headers: {
-          Authorisation: localStorage.getItem("token"),
+          Authorization: localStorage.getItem("token"),
           portal: "web",
         },
       })
@@ -75,7 +74,7 @@ function CreateShopProvider({ children }) {
     axios
       .get("http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/cities", {
         headers: {
-          Authorisation: localStorage.getItem("token"),
+          Authorization: localStorage.getItem("token"),
           portal: "web",
         },
       })
@@ -91,7 +90,7 @@ function CreateShopProvider({ children }) {
     axios
       .get("http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/category", {
         headers: {
-          Authorisation: localStorage.getItem("token"),
+          Authorization: localStorage.getItem("token"),
           portal: "web",
         },
       })
@@ -105,7 +104,7 @@ function CreateShopProvider({ children }) {
   };
 
   const createShop = () => {
-    console.log(categoryId);
+    // console.log(categoryId);
 
     let percent = 0;
     const config = {
@@ -117,13 +116,17 @@ function CreateShopProvider({ children }) {
           setPercentage(percent); // hook to set the value of current level that needs to be passed to the progressbar
         }
       },
+      headers: {
+        Authorization: localStorage.getItem("token"),
+        portal: "web",
+      },
     };
 
     // console.log(typeof logofile, logofile);
 
     const formData = new FormData();
     formData.append("company_name", companyName);
-    formData.append("slug", uuidv4());
+
     formData.append("phone", phoneNumber);
     formData.append("email", email);
     formData.append("address", streetAddress);
@@ -156,16 +159,11 @@ function CreateShopProvider({ children }) {
         "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/shop",
         formData,
 
-        {
-          headers: {
-            Authorization: localStorage.getItem("token"),
-            portal: "web",
-          },
-        }
+        config
       )
       .then((res) => {
         console.log(res);
-        console.log(typeof config);
+        // console.log(typeof config);
 
         setPercentage(percent);
         () => {

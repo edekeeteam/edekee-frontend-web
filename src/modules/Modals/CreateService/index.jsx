@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { CreateServiceProvider } from "../../../context/CreateServiceContext";
-import { useUploadContext } from "../../../context/UploadContext";
+// import { useUploadContext } from "../../../context/UploadContext";
 
 import Modal from "../../../components/Modal/Modal";
 
@@ -16,6 +16,8 @@ import ProductInfo from "./ProductInfo/ProductInfo";
 import styles from "../../../components/VideoUploadModals/UploadVideoModal/UploadVideoModal.module.scss";
 import SelectServices from "./SelectServices/SelectServices";
 import SelectPackage from "./SelectPackage/SelectPackage";
+import ProgressModal from "../../../components/ProgressModal/ProgressModal";
+import { useCreateShopContext } from "../../../context/CreateShopContext";
 // import Preview360Video from "./Preview360Video/Preview360Video";
 
 // modal
@@ -23,7 +25,7 @@ import SelectPackage from "./SelectPackage/SelectPackage";
 function CreateServiceModal() {
   const [stepIndex, setStepIndex] = useState(0);
 
-  const { percentage } = useUploadContext();
+  const { percentage } = useCreateShopContext();
 
   function nextStep() {
     setStepIndex((x) => x + 1);
@@ -43,6 +45,7 @@ function CreateServiceModal() {
     <ProductInfo nextStep={() => nextStep} prevStep={() => prevStep} />,
     <SelectServices nextStep={() => nextStep} prevStep={() => prevStep} />,
     <SelectPackage nextStep={() => nextStep} prevStep={() => prevStep} />,
+    <ProgressModal percentage={percentage} />,
 
     <div>
       <div className={styles.overlay}>

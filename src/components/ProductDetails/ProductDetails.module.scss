@@ -85,6 +85,7 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 30px;
+
       // border: 1px solid red;
     }
 
@@ -96,14 +97,24 @@
     }
 
     .productName {
-      font-size: 40px;
+      font-size: 35px;
       margin-bottom: 10px;
       // border: 1px solid red;
+      text-align: left;
+
+      @include xlMaxBreakPoint {
+        font-size: 25px;
+        // border: 1px solid red;
+      }
     }
 
     .productPrice {
-      font-size: 28px;
+      font-size: 22px;
       // border: 1px solid red;
+
+      @include lgMaxBreakPoint {
+        font-size: 16px;
+      }
     }
     .brandName {
       font-size: 13px;

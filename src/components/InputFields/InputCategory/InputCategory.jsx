@@ -16,7 +16,7 @@ function Category({ selectedCategory, image_url, name, id, size }) {
   );
 }
 
-Category.defualtProps = {
+Category.defaultProps = {
   size: "large",
 };
 
@@ -34,7 +34,7 @@ function InputCategory({ categories, onChange, categoryId, size, filterBy }) {
       {
         // eslint-disable-next-line react/prop-types
         categories
-          .filter((cat) => cat.slug.includes(filterBy) || filterBy === "")
+          .filter((cat) => cat.name.includes(filterBy) || filterBy === "")
           .map((cat) => (
             <Category
               key={cat.id}

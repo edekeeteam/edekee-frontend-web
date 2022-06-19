@@ -14,12 +14,15 @@ import { useDropdownContext } from "../../context/DropdownContext";
 import { useBuyContext } from "../../context/BuyContext";
 import { useModalContext } from "../../context/ModalContext";
 import { useAuthContext } from "../../context/AuthContext";
+// import { useToastContext } from "../../context/ToastContext";
 
 export default function Navbar() {
   const { openDropdown, setIsDropdownOpen, changeDropdownContent } = useDropdownContext();
   const { setIsModalOpen, setModalValue } = useModalContext();
 
   const { user } = useAuthContext();
+
+  // const toast = useToastContext();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -199,6 +202,7 @@ export default function Navbar() {
                   setIsModalOpen(true);
                   setModalValue("signup");
                   setIsDropdownOpen(false);
+                  // toast.open({ msg: "Log in to Create", type: "warning" });
                 } else {
                   changeDropdownContent("create");
                   displayDropdown(e, "create");

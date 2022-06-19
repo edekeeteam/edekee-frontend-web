@@ -95,7 +95,8 @@ function BuyProvider({ children }) {
           async (response) => {
             console.log(response);
             if (response.data.success) {
-              setIsModalOpen(false);
+              setModalValue("cartComplete");
+              // setIsModalOpen(false);
               fetchCart();
             }
           }

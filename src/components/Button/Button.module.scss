@@ -52,8 +52,9 @@ $check-color: $brand-success;
     height: 3vw;
 
     @include xlMaxBreakPoint {
-      width: 130px;
-      height: 45px;
+      width: 100px;
+      height: 35px;
+      // border: 1px solid red;
     }
     // color: red;
     // border: 2px solid orange;
