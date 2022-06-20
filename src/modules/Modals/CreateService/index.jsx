@@ -16,6 +16,7 @@ import ProductInfo from "./ProductInfo/ProductInfo";
 import styles from "../../../components/VideoUploadModals/UploadVideoModal/UploadVideoModal.module.scss";
 import SelectServices from "./SelectServices/SelectServices";
 import SelectPackage from "./SelectPackage/SelectPackage";
+import Complete from "../../../components/Complete/Complete";
 // import ProgressModal from "../../../components/ProgressModal/ProgressModal";
 // import { useCreateShopContext } from "../../../context/CreateShopContext";
 // import Preview360Video from "./Preview360Video/Preview360Video";
@@ -45,6 +46,7 @@ function CreateServiceModal() {
     <ProductInfo nextStep={() => nextStep} prevStep={() => prevStep} />,
     <SelectServices nextStep={() => nextStep} prevStep={() => prevStep} />,
     <SelectPackage nextStep={() => nextStep} prevStep={() => prevStep} />,
+    <Complete type="order" />,
     // <ProgressModal percentage={percentage} />,
 
     <div>

@@ -17,6 +17,7 @@ function CreateServiceProvider({ children }) {
   const [categoryId, setCategoryId] = useState("");
   const user_id = localStorage.getItem("userId");
   const [servicePackages, setServicePackages] = useState([]);
+  const [completed, setCompleted] = useState(false);
 
   const [selectedServiceTypes, setSelectedServiceTypes] = useState([]);
   // const [products, setProducts] = useState({});
@@ -90,7 +91,10 @@ function CreateServiceProvider({ children }) {
         }
       )
       .then((res) => {
-        console.log(res);
+        console.log(res.data.success);
+        if (res.data.success) {
+          setCompleted(true);
+        }
         // console.log(typeof config);
 
         // setPercentage(percent);
@@ -132,6 +136,8 @@ function CreateServiceProvider({ children }) {
         servicePackages,
         setServicePackages,
         createService,
+        completed,
+        setCompleted,
       }}
     >
       {children}

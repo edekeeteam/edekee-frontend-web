@@ -70,3 +70,47 @@ video::-internal-media-controls {
     // width: 10px;
   }
 }
+
+.profileNameContainer {
+  // border: 1px solid red;
+  position: absolute;
+  bottom: 20px;
+  height: 60px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding-left: 30px;
+}
+
+.profilePicture {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  // background-color: #fff;
+  position: relative;
+
+  .badge {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    bottom: 3px;
+    right: -5px;
+    background-color: rgb(171, 163, 163);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .plus {
+      width: 12px;
+    }
+  }
+}
+
+.profileName {
+  // border: 1px solid red;
+  margin-left: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}

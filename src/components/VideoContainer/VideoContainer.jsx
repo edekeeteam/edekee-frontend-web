@@ -8,18 +8,18 @@ import { useState, useRef, useEffect } from "react";
 // import ReactHlsPlayer from "react-hls-player";
 import axios from "axios";
 import { useModalContext } from "../../context/ModalContext";
-// import showTag from "../../utils/showTag";
-// import Tag from "../Tag/Tag";
+import showTag from "../../utils/showTag";
+import Tag from "../Tag/Tag";
 
 // import { motion } from "framer-motion";
 
 import styles from "./VideoContainer.module.scss";
 import { useProductsContext } from "../../context/ProductsContext";
 
-function VideoContainer({ src, videoId, thumbnail, label, aspectRatio }) {
+function VideoContainer({ src, videoId, thumbnail, label, aspectRatio, name, image }) {
   const [showInfo, setShowInfo] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  // const [tagArray, setTagArray] = useState([]);
+  const [tagArray, setTagArray] = useState([]);
   // const [isMuted, setIsMuted] = useState(true)
   const { setIsVidModalOpen, setModalValue, setUrl, setLabel, setVideoId } = useModalContext();
 
@@ -44,6 +44,7 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio }) {
 
   const stopVideoTimer = (e) => {
     e.target.pause();
+    setTagArray([]);
     // e.target.currentTime = 0;
     // console.log(e.target.videoHeight());
     setShowInfo(false);
@@ -74,10 +75,10 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio }) {
   };
   // console.log(typeof +aspectRatio);
   const ratio = +aspectRatio;
-  // const handleShowTag = (e) => {
-  //   const tags = showTag(e.target.currentTime, label);
-  //   setTagArray(tags);
-  // };
+  const handleShowTag = (e) => {
+    const tags = showTag(e.target.currentTime, label);
+    setTagArray(tags);
+  };
 
   return (
     <div
@@ -111,7 +112,7 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio }) {
         //   console.log("clicked pause");
         // }}
       /> */}
-      {/* {tagArray &&
+      {tagArray &&
         tagArray.map((tag) => {
           console.log(tag);
 
@@ -134,12 +135,12 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio }) {
               // leftPos={coordinates.x}
               // topPos={coordinates.y}
               id={tag.product_id}
-              title=   {tag.label.split(0, 10)}
+              title={tag.label.split(0, 10)}
               price={5000}
               // setVideoModalTabValue={setVideoModalTabValue}
             />
           );
-        })} */}
+        })}
       {/* <svg
         width="50"
         height="50"
@@ -165,13 +166,13 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio }) {
         // poster={thumbnail}
         // width="100%"
         // height="100%"
-        // onPause={(e) => {
-        //   console.log(label);
-        //   handleShowTag(e);
-        // }}
-        // onPlay={() => {
-        //   setTagArray([]);
-        // }}
+        onPause={(e) => {
+          console.log(label);
+          handleShowTag(e);
+        }}
+        onPlay={() => {
+          setTagArray([]);
+        }}
         onClick={(e) => {
           // fetchProducts(videoId);
           // console.log(e.target);
@@ -304,7 +305,26 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio }) {
           </svg>
         </div>
       )}
-      <div className={styles.profileNameContainer} />
+      {showInfo && (
+        <div className={styles.profileNameContainer}>
+          <div className={styles.profilePicture} style={{ backgroundImage: `url(${image})` }}>
+            {/* <div className={styles.badge}>
+            <img src="/icons/plus.svg" alt="" className={styles.plus} />
+
+            
+          </div> */}
+
+            <img src={image} alt="" />
+          </div>
+          <div className={styles.profileName}>
+            <p>{name}</p>
+          </div>
+          {/* <div className={styles.videoDescription}>
+            <p>{title}</p>
+          </div> */}
+        </div>
+      )}
+
       {/* <div className={styles.tag} /> */}
     </div>
   );

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-alert */
 /* eslint-disable array-callback-return */
 /* eslint-disable react/prop-types */
@@ -13,7 +14,8 @@ import { useCreateServiceContext } from "../../../../context/CreateServiceContex
 
 function SelectPackage({ nextStep, prevStep }) {
   // const [addedPackages, setAddedPackages] = useState([]);
-  const { servicePackages, setServicePackages, createService } = useCreateServiceContext();
+  const { servicePackages, setServicePackages, createService, completed } =
+    useCreateServiceContext();
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
 
@@ -40,9 +42,13 @@ function SelectPackage({ nextStep, prevStep }) {
   };
 
   const handleCreateService = () => {
-    nextStep();
+    // nextStep();
     createService();
   };
+  if (completed) {
+    nextStep();
+    console.log("completed");
+  }
 
   return (
     <div className={styles.selectPackage}>
