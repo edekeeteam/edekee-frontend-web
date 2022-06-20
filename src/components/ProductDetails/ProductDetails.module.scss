@@ -57,7 +57,7 @@
       width: 50px;
       border-radius: 50%;
       // border: 1px solid rgb(255, 0, 208);
-      background-color: aquamarine;
+      // background-color: aquamarine;
 
       // @include lgMaxBreakPoint {
       //   height: 40px;
@@ -144,7 +144,9 @@
       // border: 1px solid red;
     }
     .scrollViewImage {
-      // padding: 3rem 4rem;
+      padding: 7rem;
+      // width: 500px;
+      // aspect-ratio: 1;
       // border: 1px solid orange;
       margin: 2px;
       // background-color: orange;

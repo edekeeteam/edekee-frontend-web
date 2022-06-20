@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useLayoutEffect } from "react";
 import PropTypes from "prop-types";
 import styles from "./SelectImages.module.scss";
 
@@ -8,6 +8,7 @@ function SelectImages({ nextStep }) {
   const { setPicturesFiles } = useUploadProductsContext();
 
   const inputRef = useRef();
+  const { clearValues } = useUploadProductsContext();
 
   const handleFileChange = (event, func) => {
     const { files } = event.target;
@@ -16,6 +17,10 @@ function SelectImages({ nextStep }) {
     func();
     // nextSteps Functions
   };
+
+  useLayoutEffect(() => {
+    clearValues();
+  }, []);
 
   const handleChoose = () => {
     inputRef.current.click();

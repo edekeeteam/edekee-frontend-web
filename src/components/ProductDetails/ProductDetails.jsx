@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./ProductDetails.module.scss";
 import Button from "../Button/Button";
 import { useModalContext } from "../../context/ModalContext";
@@ -10,25 +11,36 @@ function ProductDetails() {
   const { setIsModalOpen, setModalValue } = useModalContext();
   const { productDetails } = useProductsContext();
   const { setProductId } = useBuyContext();
+  const [isLiked, setIsLiked] = useState(false);
 
-  const { id, brand, description, liked, price, username, images, properties } = productDetails;
+  const { id, brand, description, price, username, images, properties, userProfilePicture } =
+    productDetails;
   return (
     <div className={styles.productDetails}>
       <div className={styles.productDetailsTop}>
         <div className={styles.productDetailsTopLeft}>
           <div className={styles.profileImageContainer}>
-            <div className={styles.profileImage} />
+            <div
+              className={styles.profileImage}
+              style={{
+                backgroundImage: `url(${userProfilePicture})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            />
+            {/* <img src={userProfilePicture} alt="" /> */}
 
-            <div className={styles.profileplusIcon}>
+            {/* <div className={styles.profileplusIcon}>
               <img src="./icons/profileplus.svg" alt="" />{" "}
-            </div>
+            </div> */}
           </div>
 
           <p className={styles.profileName}>{username}</p>
         </div>
 
         <div className={styles.productDetailsTopRight}>
-          {!liked ? (
+          {!isLiked ? (
+            // {!liked ? (
             <svg
               width="31"
               height="30"
@@ -38,7 +50,7 @@ function ProductDetails() {
               onClick={(e) => {
                 e.stopPropagation();
 
-                // setIsLiked(!isLiked);
+                setIsLiked(!isLiked);
               }}
             >
               <path
@@ -58,7 +70,7 @@ function ProductDetails() {
               onClick={(e) => {
                 e.stopPropagation();
                 console.log(properties.color);
-                // setIsLiked(!isLiked);
+                setIsLiked(!isLiked);
               }}
             >
               <path
@@ -108,8 +120,16 @@ function ProductDetails() {
       <div className={styles.scrollView}>
         {images &&
           images.map((image) => (
-            <div key={image} className={styles.scrollViewImage}>
-              <img src={image} alt="" />
+            <div
+              key={image}
+              className={styles.scrollViewImage}
+              style={{
+                backgroundImage: `url(${image})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              {/* <img src={image} alt="" /> */}
             </div>
           ))}
         {/* <img alt="" src = {} className={styles.scrollViewImage} />

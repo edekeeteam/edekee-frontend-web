@@ -105,7 +105,7 @@ function ProductInfo({ nextStep, prevStep }) {
               name="description"
               label="description"
               value={description}
-              handleChange={(e) => setDescription(e.target.value)}
+              handleChange={(e) => setDescription(e)}
             />
           </div>
         </form>
