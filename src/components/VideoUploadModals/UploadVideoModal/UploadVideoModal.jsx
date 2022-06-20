@@ -88,7 +88,7 @@ function UploadVideoModal() {
               </div>
               <video
                 className={styles.VideoInput_video}
-                width="auto"
+                width="100%"
                 height="700px"
                 //   width="100%"
                 //   height={height}

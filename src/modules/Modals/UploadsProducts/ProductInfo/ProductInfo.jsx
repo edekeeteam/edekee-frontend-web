@@ -82,6 +82,7 @@ function ProductInfo({ nextStep, prevStep }) {
             <InputTextArea
               name="desc"
               label="Description"
+              height={150}
               value={desc}
               handleChange={(e) => setDesc(e)}
             />

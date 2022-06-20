@@ -24,6 +24,7 @@ function UploadProductsProvider({ children }) {
   const [colors, setColors] = useState([]);
   const [sizes, setSizes] = useState([]);
   const [weights, setWeights] = useState([]);
+  const [shop, setShop] = useState(undefined);
   // data
 
   // const { setIsModalOpen } = useModalContext();
@@ -51,6 +52,7 @@ function UploadProductsProvider({ children }) {
       colors,
       sizes,
       weights,
+      shop,
     };
     const formDataVideo = new FormData();
     // formData.append("name", name);
@@ -196,6 +198,7 @@ function UploadProductsProvider({ children }) {
         deleteImage,
         addImage,
         clearValues,
+        setShop,
       }}
     >
       {children}

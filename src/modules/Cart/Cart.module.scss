@@ -26,10 +26,13 @@
       gap: 20px;
     }
     .cartSummary {
-      width: 100%;
+      width: 30%;
       background: #322f37;
       padding: 20px 30px;
       border-radius: 26px;
+      position: fixed;
+      right: 0;
+
       .total,
       .subtotal,
       .shipping {

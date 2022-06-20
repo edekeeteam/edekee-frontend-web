@@ -1,5 +1,4 @@
 /* eslint-disable no-alert */
-import React from "react";
 import PropTypes from "prop-types";
 // import IndexStyle from "../index.module.scss";
 
@@ -7,11 +6,6 @@ import styles from "./BrandInfo.module.scss";
 import { InputText } from "../../../../components/InputFields";
 import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
 import { useCreateShopContext } from "../../../../context/CreateShopContext";
-// import useGetCities from "../../../../hooks/useGetCities";
-
-// import { useUploadProductsContext } from "../../../../context/UploadProducts";
-
-// import ImageSlider from "../../../../components/ImageSlider/ImageSlider";
 
 function BrandInfo({ nextStep, prevStep }) {
   const {
@@ -81,21 +75,10 @@ function BrandInfo({ nextStep, prevStep }) {
 
   return (
     <div className={styles.brandInfo}>
-      {/* <div className={`${IndexStyle.Header} global-modal-sm-mb`}>
-        <div onClick={prevStep()} onKeyDown={prevStep()} role="button" tabIndex={0}>
-          <img src={`${process.env.PUBLIC_URL}/icons/arrow-left.svg`} alt="" />
-        </div> */}
-      {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
-      {/* <div onClick={() => nextStep()} onKeyDown={keyDown} tabIndex={0} role="button">
-          <img src={`${process.env.PUBLIC_URL}/icons/arrow-right-blue.svg`} alt="" />
-        </div>
-      </div> */}
       <ModalHeader
         showNext={companyName && phoneNumber && streetAddress && city && state && email}
-        // canCancel
-        // canFinish={false}
         prevStep={prevStep}
-        nextStep={() => nextStep()}
+        nextStep={nextStep}
       />
       <div className={styles.content}>
         <div>

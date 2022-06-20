@@ -9,9 +9,7 @@ function ModalHeader({ prevStep, nextStep, canCancel, showNext, canFinish }) {
           <div
             className={styles.icon}
             onClick={prevStep()}
-            onKeyDown={() => {
-              prevStep();
-            }}
+            onKeyDown={() => {}}
             role="button"
             tabIndex={0}
           >
@@ -22,9 +20,7 @@ function ModalHeader({ prevStep, nextStep, canCancel, showNext, canFinish }) {
           <div
             className={styles.icon}
             onClick={prevStep()}
-            onKeyDown={() => {
-              prevStep();
-            }}
+            onKeyDown={() => {}}
             role="button"
             tabIndex={0}
           >

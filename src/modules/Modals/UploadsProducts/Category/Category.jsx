@@ -20,7 +20,7 @@ function Category({ prevStep, nextStep }) {
   // eslint-disable-next-line no-unused-vars
   const [filter, setFilter] = useState("");
   //
-  const { subCategoryId, setSubCategoryId, setBrand, categoryId, setCategoryId } =
+  const { subCategoryId, setSubCategoryId, setBrand, categoryId, setCategoryId, setShop } =
     useUploadProductsContext();
 
   //
@@ -29,6 +29,7 @@ function Category({ prevStep, nextStep }) {
 
   useEffect(() => {
     getCategories().then(async (response) => {
+      console.log(response.data.data);
       setCategories(response.data.data);
     });
   }, [categoryId]);
@@ -37,6 +38,7 @@ function Category({ prevStep, nextStep }) {
     apiMethods.get(`/user/${localStorage.getItem("userId")}`).then((res) => {
       setCategoryId(res.data.data.shop_meta.categoryId);
       setBrand(res.data.data.shop_meta.shopName);
+      setShop(res.data.data.shop_meta.id);
     });
   }, []);
 

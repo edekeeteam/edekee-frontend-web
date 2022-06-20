@@ -8,6 +8,16 @@
   position: relative;
   background-color: bisque;
 }
+.sampleBtn {
+  width: 15px;
+  height: 15px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0px;
+  right: 10px;
+  z-index: 1;
+}
 
 video {
   position: relative;

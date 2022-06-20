@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
-import React, { useState, useContext, useReducer, useEffect } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 // import sublinks from "./data";
 // import { useRouter } from "next/router";
 // import countriesArr from "../data/countriesArr"
@@ -7,6 +7,7 @@ import axios from "axios";
 import reducer from "../reducers/authReducer";
 
 import { useModalContext } from "./ModalContext";
+import apiMethods from "../utils/apiMethods";
 // import { ModalContext } from "./ModalContext";
 
 const AuthContext = React.createContext();
@@ -37,6 +38,7 @@ function AuthProvider({ children }) {
   const [authSuccessful, setAuthSuccessful] = useState(false);
   const [btnState, setBtnState] = useState(false);
   const [errors, setErrors] = useState({});
+  const [userInfo, setUserInfo] = useState(null);
   // const [isSubmit, setIsSubmit] = false;
   // const [activeGender, setActiveGender] = useState("Male");
   const interests = [
@@ -58,6 +60,12 @@ function AuthProvider({ children }) {
       localStorage.clear();
     }
   }, []);
+
+  const fetchUserInfo = () =>
+    apiMethods.get(`/user/${localStorage.getItem("userId")}`).then((res) => {
+      setUserInfo(res.data.data);
+      console.log(res.data.data);
+    });
 
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [formState, dispatch] = useReducer(reducer, initialFormState);
@@ -220,6 +228,7 @@ function AuthProvider({ children }) {
       )
       .catch((error) => console.log(error));
   };
+
   const handleLogin = (e) => {
     e.preventDefault();
     const emailAndPasswordErrors = validateLoginCredentials(
@@ -261,6 +270,8 @@ function AuthProvider({ children }) {
             setAuthLoading(false);
 
             setAuthSuccessful(true);
+            // eslint-disable-next-line no-use-before-define
+            await fetchUserInfo();
             // formState.signUpEmail = "";
             // formState.signUpPassword = "";
             setTimeout(() => {
@@ -471,6 +482,10 @@ function AuthProvider({ children }) {
   //   return newErrors;
   // };
 
+  useEffect(() => {
+    fetchUserInfo();
+  }, [setUser]);
+
   return (
     <AuthContext.Provider
       value={{
@@ -497,12 +512,15 @@ function AuthProvider({ children }) {
         errors,
         checkUsername,
         resendOtp,
+        userInfo,
+        fetchUserInfo,
       }}
     >
       {children}
     </AuthContext.Provider>
   );
 }
+
 // make sure use
 export const useAuthContext = () => useContext(AuthContext);
 

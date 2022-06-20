@@ -1,0 +1,49 @@
+.previewVideo {
+  position: relative;
+  width: 600px;
+  video {
+    height: 100%;
+    width: 100%;
+  }
+  .actions {
+    top: 0;
+    left: 0;
+    display: inline-flex;
+    padding: 20px 10px;
+    position: absolute;
+    z-index: 1;
+
+    .delete {
+      margin-right: 10px;
+    }
+  }
+
+  .iconBackground {
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: rgb(0, 0, 0, 0.5);
+    backdrop-filter: blur(25px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.paymentOnDelivery {
+  // width: 90%;
+  height: 50px;
+  // border: 1px solid #fff;s
+  border-radius: 60px;
+  margin: 10px auto;
+  padding: 0 20px;
+  background-color: #322f37;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  // p {
+  //   margin-left: 20px;
+  // }
+}

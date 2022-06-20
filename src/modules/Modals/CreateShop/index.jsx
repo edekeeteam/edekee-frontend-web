@@ -1,31 +1,37 @@
-import { useState } from "react";
-
-// import styles from "./index.module.scss"
-// import { UploadProductsProvider } from "../../../context/UploadProducts";
-// import { useUploadContext } from "../../../context/UploadContext";
+import { useState, useLayoutEffect } from "react";
 
 import Modal from "../../../components/Modal/Modal";
 
 // modal
 import SelectImages from "./SelectImages/SelectImages";
-// import CropImages from "./BrandInfo/BrandInfo";
 import DeliveryInfo from "./DeliveryInfo/DeliveryInfo";
 import Category from "./Category/Category";
-// import CreateProduct from "./CreateProduct/CreateProduct";
-// import styles from "../../../components/VideoUploadModals/UploadVideoModal/UploadVideoModal.module.scss";
-// import newStyles from "./index.module.scss";
 import BrandInfo from "./BrandInfo/BrandInfo";
 import UploadLogo from "./UploadLogo/UploadLogo";
-import { CreateShopProvider } from "../../../context/CreateShopContext";
+
 import ProgressModal from "../../../components/ProgressModal/ProgressModal";
 
 // modal
+import { CreateShopProvider } from "../../../context/CreateShopContext";
+import styles from "../../../components/ImageSlider/ImageSlider.module.scss";
+import { usePopupContext } from "../../../context/PopupContext";
+import { useModalContext } from "../../../context/ModalContext";
 
 function CreateShopModal() {
   const [stepIndex, setStepIndex] = useState(0);
 
   // const { percentage } = useUploadContext();
   // const { percentage } = useCreateShopContext();
+  const { togglePopup, handleAction } = usePopupContext();
+  const { setIsModalOpen, isModalOpen } = useModalContext();
+
+  useLayoutEffect(
+    () => () => {
+      // clearValues()
+      setStepIndex(0);
+    },
+    [isModalOpen]
+  );
 
   function nextStep() {
     setStepIndex((x) => x + 1);
@@ -42,27 +48,40 @@ function CreateShopModal() {
     <Category nextStep={() => nextStep} prevStep={() => prevStep} />,
     <UploadLogo nextStep={() => nextStep} prevStep={() => prevStep} />,
     <ProgressModal />,
-    // <CreateProduct nextStep={() => nextStep} prevStep={() => prevStep} />,
-    // <div>
-    //   <div className={newStyles.overlay}>
-    //     <div className={newStyles.overlayContainer}>
-    //       <img
-    //         className={styles.overlayImage}
-    //         src={`${process.env.PUBLIC_URL}/icons/edekeeLogoPurple.svg`}
-    //         alt=""
-    //       />
-
-    //       {/* <div className={styles.progressBar} style={{ width: `${percentage}%` }} /> */}
-    //       {/* <p>{`${percentage}%`}</p> */}
-    //     </div>
-    //   </div>
-    // </div>,
   ];
+
+  function handleCancelUpload() {
+    // setIsModalOpen()
+    togglePopup();
+    handleAction(setIsModalOpen);
+  }
 
   return (
     <CreateShopProvider>
       <Modal>
-        <div style={{ width: "100%" }}>{steps[stepIndex]}</div>
+        <div style={{ position: "relative" }}>
+          <div
+            style={{
+              position: "absolute",
+              right: "0",
+              marginTop: "-40px",
+              marginRight: "-40px",
+              backgroundColor: "#322F37",
+            }}
+            className={`${styles.iconBackground}`}
+            onKeyDown={() => {
+              handleCancelUpload();
+            }}
+            onClick={() => {
+              handleCancelUpload();
+            }}
+            role="button"
+            tabIndex={0}
+          >
+            <img src={`${process.env.PUBLIC_URL}/icons/previewCancelBtn.svg`} alt="" />
+          </div>
+          <div>{steps[stepIndex]}</div>
+        </div>
       </Modal>
     </CreateShopProvider>
   );

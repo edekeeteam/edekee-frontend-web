@@ -1,8 +1,5 @@
 import { useState, useLayoutEffect } from "react";
 
-import { UploadProductsProvider } from "../../../context/UploadProducts";
-// import { useUploadContext } from "../../../context/UploadContext";
-
 import Modal from "../../../components/Modal/Modal";
 
 // modal
@@ -15,10 +12,13 @@ import ProductInfo from "./ProductInfo/ProductInfo";
 import Preview360Video from "./Preview360Video/Preview360Video";
 import PickColors from "./PickColors/PickColors";
 import Measurements from "./Measurements/Measurements";
-import styles from "../../../components/ImageSlider/ImageSlider.module.scss";
+
+import { UploadProductsProvider } from "../../../context/UploadProducts";
 import { useModalContext } from "../../../context/ModalContext";
 import { usePopupContext } from "../../../context/PopupContext";
 // modal
+
+import styles from "../../../components/ImageSlider/ImageSlider.module.scss";
 
 function UploadsProductsModal() {
   // const { clearValues } = useUploadProductsContext()
