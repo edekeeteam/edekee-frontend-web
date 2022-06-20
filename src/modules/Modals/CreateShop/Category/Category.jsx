@@ -8,7 +8,7 @@ import styles from "./Category.module.scss";
 import apiMethods from "../../../../utils/apiMethods";
 import endPoint from "../../../../routes";
 
-// import { InputCategory } from "../../../../components/InputFields";
+// import { InputGender } from "../../../../components/InputFields";
 // import { useUploadProductsContext } from "../../../../context/UploadProducts";
 import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
 import { useCreateShopContext } from "../../../../context/CreateShopContext";

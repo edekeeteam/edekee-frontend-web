@@ -9,7 +9,7 @@ import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
 import deliveryData from "../../../../data/deliveryData";
 import { useCreateShopContext } from "../../../../context/CreateShopContext";
 
-// import { InputCategory } from "../../../../components/InputFields";
+// import { InputGender } from "../../../../components/InputFields";
 // import { useUploadProductsContext } from "../../../../context/UploadProducts";
 
 function DeliveryInfo({ prevStep, nextStep }) {
@@ -78,7 +78,7 @@ function DeliveryInfo({ prevStep, nextStep }) {
             {
               // eslint-disable-next-line no-console
               categories && (
-                <InputCategory
+                <InputGender
                   categoryId={categoryId}
                   categories={categories}
                   onChange={(e) => {

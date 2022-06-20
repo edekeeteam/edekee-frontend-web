@@ -3,7 +3,11 @@ import { useEffect, useState } from "react";
 import styles from "./Cart.module.scss";
 // import data from "./data";
 import CartItem from "../../components/CartItem/CartItem";
-import { InputCheckbox, InputText } from "../../components/InputFields";
+import {
+  InputCheckbox,
+  // , InputGender
+  InputText,
+} from "../../components/InputFields";
 // import useGetCart from "../../hooks/cart/useGetCart";
 import { useBuyContext } from "../../context/BuyContext";
 import Button from "../../components/Button/Button";
@@ -134,7 +138,7 @@ function CartModule() {
         )}
         <div>
           <span className="global-text-12">Address</span>
-
+          {/* <InputGender onChange={(e)=>console.log(e)} genders={["male","female","others"]}/> */}
           <div className={styles.addressInput}>
             {/* <div className={styles.selectInputSection}>
                 <select className={styles.selectInput} value="City" name="city">

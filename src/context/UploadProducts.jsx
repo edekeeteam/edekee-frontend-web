@@ -101,7 +101,7 @@ function UploadProductsProvider({ children }) {
           // setPercentage(percent);
           console.log(response);
           apiMethods
-            .post(`${endPoint.uploadProductVideoImagesBy}${response.data.data.id}`, formDataVideo)
+            .post(`${endPoint.uploadProdctVideoImagesBy}${response.data.data.id}`, formDataVideo)
             .then((res) => console.log(res))
             .catch((err) => console.log(err));
           // if (response.status === 201) {
@@ -142,19 +142,19 @@ function UploadProductsProvider({ children }) {
   };
 
   const clearValues = () => {
-    // setPicturesFiles(null)
-    // setVideoFile(null)
-    // setCategoryId("")
-    // setSubCategoryId("")
-    // setName(undefined)
-    // setPrice(undefined)
-    // setDesc(undefined)
-    // setCurrency(undefined)
-    // setQty(undefined)
-    // setColors([])
-    // setSizes([])
-    // setWeights([])
-    console.log("");
+    setPicturesFiles(null);
+    setVideoFile(null);
+    setCategoryId("");
+    setSubCategoryId("");
+    setName(undefined);
+    setPrice(undefined);
+    setDesc(undefined);
+    setCurrency(undefined);
+    setQty(undefined);
+    setColors([]);
+    setSizes([]);
+    setWeights([]);
+    console.log(" call");
   };
 
   // uploadData

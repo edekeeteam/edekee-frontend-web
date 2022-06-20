@@ -10,3 +10,4 @@ export { default as InputCategory } from "./InputCategory/InputCategory";
 export { default as InputSelect } from "./InputSelect/InputSelect";
 export { default as InputCheckbox } from "./InputCheckbox/InputCheckbox";
 export { default as InputSearch } from "./InputSearch/InputSearch";
+export { default as InputGender } from "./InputGender/InputGender";
