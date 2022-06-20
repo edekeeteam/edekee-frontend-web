@@ -29,7 +29,7 @@ function Dropdown() {
     page: { page, links },
   } = useDropdownContext();
 
-  const { user } = useAuthContext();
+  const { user, userInfo } = useAuthContext();
 
   const { setIsModalOpen, setModalValue } = useModalContext();
 
@@ -60,8 +60,12 @@ function Dropdown() {
         <div className={styles.uploadButtonsSection}>
           <div
             onClick={() => {
+              if (userInfo.shop_meta) {
+                setModalValue("uploadProducts");
+              } else {
+                setModalValue("createShop");
+              }
               setIsModalOpen(true);
-              setModalValue("uploadProducts");
               setIsDropdownOpen(false);
             }}
             onKeyDown={handleKeyDown()}
@@ -87,20 +91,20 @@ function Dropdown() {
             <img className={styles.img} src="./icons/createVideo.svg" alt="" />
             <p>Upload Video</p>
           </div>
-          <div
-            className={styles.uploadButton}
-            onClick={() => {
-              setIsModalOpen(true);
-              setModalValue("createShop");
-              setIsDropdownOpen(false);
-            }}
-            onKeyDown={handleKeyDown()}
-            role="button"
-            tabIndex={0}
-          >
-            <img className={styles.img} src="./icons/createVideo.svg" alt="" />
-            <p>CreateShop</p>
-          </div>
+          {/* <div */}
+          {/*  className={styles.uploadButton} */}
+          {/*  onClick={() => { */}
+          {/*    setIsModalOpen(true); */}
+          {/* ; */}
+          {/*    setIsDropdownOpen(false); */}
+          {/*  }} */}
+          {/*  onKeyDown={handleKeyDown()} */}
+          {/*  role="button" */}
+          {/*  tabIndex={0} */}
+          {/* > */}
+          {/*  <img className={styles.img} src="./icons/createVideo.svg" alt="" /> */}
+          {/*  <p>CreateShop</p> */}
+          {/* </div> */}
           <div
             className={styles.uploadButton}
             onClick={() => {

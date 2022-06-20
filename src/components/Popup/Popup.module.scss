@@ -18,5 +18,20 @@
     background: #322f37;
     border-radius: 26px;
     padding: 40px 20px;
+
+    .buttons {
+      font-size: 12px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      font-weight: bold;
+
+      .delete {
+        color: #fff;
+
+        margin-left: 30px;
+        background: #bc3409;
+      }
+    }
   }
 }

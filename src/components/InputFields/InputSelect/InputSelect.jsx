@@ -6,6 +6,7 @@ function InputSelect({ name, options, handleChange }) {
   return (
     <div className={`${styles.inputSelect}`}>
       <select
+        style={{ background: "#322f37 url('./icons/selectIcon.svg') no-repeat center right 1rem" }}
         className={`${styles.formInput}`}
         name={name}
         onChange={(e) => handleChange(e.target.value)}

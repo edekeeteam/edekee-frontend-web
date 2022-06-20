@@ -8,30 +8,33 @@ const PopupContext = createContext(undefined);
 // eslint-disable-next-line react/prop-types
 function PopupProvider({ children }) {
   const [open, setOpen] = useState(false);
+  const [action, setAction] = useState(null);
 
-  function togglePopup(e) {
+  function togglePopup() {
     setOpen(!open);
-    console.log(e);
+  }
+
+  const handleAction = (setIsModalOpen) => {
+    setAction(() => setIsModalOpen);
+  };
+
+  function runAction() {
+    action();
   }
 
   // uploadData
   return (
     <PopupContext.Provider
-      //* eslint-disable-next-line react/jsx-no-constructed-context-values
       /* eslint-disable-next-line react/jsx-no-constructed-context-values */
       value={{
         togglePopup,
+        handleAction,
       }}
     >
       {children}
 
       {createPortal(
-        <Popup open={open} setOpen={() => togglePopup()} />,
-        // <div style={{ position: "fixed", top: "100px", right: "20px", zIndex: "1500" }}>
-        //   {toasts.map((toast) => (
-        //     <Toast type={toast.type} msg={toast.msg} key={toast.id} close={() => close(toast.id)} />
-        //   ))}
-        // </div>
+        <Popup open={open} action={() => runAction()} setOpen={() => togglePopup()} />,
         document.body
       )}
     </PopupContext.Provider>

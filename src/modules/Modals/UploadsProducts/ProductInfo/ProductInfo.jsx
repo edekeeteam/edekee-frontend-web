@@ -14,7 +14,6 @@ function ProductInfo({ nextStep, prevStep }) {
     name,
     setName,
     brand,
-    setBrand,
     price,
     setPrice,
     currency,
@@ -24,6 +23,7 @@ function ProductInfo({ nextStep, prevStep }) {
     qty,
     setQty,
   } = useUploadProductsContext();
+
   return (
     <div className={`${globalUploadStyles.ProductUploadModal} ${styles.productInfo}`}>
       <ModalHeader prevStep={prevStep} canCancel={false} showNext nextStep={nextStep} />
@@ -45,13 +45,7 @@ function ProductInfo({ nextStep, prevStep }) {
           </div>
           <div className="global-modal-sm-mb">
             {/* eslint-disable-next-line no-console */}
-            <InputText
-              name="brand"
-              label="Brand"
-              type="text"
-              value={brand}
-              handleChange={(e) => setBrand(e.target.value)}
-            />
+            <InputText name="brand" label="Brand" type="text" value={brand} readonly />
           </div>
           <div className={`${styles.priceInfo} global-modal-sm-mb`}>
             <div className={styles.currency}>
@@ -88,6 +82,7 @@ function ProductInfo({ nextStep, prevStep }) {
             <InputTextArea
               name="desc"
               label="Description"
+              height={150}
               value={desc}
               handleChange={(e) => setDesc(e)}
             />

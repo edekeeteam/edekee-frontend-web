@@ -1,13 +1,15 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 /* eslint-disable react/prop-types */
-import React, { useRef } from "react";
+import { useRef } from "react";
 import Button from "../../../../components/Button/Button";
 import ProfilePic from "../../../../components/ProfilePic/ProfilePic";
 // import IndexStyle from "../index.module.scss";
 import styles from "./UploadLogo.module.scss";
-import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
+import headerStyles from "../../../../components/ModalHeader/ModalHeader.module.scss";
+// import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
 import { useCreateShopContext } from "../../../../context/CreateShopContext";
 
+// eslint-disable-next-line no-unused-vars
 function UploadLogo({ nextStep, prevStep }) {
   const inputRef = useRef();
 
@@ -29,9 +31,9 @@ function UploadLogo({ nextStep, prevStep }) {
   };
 
   const handleCreateShop = (func) => {
-    func();
-    // createShop();
+    createShop();
     console.log("clicked");
+    func();
   };
 
   const handleKeydown = () => {};
@@ -52,19 +54,36 @@ function UploadLogo({ nextStep, prevStep }) {
           <img src={`${process.env.PUBLIC_URL}/icons/rightChevron.svg`} alt="upload" />
         </div>
       </div> */}
-      <ModalHeader
-        // showNext={pictureFiles.length === 4}
-        // canCancel
-        prevStep={prevStep}
-        nextStep={() => handleCreateShop(nextStep())}
-      />
+      <div className={headerStyles.Header}>
+        <div>
+          <div
+            className={headerStyles.icon}
+            onClick={prevStep()}
+            onKeyDown={() => {}}
+            role="button"
+            tabIndex={0}
+          >
+            <img src={`${process.env.PUBLIC_URL}/icons/arrow-left.svg`} alt="" />
+          </div>
+        </div>
 
+        <div
+          className={headerStyles.icon}
+          onClick={() => handleCreateShop(nextStep())}
+          onKeyDown={() => {}}
+          role="button"
+          tabIndex={0}
+        >
+          <span>Done</span>
+          <img src={`${process.env.PUBLIC_URL}/icons/done.svg`} alt="" />
+        </div>
+      </div>
       <input
         ref={inputRef}
         style={{ display: "none" }}
         type="file"
         onChange={handleFileChange}
-        accept="jpg, png,svg"
+        accept=".jpg, .jpeg, .png, .svg"
       />
 
       <div className={styles.uploadBody}>

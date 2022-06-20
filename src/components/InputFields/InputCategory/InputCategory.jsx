@@ -9,14 +9,14 @@ function Category({ selectedCategory, image_url, name, id, size }) {
       <div className={`${styles.size} ${size === "small" ? styles.small : ""}`}>
         <input readOnly style={{ opacity: 0 }} type="radio" value={id} name="category" />
         {/* eslint-disable-next-line camelcase */}
-        {/* {image_url && <img src={image_url} alt={name} />} */}
+        {image_url && <img src={image_url} alt={name} />}
         <p>{name}</p>
       </div>
     </div>
   );
 }
 
-Category.defaultProps = {
+Category.defualtProps = {
   size: "large",
 };
 
@@ -34,7 +34,7 @@ function InputCategory({ categories, onChange, categoryId, size, filterBy }) {
       {
         // eslint-disable-next-line react/prop-types
         categories
-          .filter((cat) => cat.name.includes(filterBy) || filterBy === "")
+          .filter((cat) => cat.name.toLowerCase().includes(filterBy) || filterBy === "")
           .map((cat) => (
             <Category
               key={cat.id}
@@ -53,7 +53,7 @@ function InputCategory({ categories, onChange, categoryId, size, filterBy }) {
 InputCategory.propTypes = {
   onChange: PropTypes.func.isRequired,
   categories: PropTypes.arrayOf(Object).isRequired,
-  categoryId: PropTypes.string.isRequired,
+  categoryId: PropTypes.string,
   size: PropTypes.string,
   filterBy: PropTypes.string,
 };
@@ -61,6 +61,7 @@ InputCategory.propTypes = {
 InputCategory.defaultProps = {
   size: "large",
   filterBy: "",
+  categoryId: "",
 };
 
 export default InputCategory;

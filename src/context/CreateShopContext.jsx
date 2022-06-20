@@ -3,6 +3,7 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
+import { useAuthContext } from "./AuthContext";
 // import useGetCities from "../hooks/useGetCities";
 // import useGetStates from "../hooks/useGetStates";
 // import reducer from "../reducers/shopReducer";
@@ -43,6 +44,8 @@ function CreateShopProvider({ children }) {
   // const [servicePackages, setServicePackages] = useState([]);
 
   const [percentage, setPercentage] = useState(0);
+
+  const { fetchUserInfo } = useAuthContext();
 
   // const handleInputChange = (e) => {
   //   // e.preventDefault();
@@ -163,6 +166,7 @@ function CreateShopProvider({ children }) {
       )
       .then((res) => {
         console.log(res);
+        fetchUserInfo();
         // console.log(typeof config);
 
         setPercentage(percent);

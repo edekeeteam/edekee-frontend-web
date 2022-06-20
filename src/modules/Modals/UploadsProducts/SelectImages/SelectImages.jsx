@@ -1,19 +1,16 @@
-import React from "react";
+import { useRef } from "react";
 import PropTypes from "prop-types";
 import styles from "./SelectImages.module.scss";
 
 import { useUploadProductsContext } from "../../../../context/UploadProducts";
 
 function SelectImages({ nextStep }) {
-  // eslint-disable-next-line no-unused-vars
   const { setPicturesFiles } = useUploadProductsContext();
 
-  const inputRef = React.useRef();
+  const inputRef = useRef();
 
   const handleFileChange = (event, func) => {
     const { files } = event.target;
-    // const images = [...event.target.files].map((file) => URL.createObjectURL(file));
-    // setSource(images);
     setPicturesFiles([...files]);
     // next Steps Function
     func();
