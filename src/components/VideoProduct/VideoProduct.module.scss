@@ -1,0 +1,33 @@
+.videoProduct {
+  width: 85%;
+  // padding: 1.5rem 1rem;
+  padding: 10px 25px;
+  //   border: 1px solid red;
+  border-radius: 15px;
+  display: flex;
+  //   align-items: center;
+  justify-content: space-between;
+  background-color: #322f37;
+  margin: 0.5rem auto;
+  cursor: pointer;
+  // border: 1px solid red;
+
+  p {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+}
+
+.productDetails {
+  flex: 1;
+  // border: 1px solid red;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.productImage {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  border: 1px solid red;
+}

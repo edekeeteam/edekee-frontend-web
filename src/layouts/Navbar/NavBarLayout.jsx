@@ -14,13 +14,14 @@ import CreateServiceModal from "../../modules/Modals/CreateService";
 import Complete from "../../components/Complete/Complete";
 import SignUpModal from "../../components/AuthenticationModals/SignUpModal/SignUpModal";
 import SignInModal from "../../components/AuthenticationModals/SignInModal/SignInModal";
-import UploadVideoModal from "../../components/VideoUploadModals/UploadVideoModal/UploadVideoModal";
+// import UploadVideoModal from "../../components/VideoUploadModals/UploadVideoModal/UploadVideoModal";
 import VideoModal from "../../components/VideoModal/VideoModal";
 import RegUsernameModal from "../../components/AuthenticationModals/RegUsernameModal/RegUsernameModal";
 import PhoneContact from "../../components/AuthenticationModals/PhoneContact/PhoneContact";
 import DobInfo from "../../components/AuthenticationModals/DobInfoModal/DobInfo";
 import OtpModal from "../../components/AuthenticationModals/OtpModal/OtpModal";
 import { useBuyContext } from "../../context/BuyContext";
+import UploadVideoModal from "../../modules/Modals/UploadVideo";
 
 function NavBarLayout() {
   const { modalValue } = useModalContext();

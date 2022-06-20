@@ -94,7 +94,7 @@ function VideoViewContainer({ src, setVideoModalTabValue, json }) {
                 // topPos={coordinates.y}
                 id={tag.product_id}
                 title={tag.label.slice(0, 10)}
-                price={5000}
+                price={tag.price}
                 setVideoModalTabValue={setVideoModalTabValue}
               />
             );

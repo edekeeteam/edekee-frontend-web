@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-alert */
 /* eslint-disable react/prop-types */
 // import { useRef } from "react";
@@ -90,6 +92,12 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio }) {
         position: " relative",
       }}
     >
+      {/* <div
+        className={styles.sampleBtn}
+        onClick={() => {
+          console.log("clicked pause");
+        }}
+      /> */}
       {/* {tagArray &&
         tagArray.map((tag) => {
           console.log(tag);

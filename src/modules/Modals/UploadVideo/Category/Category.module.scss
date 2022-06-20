@@ -1,0 +1,14 @@
+.category {
+  height: 80vh;
+  width: 400px;
+  .Content {
+    padding: 0 25px;
+
+    .container {
+      //padding: 0 15px;
+      padding: 5px 0;
+      height: 50vh;
+      overflow-y: scroll;
+    }
+  }
+}

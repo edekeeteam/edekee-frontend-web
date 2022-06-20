@@ -1,0 +1,75 @@
+.productandServices {
+  //   border: 1px solid red;
+  width: 850px;
+  height: 740px;
+}
+
+.contentWrapper {
+  display: flex;
+  width: 100%;
+  height: 700px;
+}
+
+.videoSection {
+  //   border: 1px solid green;
+  flex: 1;
+  // height: 100%;
+  width: 100%;
+}
+
+.productsSection {
+  flex: 1;
+  // border: 1px solid yellow;
+  overflow-y: scroll;
+}
+
+.addNewProduct {
+  // border: 1px solid red;
+  font-size: 14px;
+  text-align: right;
+  padding-right: 30px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  color: #4282ff;
+}
+
+.plusSign {
+  font-size: 20px;
+  color: #4282ff;
+}
+.allProducts {
+  font-size: 11px;
+  margin-bottom: 30px;
+}
+
+.searchBox {
+  width: 85%;
+  height: 50px;
+  // border: 1px solid red;
+  display: flex;
+  margin-left: auto;
+  margin-right: 30px;
+  margin-bottom: 30px;
+
+  .searchInput {
+    width: 100%;
+    background-color: #322f37;
+    border: none;
+    outline: none;
+    border-radius: 25px 0 0 25px;
+    padding-left: 25px;
+  }
+
+  .searchIcon {
+    background-color: #322f37;
+    border-radius: 0 25px 25px 0;
+    // padding: 0 25px;
+    // width: 40px;
+    // margin-right: 20px;
+    // border: 1px solid red;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

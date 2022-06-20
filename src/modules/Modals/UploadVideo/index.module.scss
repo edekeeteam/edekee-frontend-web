@@ -1,0 +1,14 @@
+.ProductUploadModal {
+  min-width: 400px;
+  min-height: 70vh;
+  position: relative;
+  //background-color: black;
+  .Content {
+    padding: 0 25px;
+  }
+}
+
+.Preview {
+  width: 400px;
+  height: 100%;
+}

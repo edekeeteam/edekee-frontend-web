@@ -56,9 +56,7 @@ function UploadLogo({ nextStep, prevStep }) {
         // showNext={pictureFiles.length === 4}
         // canCancel
         prevStep={prevStep}
-        nextStep={() => {
-          handleCreateShop(nextStep());
-        }}
+        nextStep={() => handleCreateShop(nextStep())}
       />
 
       <input
