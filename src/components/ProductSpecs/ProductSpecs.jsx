@@ -12,6 +12,7 @@ import NewModal from "../NewModal/NewModal";
 import { useBuyContext } from "../../context/BuyContext";
 import { useModalContext } from "../../context/ModalContext";
 import { useProductsContext } from "../../context/ProductsContext";
+import { useToastContext } from "../../context/ToastContext";
 
 function ProductSpecs() {
   // const sampleColors = [
@@ -57,6 +58,8 @@ function ProductSpecs() {
   } = useBuyContext();
   const { setModalValue } = useModalContext();
   const { productDetails } = useProductsContext();
+
+  const toast = useToastContext();
 
   const { properties } = productDetails;
   console.log(properties);
@@ -119,7 +122,8 @@ function ProductSpecs() {
               handleClick={() => {
                 console.log("change");
                 if (!localStorage.getItem("userId")) {
-                  alert("login to buy products");
+                  // alert("login to buy products");
+                  toast.open({ msg: "login to buy products", type: "warning" });
                 } else if (color === "" || size === "") {
                   alert("select color and size");
                 } else {

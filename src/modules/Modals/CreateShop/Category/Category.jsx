@@ -8,10 +8,11 @@ import styles from "./Category.module.scss";
 import apiMethods from "../../../../utils/apiMethods";
 import endPoint from "../../../../routes";
 
-import { InputCategory } from "../../../../components/InputFields";
+// import { InputCategory } from "../../../../components/InputFields";
 // import { useUploadProductsContext } from "../../../../context/UploadProducts";
 import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
 import { useCreateShopContext } from "../../../../context/CreateShopContext";
+import { InputCategory } from "../../../../components/InputFields";
 
 // eslint-disable-next-line no-unused-vars
 function Category({ prevStep, nextStep }) {
@@ -28,6 +29,7 @@ function Category({ prevStep, nextStep }) {
   const { categoryArray, setCategoryId, categoryId } = useCreateShopContext();
 
   console.log(categoryArray);
+  // console.log(getCategories);
 
   const newCategories = categoryArray.filter((item) => item.name === "Fashion");
 
@@ -70,7 +72,6 @@ function Category({ prevStep, nextStep }) {
             {categories && (
               <InputCategory
                 filterBy={filter}
-                // categoryId={categoryId}
                 categories={newCategories}
                 onChange={(e) => {
                   handleCategoryInput(e);

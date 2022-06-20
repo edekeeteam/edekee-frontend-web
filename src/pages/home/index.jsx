@@ -5,6 +5,7 @@ import VideoGallery from "../../modules/VideoGallery/VideoGallery";
 import GalleryLoading from "../../components/GalleryLoading/GalleryLoading";
 
 import useGetVideos from "../../hooks/videos/useGetVideos";
+// import VideoGalleryLoader from "../../components/SkeletonLoaders/VideoGalleryLoader";
 // import { useDropdownContext } from "../../context/DropdownContext";
 
 function Home() {
@@ -15,6 +16,13 @@ function Home() {
   if (isLoading) {
     return <GalleryLoading />;
   }
+  // if (isLoading) {
+  //   return (
+  //     <div style={{ width: "100%", border: "1px solid red" }}>
+  //       <VideoGalleryLoader />
+  //     </div>
+  //   );
+  // }
 
   return (
     <div>

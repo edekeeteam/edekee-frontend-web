@@ -23,6 +23,10 @@ function SelectServices({ nextStep, prevStep }) {
     });
   }, []);
 
+  useEffect(() => {
+    console.log(selectedServiceTypes);
+  }, [selectedServiceTypes]);
+
   // useEffect(() => {
   //   console.log(selectedServiceTypes);
   // });

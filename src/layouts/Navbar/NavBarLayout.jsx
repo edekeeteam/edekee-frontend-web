@@ -11,7 +11,7 @@ import PaymentModal from "../../components/PaymentModal2/PaymentModal2";
 import Summary from "../../components/Summary/Summary";
 import CreateShopModal from "../../modules/Modals/CreateShop";
 import CreateServiceModal from "../../modules/Modals/CreateService";
-import OrderComplete from "../../components/OrderComplete/OrderComplete";
+import Complete from "../../components/Complete/Complete";
 import SignUpModal from "../../components/AuthenticationModals/SignUpModal/SignUpModal";
 import SignInModal from "../../components/AuthenticationModals/SignInModal/SignInModal";
 import UploadVideoModal from "../../components/VideoUploadModals/UploadVideoModal/UploadVideoModal";
@@ -59,7 +59,9 @@ function NavBarLayout() {
       ) : modalValue === "summarymodal" ? (
         <Summary />
       ) : modalValue === "orderComplete" ? (
-        <OrderComplete />
+        <Complete type="order" />
+      ) : modalValue === "cartComplete" ? (
+        <Complete type="cart" />
       ) : modalValue === "signin" ? (
         <SignInModal />
       ) : modalValue === "videomodal" ? (

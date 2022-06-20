@@ -25,6 +25,7 @@ function CreateShopModal() {
   const [stepIndex, setStepIndex] = useState(0);
 
   // const { percentage } = useUploadContext();
+  // const { percentage } = useCreateShopContext();
 
   function nextStep() {
     setStepIndex((x) => x + 1);

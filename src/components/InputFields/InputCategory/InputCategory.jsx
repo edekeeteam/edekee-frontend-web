@@ -53,7 +53,7 @@ function InputCategory({ categories, onChange, categoryId, size, filterBy }) {
 InputCategory.propTypes = {
   onChange: PropTypes.func.isRequired,
   categories: PropTypes.arrayOf(Object).isRequired,
-  categoryId: PropTypes.string.isRequired,
+  categoryId: PropTypes.string,
   size: PropTypes.string,
   filterBy: PropTypes.string,
 };
@@ -61,6 +61,7 @@ InputCategory.propTypes = {
 InputCategory.defaultProps = {
   size: "large",
   filterBy: "",
+  categoryId: "",
 };
 
 export default InputCategory;

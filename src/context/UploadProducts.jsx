@@ -66,14 +66,14 @@ function UploadProductsProvider({ children }) {
     // if (weights.length) {
     //   weights.map((weight) => formData.append("weight", weight));
     // }
-    pictureFiles.map((pic) => formDataVideo.append("product_image", URL.createObjectURL(pic)));
-    // formDataVideo.append("product_video", videoFile);
+    pictureFiles.map((pic) => formDataVideo.append("product_image", pic));
+    formDataVideo.append("product_video", videoFile);
 
     // eslint-disable-next-line no-restricted-syntax
-    // for (const pair of formData.entries()) {
-    //   // eslint-disable-next-line no-console
-    //   console.log(`${pair[0]}, ${pair[1]}`);
-    // }
+    for (const pair of formDataVideo.entries()) {
+      // eslint-disable-next-line no-console
+      console.log(`${pair[0]}, ${pair[1]}`);
+    }
 
     // eslint-disable-next-line no-unused-vars
     // const config = {

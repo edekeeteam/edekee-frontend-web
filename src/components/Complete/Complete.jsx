@@ -1,11 +1,13 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable react/prop-types */
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useModalContext } from "../../context/ModalContext";
 import Button from "../Button/Button";
 import NewModal from "../NewModal/NewModal";
-import styles from "./OrderComplete.module.scss";
+import styles from "./Complete.module.scss";
 
-function OrderComplete() {
+function Complete({ type }) {
   const navigate = useNavigate();
   const { setIsModalOpen } = useModalContext();
   const userId = localStorage.getItem("userId");
@@ -14,17 +16,28 @@ function OrderComplete() {
       <div className={styles.orderComplete}>
         <img src="/icons/completedIcon.svg" alt="" className={styles.completedIcon} />
         <div className={styles.textSection}>
-          <p className={styles.orderText}>Order Complete</p>
+          <p className={styles.orderText}>
+            {type === "order"
+              ? "Order Complete"
+              : type === "cart"
+              ? "Added to Cart Successfully"
+              : ""}
+          </p>
           <p className={styles.trackText}>You can track your orders</p>
         </div>
 
         <Button
           size="large"
           bgcolor="black"
-          label="Go to Orders"
+          label={type === "order" ? "Go to Orders" : type === "cart" ? "Go to Cart" : ""}
           handleClick={() => {
-            navigate(`/orders/${userId}`);
-            setIsModalOpen(false);
+            if (type === "order") {
+              navigate(`/orders/${userId}`);
+              setIsModalOpen(false);
+            } else if (type === "cart") {
+              navigate(`/cart/${userId}`);
+              setIsModalOpen(false);
+            }
           }}
         />
       </div>
@@ -32,4 +45,4 @@ function OrderComplete() {
   );
 }
 
-export default OrderComplete;
+export default Complete;

@@ -50,7 +50,7 @@ function Interest() {
   const addInterests = () => {
     setInterestState(() => [...checkedInterestsState]);
     if (interestState.length) {
-      setTimeout(() => navigate("/home"), 200);
+      navigate("/home");
     }
   };
 
