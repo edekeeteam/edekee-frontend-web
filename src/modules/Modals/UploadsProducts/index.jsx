@@ -26,13 +26,11 @@ function UploadsProductsModal() {
   const { setIsModalOpen, isModalOpen } = useModalContext();
   const { togglePopup, handleAction } = usePopupContext();
   const [stepIndex, setStepIndex] = useState(0);
-  // const {clearValues} = useUploadProductsContext()
 
   // const { percentage } = useUploadContext();
 
   useLayoutEffect(
     () => () => {
-      // clearValues()
       setStepIndex(0);
     },
     [isModalOpen]

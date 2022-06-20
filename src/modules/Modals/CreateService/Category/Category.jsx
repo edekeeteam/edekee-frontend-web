@@ -18,8 +18,6 @@ function Category({ prevStep, nextStep }) {
   // eslint-disable-next-line no-unused-vars
   const [categories, setCategories] = useState([]);
   // eslint-disable-next-line no-unused-vars
-  const [filter, setFilter] = useState("");
-  //
   const { categoryId, setCategoryId } = useCreateServiceContext();
   //
   // eslint-disable-next-line no-unused-vars
@@ -62,7 +60,6 @@ function Category({ prevStep, nextStep }) {
           <div className={styles.container}>
             {categories && (
               <InputCategory
-                filterBy={filter}
                 categoryId={categoryId}
                 categories={categories}
                 onChange={(e) => {
