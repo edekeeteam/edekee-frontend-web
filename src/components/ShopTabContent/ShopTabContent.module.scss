@@ -1,6 +1,50 @@
+@import "../../styles/functions";
+@import "../../styles/mixins";
+@import "../../styles/variables";
 .shopTabContainer {
   width: 100%;
   min-height: 50vh;
+}
+
+.shopContentWrapper {
+  border: 1px solid green;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  // grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+
+  @include xxlMaxBreakPoint {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include mdMaxBreakPoint {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.viewShop {
+  width: 100%;
+  // border: 1px solid red;
+
+  margin: 0 auto;
+  // padding-right: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  color: #4282ff;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.viewShopText {
+  margin-right: 5px;
+  font-size: 14px;
+}
+
+.rightChevron {
+  width: 5px;
 }
 
 .emptyShop {

@@ -59,14 +59,18 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio }) {
     console.log(src);
     setModalValue("videomodal");
 
-    axios.get(`https://eked.herokuapp.com/v1/api/products/${id}/video`).then((res) => {
-      console.log(res);
-      if (res.status === 200) {
-        // console.log("successful");
-        // console.log(res.data.success);
-        setProducts(res.data);
-      }
-    });
+    axios
+      .get(
+        `http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/products/${id}/video`
+      )
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          // console.log("successful");
+          // console.log(res.data.success);
+          setProducts(res.data);
+        }
+      });
   };
   // console.log(typeof +aspectRatio);
   const ratio = +aspectRatio;
@@ -79,6 +83,7 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio }) {
     <div
       className={styles.videoContainer}
       onMouseEnter={(e) => {
+        console.log(e.target);
         startVideoTimer(e);
       }}
       onMouseLeave={(e) => {
@@ -94,9 +99,17 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio }) {
     >
       {/* <div
         className={styles.sampleBtn}
-        onClick={() => {
-          console.log("clicked pause");
-        }}
+        // onClick={(e) => {
+        //   // console.log(e.target.parentElement.children[1]);
+        //   // if (e.target.parentElement.children[1].paused) {
+        //   //   e.target.parentElement.children[1].play();
+        //   // } else {
+        //   //   e.target.parentElement.children[1].pause();
+        //   // }
+        //   // console.log(e.target.parentElement.children[1].paused);
+
+        //   console.log("clicked pause");
+        // }}
       /> */}
       {/* {tagArray &&
         tagArray.map((tag) => {
@@ -121,7 +134,7 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio }) {
               // leftPos={coordinates.x}
               // topPos={coordinates.y}
               id={tag.product_id}
-              title={tag.label.split(0, 10)}
+              title=   {tag.label.split(0, 10)}
               price={5000}
               // setVideoModalTabValue={setVideoModalTabValue}
             />
@@ -159,8 +172,14 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio }) {
         // onPlay={() => {
         //   setTagArray([]);
         // }}
-        onClick={() => {
-          fetchProducts(videoId);
+        onClick={(e) => {
+          // fetchProducts(videoId);
+          // console.log(e.target);
+          if (e.target.paused) {
+            e.target.play();
+          } else {
+            e.target.pause();
+          }
         }}
         onError={(e) => {
           console.log(e, "error");

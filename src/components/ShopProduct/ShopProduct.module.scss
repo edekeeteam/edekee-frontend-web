@@ -1,0 +1,74 @@
+@import "../../styles/functions";
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.shopProduct {
+  width: 100%;
+  aspect-ratio: 1;
+  //   border: 1px solid red;
+  margin: 0 auto;
+  position: relative;
+  background-image: url("../../../public/images/productPlaceholder.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.badge {
+  height: 70px;
+  width: 100%;
+
+  position: absolute;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(18px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pinIcon {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  width: 25px;
+  cursor: pointer;
+}
+
+.optionsIcon {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  width: 10px;
+  cursor: pointer;
+}
+
+.badgeWrapper {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  //   border: 1px solid green;
+}
+
+.productName {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.stockCount {
+  font-size: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #171717;
+  color: #32a071;
+}
+
+.left {
+  .boostIcon {
+    width: 25px;
+  }
+
+  .whiteChevron {
+    width: 5px;
+  }
+}
