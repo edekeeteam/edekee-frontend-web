@@ -16,8 +16,8 @@ import ProductInfo from "./ProductInfo/ProductInfo";
 import styles from "../../../components/VideoUploadModals/UploadVideoModal/UploadVideoModal.module.scss";
 import SelectServices from "./SelectServices/SelectServices";
 import SelectPackage from "./SelectPackage/SelectPackage";
-import ProgressModal from "../../../components/ProgressModal/ProgressModal";
-import { useCreateShopContext } from "../../../context/CreateShopContext";
+// import ProgressModal from "../../../components/ProgressModal/ProgressModal";
+// import { useCreateShopContext } from "../../../context/CreateShopContext";
 // import Preview360Video from "./Preview360Video/Preview360Video";
 
 // modal
@@ -25,7 +25,7 @@ import { useCreateShopContext } from "../../../context/CreateShopContext";
 function CreateServiceModal() {
   const [stepIndex, setStepIndex] = useState(0);
 
-  const { percentage } = useCreateShopContext();
+  // const { percentage } = useCreateShopContext();
 
   function nextStep() {
     setStepIndex((x) => x + 1);
@@ -45,7 +45,7 @@ function CreateServiceModal() {
     <ProductInfo nextStep={() => nextStep} prevStep={() => prevStep} />,
     <SelectServices nextStep={() => nextStep} prevStep={() => prevStep} />,
     <SelectPackage nextStep={() => nextStep} prevStep={() => prevStep} />,
-    <ProgressModal percentage={percentage} />,
+    // <ProgressModal percentage={percentage} />,
 
     <div>
       <div className={styles.overlay}>
@@ -56,8 +56,8 @@ function CreateServiceModal() {
             alt=""
           />
 
-          <div className={styles.progressBar} style={{ width: `${percentage}%` }} />
-          <p>{`${percentage}%`}</p>
+          <div className={styles.progressBar} style={{ width: `${7}%` }} />
+          <p>{`${7}%`}</p>
         </div>
       </div>
     </div>,

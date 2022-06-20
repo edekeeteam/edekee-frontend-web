@@ -9,13 +9,15 @@
   background-color: bisque;
 }
 .sampleBtn {
-  width: 15px;
-  height: 15px;
+  width: 25px;
+  height: 25px;
   background-color: #fff;
   border-radius: 50%;
   position: absolute;
-  bottom: 0px;
-  right: 10px;
+  // bottom: 0px;
+  // right: 10px;
+  top: 50%;
+  right: 50%;
   z-index: 1;
 }
 

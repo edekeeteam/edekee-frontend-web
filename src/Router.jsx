@@ -8,6 +8,7 @@ import Home from "./pages/home";
 import Profile from "./pages/profile";
 import Cart from "./pages/cart";
 import Orders from "./pages/orders";
+import Shop from "./pages/shop";
 
 // TODO : Add a 404 page
 
@@ -30,6 +31,7 @@ function Router() {
         <Route path="/" element={<NavBarLayout />}>
           <Route path="home" element={<Home />} />
           <Route path="profile/:userId" element={<Profile />} />
+          <Route path="profile/:userId/shop" element={<Shop />} />
           <Route path="cart/:userId" element={<Cart />} />
           <Route path="orders/:userId" element={<Orders />} />
         </Route>

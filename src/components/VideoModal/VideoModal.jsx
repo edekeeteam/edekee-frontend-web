@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-nested-ternary */
 // import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // import { motion } from "framer-motion";
 import axios from "axios";
 // import Backdrop from "../../common/components/Backdrop/Backdrop";
@@ -19,6 +19,7 @@ import ProductDetails from "../ProductDetails/ProductDetails";
 import VidModal from "../VidModal/VidModal";
 import { useModalContext } from "../../context/ModalContext";
 import Products from "../Products/Products";
+// import useGetComments from "../../hooks/comments/useGetComments";
 // import Modal from "../Modal/Modal";
 // import VidModal from "../VidModal/VidModal";
 // import SignUp from "../Modals/SignUp";
@@ -48,6 +49,7 @@ import Products from "../Products/Products";
 function VideoModal() {
   // const { videoModalTabValue, setVideoModalTabValue } = useContext(ModalContext);
   const [videoModalTabValue, setVideoModalTabValue] = useState(0);
+  const [comments, setComments] = useState([]);
   const { url, label, videoId } = useModalContext();
   // const {}
   const [value, setValue] = useState("");
@@ -55,10 +57,32 @@ function VideoModal() {
     setValue(e.target.value);
   }
 
+  // if (!isLoading) {
+
+  const fetchComments = () => {
+    axios
+      .get(
+        `http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/comments/${videoId}/video`,
+
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+            portal: "web",
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data.data);
+        setComments(res.data.data);
+      });
+  };
+  // }
   const addComment = () => {
+    setComments([...comments, value]);
     const params = {
       comment: value,
     };
+
     axios
       .post(
         `http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/comments/${videoId}/video`,
@@ -72,9 +96,17 @@ function VideoModal() {
       )
       .then((res) => {
         console.log(res);
+
+        fetchComments();
+
+        setValue("");
       });
     // console.log(value);
   };
+
+  useEffect(() => {
+    fetchComments();
+  }, []);
 
   return (
     <VidModal>
@@ -105,7 +137,7 @@ function VideoModal() {
             // <Product changeVideoTab={setVideoModalTabValue} />
             <Products setVideoModalTabValue={setVideoModalTabValue} />
           ) : videoModalTabValue === 1 ? (
-            <Comments />
+            <Comments comments={comments} />
           ) : videoModalTabValue === 2 ? (
             <ProductDetails />
           ) : (
