@@ -286,3 +286,19 @@ $diameter90: 90px;
 }
 
 /* Input style */
+
+.back {
+  // border: 1px solid red;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  font-size: 11px;
+  color: #4282ff;
+  cursor: pointer;
+}
+
+.rightChevron {
+  width: 5px;
+  margin-right: 5px;
+  transform: rotate(180deg);
+}

@@ -1,3 +1,6 @@
+/* eslint-disable no-alert */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from "react";
 
 import styles from "./ProductSpecs.module.scss";
@@ -83,7 +86,12 @@ function ProductSpecs() {
 
   return (
     <NewModal>
-      <div className={styles.back}>
+      <div
+        className={styles.back}
+        onClick={() => {
+          setModalValue("videomodal");
+        }}
+      >
         {" "}
         <span>
           <img src="/icons/rightChevron.svg" alt="" className={styles.rightChevron} />
@@ -131,6 +139,7 @@ function ProductSpecs() {
                   // alert("login to buy products");
                   toast.open({ msg: "login to buy products", type: "warning" });
                 } else if (color === "" || size === "") {
+                  // alert("select color and size");
                   toast.open({ msg: "select color and size", type: "warning" });
                 } else {
                   setModalValue("paymentmodal");

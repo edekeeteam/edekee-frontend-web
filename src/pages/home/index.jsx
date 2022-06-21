@@ -12,7 +12,7 @@ function Home() {
   // const { data, isLoading } = useGetAllVideos();
   const { data, isLoading } = useGetVideos();
 
-  // console.log(data);
+  console.log(data);
   if (isLoading) {
     return <GalleryLoading />;
   }

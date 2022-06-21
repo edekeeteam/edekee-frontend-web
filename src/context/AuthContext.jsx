@@ -417,7 +417,7 @@ function AuthProvider({ children }) {
     } else {
       setTimeout(() => {
         setErrors(DobErrors);
-        setModalValue("gender");
+        setModalValue("username");
       }, 1000);
     }
   };
@@ -436,12 +436,12 @@ function AuthProvider({ children }) {
           params
         )
         .then(async (response) => {
-          console.log(response);
+          console.log(response.data);
           if (response.data.success) {
             const newParams = {
               email: subMail,
               username: formState.username[0],
-              country: formState.country[0],
+              country: "Nigeria",
               dob: handleDOBformat(formState.day[0], formState.month[0], formState.year[0]),
               gender: "male",
               // gender: formState.gender,
