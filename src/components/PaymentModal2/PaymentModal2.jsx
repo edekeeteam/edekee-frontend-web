@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-restricted-syntax */
 // import React, { useState } from "react";
@@ -129,6 +131,18 @@ function PaymentModal() {
 
   return (
     <NewModal>
+      <div
+        className={styles.back}
+        onClick={() => {
+          setModalValue("productspecs");
+        }}
+      >
+        {" "}
+        <span>
+          <img src="/icons/rightChevron.svg" alt="" className={styles.rightChevron} />
+        </span>{" "}
+        back{" "}
+      </div>
       <div className={styles.paymentModal}>
         <div className={styles.topPaymentModal}>
           <p className={styles.topHeading}>Address</p>
