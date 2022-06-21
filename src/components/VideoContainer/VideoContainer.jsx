@@ -163,7 +163,7 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio, name, ima
         loop
         muted
         // controls
-        preload="metadata"
+        preload="auto"
         // poster={thumbnail}
         // width="100%"
         // height="100%"

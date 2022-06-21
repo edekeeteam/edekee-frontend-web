@@ -105,7 +105,7 @@ function OrderItem({ data }) {
           </div>
           <div>
             <p className={styles.footerTitle}>Status</p>
-            <p className={styles.footerText}> Delivered</p>
+            <p className={styles.footerText}> Pending</p>
           </div>
           {/* item={orderItem} */}
           {/* <InputNumber
