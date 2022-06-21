@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 import styles from "./ProductInfo.module.scss";
 import globalUploadStyles from "../index.module.scss";
 
-import { InputSelect, InputText, InputTextArea } from "../../../../components/InputFields";
+import {
+  // InputSelect,
+  InputText,
+  InputTextArea,
+} from "../../../../components/InputFields";
 
 import ModalHeader from "../../../../components/ModalHeader/ModalHeader";
 import ModalTitle from "../../../../components/ModalTitle/ModalTitle";
@@ -77,28 +81,28 @@ function ProductInfo({ nextStep, prevStep }) {
             />
           </div>
 
-          <div className={`${styles.priceInfo} global-modal-sm-mb`}>
-            <div className={styles.currency}>
-              {/* eslint-disable-next-line no-console */}
-              <InputSelect
-                name="City"
-                label="City"
-                type="text"
-                // value={currency}
-                // handleChange={(e) => setCurrency(e.target.value)}
-              />
-            </div>
-            <div className={styles.price}>
-              {/* eslint-disable-next-line no-console */}
-              <InputSelect
-                name="State"
-                label="State"
-                type="text"
-                // value={currency}
-                // handleChange={(e) => setCurrency(e.target.value)}
-              />
-            </div>
-          </div>
+          {/* <div className={`${styles.priceInfo} global-modal-sm-mb`}> */}
+          {/*  <div className={styles.currency}> */}
+          {/*    /!* eslint-disable-next-line no-console *!/ */}
+          {/*    <InputSelect */}
+          {/*      name="City" */}
+          {/*      label="City" */}
+          {/*      type="text" */}
+          {/*      // value={currency} */}
+          {/*      // handleChange={(e) => setCurrency(e.target.value)} */}
+          {/*    /> */}
+          {/*  </div> */}
+          {/*  <div className={styles.price}> */}
+          {/*    /!* eslint-disable-next-line no-console *!/ */}
+          {/*    <InputSelect */}
+          {/*      name="State" */}
+          {/*      label="State" */}
+          {/*      type="text" */}
+          {/*      // value={currency} */}
+          {/*      // handleChange={(e) => setCurrency(e.target.value)} */}
+          {/*    /> */}
+          {/*  </div> */}
+          {/* </div> */}
 
           <div>
             <InputTextArea

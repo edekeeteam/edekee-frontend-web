@@ -106,6 +106,17 @@ function CreateShopProvider({ children }) {
       });
   };
 
+  function clearValues() {
+    setCompanyName("");
+    setEmail("");
+    setPhoneNumber("");
+    setStreetAddress("");
+    setCity("");
+    setCategoryId("");
+    setLogoFile(null);
+    setSource(null);
+  }
+
   const createShop = () => {
     // console.log(categoryId);
 
@@ -167,6 +178,7 @@ function CreateShopProvider({ children }) {
       .then((res) => {
         console.log(res);
         fetchUserInfo();
+        clearValues();
         // console.log(typeof config);
 
         setPercentage(percent);
@@ -216,6 +228,7 @@ function CreateShopProvider({ children }) {
         categoryId,
         setCategoryId,
         percentage,
+        clearValues,
       }}
     >
       {children}

@@ -22,7 +22,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 const queryClient = new QueryClient();
 
 if (isMobile) {
-  // window.location.href = "https://about.edekee.com";
+  window.location.href = "https://play.google.com/store/apps/details?id=com.edekee.edekee";
 }
 
 root.render(
