@@ -19,6 +19,7 @@ import ProductDetails from "../ProductDetails/ProductDetails";
 import VidModal from "../VidModal/VidModal";
 import { useModalContext } from "../../context/ModalContext";
 import Products from "../Products/Products";
+import { useToastContext } from "../../context/ToastContext";
 // import useGetComments from "../../hooks/comments/useGetComments";
 // import Modal from "../Modal/Modal";
 // import VidModal from "../VidModal/VidModal";
@@ -48,6 +49,8 @@ import Products from "../Products/Products";
 // };
 function VideoModal() {
   // const { videoModalTabValue, setVideoModalTabValue } = useContext(ModalContext);
+
+  const toast = useToastContext();
   const [videoModalTabValue, setVideoModalTabValue] = useState(0);
   const [comments, setComments] = useState([]);
   const { url, label, videoId } = useModalContext();
@@ -170,7 +173,7 @@ function VideoModal() {
               className={styles.sendIcon}
               onClick={() => {
                 if (!localStorage.getItem("userId")) {
-                  alert("log in to add comment");
+                  toast.open({ msg: "log in to add comment", type: "warning" });
                 } else {
                   addComment();
                 }

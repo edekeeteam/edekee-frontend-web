@@ -48,8 +48,16 @@ function OrderItem({ data }) {
           toggleCheck={() => handleOnChange(index)}
         />
       </div> */}
-      <div className={styles.imgContainer}>
-        <img src="" alt="" />
+      <div
+        className={styles.imgContainer}
+        style={{
+          backgroundImage: `url(${data.product.productImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          position: "relative",
+        }}
+      >
+        {/* <img src={data.product.productImage} alt="" /> */}
       </div>
       <div className={styles.contents}>
         <div className={styles.header}>

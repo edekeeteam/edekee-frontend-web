@@ -1,5 +1,5 @@
 // import React, { useState } from "react";
-import Modal from "../../Modal/Modal";
+import NewModal from "../../NewModal/NewModal";
 import styles from "../../Modal/Modal.module.scss";
 import Button from "../../Button/Button";
 // import ArrowBackIcon from '../ArrowBackIcon'
@@ -29,8 +29,8 @@ function DobInfo() {
     marginRight: "-5px",
   };
   return (
-    <Modal>
-      <div>
+    <NewModal>
+      <div style={{ padding: "40px" }}>
         {/* <ArrowBackIcon/> */}
 
         <h2 className={`${styles.modalHeader} global-modal-mb`}> Personal Info </h2>
@@ -98,7 +98,7 @@ function DobInfo() {
           </form>
         </div>
       </div>
-    </Modal>
+    </NewModal>
   );
 }
 

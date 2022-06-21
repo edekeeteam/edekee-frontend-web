@@ -36,7 +36,7 @@ function VideoGallery({ data }) {
     hls.attachMedia(vidRef.current);
   }, [vidRef]);
 
-  console.log(data);
+  // console.log(data);
 
   // const { data, isLoading } = useGetAllVideos();
 

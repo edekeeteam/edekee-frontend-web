@@ -20,6 +20,7 @@ function CreateServiceProvider({ children }) {
   const [completed, setCompleted] = useState(false);
 
   const [selectedServiceTypes, setSelectedServiceTypes] = useState([]);
+
   // const [products, setProducts] = useState({});
   // const [productDetails, setProductDetails] = useState({});
 
@@ -41,6 +42,19 @@ function CreateServiceProvider({ children }) {
   const addImage = ({ target }) => {
     // console.log(target.files[0])
     setPicturesFiles([...pictureFiles, target.files[0]]);
+  };
+
+  const clearValues = () => {
+    setPicturesFiles(null);
+    setSource(null);
+    setCategoryId("");
+    setEmail("");
+    setPhone("");
+    setStreetAddress("");
+    setDescription("");
+    setServicePackages([]);
+
+    console.log(" call");
   };
 
   const createService = () => {
@@ -138,6 +152,7 @@ function CreateServiceProvider({ children }) {
         createService,
         completed,
         setCompleted,
+        clearValues,
       }}
     >
       {children}

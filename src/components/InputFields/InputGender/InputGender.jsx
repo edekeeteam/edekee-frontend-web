@@ -1,6 +1,7 @@
 import { useState } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import styles from "./InputGender.module.scss";
+import NewModal from "../../NewModal/NewModal";
 
 // eslint-disable-next-line react/prop-types,camelcase,no-unused-vars
 function Gender({ selectedGender, name, size }) {
@@ -20,8 +21,9 @@ Gender.defualtProps = {
 };
 
 // eslint-disable-next-line react/prop-types
-function InputGender({ genders, onChange, gender, size }) {
+function InputGender({ onChange, gender, size }) {
   const [selectedGender, setSelectedGender] = useState(gender);
+  const genders = ["male", "female", "others"];
 
   function onChangeValue(event) {
     setSelectedGender(event.target.value);
@@ -29,23 +31,25 @@ function InputGender({ genders, onChange, gender, size }) {
   }
 
   return (
-    <div className={styles.inputCategory} onChange={onChangeValue}>
-      {
-        // eslint-disable-next-line react/prop-types
-        genders.map((gen) => (
-          <Gender key={gen} name={gen} size={size} selectedGender={selectedGender} />
-        ))
-      }
-    </div>
+    <NewModal>
+      <div className={styles.inputCategory} onChange={onChangeValue}>
+        {
+          // eslint-disable-next-line react/prop-types
+          genders.map((gen) => (
+            <Gender key={gen} name={gen} size={size} selectedGender={selectedGender} />
+          ))
+        }
+      </div>
+    </NewModal>
   );
 }
 
-InputGender.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  genders: PropTypes.arrayOf(String).isRequired,
-  gender: PropTypes.string,
-  size: PropTypes.string,
-};
+// InputGender.propTypes = {
+//   onChange: PropTypes.func.isRequired,
+//   genders: PropTypes.arrayOf(String).isRequired,
+//   gender: PropTypes.string,
+//   size: PropTypes.string,
+// };
 
 InputGender.defaultProps = {
   size: "large",

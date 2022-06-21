@@ -10,10 +10,13 @@ import { InputText } from "../../../../components/InputFields";
 import Button from "../../../../components/Button/Button";
 import PackageCard from "../../../../components/PackageCard/PackageCard";
 // import { useCreateShopContext } from "../../../../context/CreateShopContext";
+import { useToastContext } from "../../../../context/ToastContext";
 import { useCreateServiceContext } from "../../../../context/CreateServiceContext";
 
 function SelectPackage({ nextStep, prevStep }) {
   // const [addedPackages, setAddedPackages] = useState([]);
+  const toast = useToastContext();
+
   const { servicePackages, setServicePackages, createService, completed } =
     useCreateServiceContext();
   const [price, setPrice] = useState("");
@@ -97,7 +100,7 @@ function SelectPackage({ nextStep, prevStep }) {
             size="large"
             handleClick={() => {
               if (price === "" || description === "") {
-                alert("add price and benefits");
+                toast.open({ msg: "add price and benefits", type: "warning" });
               } else {
                 addPackage();
               }

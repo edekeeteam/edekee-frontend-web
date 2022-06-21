@@ -8,8 +8,9 @@ import { useState, useRef, useEffect } from "react";
 // import ReactHlsPlayer from "react-hls-player";
 import axios from "axios";
 import { useModalContext } from "../../context/ModalContext";
-import showTag from "../../utils/showTag";
-import Tag from "../Tag/Tag";
+// import showTag from "../../utils/showTag";
+// import Tag from "../Tag/Tag";
+import { useToastContext } from "../../context/ToastContext";
 
 // import { motion } from "framer-motion";
 
@@ -17,9 +18,11 @@ import styles from "./VideoContainer.module.scss";
 import { useProductsContext } from "../../context/ProductsContext";
 
 function VideoContainer({ src, videoId, thumbnail, label, aspectRatio, name, image }) {
+  const toast = useToastContext();
+
   const [showInfo, setShowInfo] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  const [tagArray, setTagArray] = useState([]);
+  // const [tagArray, setTagArray] = useState([]);
   // const [isMuted, setIsMuted] = useState(true)
   const { setIsVidModalOpen, setModalValue, setUrl, setLabel, setVideoId } = useModalContext();
 
@@ -44,7 +47,7 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio, name, ima
 
   const stopVideoTimer = (e) => {
     e.target.pause();
-    setTagArray([]);
+    // setTagArray([]);
     // e.target.currentTime = 0;
     // console.log(e.target.videoHeight());
     setShowInfo(false);
@@ -75,16 +78,16 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio, name, ima
   };
   // console.log(typeof +aspectRatio);
   const ratio = +aspectRatio;
-  const handleShowTag = (e) => {
-    const tags = showTag(e.target.currentTime, label);
-    setTagArray(tags);
-  };
+  // const handleShowTag = (e) => {
+  //   const tags = showTag(e.target.currentTime, label);
+  //   setTagArray(tags);
+  // };
 
   return (
     <div
       className={styles.videoContainer}
       onMouseEnter={(e) => {
-        console.log(e.target);
+        // console.log(e.target);
         startVideoTimer(e);
       }}
       onMouseLeave={(e) => {
@@ -112,9 +115,9 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio, name, ima
         //   console.log("clicked pause");
         // }}
       /> */}
-      {tagArray &&
-        tagArray.map((tag) => {
-          console.log(tag);
+      {/* {tagArray &&
+        tagArray.map((tag) => (
+          // console.log(tag);
 
           // const coordinates = getCoordinates(
           //   tag.boundingBoxHeight,
@@ -127,20 +130,18 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio, name, ima
           // console.log(coordinates);
           // console.log(`this is called ${x} times`);
 
-          return (
-            <Tag
-              key={tag.x * tag.y}
-              leftPos={tag.x * 100}
-              topPos={tag.y * 100}
-              // leftPos={coordinates.x}
-              // topPos={coordinates.y}
-              id={tag.product_id}
-              title={tag.label.split(0, 10)}
-              price={5000}
-              // setVideoModalTabValue={setVideoModalTabValue}
-            />
-          );
-        })}
+          <Tag
+            key={tag.x * tag.y}
+            leftPos={tag.x * 100}
+            topPos={tag.y * 100}
+            // leftPos={coordinates.x}
+            // topPos={coordinates.y}
+            id={tag.product_id}
+            title={tag.label.split(0, 10)}
+            price={5000}
+            // setVideoModalTabValue={setVideoModalTabValue}
+          />
+        ))} */}
       {/* <svg
         width="50"
         height="50"
@@ -166,21 +167,21 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio, name, ima
         // poster={thumbnail}
         // width="100%"
         // height="100%"
-        onPause={(e) => {
-          console.log(label);
-          handleShowTag(e);
-        }}
-        onPlay={() => {
-          setTagArray([]);
-        }}
-        onClick={(e) => {
-          // fetchProducts(videoId);
+        // onPause={(e) => {
+        //   // console.log(label);
+        //   handleShowTag(e);
+        // }}
+        // onPlay={() => {
+        //   setTagArray([]);
+        // }}
+        onClick={() => {
+          fetchProducts(videoId);
           // console.log(e.target);
-          if (e.target.paused) {
-            e.target.play();
-          } else {
-            e.target.pause();
-          }
+          // if (e.target.paused) {
+          //   e.target.play();
+          // } else {
+          //   e.target.pause();
+          // }
         }}
         onError={(e) => {
           console.log(e, "error");
@@ -204,7 +205,7 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio, name, ima
                 console.log("clicked the like");
 
                 if (!localStorage.getItem("userId")) {
-                  alert("login to like video");
+                  toast.open({ msg: "login to like video", type: "warning" });
                 } else {
                   setIsLiked(!isLiked);
                 }
