@@ -73,7 +73,11 @@ function Dropdown() {
             tabIndex={0}
             className={styles.uploadButton}
           >
-            <img className={styles.img1} src="./icons/createProduct.svg" alt="" />
+            <img
+              className={styles.img1}
+              src={`${process.env.PUBLIC_URL}/icons/createProduct.svg`}
+              alt=""
+            />
             <p>Upload Product</p>
           </div>
 
@@ -88,7 +92,11 @@ function Dropdown() {
             role="button"
             tabIndex={0}
           >
-            <img className={styles.img} src="./icons/createVideo.svg" alt="" />
+            <img
+              className={styles.img}
+              src={`${process.env.PUBLIC_URL}/icons/createVideo.svg`}
+              alt=""
+            />
             <p>Upload Video</p>
           </div>
           {/* <div */}
@@ -116,7 +124,11 @@ function Dropdown() {
             role="button"
             tabIndex={0}
           >
-            <img className={styles.img} src="./icons/createVideo.svg" alt="" />
+            <img
+              className={styles.img}
+              src={`${process.env.PUBLIC_URL}/icons/createVideo.svg`}
+              alt=""
+            />
             <p>Create Service</p>
           </div>
         </div>
@@ -135,7 +147,11 @@ function Dropdown() {
             tabIndex={0}
             className={styles.uploadButton}
           >
-            <img className={styles.img1} src="./icons/createProduct.svg" alt="" />
+            <img
+              className={styles.img1}
+              src={`${process.env.PUBLIC_URL}/icons/profile.svg`}
+              alt=""
+            />
             <p>View profile</p>
           </div>
 
@@ -194,33 +210,12 @@ function Dropdown() {
             role="button"
             tabIndex={0}
           >
-            <svg
-              style={{ marginRight: "10px" }}
-              width="20"
-              height="22"
-              viewBox="0 0 20 22"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                x="1"
-                y="3"
-                width="18"
-                height="18"
-                rx="2"
-                stroke="white"
-                strokeOpacity="0.95"
-                strokeWidth="1.5"
-              />
-              <path
-                d="M5 7.36508H15M5 11.6825H13M5 16H10.3333M13.3333 3.77778V1M6.33333 3.77778V1"
-                stroke="white"
-                strokeOpacity="0.95"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-            </svg>
-            <p>LogOut</p>
+            <img
+              className={styles.img1}
+              src={`${process.env.PUBLIC_URL}/icons/logout.svg`}
+              alt=""
+            />
+            <p style={{ color: "#C33407" }}>Logout</p>
           </div>
         </div>
       )}
