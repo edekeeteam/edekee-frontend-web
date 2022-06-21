@@ -9,6 +9,7 @@ import reducer from "../reducers/authReducer";
 
 import { useModalContext } from "./ModalContext";
 import apiMethods from "../utils/apiMethods";
+import { useToastContext } from "./ToastContext";
 // import { ModalContext } from "./ModalContext";
 
 const AuthContext = React.createContext();
@@ -44,6 +45,8 @@ function AuthProvider({ children }) {
   const [subPass, setSubPass] = useState("");
 
   const [timer, setTimer] = useState(60);
+
+  const toast = useToastContext();
 
   // const [isSubmit, setIsSubmit] = false;
   // const [activeGender, setActiveGender] = useState("Male");
@@ -202,10 +205,6 @@ function AuthProvider({ children }) {
                 setAuthSuccessful(false);
                 setBtnState(false);
               }, 1000);
-
-              setInterval(() => {
-                setTimer(timer - 1);
-              }, 1000);
             } else {
               setAuthLoading(false);
               setBtnState(false);
@@ -280,6 +279,7 @@ function AuthProvider({ children }) {
             // change AuthModalValue
             // setAuthModalValue(1);
             console.log(response);
+            toast.open({ msg: "logged in successfully", type: "success" });
 
             localStorage.setItem("userId", response.data.user.id);
             localStorage.setItem("token", response.data.token);
