@@ -23,7 +23,13 @@ function Complete({ type }) {
               ? "Added to Cart Successfully"
               : ""}
           </p>
-          <p className={styles.trackText}>You can track your orders</p>
+          {type === "orders" ? (
+            <p className={styles.trackText}>You can track your orders</p>
+          ) : type === "cart" ? (
+            <p className={styles.trackText}>You can track your cart</p>
+          ) : (
+            ""
+          )}
         </div>
 
         <Button

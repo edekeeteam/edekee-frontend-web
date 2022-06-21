@@ -24,11 +24,16 @@ function ProductInfo({ nextStep, prevStep }) {
   } = useCreateServiceContext();
   return (
     <div className={`${globalUploadStyles.ProductUploadModal} ${styles.productInfo}`}>
-      <ModalHeader prevStep={prevStep} canCancel={false} showNext nextStep={nextStep} />
+      <ModalHeader
+        prevStep={prevStep}
+        canCancel={false}
+        showNext={companyName && email && phone && streetAddress && description}
+        nextStep={nextStep}
+      />
       <div className={`${globalUploadStyles.Content} ${styles.Content}`}>
         <ModalTitle
-          title="Tell us about your product"
-          desc=" These details will be shown to buyers viewing your product."
+          title="Tell us about your Service"
+          desc=" These details will be shown to buyers viewing your service."
         />
         <form>
           <div className="global-modal-sm-mb">
@@ -100,7 +105,7 @@ function ProductInfo({ nextStep, prevStep }) {
               name="description"
               label="description"
               value={description}
-              handleChange={(e) => setDescription(e.target.value)}
+              handleChange={(e) => setDescription(e)}
             />
           </div>
         </form>

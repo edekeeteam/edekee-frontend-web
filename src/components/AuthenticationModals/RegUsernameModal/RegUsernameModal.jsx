@@ -1,5 +1,5 @@
 import { useAuthContext } from "../../../context/AuthContext";
-import Modal from "../../Modal/Modal";
+import NewModal from "../../NewModal/NewModal";
 // import ArrowBackIcon from '../ArrowBackIcon'
 import styles from "../../Modal/Modal.module.scss";
 import Button from "../../Button/Button";
@@ -17,8 +17,8 @@ function RegUsernameModal() {
   } = useAuthContext();
 
   return (
-    <Modal>
-      <div className={styles.modalCenter}>
+    <NewModal>
+      <div className={styles.modalCenter} style={{ padding: "30px 40px" }}>
         {/* <ArrowBackIcon/> */}
         <h2 className={`${styles.modalHeader} global-modal-mb `}>Almost Done</h2>
         <p className="global-modal-sm-mb">
@@ -57,7 +57,7 @@ function RegUsernameModal() {
           </form>
         </div>
       </div>
-    </Modal>
+    </NewModal>
   );
 }
 

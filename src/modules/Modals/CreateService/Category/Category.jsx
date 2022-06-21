@@ -41,7 +41,7 @@ function Category({ prevStep, nextStep }) {
         <ModalHeader
           prevStep={prevStep}
           // canCancel={false}
-          // showNext={!!categoryId}
+          showNext={categoryId}
           nextStep={nextStep}
         />
         <div className={styles.Content}>

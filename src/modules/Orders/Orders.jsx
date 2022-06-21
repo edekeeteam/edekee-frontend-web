@@ -30,9 +30,9 @@ function Orders() {
         // console.log(res.data);
         const { data } = res.data;
         const stuff = [];
-        // console.log(data);
+        console.log(data);
         data.map((order) => order.orderItem.map((eachOrder) => stuff.push(eachOrder)));
-        // console.log(stuff);
+        console.log(stuff);
         // const items = stuff.map((orderss) => orderss.orderItem.map((i) => i));
         // console.log(items);
         // console.log(stuff);
@@ -55,33 +55,34 @@ function Orders() {
         <p className="global-text-24">Shop order ({orders.length})</p>
       </div>
 
-      <div className={styles.orderContainer}>
-        <div className={styles.orderItems}>
-          {orders.map((orderItem) => (
-            <OrderItem
-              key={orderItem}
-              data={orderItem}
-              //   key={orderItem.name}
-              //   id={orderItem.id}
-              //   image={orderItem.image}
-              //   isCheck={orderItem.check}
-              //   name={orderItem.name}
-              //   desc={orderItem.desc}
-              //   size={orderItem.size}
-              //   color={orderItem.color}
-              //   price={orderItem.price}
-              //   qty={orderItem.qty}
-              //   item={orderItem}
-              //   onAdd={onAdd}
-              //   onSubtract={onSubtract}
-              //   ontoggleCheck={ontoggleCheck}
-              //   onDelete={onDelete}
-              //   index={index}
-            />
-          ))}
-        </div>
-        {/* <div className={styles.orderSummary}> */}
-        {/* <p className="global-modal-sm-mb global-text-20">Summary</p>
+      {orders.length !== 0 ? (
+        <div className={styles.orderContainer}>
+          <div className={styles.orderItems}>
+            {orders.map((orderItem) => (
+              <OrderItem
+                key={orderItem}
+                data={orderItem}
+                //   key={orderItem.name}
+                //   id={orderItem.id}
+                //   image={orderItem.image}
+                //   isCheck={orderItem.check}
+                //   name={orderItem.name}
+                //   desc={orderItem.desc}
+                //   size={orderItem.size}
+                //   color={orderItem.color}
+                //   price={orderItem.price}
+                //   qty={orderItem.qty}
+                //   item={orderItem}
+                //   onAdd={onAdd}
+                //   onSubtract={onSubtract}
+                //   ontoggleCheck={ontoggleCheck}
+                //   onDelete={onDelete}
+                //   index={index}
+              />
+            ))}
+          </div>
+          {/* <div className={styles.orderSummary}> */}
+          {/* <p className="global-modal-sm-mb global-text-20">Summary</p>
 
           <div className={`${styles.subtotal} global-modal-sm-mb`}>
             <p>subtotal </p>
@@ -94,8 +95,26 @@ function Orders() {
           <div className={`${styles.total} global-modal-sm-mb`}>
             <p className="right-section">Total </p>
           </div> */}
-        {/* </div> */}
-      </div>
+          {/* </div> */}
+        </div>
+      ) : (
+        <div
+          style={{
+            width: "80%",
+            height: "50vh",
+
+            position: "absolute",
+            display: "flex",
+            // border: "1px solid red",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+          }}
+        >
+          <p style={{ opacity: "0.5", marginBottom: "20px" }}>You have no pending Orders</p>
+          <p style={{ opacity: "0.5" }}>Continue shopping</p>
+        </div>
+      )}
     </div>
   );
 }

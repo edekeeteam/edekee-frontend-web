@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useEffect, useState } from "react";
 // import { useParams } from "react-router-dom";
 import styles from "./Cart.module.scss";
@@ -105,7 +107,7 @@ function CartModule() {
   useEffect(() => {
     const checkedItems = cart.filter((item) => item.check === true);
     setOrderItems(checkedItems);
-    console.log(checkedItems);
+    // console.log(checkedItems);
     const cartOrder = checkedItems.map((eachItem) => ({
       product_id: eachItem.product_id,
       // user_id: eachItem.user_id,
@@ -121,10 +123,21 @@ function CartModule() {
   return (
     <div className={styles.cartModule}>
       <div className="global-modal-sm-mb">
+        <p
+          className={styles.backToCart}
+          onClick={() => {
+            setIsCheckout(false);
+          }}
+        >
+          {isCheckout && (
+            <img src="/icons/rightChevron.svg" alt="" className={styles.rightChevron} />
+          )}
+          {isCheckout && `back to cart`}
+        </p>
         <p className="global-text-24">{!isCheckout ? `Shop Cart (${cart.length})` : "Checkout"}</p>
       </div>
       <div className="global-modal-sm-mb">
-        {!isCheckout && (
+        {!isCheckout && cart.length !== 0 && (
           <p style={{ display: "flex", alignItems: "center", marginLeft: "10px" }}>
             <InputCheckbox
               name="all"
@@ -137,7 +150,7 @@ function CartModule() {
           </p>
         )}
         <div>
-          <span className="global-text-12">Address</span>
+          {isCheckout && <span className="global-text-12">Address</span>}
           {/* <InputGender onChange={(e)=>console.log(e)} genders={["male","female","others"]}/> */}
           <div className={styles.addressInput}>
             {/* <div className={styles.selectInputSection}>
@@ -184,6 +197,24 @@ function CartModule() {
               </div>
             </>
           )}
+          {cart.length === 0 && (
+            <div
+              style={{
+                width: "100%",
+                height: "50vh",
+
+                position: "absolute",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <p style={{ opacity: "0.5", marginBottom: "20px" }}>You have no items in your cart</p>
+              <p style={{ opacity: "0.5" }}>Continue shopping</p>
+            </div>
+          )}
+
           {!isCheckout
             ? cart?.map((cartItem, index) => (
                 <CartItem
@@ -227,38 +258,40 @@ function CartModule() {
                 />
               ))}
         </div>
-        <div className={styles.cartSummary}>
-          <p className="global-modal-sm-mb global-text-20">Summary</p>
+        {cart.length !== 0 && (
+          <div className={styles.cartSummary}>
+            <p className="global-modal-sm-mb global-text-20">Summary</p>
 
-          <div className={`${styles.subtotal} global-modal-sm-mb`}>
-            <p>subtotal </p>
-            <p>{getFormattedPrice(total)}</p>
-          </div>
-          <div className={`${styles.shipping} global-modal-sm-mb`}>
-            <p>shipping </p>
-            <p>{shipCost}</p>
-          </div>
+            <div className={`${styles.subtotal} global-modal-sm-mb`}>
+              <p>subtotal </p>
+              <p>{getFormattedPrice(total)}</p>
+            </div>
+            <div className={`${styles.shipping} global-modal-sm-mb`}>
+              <p>shipping </p>
+              <p>{shipCost}</p>
+            </div>
 
-          <div className={`${styles.border} global-modal-sm-mb`} />
-          <div className={`${styles.total} global-modal-sm-mb`}>
-            <p className="right-section">Total </p>
-            <p className="right-section"> {getFormattedPrice(total)} </p>
+            <div className={`${styles.border} global-modal-sm-mb`} />
+            <div className={`${styles.total} global-modal-sm-mb`}>
+              <p className="right-section">Total </p>
+              <p className="right-section"> {getFormattedPrice(total)} </p>
+            </div>
+            <div className={styles.buttonContainer}>
+              <Button
+                bgcolor="white"
+                size="small"
+                label={!isCheckout ? "Checkout" : "Confirm"}
+                handleClick={() => {
+                  if (!isCheckout) {
+                    setIsCheckout(!isCheckout);
+                  } else {
+                    saveCartOrder();
+                  }
+                }}
+              />
+            </div>
           </div>
-          <div className={styles.buttonContainer}>
-            <Button
-              bgcolor="white"
-              size="small"
-              label={!isCheckout ? "Checkout" : "Confirm"}
-              handleClick={() => {
-                if (!isCheckout) {
-                  setIsCheckout(!isCheckout);
-                } else {
-                  saveCartOrder();
-                }
-              }}
-            />
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

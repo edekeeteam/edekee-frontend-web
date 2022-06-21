@@ -1,15 +1,20 @@
 // import { useState } from "react";
 import OtpInput from "react-otp-input";
-import Countdown from "react-countdown";
-import Modal from "../../Modal/Modal";
+// import Countdown from "react-countdown";
+import NewModal from "../../NewModal/NewModal";
 import styles from "./OtpModal.module.scss";
 import { useAuthContext } from "../../../context/AuthContext";
 
 function OtpModal() {
-  const { otp, setOtp, handleOtpVerification, resendOtp } = useAuthContext();
-
+  const { otp, setOtp, handleOtpVerification, resendOtp, timer } = useAuthContext();
+  // const [timer, setTimer] = useState(60);
   // const otpValue = otp;
-  <Countdown date={Date.now() + 10000} />;
+  // <Countdown date={Date.now() + 10000} />;
+
+  // setInterval(() => {
+  //   setTimer(timer - 1);
+  // }, 1000);
+
   const handleChange = (newOtp) => {
     // console.log(newOtp);
     // setOtp(
@@ -29,7 +34,7 @@ function OtpModal() {
 
   const handleKeyDown = () => {};
   return (
-    <Modal>
+    <NewModal>
       <div className={styles.otpModalContent}>
         <p className="global-text-20 global-modal-mb">Verification</p>
         <p className="global-text-12 global-modal-mb">
@@ -68,10 +73,10 @@ function OtpModal() {
           role="button"
           tabIndex={0}
         >
-          Resend Code
+          Resend Code in {timer}
         </div>
       </div>
-    </Modal>
+    </NewModal>
   );
 }
 

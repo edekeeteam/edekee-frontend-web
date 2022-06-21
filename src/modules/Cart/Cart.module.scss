@@ -84,3 +84,16 @@
   display: flex;
   justify-content: center;
 }
+
+.backToCart {
+  font-size: 11px;
+  margin-bottom: 30px;
+  color: #4282ff;
+  cursor: pointer;
+}
+
+.rightChevron {
+  width: 5px;
+  transform: rotate(180deg);
+  margin-right: 5px;
+}

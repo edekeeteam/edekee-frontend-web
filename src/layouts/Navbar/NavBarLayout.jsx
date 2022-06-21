@@ -47,6 +47,8 @@ function NavBarLayout() {
         <PhoneContact />
       ) : modalValue === "dobinfo" ? (
         <DobInfo />
+      ) : modalValue === "dobinfo" ? (
+        <DobInfo />
       ) : modalValue === "videomodal" ? (
         <VideoModal />
       ) : modalValue === "username" ? (

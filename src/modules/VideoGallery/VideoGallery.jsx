@@ -36,6 +36,8 @@ function VideoGallery({ data }) {
     hls.attachMedia(vidRef.current);
   }, [vidRef]);
 
+  // console.log(data);
+
   // const { data, isLoading } = useGetAllVideos();
 
   // if (!isLoading) {
@@ -82,6 +84,9 @@ function VideoGallery({ data }) {
               thumbnail={video.thumbnail}
               label={video.json}
               aspectRatio={video.video_aspect_ratio}
+              name={video.userName}
+              image={video.userImage}
+              title={video.videoTitle}
 
               // onClick={() => {
               //   // console.log("clicked");

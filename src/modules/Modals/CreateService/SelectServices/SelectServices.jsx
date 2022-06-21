@@ -45,7 +45,7 @@ function SelectServices({ nextStep, prevStep }) {
       <ModalHeader
         prevStep={prevStep}
         // canCancel={false}
-        // showNext={categoryId}
+        showNext={!!selectedServiceTypes.length}
         nextStep={nextStep}
       />
       <ModalTitle title="Services" desc=" Select your services. Add all the services you offer." />

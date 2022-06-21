@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-alert */
 /* eslint-disable array-callback-return */
 /* eslint-disable react/prop-types */
@@ -9,11 +10,15 @@ import { InputText } from "../../../../components/InputFields";
 import Button from "../../../../components/Button/Button";
 import PackageCard from "../../../../components/PackageCard/PackageCard";
 // import { useCreateShopContext } from "../../../../context/CreateShopContext";
+import { useToastContext } from "../../../../context/ToastContext";
 import { useCreateServiceContext } from "../../../../context/CreateServiceContext";
 
 function SelectPackage({ nextStep, prevStep }) {
   // const [addedPackages, setAddedPackages] = useState([]);
-  const { servicePackages, setServicePackages, createService } = useCreateServiceContext();
+  const toast = useToastContext();
+
+  const { servicePackages, setServicePackages, createService, completed } =
+    useCreateServiceContext();
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
 
@@ -40,9 +45,13 @@ function SelectPackage({ nextStep, prevStep }) {
   };
 
   const handleCreateService = () => {
-    nextStep();
+    // nextStep();
     createService();
   };
+  if (completed) {
+    nextStep();
+    console.log("completed");
+  }
 
   return (
     <div className={styles.selectPackage}>
@@ -91,7 +100,7 @@ function SelectPackage({ nextStep, prevStep }) {
             size="large"
             handleClick={() => {
               if (price === "" || description === "") {
-                alert("add price and benefits");
+                toast.open({ msg: "add price and benefits", type: "warning" });
               } else {
                 addPackage();
               }

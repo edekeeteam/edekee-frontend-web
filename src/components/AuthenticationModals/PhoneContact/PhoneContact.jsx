@@ -1,5 +1,5 @@
 import countriesArr from "../../../data/countriesArr";
-import Modal from "../../Modal/Modal";
+import NewModal from "../../NewModal/NewModal";
 import styles from "../../Modal/Modal.module.scss";
 import Button from "../../Button/Button";
 import { useAuthContext } from "../../../context/AuthContext";
@@ -38,8 +38,8 @@ function PhoneContact() {
   };
 
   return (
-    <Modal>
-      <div>
+    <NewModal>
+      <div style={{ padding: "30px" }}>
         <h2 className={styles.modalHeader}> Phone Number </h2>
 
         <div className={styles.modalBody}>
@@ -95,7 +95,7 @@ function PhoneContact() {
           </form>
         </div>
       </div>
-    </Modal>
+    </NewModal>
   );
 }
 

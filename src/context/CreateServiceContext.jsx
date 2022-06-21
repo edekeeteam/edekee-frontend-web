@@ -17,8 +17,10 @@ function CreateServiceProvider({ children }) {
   const [categoryId, setCategoryId] = useState("");
   const user_id = localStorage.getItem("userId");
   const [servicePackages, setServicePackages] = useState([]);
+  const [completed, setCompleted] = useState(false);
 
   const [selectedServiceTypes, setSelectedServiceTypes] = useState([]);
+
   // const [products, setProducts] = useState({});
   // const [productDetails, setProductDetails] = useState({});
 
@@ -40,6 +42,19 @@ function CreateServiceProvider({ children }) {
   const addImage = ({ target }) => {
     // console.log(target.files[0])
     setPicturesFiles([...pictureFiles, target.files[0]]);
+  };
+
+  const clearValues = () => {
+    setPicturesFiles(null);
+    setSource(null);
+    setCategoryId("");
+    setEmail("");
+    setPhone("");
+    setStreetAddress("");
+    setDescription("");
+    setServicePackages([]);
+
+    console.log(" call");
   };
 
   const createService = () => {
@@ -90,7 +105,10 @@ function CreateServiceProvider({ children }) {
         }
       )
       .then((res) => {
-        console.log(res);
+        console.log(res.data.success);
+        if (res.data.success) {
+          setCompleted(true);
+        }
         // console.log(typeof config);
 
         // setPercentage(percent);
@@ -132,6 +150,9 @@ function CreateServiceProvider({ children }) {
         servicePackages,
         setServicePackages,
         createService,
+        completed,
+        setCompleted,
+        clearValues,
       }}
     >
       {children}

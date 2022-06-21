@@ -2,6 +2,7 @@
 import PropTypes from "prop-types";
 
 import axios from "axios";
+// import Skeleton from "react-loading-skeleton";
 import styles from "./CartItem.module.scss";
 import { InputCheckbox, InputNumber } from "../InputFields";
 
@@ -73,8 +74,26 @@ function CartItem({
         </div>
       )}
 
-      <div className={styles.imgContainer}>
-        <img src={image} alt={name} />
+      <div
+        className={styles.imgContainer}
+        style={{
+          backgroundImage: `url(${image})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          position: "relative",
+        }}
+      >
+        {/* <img src={image} alt={name} style={{ objectFit: "contain" }} /> */}
+        {/* <Skeleton
+          circle={false}
+          style={{
+            position: "absolute",
+            height: "100%",
+            width: "100%",
+
+            // display: showImage ? "none" : "block",
+          }}
+        />{" "} */}
       </div>
       <div className={styles.contents}>
         <div className={styles.header}>

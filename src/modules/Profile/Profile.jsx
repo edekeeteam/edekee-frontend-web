@@ -3,7 +3,7 @@ import React from "react";
 import ProfileBody from "../../components/ProfileBody/ProfileBody";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 
-function ProfileModule({ data, isCurrentUser }) {
+export default function ProfileModule({ data, isCurrentUser }) {
   return (
     <>
       <ProfileHeader data={data} isCurrentUser={isCurrentUser} />
@@ -12,4 +12,4 @@ function ProfileModule({ data, isCurrentUser }) {
   );
 }
 
-export default ProfileModule;
+// export default ProfileModule;

@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import React from "react";
 
 import styles from "./ProductSpecs.module.scss";
@@ -84,6 +83,13 @@ function ProductSpecs() {
 
   return (
     <NewModal>
+      <div className={styles.back}>
+        {" "}
+        <span>
+          <img src="/icons/rightChevron.svg" alt="" className={styles.rightChevron} />
+        </span>{" "}
+        back{" "}
+      </div>
       <div
         className={styles.productSpecs}
         onClick={(e) => {
@@ -125,7 +131,7 @@ function ProductSpecs() {
                   // alert("login to buy products");
                   toast.open({ msg: "login to buy products", type: "warning" });
                 } else if (color === "" || size === "") {
-                  alert("select color and size");
+                  toast.open({ msg: "select color and size", type: "warning" });
                 } else {
                   setModalValue("paymentmodal");
                 }

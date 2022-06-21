@@ -4,12 +4,14 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useModalContext } from "./ModalContext";
 import apiMethods from "../utils/apiMethods";
+import { useToastContext } from "./ToastContext";
 // import { useAuthContext } from "./AuthContext";
 
 const BuyContext = React.createContext();
 
 // eslint-disable-next-line react/prop-types
 function BuyProvider({ children }) {
+  const toast = useToastContext();
   const { setIsModalOpen, setModalValue } = useModalContext();
   // const { user } = useAuthContext();
 
@@ -38,7 +40,7 @@ function BuyProvider({ children }) {
         }
       )
       .then((res) => {
-        // console.log(res.data.data);
+        console.log(res.data.data);
         const newCart = res.data.data.map((item) => ({ ...item, check: false }));
 
         setCart(newCart);
@@ -76,7 +78,8 @@ function BuyProvider({ children }) {
 
     if (localStorage.getItem("userId")) {
       if (color === "" || size === "") {
-        alert("select color and size");
+        toast.open({ msg: "select color and size", type: "warning" });
+
         return;
       }
 
@@ -104,13 +107,14 @@ function BuyProvider({ children }) {
         )
         .catch((error) => console.log(error));
     } else {
-      alert("log in to add to cart");
+      toast.open({ msg: "log in to add to cart", type: "warning" });
     }
   };
 
   const saveOrder = () => {
     if (address === "") {
-      alert("fill in address");
+      toast.open({ msg: "fill in address", type: "warning" });
+
       return;
     }
     const params = {
@@ -160,7 +164,8 @@ function BuyProvider({ children }) {
   const saveCartOrder = () => {
     console.log(address);
     if (address === "") {
-      alert("fill in address");
+      toast.open({ msg: "fill in address", type: "warning" });
+
       return;
     }
     axios
@@ -188,6 +193,7 @@ function BuyProvider({ children }) {
           if (response.data.success) {
             setIsModalOpen(true);
             setModalValue("orderComplete");
+            fetchCart();
           }
           // if (response.data.success) {
           //   setIsModalOpen(false);

@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React, { useContext, useEffect, useReducer, useState } from "react";
 // import sublinks from "./data";
@@ -28,7 +29,7 @@ function AuthProvider({ children }) {
     day: "",
     month: "",
     year: "",
-    username: "someusername",
+    username: "",
 
     files: [],
   };
@@ -39,6 +40,11 @@ function AuthProvider({ children }) {
   const [btnState, setBtnState] = useState(false);
   const [errors, setErrors] = useState({});
   const [userInfo, setUserInfo] = useState(null);
+  const [subMail, setSubMail] = useState("");
+  const [subPass, setSubPass] = useState("");
+
+  const [timer, setTimer] = useState(60);
+
   // const [isSubmit, setIsSubmit] = false;
   // const [activeGender, setActiveGender] = useState("Male");
   const interests = [
@@ -156,6 +162,7 @@ function AuthProvider({ children }) {
       formState.signUpPassword[0],
       formState.confirmPassword[0]
     );
+
     if (Object.keys(emailAndPasswordErrors).length !== 0) {
       setErrors(emailAndPasswordErrors);
       console.log(emailAndPasswordErrors);
@@ -166,7 +173,11 @@ function AuthProvider({ children }) {
         email: formState.signUpEmail[0],
         type: formState.type,
       };
+      // signUpMail = formState.signUpEmail[0];
+      // signUpPass = formState.signUpPassword[0];
       // console.log();
+      setSubMail(formState.signUpEmail[0]);
+      setSubPass(formState.signUpPassword[0]);
       axios
         .post(
           "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/auth/generate/otp",
@@ -180,6 +191,9 @@ function AuthProvider({ children }) {
               // router.push("/auth/verifyOtp");
               // change AuthModalValue
               setAuthLoading(false);
+              formState.signUpEmail = "";
+              formState.signUpPassword = "";
+              formState.confirmPassword = "";
 
               setAuthSuccessful(true);
 
@@ -187,6 +201,10 @@ function AuthProvider({ children }) {
                 setModalValue("otp");
                 setAuthSuccessful(false);
                 setBtnState(false);
+              }, 1000);
+
+              setInterval(() => {
+                setTimer(timer - 1);
               }, 1000);
             } else {
               setAuthLoading(false);
@@ -245,7 +263,6 @@ function AuthProvider({ children }) {
         email: formState.signInEmail[0],
         // username: "randomUsername",
         password: formState.signInPassword[0],
-        username: formState.username,
       };
 
       axios
@@ -309,8 +326,8 @@ function AuthProvider({ children }) {
     // const formattedDOB = handleDOBformat(formState.year[0], formState.month[0], formState.day[0]);
     const params = {
       code: otp,
-      email: formState.signUpEmail[0],
-      password: formState.signUpPassword[0],
+      email: subMail,
+      password: subPass,
       // username: formState.username[0],
       interests,
       // phone: formattedNumber,
@@ -318,7 +335,7 @@ function AuthProvider({ children }) {
       // gender: activeGender,
       // interests,
     };
-    console.log(params.interests);
+
     axios
       .post(
         "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/auth/verify/otp",
@@ -339,6 +356,7 @@ function AuthProvider({ children }) {
           setModalValue("phonecontact");
           // setIsModalOpen(false);
           console.log("registered successfully");
+          setOtp("");
           setAuthModalValue(1);
 
           // clearInputs();
@@ -399,7 +417,7 @@ function AuthProvider({ children }) {
     } else {
       setTimeout(() => {
         setErrors(DobErrors);
-        setModalValue("username");
+        setModalValue("gender");
       }, 1000);
     }
   };
@@ -421,7 +439,7 @@ function AuthProvider({ children }) {
           console.log(response);
           if (response.data.success) {
             const newParams = {
-              email: formState.signUpEmail[0],
+              email: subMail,
               username: formState.username[0],
               country: formState.country[0],
               dob: handleDOBformat(formState.day[0], formState.month[0], formState.year[0]),
@@ -514,6 +532,8 @@ function AuthProvider({ children }) {
         resendOtp,
         userInfo,
         fetchUserInfo,
+        timer,
+        setTimer,
       }}
     >
       {children}
