@@ -22,6 +22,7 @@ function BuyProvider({ children }) {
   const userId = localStorage.getItem("userId");
   const weight = "50kg";
   const [cart, setCart] = useState([]);
+  const [cartLoading, setCartLoading] = useState(true);
   const [orderItems, setOrderItems] = useState();
 
   const [cartOrderArray, setCartOrderArray] = useState([]);
@@ -42,7 +43,7 @@ function BuyProvider({ children }) {
       .then((res) => {
         console.log(res.data.data);
         const newCart = res.data.data.map((item) => ({ ...item, check: false }));
-
+        setCartLoading(false);
         setCart(newCart);
         // res.data
       });
@@ -229,6 +230,7 @@ function BuyProvider({ children }) {
         setOrderItems,
         setCartOrderArray,
         saveCartOrder,
+        cartLoading,
       }}
     >
       {children}

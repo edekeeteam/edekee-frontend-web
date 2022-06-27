@@ -33,6 +33,10 @@ function Product({ product, changeVideoTab }) {
           changeVideoTab(2);
         }
         return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+        changeVideoTab(0);
       });
   };
 
@@ -40,6 +44,7 @@ function Product({ product, changeVideoTab }) {
     <div
       className={styles.product}
       onClick={() => {
+        changeVideoTab(3);
         fetchProductDetails(product.id);
         // changeVideoTab(2);
       }}

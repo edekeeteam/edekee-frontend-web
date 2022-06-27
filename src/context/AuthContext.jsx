@@ -73,7 +73,8 @@ function AuthProvider({ children }) {
   const fetchUserInfo = () =>
     apiMethods.get(`/user/${localStorage.getItem("userId")}`).then((res) => {
       setUserInfo(res.data.data);
-      console.log(res.data.data);
+      localStorage.setItem("shopId", res.data.data.shop_meta.id);
+      // console.log(res.data.data.shop_meta.id);
     });
 
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -221,7 +222,7 @@ function AuthProvider({ children }) {
 
   const resendOtp = () => {
     const params = {
-      email: formState.signInEmail[0],
+      email: subMail,
       type: formState.type,
     };
     axios
@@ -278,9 +279,9 @@ function AuthProvider({ children }) {
             // router.push("/auth/verifyOtp");
             // change AuthModalValue
             // setAuthModalValue(1);
-            console.log(response);
+            // console.log(response);
             toast.open({ msg: "logged in successfully", type: "success" });
-
+            console.log(response.data.user.id);
             localStorage.setItem("userId", response.data.user.id);
             localStorage.setItem("token", response.data.token);
             setUser(localStorage.getItem("userId"));

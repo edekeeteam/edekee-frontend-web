@@ -12,6 +12,7 @@ function ShopTabContent() {
 
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
+  const shopId = localStorage.getItem("shopId");
 
   const products = 5;
   return (
@@ -19,7 +20,7 @@ function ShopTabContent() {
       <div
         className={styles.viewShop}
         onClick={() => {
-          navigate(`/profile/${userId}/shop`);
+          navigate(`/profile/${userId}/shop/${shopId}`);
         }}
       >
         <p className={styles.viewShopText}>View Shop </p>

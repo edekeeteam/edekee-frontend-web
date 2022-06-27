@@ -1,14 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
 import axios from "axios";
+import Lottie from "react-lottie";
+import animationData from "../../lotties/loading.json";
 import styles from "./Orders.module.scss";
 import OrderItem from "../../components/OrderItem/OrderItem";
 import useGetOrders from "../../hooks/orders/useGetOrders";
 // import { useAuthContext } from "../../context/AuthContext";
 
 function Orders() {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
   // const { user } = useAuthContext();
 
   const { userI } = useParams();
@@ -36,6 +47,7 @@ function Orders() {
         // const items = stuff.map((orderss) => orderss.orderItem.map((i) => i));
         // console.log(items);
         // console.log(stuff);
+        setLoading(false);
         setOrders(stuff);
         // res.data
       });
@@ -48,6 +60,14 @@ function Orders() {
   }
 
   // if isLoading is true, show skeleton loading, when it is false w
+
+  if (loading) {
+    return (
+      <div className={styles.lottieWrapper}>
+        <Lottie options={defaultOptions} height={150} width={150} />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.orderModule}>

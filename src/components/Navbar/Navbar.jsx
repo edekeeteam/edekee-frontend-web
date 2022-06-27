@@ -204,9 +204,9 @@ export default function Navbar() {
                   setIsDropdownOpen(false);
                   // toast.open({ msg: "Log in to Create", type: "warning" });
                 } else {
-                  console.log(e);
-                  // changeDropdownContent("create");
-                  // displayDropdown(e, "create");
+                  // console.log(e);
+                  changeDropdownContent("create");
+                  displayDropdown(e, "create");
                 }
               }}
               // handleClick={displaySubmenu}  stroke={router.pathname === "/cart" ? "white" : "#6D7280"}

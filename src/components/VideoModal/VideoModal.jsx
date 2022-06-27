@@ -7,16 +7,19 @@ import { useState, useEffect } from "react";
 // import { motion } from "framer-motion";
 import axios from "axios";
 // import Backdrop from "../../common/components/Backdrop/Backdrop";
+import Lottie from "react-lottie";
 import styles from "./VideoModal.module.scss";
 // import { ModalContext } from "../../context/ModalContext";
 // import { useModalContext } from "../../context/ModalContext";
 // import { useContext } from "react";
 import VideoViewContainer from "../VideoViewContainer/VideoViewContainer";
+import animationData from "../../lotties/loading.json";
 // import Product from "../Product/Product";
 import tabs from "../../data/tabsData";
 import Comments from "../Comments/Comments";
 import ProductDetails from "../ProductDetails/ProductDetails";
 import VidModal from "../VidModal/VidModal";
+
 import { useModalContext } from "../../context/ModalContext";
 import Products from "../Products/Products";
 import { useToastContext } from "../../context/ToastContext";
@@ -49,6 +52,15 @@ import { useToastContext } from "../../context/ToastContext";
 // };
 function VideoModal() {
   // const { videoModalTabValue, setVideoModalTabValue } = useContext(ModalContext);
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
 
   const toast = useToastContext();
   const [videoModalTabValue, setVideoModalTabValue] = useState(0);
@@ -143,6 +155,10 @@ function VideoModal() {
             <Comments comments={comments} />
           ) : videoModalTabValue === 2 ? (
             <ProductDetails />
+          ) : videoModalTabValue === 3 ? (
+            <div className={styles.lottieWrapper}>
+              <Lottie options={defaultOptions} height={150} width={150} />
+            </div>
           ) : (
             ""
           )}
