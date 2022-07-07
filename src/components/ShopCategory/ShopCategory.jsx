@@ -4,9 +4,9 @@
 /* eslint-disable no-nested-ternary */
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import styles from "./ShopProduct.module.scss";
+import styles from "./ShopCategory.module.scss";
 
-function ShopProduct({ type, details, productDetails }) {
+function ShopCategory({ type, details, productDetails }) {
   const navigate = useNavigate();
   // const type = "category";
   const { userId, shopId } = useParams();
@@ -62,4 +62,4 @@ function ShopProduct({ type, details, productDetails }) {
   );
 }
 
-export default ShopProduct;
+export default ShopCategory;

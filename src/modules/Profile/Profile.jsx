@@ -6,7 +6,7 @@ import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 export default function ProfileModule({ data, isCurrentUser }) {
   return (
     <>
-      <ProfileHeader data={data} isCurrentUser={isCurrentUser} />
+      <ProfileHeader type="profile" data={data} isCurrentUser={isCurrentUser} />
       <ProfileBody />
     </>
   );

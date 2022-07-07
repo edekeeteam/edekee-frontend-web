@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-nested-ternary */
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import Button from "../Button/Button";
 import ShopProduct from "../ShopProduct/ShopProduct";
 import styles from "./ShopTabContent.module.scss";
@@ -10,24 +10,26 @@ import styles from "./ShopTabContent.module.scss";
 function ShopTabContent() {
   const [hasShop] = useState(true);
 
-  const navigate = useNavigate();
-  const userId = localStorage.getItem("userId");
+  // const navigate = useNavigate();
+  // const userId = localStorage.getItem("userId");
   const shopId = localStorage.getItem("shopId");
+  const userId = localStorage.getItem("userId");
 
   const products = 5;
   return (
     <div className={styles.shopTabContainer}>
-      <div
+      <Link
+        to={`/profile/${userId}/shop/${shopId}`}
         className={styles.viewShop}
-        onClick={() => {
-          navigate(`/profile/${userId}/shop/${shopId}`);
-        }}
+        // onClick={() => {
+        //   navigate(`shop/${shopId}`);
+        // }}
       >
         <p className={styles.viewShopText}>View Shop </p>
         <span>
           <img src="/icons/rightChevron.svg" className={styles.rightChevron} alt="" />
         </span>
-      </div>
+      </Link>
       {!hasShop ? (
         <div className={styles.emptyShop}>
           <p className="global-text-20 global-modal-mb">Build your shop</p>
@@ -39,13 +41,13 @@ function ShopTabContent() {
         </div>
       ) : products ? (
         <div className={styles.shopContentWrapper}>
-          <ShopProduct />
-          <ShopProduct />
-          <ShopProduct />
-          <ShopProduct />
-          <ShopProduct />
+          <ShopProduct type="pinned" />
+          <ShopProduct type="pinned" />
+          <ShopProduct type="pinned" />
+          <ShopProduct type="pinned" />
+          <ShopProduct type="pinned" />
 
-          <ShopProduct />
+          <ShopProduct type="pinned" />
         </div>
       ) : !products ? (
         <div>
@@ -55,6 +57,7 @@ function ShopTabContent() {
       ) : (
         ""
       )}
+      <Outlet />
     </div>
   );
 }

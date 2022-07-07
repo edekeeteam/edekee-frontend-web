@@ -1,6 +1,6 @@
 // import React, { useState } from "react";
 // import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Outlet } from "react-router-dom";
 import ProfileModule from "../../modules/Profile/Profile";
 import useGetProfile from "../../hooks/profile/useGetProfile";
 // eslint-disable-next-line import/no-named-as-default
@@ -18,6 +18,7 @@ function Profile() {
     return (
       <div>
         <ProfileModule data={data} />
+        <Outlet />
       </div>
     );
   }

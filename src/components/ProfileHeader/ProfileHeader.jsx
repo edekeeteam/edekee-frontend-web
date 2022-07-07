@@ -12,7 +12,7 @@ import ProfileBio from "../ProfileBio/ProfileBio";
 
 // "https://picsum.photos/200/300.webp"
 
-function ProfileHeader({ data }) {
+function ProfileHeader({ data, type }) {
   const { userId } = useParams();
 
   return (
@@ -21,20 +21,22 @@ function ProfileHeader({ data }) {
 
       <ProfilePic img={data.data.image ? data.data.image : "https://picsum.photos/200/300.webp"} />
       <div className={styles.spacing}>
-        <ProfileName name={data.data.userName} />
+        <ProfileName name={`${data.data.userName}'s shop`} />
       </div>
-      <div className={`${styles.follow} ${styles.spacing}`}>
-        <span>
-          <ProfileFollow counts={data.data.noOfFollowing} useCase="Following" />
-        </span>
-        <span className={styles.divider}>
-          <div className={styles.border} />
-        </span>
+      {type === "profile" && (
+        <div className={`${styles.follow} ${styles.spacing}`}>
+          <span>
+            <ProfileFollow counts={data.data.noOfFollowing} useCase="Following" />
+          </span>
+          <span className={styles.divider}>
+            <div className={styles.border} />
+          </span>
 
-        <span>
-          <ProfileFollow counts={data.data.noOfFollowers} useCase="Followers" />
-        </span>
-      </div>
+          <span>
+            <ProfileFollow counts={data.data.noOfFollowers} useCase="Followers" />
+          </span>
+        </div>
+      )}
       {userId === data.data.id && (
         <div className={styles.spacing}>
           <Button label="Edit Profile" bgcolor="white" size="small" />
@@ -43,9 +45,11 @@ function ProfileHeader({ data }) {
       {/* <div className={styles.spacing}>
         <Button label="Edit Profile" bgcolor="white" size="small" />
       </div> */}
-      <div className={styles.spacing}>
-        <ProfileBio bio={data.data.description} />
-      </div>
+      {type === "profile" && (
+        <div className={styles.spacing}>
+          <ProfileBio bio={data.data.description} />
+        </div>
+      )}
       {/* <div className={styles.spacing}>
         <ProfileTabs data={data.data.videoUploaded} />
       </div> */}
