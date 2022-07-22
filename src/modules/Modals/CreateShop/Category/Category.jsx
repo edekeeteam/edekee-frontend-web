@@ -31,7 +31,7 @@ function Category({ prevStep, nextStep }) {
   console.log(categoryArray);
   // console.log(getCategories);
 
-  const newCategories = categoryArray.filter((item) => item.name === "Fashion");
+  // const newCategories = categoryArray.filter((item) => item.name === "Fashion");
 
   // useEffect(() => {
   //   getCategories().then(async (response) => {
@@ -72,7 +72,7 @@ function Category({ prevStep, nextStep }) {
             {categories && (
               <InputCategory
                 filterBy={filter}
-                categories={newCategories}
+                categories={categoryArray}
                 onChange={(e) => {
                   handleCategoryInput(e);
                 }}

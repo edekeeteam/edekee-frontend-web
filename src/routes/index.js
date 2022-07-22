@@ -11,13 +11,18 @@ const apiRoutes = {
   getCities: "/cities",
   uploadProducts: "/product/create",
   uploadProductVideoImagesBy: "/product/upload/",
-  getAllVideos:
-    "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/video?take=150&page=1",
-  getCart: "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/getCartItems",
-  getProfile: "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/user",
-  getOrders:
-    "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/getOrdersByUserId",
-  getComments: "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/comments",
+  getAllVideos: "/video?take=150&page=1",
+  getCart: "http://app.edekee.io:3000/v1/api/cart/getCartItems",
+  getProfile: "http://app.edekee.io:3000/v1/api/user/findByUsername",
+  getOrders: "http://app.edekee.io:3000/v1/api/cart/getOrdersByUserId",
+  getComments: "http://app.edekee.io:3000/v1/api/comments",
+  // getAllVideos:
+  //   "http://app.edekee.io:3000/v1/api/video?take=150&page=1",
+  // getCart: "http://app.edekee.io:3000/v1/api/cart/getCartItems",
+  // getProfile: "http://app.edekee.io:3000/v1/api/user",
+  // getOrders:
+  //   "http://app.edekee.io:3000/v1/api/cart/getOrdersByUserId",
+  // getComments: "http://app.edekee.io:3000/v1/api/comments",
 };
 
 export default apiRoutes;

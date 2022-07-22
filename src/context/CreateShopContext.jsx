@@ -59,7 +59,7 @@ function CreateShopProvider({ children }) {
 
   const getResource = () => {
     axios
-      .get("http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/states", {
+      .get("http://app.edekee.io:3000/v1/api/states", {
         headers: {
           Authorization: localStorage.getItem("token"),
           portal: "web",
@@ -75,7 +75,7 @@ function CreateShopProvider({ children }) {
       });
 
     axios
-      .get("http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/cities", {
+      .get("http://app.edekee.io:3000/v1/api/cities", {
         headers: {
           Authorization: localStorage.getItem("token"),
           portal: "web",
@@ -91,7 +91,7 @@ function CreateShopProvider({ children }) {
       });
 
     axios
-      .get("http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/category", {
+      .get("http://app.edekee.io:3000/v1/api/category", {
         headers: {
           Authorization: localStorage.getItem("token"),
           portal: "web",
@@ -105,6 +105,17 @@ function CreateShopProvider({ children }) {
         console.log(err);
       });
   };
+
+  function clearValues() {
+    setCompanyName("");
+    setEmail("");
+    setPhoneNumber("");
+    setStreetAddress("");
+    setCity("");
+    setCategoryId("");
+    setLogoFile(null);
+    setSource(null);
+  }
 
   const createShop = () => {
     // console.log(categoryId);
@@ -159,7 +170,7 @@ function CreateShopProvider({ children }) {
     // };
     axios
       .post(
-        "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/shop",
+        "http://app.edekee.io:3000/v1/api/shop",
         formData,
 
         config
@@ -167,6 +178,7 @@ function CreateShopProvider({ children }) {
       .then((res) => {
         console.log(res);
         fetchUserInfo();
+        clearValues();
         // console.log(typeof config);
 
         setPercentage(percent);
@@ -216,6 +228,7 @@ function CreateShopProvider({ children }) {
         categoryId,
         setCategoryId,
         percentage,
+        clearValues,
       }}
     >
       {children}

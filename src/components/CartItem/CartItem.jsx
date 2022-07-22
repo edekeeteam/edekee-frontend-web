@@ -40,7 +40,7 @@ function CartItem({
     console.log(id);
     axios
       .post(
-        `http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/removeFromCart/${id}`,
+        `http://app.edekee.io:3000/v1/api/cart/removeFromCart/${id}`,
         {},
         {
           headers: {

@@ -1,53 +1,70 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
+// import { useParams } from "react-router-dom";
 import axios from "axios";
+import Lottie from "react-lottie";
+import animationData from "../../lotties/loading.json";
 import styles from "./Orders.module.scss";
 import OrderItem from "../../components/OrderItem/OrderItem";
-import useGetOrders from "../../hooks/orders/useGetOrders";
+// import useGetOrders from "../../hooks/orders/useGetOrders";
 // import { useAuthContext } from "../../context/AuthContext";
 
 function Orders() {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
   // const { user } = useAuthContext();
 
-  const { userI } = useParams();
+  // const { userI } = useParams();
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
 
     axios
-      .get(
-        `http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/getOrdersByUserId/${userId}`,
-        {
-          headers: {
-            Authorization: localStorage.getItem("token"),
-            portal: "web",
-          },
-        }
-      )
+      .get(`http://app.edekee.io:3000/v1/api/cart/getOrdersByUserId/${userId}`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+          portal: "web",
+        },
+      })
       .then((res) => {
         // console.log(res.data);
         const { data } = res.data;
         const stuff = [];
-        console.log(data);
+        // console.log(data);
         data.map((order) => order.orderItem.map((eachOrder) => stuff.push(eachOrder)));
-        console.log(stuff);
+        // console.log(stuff);
         // const items = stuff.map((orderss) => orderss.orderItem.map((i) => i));
         // console.log(items);
         // console.log(stuff);
+        setLoading(false);
         setOrders(stuff);
         // res.data
       });
   }, []);
 
-  const { data: context } = useGetOrders(userI);
+  // const { data: context } = useGetOrders(userI);
 
-  if (context) {
-    console.log(context);
-  }
+  // if (context) {
+  //   console.log(context);
+  // }
 
   // if isLoading is true, show skeleton loading, when it is false w
+
+  if (loading) {
+    return (
+      <div className={styles.lottieWrapper}>
+        <Lottie options={defaultOptions} height={150} width={150} />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.orderModule}>

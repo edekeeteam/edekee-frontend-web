@@ -1,5 +1,6 @@
 .previewVideo {
   position: relative;
+  border: 2px solid red;
   width: 600px;
   video {
     height: 100%;
@@ -34,7 +35,7 @@
 .paymentOnDelivery {
   // width: 90%;
   height: 50px;
-  // border: 1px solid #fff;s
+  // border: 3px solid #fff;
   border-radius: 60px;
   margin: 10px auto;
   padding: 0 20px;

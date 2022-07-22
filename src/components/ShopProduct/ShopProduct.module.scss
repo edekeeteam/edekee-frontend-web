@@ -5,14 +5,47 @@
 .shopProduct {
   width: 100%;
   aspect-ratio: 1;
-  //   border: 1px solid red;
+  // border: 1px solid red;
   margin: 0 auto;
   position: relative;
   background-image: url("../../../public/images/productPlaceholder.png");
   background-position: center;
   background-size: cover;
+  cursor: pointer;
 }
 
+.submenu {
+  width: 120px;
+  height: auto;
+  border-radius: 10px;
+  background-color: #000;
+  position: absolute;
+  right: 2%;
+  top: 2%;
+  padding: 15px;
+  padding-top: 25px;
+}
+
+.submenuItem {
+  padding: 7px 5px;
+  display: flex;
+  cursor: pointer;
+
+  p {
+    margin-left: 13px;
+  }
+}
+
+.deleteButton {
+  color: #ba3308;
+}
+.close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  cursor: pointer;
+  // border: 2px solid red;
+}
 .badge {
   height: 70px;
   width: 100%;
@@ -32,13 +65,30 @@
   width: 25px;
   cursor: pointer;
 }
-
+// img {
+//   // max-width: 100%;
+//   width: 80%;
+// }
 .optionsIcon {
   position: absolute;
-  top: 5%;
-  right: 5%;
-  width: 10px;
+  top: 0%;
+  right: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // border: 1px solid green;
+  width: 50px;
+  aspect-ratio: 1;
+
+  // padding: 30px;
   cursor: pointer;
+}
+.optionsIconImage {
+  width: 12px;
+  // position: absolute;
+  // top: 20%;
+  // right: 20%;
+  // transform: translate(-50%, -50%);
 }
 
 .badgeWrapper {

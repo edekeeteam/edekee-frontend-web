@@ -12,7 +12,7 @@ import ProductInfo from "./ProductInfo/ProductInfo";
 import Preview360Video from "./Preview360Video/Preview360Video";
 import PickColors from "./PickColors/PickColors";
 import Measurements from "./Measurements/Measurements";
-
+import Complete from "../../../components/Complete/Complete";
 import { UploadProductsProvider } from "../../../context/UploadProducts";
 import { useModalContext } from "../../../context/ModalContext";
 import { usePopupContext } from "../../../context/PopupContext";
@@ -54,6 +54,7 @@ function UploadsProductsModal() {
     <ProductInfo nextStep={() => nextStep} prevStep={() => prevStep} />,
     <PickColors nextStep={() => nextStep} prevStep={() => prevStep} />,
     <Measurements nextStep={() => nextStep} prevStep={() => prevStep} />,
+    <Complete type="order" />,
   ];
 
   function handleCancelUpload() {

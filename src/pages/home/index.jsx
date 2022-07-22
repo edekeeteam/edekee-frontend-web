@@ -12,7 +12,6 @@ function Home() {
   // const { data, isLoading } = useGetAllVideos();
   const { data, isLoading } = useGetVideos();
 
-  console.log(data);
   if (isLoading) {
     return <GalleryLoading />;
   }
@@ -23,6 +22,10 @@ function Home() {
   //     </div>
   //   );
   // }
+
+  if (!isLoading) {
+    console.log(data);
+  }
 
   return (
     <div>

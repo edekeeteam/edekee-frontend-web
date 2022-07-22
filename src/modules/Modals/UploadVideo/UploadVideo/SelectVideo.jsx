@@ -21,7 +21,7 @@ function SelectVideo({ nextStep }) {
     setSource(url);
 
     setVideoFile(file);
-    // console.log(url, file);
+    console.log(url, file);
   };
 
   const handleChoose = () => {

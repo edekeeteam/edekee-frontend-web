@@ -1,4 +1,7 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./ProductDetails.module.scss";
 import Button from "../Button/Button";
 import { useModalContext } from "../../context/ModalContext";
@@ -7,8 +10,9 @@ import { useBuyContext } from "../../context/BuyContext";
 
 function ProductDetails() {
   // const { setCurrentVideoModal } = useContext(ModalContext);
+  const navigate = useNavigate();
 
-  const { setIsModalOpen, setModalValue } = useModalContext();
+  const { setIsModalOpen, setModalValue, setIsVidModalOpen } = useModalContext();
   const { productDetails } = useProductsContext();
   const { setProductId } = useBuyContext();
   const [isLiked, setIsLiked] = useState(false);
@@ -140,7 +144,14 @@ function ProductDetails() {
         <img alt="" src = {} className={styles.scrollViewImage} /> */}
       </div>
 
-      <div className={styles.viewShop}>
+      <div
+        className={styles.viewShop}
+        onClick={() => {
+          setModalValue("");
+          setIsVidModalOpen(false);
+          navigate(`/profile/${productDetails.username}`);
+        }}
+      >
         <p>View Shop</p>
         <img src="./icons/chevron.svg" alt="" />
       </div>

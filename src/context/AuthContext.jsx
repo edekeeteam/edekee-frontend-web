@@ -57,6 +57,7 @@ function AuthProvider({ children }) {
   ];
   // const [user, setUser] = useLocalStorage("userId", "");
   const [user, setUser] = useState("");
+  const [userName, setUserName] = useState("");
   const [token, setToken] = useState("");
 
   const { setAuthModalValue, setIsModalOpen, setModalValue } = useModalContext();
@@ -74,6 +75,8 @@ function AuthProvider({ children }) {
     apiMethods.get(`/user/${localStorage.getItem("userId")}`).then((res) => {
       setUserInfo(res.data.data);
       console.log(res.data.data);
+      localStorage.setItem("shopId", res.data.data.shop_meta.id);
+      // console.log(res.data.data.shop_meta.id);
     });
 
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -181,39 +184,34 @@ function AuthProvider({ children }) {
       // console.log();
       setSubMail(formState.signUpEmail[0]);
       setSubPass(formState.signUpPassword[0]);
-      axios
-        .post(
-          "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/auth/generate/otp",
-          params
-        )
-        .then(
-          async (response) => {
-            setAuthLoading(true);
-            console.log(response);
-            if (response.data.success) {
-              // router.push("/auth/verifyOtp");
-              // change AuthModalValue
-              setAuthLoading(false);
-              formState.signUpEmail = "";
-              formState.signUpPassword = "";
-              formState.confirmPassword = "";
+      axios.post("http://app.edekee.io:3000/v1/api/auth/generate/otp", params).then(
+        async (response) => {
+          setAuthLoading(true);
+          console.log(response);
+          if (response.data.success) {
+            // router.push("/auth/verifyOtp");
+            // change AuthModalValue
+            setAuthLoading(false);
+            formState.signUpEmail = "";
+            formState.signUpPassword = "";
+            formState.confirmPassword = "";
 
-              setAuthSuccessful(true);
+            setAuthSuccessful(true);
 
-              setTimeout(() => {
-                setModalValue("otp");
-                setAuthSuccessful(false);
-                setBtnState(false);
-              }, 1000);
-            } else {
-              setAuthLoading(false);
+            setTimeout(() => {
+              setModalValue("otp");
+              setAuthSuccessful(false);
               setBtnState(false);
+            }, 1000);
+          } else {
+            setAuthLoading(false);
+            setBtnState(false);
 
-              setErrors({ email: `${response.data.message}` });
-            }
+            setErrors({ email: `${response.data.message}` });
           }
-          // console.log(response);
-        );
+        }
+        // console.log(response);
+      );
     }
 
     // console.log(signUpEmail[0], signUpPassword[0]);
@@ -221,14 +219,11 @@ function AuthProvider({ children }) {
 
   const resendOtp = () => {
     const params = {
-      email: formState.signInEmail[0],
+      email: subMail,
       type: formState.type,
     };
     axios
-      .post(
-        "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/auth/generate/otp",
-        params
-      )
+      .post("http://app.edekee.io:3000/v1/api/auth/generate/otp", params)
       .then(
         async (response) => {
           console.log(response);
@@ -265,10 +260,7 @@ function AuthProvider({ children }) {
       };
 
       axios
-        .post(
-          "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/auth/login",
-          params
-        )
+        .post("http://app.edekee.io:3000/v1/api/auth/login", params)
         .then(async (response) => {
           // if (true) {
           // }
@@ -278,9 +270,9 @@ function AuthProvider({ children }) {
             // router.push("/auth/verifyOtp");
             // change AuthModalValue
             // setAuthModalValue(1);
-            console.log(response);
+            // console.log(response);
             toast.open({ msg: "logged in successfully", type: "success" });
-
+            console.log(response.data.user.id);
             localStorage.setItem("userId", response.data.user.id);
             localStorage.setItem("token", response.data.token);
             setUser(localStorage.getItem("userId"));
@@ -337,10 +329,7 @@ function AuthProvider({ children }) {
     };
 
     axios
-      .post(
-        "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/auth/verify/otp",
-        params
-      )
+      .post("http://app.edekee.io:3000/v1/api/auth/verify/otp", params)
       .then(async (response) => {
         console.log(response);
         if (response.data.success) {
@@ -431,10 +420,7 @@ function AuthProvider({ children }) {
         username: formState.username[0],
       };
       axios
-        .post(
-          "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/user/username/verify",
-          params
-        )
+        .post("http://app.edekee.io:3000/v1/api/user/username/verify", params)
         .then(async (response) => {
           console.log(response.data);
           if (response.data.success) {
@@ -450,14 +436,12 @@ function AuthProvider({ children }) {
             console.log(newParams);
             //  alert("registered successfully");
             axios
-              .put(
-                "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/user/update",
-                newParams
-              )
+              .put("http://app.edekee.io:3000/v1/api/user/update", newParams)
               .then((newResponse) => {
                 console.log(newResponse);
                 // const res = newResponse;
-
+                setUserName(newResponse.data.user.username);
+                localStorage.setItem("username", newResponse.data.user.username);
                 setIsModalOpen(false);
                 console.log("registered successfully");
                 setAuthModalValue(1);
@@ -534,6 +518,7 @@ function AuthProvider({ children }) {
         fetchUserInfo,
         timer,
         setTimer,
+        userName,
       }}
     >
       {children}

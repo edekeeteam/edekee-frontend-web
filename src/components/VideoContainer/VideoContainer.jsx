@@ -63,18 +63,14 @@ function VideoContainer({ src, videoId, thumbnail, label, aspectRatio, name, ima
     console.log(src);
     setModalValue("videomodal");
 
-    axios
-      .get(
-        `http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/products/${id}/video`
-      )
-      .then((res) => {
-        console.log(res);
-        if (res.status === 200) {
-          // console.log("successful");
-          // console.log(res.data.success);
-          setProducts(res.data);
-        }
-      });
+    axios.get(`http://app.edekee.io:3000/v1/api/products/${id}/video`).then((res) => {
+      console.log(res);
+      if (res.status === 200) {
+        // console.log("successful");
+        // console.log(res.data.success);
+        setProducts(res.data);
+      }
+    });
   };
   // console.log(typeof +aspectRatio);
   const ratio = +aspectRatio;

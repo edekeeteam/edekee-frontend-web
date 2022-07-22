@@ -8,33 +8,38 @@ import Button from "../Button/Button";
 import ProfileName from "../ProfileName/ProFileName";
 import ProfileFollow from "../ProfileFollow/ProfileFollow";
 import ProfileBio from "../ProfileBio/ProfileBio";
+import { useShopContext } from "../../context/ShopContext";
 // import ProfileTabs from "../ProfileTabs/ProfileTabs";
 
 // "https://picsum.photos/200/300.webp"
 
-function ProfileHeader({ data }) {
+function ProfileHeader({ data, type }) {
   const { userId } = useParams();
+  const { setUsername, username } = useShopContext();
 
+  setUsername(data.data.userName);
   return (
     <div className={styles.profileHeader}>
       {/* {isCurrentUser && <p>This is current user</p>} */}
 
       <ProfilePic img={data.data.image ? data.data.image : "https://picsum.photos/200/300.webp"} />
       <div className={styles.spacing}>
-        <ProfileName name={data.data.userName} />
+        <ProfileName name={type === "shop" ? `${username}'s fashion shop` : `${username}`} />
       </div>
-      <div className={`${styles.follow} ${styles.spacing}`}>
-        <span>
-          <ProfileFollow counts={data.data.noOfFollowing} useCase="Following" />
-        </span>
-        <span className={styles.divider}>
-          <div className={styles.border} />
-        </span>
+      {type === "profile" && (
+        <div className={`${styles.follow} ${styles.spacing}`}>
+          <span>
+            <ProfileFollow counts={data.data.noOfFollowing} useCase="Following" />
+          </span>
+          <span className={styles.divider}>
+            <div className={styles.border} />
+          </span>
 
-        <span>
-          <ProfileFollow counts={data.data.noOfFollowers} useCase="Followers" />
-        </span>
-      </div>
+          <span>
+            <ProfileFollow counts={data.data.noOfFollowers} useCase="Followers" />
+          </span>
+        </div>
+      )}
       {userId === data.data.id && (
         <div className={styles.spacing}>
           <Button label="Edit Profile" bgcolor="white" size="small" />
@@ -43,9 +48,11 @@ function ProfileHeader({ data }) {
       {/* <div className={styles.spacing}>
         <Button label="Edit Profile" bgcolor="white" size="small" />
       </div> */}
-      <div className={styles.spacing}>
-        <ProfileBio bio={data.data.description} />
-      </div>
+      {type === "profile" && (
+        <div className={styles.spacing}>
+          <ProfileBio bio={data.data.description} />
+        </div>
+      )}
       {/* <div className={styles.spacing}>
         <ProfileTabs data={data.data.videoUploaded} />
       </div> */}

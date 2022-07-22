@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable array-callback-return */
 /* eslint-disable react/prop-types */
 import { useEffect, useRef } from "react";
 import Masonry from "react-masonry-css";
@@ -76,26 +78,31 @@ function VideoGallery({ data }) {
         columnClassName={styles.masonryColumn}
       >
         {data &&
-          data.map((video) => (
-            <VideoContainer
-              src={video.video.default}
-              key={video.id}
-              videoId={video.id}
-              thumbnail={video.thumbnail}
-              label={video.json}
-              aspectRatio={video.video_aspect_ratio}
-              name={video.userName}
-              image={video.userImage}
-              title={video.videoTitle}
+          data.map((video) => {
+            // console.log(video.video.default, video.videoTitle);
+            if (video.video.default !== undefined) {
+              return (
+                <VideoContainer
+                  src={video?.video?.default}
+                  key={video.id}
+                  videoId={video.id}
+                  thumbnail={video.thumbnail}
+                  label={video.json}
+                  aspectRatio={video.video_aspect_ratio}
+                  name={video.userName}
+                  image={video.userImage}
+                  title={video.videoTitle}
 
-              // onClick={() => {
-              //   // console.log("clicked");
-              //   setModalValue("videomodal");
-              //   setUrl(video.video);
-              //   setIsVidModalOpen(true);
-              // }}
-            />
-          ))}
+                  // onClick={() => {
+                  //   // console.log("clicked");
+                  //   setModalValue("videomodal");
+                  //   setUrl(video.video);
+                  //   setIsVidModalOpen(true);
+                  // }}
+                />
+              );
+            }
+          })}
       </Masonry>
     </div>
   );

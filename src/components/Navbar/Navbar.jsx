@@ -32,7 +32,7 @@ export default function Navbar() {
 
   const displayDropdown = (e, newPage) => {
     const page = newPage;
-    console.log(page);
+    // console.log(page);
     const tempBtn = e.target.getBoundingClientRect();
     const center = tempBtn.left - 65;
     const bottom = tempBtn.bottom + 30;
@@ -72,7 +72,7 @@ export default function Navbar() {
               role="button"
               tabIndex="-1"
             >
-              <img src="./icons/mainLogo.svg" className="" alt="" />
+              <img src={`${process.env.PUBLIC_URL}/icons/mainLogo.svg`} className="" alt="" />
             </span>
           </div>
         </div>
@@ -119,8 +119,8 @@ export default function Navbar() {
               className={styles.navbarIconItem}
               onClick={(e) => {
                 // console.log(typeof localStorage.getItem("interests"));
-                const inter = JSON.parse(localStorage.getItem("interests"));
-                console.log(typeof inter);
+                // const inter = JSON.parse(localStorage.getItem("interests"));
+                // console.log(typeof inter);
 
                 if (!localStorage.getItem("userId")) {
                   setIsModalOpen(true);
@@ -175,14 +175,14 @@ export default function Navbar() {
                   <ellipse cx="20.2476" cy="26.9629" rx="2" ry="2" fill="#6D7280" />
                   <path
                     d="M1 1C3.55157 2.27579 4.81579 3.39109 4.81579 6.49474M4.81579 6.49474C4.81579 19.0868 8.17369 21.6053 16.5684 21.6053C24.9632 21.6053 28.3211 19.0868 28.3211 9.01316C28.3211 7.5994 27.4816 6.49474 25.8026 6.49474C24.1237 6.49474 10.4082 6.49474 4.81579 6.49474Z"
-                    stroke={location.pathname === "/cart" ? "white" : "#6D7280"}
+                    stroke={location.pathname === "/cart/" ? "white" : "#6D7280"}
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                 </svg>
 
-                <p className={`${location.pathname === "/cart" ? styles.active : " "}`}>Cart</p>
+                <p className={`${location.pathname === "/cart/" ? styles.active : " "}`}>Cart</p>
                 <div className={styles.badge}>
                   {" "}
                   {!localStorage.getItem("userId") ? 0 : cart ? cart.length : 0}
@@ -204,6 +204,7 @@ export default function Navbar() {
                   setIsDropdownOpen(false);
                   // toast.open({ msg: "Log in to Create", type: "warning" });
                 } else {
+                  // console.log(e);
                   changeDropdownContent("create");
                   displayDropdown(e, "create");
                 }

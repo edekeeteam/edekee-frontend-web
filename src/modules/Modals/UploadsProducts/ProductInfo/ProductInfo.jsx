@@ -26,7 +26,12 @@ function ProductInfo({ nextStep, prevStep }) {
 
   return (
     <div className={`${globalUploadStyles.ProductUploadModal} ${styles.productInfo}`}>
-      <ModalHeader prevStep={prevStep} canCancel={false} showNext nextStep={nextStep} />
+      <ModalHeader
+        prevStep={prevStep}
+        canCancel={false}
+        showNext={!!(name && price && currency && desc && qty)}
+        nextStep={nextStep}
+      />
       <div className={`${globalUploadStyles.Content} ${styles.Content}`}>
         <ModalTitle
           title="Tell us about your product"
@@ -53,7 +58,7 @@ function ProductInfo({ nextStep, prevStep }) {
               <InputSelect
                 name="Currency"
                 value={currency}
-                options={[{ id: 1, name: "NGN" }]}
+                options={[{ id: 1, name: "NG" }]}
                 handleChange={(e) => setCurrency(e)}
               />
             </div>

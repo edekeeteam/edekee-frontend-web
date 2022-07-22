@@ -1,0 +1,67 @@
+@import "../../styles/functions";
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.productImages {
+  // border: 2px solid green;
+}
+
+.backChevron {
+  width: 7px;
+  // border: 1px solid green;
+  transform: rotate(180deg);
+  margin-right: 3px;
+}
+
+.backButton {
+  // position: absolute;
+  // left: 0;
+  // top: 50%;
+  // transform: translate(0, -50%);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 20px 0;
+}
+
+.namePrice {
+  // border: 2px solid green;
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  font-size: 25px;
+  margin-right: 30px;
+}
+
+.price {
+  font-size: 20px;
+}
+
+.descriptionSection {
+  width: 370px;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+.stock {
+  font-size: 14px;
+  margin: 20px 0;
+}
+
+.productImagesContent {
+  // margin-top: 100px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  // grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+
+  @include xxlMaxBreakPoint {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include mdMaxBreakPoint {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

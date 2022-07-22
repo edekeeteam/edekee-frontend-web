@@ -14,11 +14,14 @@ import AddNew from "../../../../components/AddNewButton/AddNew";
 import ValueCancelable from "../../../../components/ValueCancelable/ValueCancelable";
 import { useUploadProductsContext } from "../../../../context/UploadProducts";
 import { useToastContext } from "../../../../context/ToastContext";
+import Complete from "../../../../components/Complete/Complete";
 
 // eslint-disable-next-line no-unused-vars
 function Measurements({ prevStep, nextStep }) {
   const toast = useToastContext();
   const [size, setSize] = useState("");
+  const [showComplete, setShowComplete] = useState(false);
+
   // const [shoeSizeUnit, setShoeSizeUnit] = useState("");
 
   // const [selectedClothingSizes, addToSelectedClothingSizes] = useState([]);
@@ -52,6 +55,13 @@ function Measurements({ prevStep, nextStep }) {
       toast.open({ msg: "Input Weight First", type: "warning" });
     }
   };
+  // useEffect(() => {
+  //   if (completed) {
+  //     nextStep();
+  //     setShowComplete(true);
+  //     console.log("completed");
+  //   }
+  // }, [completed]);
 
   const handleOnWeightDelete = (val) => {
     Delete(val, weights, setWeights);
@@ -94,126 +104,133 @@ function Measurements({ prevStep, nextStep }) {
 
   function handleUpload() {
     handleProductsUpload();
+    setShowComplete(true);
   }
 
-  return (
-    <div className={`${globalUploadStyles.ProductUploadModal} ${styles.measurement}`}>
-      <ModalHeader
-        canCancel={false}
-        showNext={false}
-        canFinish={!!sizes.length}
-        prevStep={prevStep}
-        nextStep={() => handleUpload}
-      />
-      <div className={`${globalUploadStyles.Content}`}>
-        <div className={styles.sizeSection}>
-          <div className={`${styles.header} global-modal-mb`}>
-            <p>Size</p>
-            <AddNew text="Add New Size" handleAdd={handleOnSizeClothingAdd} />
-          </div>
-          <div className={`${styles.inputs} global-modal-sm-mb`}>
-            {/* eslint-disable-next-line no-console */}
-            <InputSelect
-              name="Select Size"
-              options={unit.clothing}
-              handleChange={(e) => {
-                setSize(e);
-              }}
-            />
-          </div>
-          <div className={styles.selected}>
-            {sizes &&
-              sizes.map((s) => (
-                <ValueCancelable
-                  onDelete={(val) => handleOnSizeClothingDelete(val)}
-                  value={`${s}`}
-                />
-              ))}
-          </div>
-        </div>
-
-        {/* <div className={styles.sizeSection}> */}
-        {/*  <div className={`${styles.header} global-modal-mb`}> */}
-        {/*    <p>Size</p> */}
-        {/*    <AddNew text="Add New Size" handleAdd={handleOnSizeAdd} /> */}
-        {/*  </div> */}
-        {/*  <div className={`${styles.inputs} global-modal-sm-mb`}> */}
-        {/*    <div className={styles.weight}> */}
-        {/*      /!* eslint-disable-next-line no-console *!/ */}
-        {/*      <InputText */}
-        {/*        name="Shoe" */}
-        {/*        label="Input size" */}
-        {/*        type="number" */}
-        {/*        value={size} */}
-        {/*        handleChange={(e) => setSize(e.target.value)} */}
-        {/*      /> */}
-        {/*    </div> */}
-        {/*    <div className={styles.unit}> */}
-        {/*      /!* eslint-disable-next-line no-console *!/ */}
-        {/*      <InputSelect */}
-        {/*        name="unit" */}
-        {/*        options={shoeSize} */}
-        {/*        handleChange={(e) => { */}
-        {/*          setShoeSizeUnit(e); */}
-        {/*        }} */}
-        {/*      /> */}
-        {/*    </div> */}
-        {/*  </div> */}
-        {/*  <div className={styles.selected}> */}
-        {/*    {sizes && */}
-        {/*      sizes.map((s) => ( */}
-        {/*        <ValueCancelable */}
-        {/*          unit={shoeSizeUnit} */}
-        {/*          onDelete={(val) => handleOnSizeDelete(val)} */}
-        {/*          value={`${s}`} */}
-        {/*        /> */}
-        {/*      ))} */}
-        {/*  </div> */}
-        {/* </div> */}
-        <div className={styles.weightSection}>
-          <div className={`${styles.header} global-modal-mb`}>
-            <p>
-              Weight <span>(optional)</span>
-            </p>
-            <AddNew text="Add New Weight" handleAdd={handleOnWeightAdd} />
-          </div>
-          <div className={`${styles.inputs} global-modal-sm-mb`}>
-            <div className={styles.weight}>
-              {/* eslint-disable-next-line no-console */}
-              <InputText
-                name="weight"
-                label="Input Weight"
-                type="number"
-                value={weight}
-                handleChange={(e) => setWeight(e.target.value)}
-              />
+  if (!showComplete) {
+    return (
+      <div className={`${globalUploadStyles.ProductUploadModal} ${styles.measurement}`}>
+        <ModalHeader
+          canCancel={false}
+          showNext={false}
+          canFinish={!!sizes.length}
+          prevStep={prevStep}
+          nextStep={() => handleUpload}
+        />
+        <div className={`${globalUploadStyles.Content}`}>
+          <div className={styles.sizeSection}>
+            <div className={`${styles.header} global-modal-mb`}>
+              <p>Size</p>
+              <AddNew text="Add New Size" handleAdd={handleOnSizeClothingAdd} />
             </div>
-            <div className={styles.unit}>
+            <div className={`${styles.inputs} global-modal-sm-mb`}>
               {/* eslint-disable-next-line no-console */}
               <InputSelect
-                name="unit"
-                options={unit.weight}
-                // value={currency}
+                name="Select Size"
+                options={unit.clothing}
                 handleChange={(e) => {
-                  setWeightUnit(e);
+                  setSize(e);
                 }}
               />
             </div>
+            <div className={styles.selected}>
+              {sizes &&
+                sizes.map((s) => (
+                  <ValueCancelable
+                    onDelete={(val) => handleOnSizeClothingDelete(val)}
+                    value={`${s}`}
+                  />
+                ))}
+            </div>
           </div>
-          <div className={styles.selected}>
-            {weights &&
-              weights.map((w) => (
-                <ValueCancelable
-                  unit={weightUnit}
-                  onDelete={(val) => handleOnWeightDelete(val)}
-                  value={`${w}`}
+
+          {/* <div className={styles.sizeSection}> */}
+          {/*  <div className={`${styles.header} global-modal-mb`}> */}
+          {/*    <p>Size</p> */}
+          {/*    <AddNew text="Add New Size" handleAdd={handleOnSizeAdd} /> */}
+          {/*  </div> */}
+          {/*  <div className={`${styles.inputs} global-modal-sm-mb`}> */}
+          {/*    <div className={styles.weight}> */}
+          {/*      /!* eslint-disable-next-line no-console *!/ */}
+          {/*      <InputText */}
+          {/*        name="Shoe" */}
+          {/*        label="Input size" */}
+          {/*        type="number" */}
+          {/*        value={size} */}
+          {/*        handleChange={(e) => setSize(e.target.value)} */}
+          {/*      /> */}
+          {/*    </div> */}
+          {/*    <div className={styles.unit}> */}
+          {/*      /!* eslint-disable-next-line no-console *!/ */}
+          {/*      <InputSelect */}
+          {/*        name="unit" */}
+          {/*        options={shoeSize} */}
+          {/*        handleChange={(e) => { */}
+          {/*          setShoeSizeUnit(e); */}
+          {/*        }} */}
+          {/*      /> */}
+          {/*    </div> */}
+          {/*  </div> */}
+          {/*  <div className={styles.selected}> */}
+          {/*    {sizes && */}
+          {/*      sizes.map((s) => ( */}
+          {/*        <ValueCancelable */}
+          {/*          unit={shoeSizeUnit} */}
+          {/*          onDelete={(val) => handleOnSizeDelete(val)} */}
+          {/*          value={`${s}`} */}
+          {/*        /> */}
+          {/*      ))} */}
+          {/*  </div> */}
+          {/* </div> */}
+          <div className={styles.weightSection}>
+            <div className={`${styles.header} global-modal-mb`}>
+              <p>
+                Weight <span>(optional)</span>
+              </p>
+              <AddNew text="Add New Weight" handleAdd={handleOnWeightAdd} />
+            </div>
+            <div className={`${styles.inputs} global-modal-sm-mb`}>
+              <div className={styles.weight}>
+                {/* eslint-disable-next-line no-console */}
+                <InputText
+                  name="weight"
+                  label="Input Weight"
+                  type="number"
+                  value={weight}
+                  handleChange={(e) => setWeight(e.target.value)}
                 />
-              ))}
+              </div>
+              <div className={styles.unit}>
+                {/* eslint-disable-next-line no-console */}
+                <InputSelect
+                  name="unit"
+                  options={unit.weight}
+                  // value={currency}
+                  handleChange={(e) => {
+                    setWeightUnit(e);
+                  }}
+                />
+              </div>
+            </div>
+            <div className={styles.selected}>
+              {weights &&
+                weights.map((w) => (
+                  <ValueCancelable
+                    unit={weightUnit}
+                    onDelete={(val) => handleOnWeightDelete(val)}
+                    value={`${w}`}
+                  />
+                ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+
+  if (showComplete) {
+    return <Complete type="product" />;
+  }
 }
 
 Measurements.propTypes = {

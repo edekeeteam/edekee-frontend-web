@@ -17,7 +17,7 @@ function Product({ product, changeVideoTab }) {
 
   const fetchProductDetails = (id) => {
     axios
-      .get(`http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/product/${id}`, {
+      .get(`http://app.edekee.io:3000/v1/api/product/${id}`, {
         headers: {
           Authorization: "token",
           portal: "web",
@@ -33,6 +33,10 @@ function Product({ product, changeVideoTab }) {
           changeVideoTab(2);
         }
         return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+        // changeVideoTab(0);
       });
   };
 
@@ -40,6 +44,7 @@ function Product({ product, changeVideoTab }) {
     <div
       className={styles.product}
       onClick={() => {
+        changeVideoTab(3);
         fetchProductDetails(product.id);
         // changeVideoTab(2);
       }}

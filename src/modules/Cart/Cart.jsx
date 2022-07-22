@@ -2,8 +2,11 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useEffect, useState } from "react";
 // import { useParams } from "react-router-dom";
+import Lottie from "react-lottie";
 import styles from "./Cart.module.scss";
 // import data from "./data";
+
+import animationData from "../../lotties/loading.json";
 import CartItem from "../../components/CartItem/CartItem";
 import {
   InputCheckbox,
@@ -19,13 +22,30 @@ import Button from "../../components/Button/Button";
 function CartModule() {
   // eslint-disable-next-line no-unused-vars
 
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
   const [isAllChecked, setIsAllChecked] = useState(false);
   const [isCheckout, setIsCheckout] = useState(false);
   const [total, setTotal] = useState(0);
   const [shipCost] = useState(100);
   const { setAddress, address } = useBuyContext();
-  const { cart, setCart, fetchCart, setOrderItems, orderItems, setCartOrderArray, saveCartOrder } =
-    useBuyContext();
+  const {
+    cartLoading,
+    cart,
+    setCart,
+    fetchCart,
+    setOrderItems,
+    orderItems,
+    setCartOrderArray,
+    saveCartOrder,
+  } = useBuyContext();
 
   // const { userId } = useParams();
 
@@ -119,6 +139,14 @@ function CartModule() {
     setCartOrderArray(cartOrder);
     // console.log(cartOrder);
   }, [cart]);
+
+  if (cartLoading) {
+    return (
+      <div className={styles.lottieWrapper}>
+        <Lottie options={defaultOptions} height={150} width={150} />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.cartModule}>

@@ -25,6 +25,7 @@ function UploadProductsProvider({ children }) {
   const [sizes, setSizes] = useState([]);
   const [weights, setWeights] = useState([]);
   const [shop, setShop] = useState(undefined);
+  const [completed, setCompleted] = useState(false);
   // data
 
   // const { setIsModalOpen } = useModalContext();
@@ -72,10 +73,10 @@ function UploadProductsProvider({ children }) {
     formDataVideo.append("product_video", videoFile);
 
     // eslint-disable-next-line no-restricted-syntax
-    for (const pair of formDataVideo.entries()) {
-      // eslint-disable-next-line no-console
-      console.log(`${pair[0]}, ${pair[1]}`);
-    }
+    // for (const pair of formDataVideo.entries()) {
+    //   // eslint-disable-next-line no-console
+    //   console.log(`${pair[0]}, ${pair[1]}`);
+    // }
 
     // eslint-disable-next-line no-unused-vars
     // const config = {
@@ -101,9 +102,12 @@ function UploadProductsProvider({ children }) {
           // setPercentage(percent);
           console.log(response);
           apiMethods
-            .post(`${endPoint.uploadProdctVideoImagesBy}${response.data.data.id}`, formDataVideo)
-            .then((res) => console.log(res))
-            .catch((err) => console.log(err));
+            .post(`${endPoint.uploadProductVideoImagesBy}${response.data.data.id}`, formDataVideo)
+            .then((res) => {
+              console.log(res);
+              setCompleted(true);
+            })
+            .catch((err) => console.error(err));
           // if (response.status === 201) {
           //   setPicturesFiles([]);
           //   // setSource(null);
@@ -199,6 +203,7 @@ function UploadProductsProvider({ children }) {
         addImage,
         clearValues,
         setShop,
+        completed,
       }}
     >
       {children}

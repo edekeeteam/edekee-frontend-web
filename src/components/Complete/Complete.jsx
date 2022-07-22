@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useModalContext } from "../../context/ModalContext";
 import Button from "../Button/Button";
@@ -11,6 +11,15 @@ function Complete({ type }) {
   const navigate = useNavigate();
   const { setIsModalOpen } = useModalContext();
   const userId = localStorage.getItem("userId");
+
+  useEffect(() => {
+    if (type !== "order" || type !== "cart") {
+      setTimeout(() => {
+        setIsModalOpen(false);
+      }, 3000);
+    }
+  });
+
   return (
     <NewModal>
       <div className={styles.orderComplete}>
@@ -28,24 +37,27 @@ function Complete({ type }) {
           ) : type === "cart" ? (
             <p className={styles.trackText}>You can track your cart</p>
           ) : (
-            ""
+            <p className={styles.trackText}>Successfully uploaded</p>
           )}
         </div>
 
-        <Button
-          size="large"
-          bgcolor="black"
-          label={type === "order" ? "Go to Orders" : type === "cart" ? "Go to Cart" : ""}
-          handleClick={() => {
-            if (type === "order") {
-              navigate(`/orders/${userId}`);
-              setIsModalOpen(false);
-            } else if (type === "cart") {
-              navigate(`/cart/${userId}`);
-              setIsModalOpen(false);
-            }
-          }}
-        />
+        {type === "order" ||
+          (type === "cart" && (
+            <Button
+              size="large"
+              bgcolor="black"
+              label={type === "order" ? "Go to Orders" : type === "cart" ? "Go to Cart" : ""}
+              handleClick={() => {
+                if (type === "order") {
+                  navigate(`/orders/${userId}`);
+                  setIsModalOpen(false);
+                } else if (type === "cart") {
+                  navigate(`/cart/${userId}`);
+                  setIsModalOpen(false);
+                }
+              }}
+            />
+          ))}
       </div>
     </NewModal>
   );

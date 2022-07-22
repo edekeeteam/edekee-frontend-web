@@ -1,0 +1,23 @@
+@import "../../styles/functions";
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.shopProductImage {
+  width: 100%;
+  aspect-ratio: 1;
+  // border: 1px solid red;
+  margin: 0 auto;
+  position: relative;
+  background-image: url("../../../public/images/productPlaceholder.png");
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.optionsIcon {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  width: 10px;
+  cursor: pointer;
+}

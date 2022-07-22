@@ -22,6 +22,7 @@ function BuyProvider({ children }) {
   const userId = localStorage.getItem("userId");
   const weight = "50kg";
   const [cart, setCart] = useState([]);
+  const [cartLoading, setCartLoading] = useState(true);
   const [orderItems, setOrderItems] = useState();
 
   const [cartOrderArray, setCartOrderArray] = useState([]);
@@ -30,19 +31,16 @@ function BuyProvider({ children }) {
 
   const fetchCart = () => {
     axios
-      .get(
-        `http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/getCartItems/${userId}`,
-        {
-          headers: {
-            Authorization: localStorage.getItem("token"),
-            portal: "web",
-          },
-        }
-      )
+      .get(`http://app.edekee.io:3000/v1/api/cart/getCartItems/${userId}`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+          portal: "web",
+        },
+      })
       .then((res) => {
         console.log(res.data.data);
         const newCart = res.data.data.map((item) => ({ ...item, check: false }));
-
+        setCartLoading(false);
         setCart(newCart);
         // res.data
       });
@@ -128,7 +126,7 @@ function BuyProvider({ children }) {
 
     axios
       .post(
-        "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/saveOrder",
+        "http://app.edekee.io:3000/v1/api/cart/saveOrder",
         {
           userId,
           address,
@@ -170,7 +168,7 @@ function BuyProvider({ children }) {
     }
     axios
       .post(
-        "http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/cart/saveOrder",
+        "http://app.edekee.io:3000/v1/api/cart/saveOrder",
         {
           userId,
           address,
@@ -229,6 +227,7 @@ function BuyProvider({ children }) {
         setOrderItems,
         setCartOrderArray,
         saveCartOrder,
+        cartLoading,
       }}
     >
       {children}

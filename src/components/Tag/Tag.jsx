@@ -26,16 +26,14 @@ function Tag({ topPos, leftPos, price, title, id, setVideoModalTabValue }) {
     tag.current.addEventListener("buy", (e) => {
       console.log(e.detail.id);
       // console.log(t);
+      setVideoModalTabValue(3);
       axios
-        .get(
-          `http://ec2-3-143-191-168.us-east-2.compute.amazonaws.com:3000/v1/api/product/${tag.current.id}`,
-          {
-            headers: {
-              Authorization: localStorage.getItem("token"),
-              portal: "web",
-            },
-          }
-        )
+        .get(`http://app.edekee.io:3000/v1/api/product/${tag.current.id}`, {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+            portal: "web",
+          },
+        })
         .then((res) => {
           console.log(res.data.data);
 
@@ -45,6 +43,10 @@ function Tag({ topPos, leftPos, price, title, id, setVideoModalTabValue }) {
             setVideoModalTabValue(2);
           }
           return res.data;
+        })
+        .catch((err) => {
+          console.log(err);
+          // setVideoModalTabValue(0);
         });
 
       // console.log(e.detail.id);

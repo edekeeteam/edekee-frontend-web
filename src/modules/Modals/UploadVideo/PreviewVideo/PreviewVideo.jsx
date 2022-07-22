@@ -15,6 +15,12 @@ function PreviewVideo({ nextStep, prevStep }) {
   //   func();
   //   // deleteVideo();
   // };
+  const changeModal = (func) => {
+    func();
+    console.log("called");
+  };
+
+  const handleKeydown = () => {};
 
   return (
     <div className={styles.videoPreviewContainer} style={{ height: "auto" }}>
@@ -26,7 +32,15 @@ function PreviewVideo({ nextStep, prevStep }) {
       {/* <div>footer</div> */}
       <div style={{ width: "100%", padding: "0 15px" }}>
         <InputTextArea name="video Description" label="Video Description" height={100} />
-        <div className={styles2.paymentOnDelivery}>
+        <div
+          className={styles2.paymentOnDelivery}
+          onClick={() => changeModal(nextStep())}
+          onKeyDown={() => {
+            handleKeydown();
+          }}
+          role="button"
+          tabIndex={0}
+        >
           <p>Tag Product</p>
 
           <img src="/icons/purpleTick.svg" alt="" />
